@@ -22,6 +22,16 @@
           <button class="btn" id="bPlay">Jogar</button>
           <button class="btn green" id="bSound">Sons: ligado</button>
           <button class="btn ghost" id="bHow">Como jogar</button>
+          <button class="btn ghost small" id="bProf">
+            🧑‍🏫 Abrir situação do professor
+          </button>
+          <input
+            type="file"
+            id="input-situacao"
+            accept=".json,application/json"
+            hidden
+          />
+          <p class="aviso-prof" id="avisoProf" hidden></p>
         </div>
       </section>
 
@@ -91,7 +101,7 @@
         </aside>
       </section>
 
-      <section class="screen" id="level">
+      <section class="screen" id="fase">
         <header class="top">
           <button
             class="chip home"
@@ -101,53 +111,145 @@
           >
             🏠</button
           ><span class="chip who"></span>
-          <h2 class="title-box" id="goal"></h2>
-          <span class="chip starsum">⭐ <b class="gStars">0</b></span>
+          <div class="title-box fase-faixa">
+            <h2 class="fase-titulo"></h2>
+            <p class="fase-instrucao"></p>
+          </div>
+          <span
+            class="chip starsum contador-estrelas"
+            role="img"
+            aria-label="0 estrelas"
+            ><img src="img/ui/estrela.png" alt="" />
+            <b class="contador-estrelas-num">0</b></span
+          >
         </header>
-        <div class="left-art"></div>
-        <div class="board" id="board"></div>
-        <aside class="side">
-          <div class="guide">
-            <div class="face" id="lvFace">
-              <img src="img/guide.png" alt="" />
-            </div>
+        <div class="fase-arte" aria-hidden="true"></div>
+        <main class="area-jogo">
+          <!-- Tabuleiro: um espaço numerado por passo (montado pelo jogo.js) -->
+          <section
+            class="tabuleiro"
+            aria-label="Tabuleiro com os passos em ordem"
+          >
+            <ol class="tabuleiro-grade"></ol>
+          </section>
+          <!-- Bandeja: as cartas entram embaralhadas (montada pelo jogo.js) -->
+          <section class="bandeja" aria-label="Cartas ainda não usadas">
+            <ul class="bandeja-fila"></ul>
+          </section>
+        </main>
+        <!-- Robô-guia: fala da fase e, quando a criança erra, a
+             explicação do erro (sempre do PRIMEIRO problema) -->
+        <aside class="guia">
+          <div class="face">
+            <img class="guia-rosto" src="img/guide.png" alt="" />
+          </div>
+          <div class="guia-fala">
             <b>Robô-guia</b>
-            <p id="guideMsg"></p>
+            <p class="mascote-balao"></p>
           </div>
         </aside>
-        <div class="tray" id="tray"></div>
-        <div class="actions">
-          <button class="chip" id="bHint">💡 Dica <b id="hintN">1</b></button
-          ><button class="btn small" id="bCheck">Verificar ✓</button>
-        </div>
-        <span class="chip lvl" id="lvlTxt"></span>
-        <div class="speech" id="speech">
-          <p></p>
-          <button class="btn small" id="bRetry">Tentar de novo ↺</button>
-        </div>
+        <footer class="rodape">
+          <span class="chip progresso"
+            ><span class="progresso-texto">Nível 1 de 5</span
+            ><span class="progresso-bolinhas" aria-hidden="true"></span
+          ></span>
+          <div class="rodape-direita">
+            <button class="chip" id="btn-som" type="button" aria-pressed="true">
+              <span class="som-ligado" aria-hidden="true">🔊</span
+              ><span class="som-mudo" aria-hidden="true">🔇</span>
+            </button>
+            <button class="chip" id="btn-dica" type="button">
+              <img src="img/ui/dica.png" alt="" /> Dica
+              <b class="dica-restantes" aria-hidden="true">2</b>
+            </button>
+          </div>
+        </footer>
       </section>
 
-      <section class="screen" id="win">
-        <div class="win-art"></div>
-        <div class="panel win-panel">
-          <div class="guide">
-            <div class="face"><img src="img/guide.png" alt="" /></div>
-            <b>Robô-guia</b>
-            <p id="winMsg">
-              Nível concluído! Clique no botão para retornar à central.
+      <!-- Lição: a atividade vira conceito (conteúdo vem da fase.licao) -->
+      <section class="screen" id="licao">
+        <div class="licao-arte" aria-hidden="true"></div>
+        <header class="top">
+          <button
+            class="chip home"
+            data-home
+            title="Voltar ao menu principal"
+            aria-label="Voltar ao menu principal"
+          >
+            🏠</button
+          ><span class="chip who"></span>
+          <span class="chip starsum"
+            ><img src="img/ui/estrela.png" alt="" />
+            <b class="gStars">0</b></span
+          >
+        </header>
+        <section
+          class="panel conclusao-painel"
+          role="dialog"
+          aria-labelledby="conclusao-parabens conclusao-pergunta"
+          tabindex="-1"
+        >
+          <header class="conclusao-topo">
+            <p class="title-box conclusao-parabens" id="conclusao-parabens">
+              ⭐ Parabéns! Você completou o nível!
             </p>
-          </div>
-          <div class="rewards">
-            <div>
-              <span id="winStars">⭐</span
-              ><b>+<span id="winN">1</span> estrela</b>
+            <div class="conclusao-progresso">
+              <span class="conclusao-bolinhas" aria-hidden="true"></span>
+              <span class="conclusao-progresso-texto"></span>
             </div>
-            <div><span>🪪</span><b>+1 dica</b></div>
+          </header>
+          <div class="conclusao-corpo">
+            <div class="conclusao-coluna">
+              <h3 class="conclusao-pergunta" id="conclusao-pergunta">
+                <span class="conclusao-pergunta-texto"></span>
+              </h3>
+              <div class="conclusao-texto"></div>
+              <div class="conclusao-comparacao">
+                <div class="comparacao-caixa comparacao-certa">
+                  <p class="comparacao-rotulo">
+                    <span class="comparacao-selo" aria-hidden="true">✓</span>
+                    Essa ordem funciona
+                  </p>
+                  <div class="comparacao-fila"></div>
+                </div>
+                <div class="comparacao-caixa comparacao-errada">
+                  <p class="comparacao-rotulo">
+                    <span class="comparacao-selo" aria-hidden="true">✗</span>
+                    Essa ordem não funciona
+                  </p>
+                  <div class="comparacao-fila"></div>
+                </div>
+              </div>
+            </div>
+            <div class="conclusao-coluna">
+              <div class="conclusao-reflexao">
+                <h3>Pense e converse</h3>
+                <ul></ul>
+              </div>
+              <p class="conclusao-reforco">
+                ⭐ <span class="conclusao-reforco-texto"></span>
+              </p>
+            </div>
           </div>
-          <button class="btn brown" id="bBack">
-            <span class="mini"></span>Retornar
-          </button>
-        </div>
+          <footer class="conclusao-rodape">
+            <div class="rewards">
+              <div>
+                <img src="img/ui/estrela.png" alt="" /><b
+                  class="premio-estrelas"
+                  >+1 estrela</b
+                >
+              </div>
+              <div>
+                <img src="img/ui/dica.png" alt="" /><b class="premio-dicas"
+                  >+1 dica</b
+                >
+              </div>
+            </div>
+            <button class="btn conclusao-continuar" type="button">
+              <span class="conclusao-continuar-texto">Próximo nível</span> ›
+            </button>
+          </footer>
+        </section>
       </section>
 
       <section class="screen bg-promo" id="promo">
@@ -165,7 +267,11 @@
         <div class="hero" id="promoHero"></div>
         <aside class="promo-card">
           <h3 class="title-box">Promoção!</h3>
-          <div class="badge-sm">🪪</div>
+          <img
+            class="badge-sm"
+            src="img/ui/cracha-agente.png"
+            alt="Crachá de Agente"
+          />
           <p class="rank">
             <span>Estagiário</span> → <span class="on">Agente</span>
           </p>
@@ -205,8 +311,8 @@
         <div class="panel">
           <h2>Recomeçar do zero?</h2>
           <p>
-            Suas estrelas e dicas serão zeradas e os 4 chamados voltam a ficar
-            abertos.
+            Suas estrelas e dicas serão zeradas e os 4 chamados voltam para o
+            nível 1.
           </p>
           <div class="row">
             <button class="btn" id="bYes">Sim, recomeçar</button
@@ -218,15 +324,28 @@
         <div class="panel">
           <h2>Como jogar</h2>
           <p>
-            1. Escolha um chamado na central.<br />2. Arraste os cards para os
-            números, na ordem certa (ou toque neles).<br />3. Toque em
-            Verificar. Errou? O robô dá uma pista.<br />4. Quanto menos erros,
-            mais estrelas!
+            1. Escolha um chamado na central.<br />2. Arraste as cartas para os
+            espaços numerados — ou toque na carta e depois no espaço.<br />3.
+            Errou? O robô-guia explica na hora. É só mover de novo!<br />4. Cada
+            carta certa vale uma estrela. Errar não tira nada.
           </p>
           <button class="btn" id="bHowClose">Entendi</button>
         </div>
       </div>
     </div>
-    <script src="game.js"></script>
+    <!-- avisos para leitor de tela (invisíveis na tela): movimentos
+         das cartas numa região, explicações de erro em outra -->
+    <div class="sr leitor-avisos" aria-live="polite"></div>
+    <div class="sr leitor-explicacao" aria-live="polite"></div>
+    <script src="js/motor.js"></script>
+    <script src="js/comum.js"></script>
+    <script src="js/situacoes.js"></script>
+    <script src="js/som.js"></script>
+    <script src="js/progresso.js"></script>
+    <script src="js/perfil.js"></script>
+    <script src="js/arrasto.js"></script>
+    <script src="js/conclusao.js"></script>
+    <script src="js/jogo.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
