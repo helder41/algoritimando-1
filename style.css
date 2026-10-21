@@ -1974,3 +1974,9 @@ body.arrastando * {
     padding: 0.6cqw;
   }
 }
+
+/* o crachá do topo é um botão: leva de volta à escolha de agente */
+.chip.who:hover {
+  filter: brightness(1.06);
+  transform: translateY(-0.1cqw);
+}

@@ -50,6 +50,7 @@
       img.src = avatarSrc();
       img.alt = '';
       e.append(img, ' ' + P.nome);
+      e.setAttribute('aria-label', `Agente ${P.nome}. Trocar de agente`);
     });
     const total = Progresso.total();
     $$('.gStars').forEach(e => { e.textContent = total; });
@@ -91,6 +92,18 @@
     irPara('char');
     $('#nameIn').focus();
   }
+
+  // o crachá do topo (rosto + nome) volta para esta tela: dá para
+  // trocar de agente ou de nome sem perder o progresso
+  $$('.chip.who').forEach(b => {
+    b.onclick = () => {
+      $('#nameIn').value = P.nome;
+      $('#badgeName').textContent = P.nome;
+      $$('.avatar').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
+      $('#badgeFace').src = avatarSrc();
+      irParaCracha();
+    };
+  });
   $$('.avatar').forEach(b => {
     b.onclick = () => {
       $$('.avatar').forEach(x => x.classList.remove('sel'));
