@@ -316,7 +316,7 @@
         botao.setAttribute('aria-label', `Nível ${i + 1}, bloqueado`);
       } else if (estrelas) {
         info.className = 'st';
-        info.innerHTML = '★'.repeat(estrelas) + '<u>' + '★'.repeat(3 - estrelas) + '</u>';
+        info.innerHTML = Comum.estrelasHTML(estrelas);
         botao.setAttribute('aria-label', `Nível ${i + 1}, ${estrelas} de 3 estrelas. Jogar de novo`);
       } else {
         info.textContent = 'Novo!';

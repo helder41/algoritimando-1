@@ -160,7 +160,7 @@
         // tocar nelas abre a lista de níveis para jogar de novo
         const media = Math.round(Progresso.estrelas(s.id) / s.fases.length);
         botao.className = 'st';
-        botao.innerHTML = '★'.repeat(media) + '<u>' + '★'.repeat(3 - media) + '</u>';
+        botao.innerHTML = Comum.estrelasHTML(media);
         botao.title = 'Escolher nível';
         botao.setAttribute('aria-label', `${media} de 3 estrelas. Escolher nível para jogar de novo`);
       } else {

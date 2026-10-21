@@ -56,6 +56,15 @@
 
   botao.addEventListener('click', () => mostrarNoCelular(!tela.classList.contains('ver-montagem')));
 
+  /* No PC a montagem fica com a sobra de altura da área de jogo.
+     Com muitas cartas na bandeja pode não sobrar quase nada: aí ela
+     se esconde até abrir espaço, em vez de empurrar a tela. */
+  if (window.ResizeObserver) {
+    new ResizeObserver(() => {
+      caixa.classList.toggle('apertada', caixa.getBoundingClientRect().height < 48);
+    }).observe(caixa);
+  }
+
   /* ---------------- preparar a fase ---------------- */
 
   function preparar(situacao, fase) {

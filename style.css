@@ -2129,8 +2129,9 @@ body.arrastando * {
 /* ===== montagem: a imagem que se monta conforme as cartas ===== */
 /* dentro dela, cqw/cqh medem a própria montagem */
 .montagem {
+  /* usa só a sobra da área de jogo; sem sobra, some (montagem.js) */
   flex: 1 1 0;
-  min-height: 7cqw;
+  min-height: 0;
   position: relative;
   container-type: size;
   background: rgba(252, 242, 226, 0.95);
@@ -2452,4 +2453,32 @@ body.arrastando * {
   #stage .dica-curta {
     display: inline;
   }
+}
+
+/* estrelas das seleções (central e lista de níveis): o png do placar */
+.st {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15em;
+}
+.st img.estrela {
+  height: 1.25em;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0.08em 0 rgba(74, 52, 38, 0.25));
+}
+.st img.estrela.apagada {
+  filter: grayscale(1) brightness(1.25);
+  opacity: 0.45;
+}
+/* na central, as estrelas são o botão (abrem a lista de níveis) */
+.call button.st {
+  background: none;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+.montagem.apertada {
+  visibility: hidden;
 }
