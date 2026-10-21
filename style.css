@@ -294,8 +294,9 @@ h2 {
   font-weight: 700;
 }
 .avatars {
-  display: flex;
-  gap: 2cqw;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 1.4cqw 2cqw;
 }
 .avatar {
   width: 10cqw;
@@ -963,11 +964,11 @@ body {
     gap: 4cqw;
   }
   #stage .avatars {
-    gap: 5cqw;
+    gap: 3cqw 5cqw;
   }
   #stage .avatar {
-    width: 26cqw;
-    height: 26cqw;
+    width: 20cqw;
+    height: 20cqw;
     border-width: 0.9cqw;
   }
   #stage #nameIn {

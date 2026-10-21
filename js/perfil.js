@@ -6,7 +6,7 @@
 
      {
        nome:       nome digitado no crachá
-       avatar:     "0" (menina) ou "1" (menino)
+       avatar:     "0" a "5" — qual dos 6 agentes (ver AGENTES no app.js)
        comecou:    já passou pela abertura e pelo crachá
        dicas:      estoque de dicas — começa com DICAS_INICIAIS e
                    ganha +1 a cada fase concluída (é o "+1 dica" da
@@ -39,7 +39,7 @@
       const salvo = JSON.parse(localStorage.getItem(CHAVE) || 'null');
       if (salvo && typeof salvo === 'object') {
         if (typeof salvo.nome === 'string' && salvo.nome.trim()) p.nome = salvo.nome.trim().slice(0, 14);
-        if (salvo.avatar === '1') p.avatar = '1';
+        if (/^[0-5]$/.test(salvo.avatar)) p.avatar = salvo.avatar;
         p.comecou = salvo.comecou === true;
         if (Number.isInteger(salvo.dicas) && salvo.dicas >= 0) p.dicas = salvo.dicas;
         if (salvo.concluidos && typeof salvo.concluidos === 'object') p.concluidos = salvo.concluidos;

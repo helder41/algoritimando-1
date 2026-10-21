@@ -34,7 +34,12 @@
   }
   window.irPara = irPara;
 
-  const avatarSrc = () => 'img/av' + (P.avatar === '1' ? 1 : 0) + '.png';
+  /* Os 6 agentes: o número é o P.avatar. Cada um tem o retrato
+     (img/avN.png), a cena de promoção (img/promoN.jpg) e o corpo
+     inteiro recortado para a tela final. */
+  const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino'];
+
+  const avatarSrc = () => `img/av${P.avatar}.png`;
 
   // topo de todas as telas: rosto + nome do agente e total de estrelas
   function atualizarTopo() {
@@ -179,14 +184,14 @@
 
   function promocao() {
     atualizarTopo();
-    $('#promo').style.setProperty('--img', `url(img/promo${P.avatar === '1' ? 1 : 0}.jpg)`);
+    $('#promo').style.setProperty('--img', `url(img/promo${P.avatar}.jpg)`);
     irPara('promo');
     Som.vitoria();
   }
 
   $('#bPromoNext').onclick = () => {
     $('#finName').textContent = P.nome;
-    $('#finAg').src = 'img/agente-' + (P.avatar === '1' ? 'menino' : 'menina') + '.png';
+    $('#finAg').src = `img/agente-${CORPO[+P.avatar]}.png`;
     $('#finStarsN').textContent = Progresso.total();
     irPara('final');
   };
