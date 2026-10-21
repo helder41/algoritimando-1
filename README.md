@@ -6,7 +6,8 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 ## Como funciona
 
 - Cada chamado tem 4 ou 5 níveis, e cada nível tem de 3 a 8 passos. Os passos ficam mais detalhados a cada nível, para mostrar as etapas que a gente pula quando explica algo para outra pessoa.
-- A resposta não é uma ordem fixa: cada passo depende dos passos da camada anterior (`ordemLivre` junta passos que podem trocar de lugar). Ordens alternativas válidas são aceitas.
+- A resposta não é uma ordem fixa: cada passo diz de quais outros ele depende (`dependeDe`). Passos que não dependem um do outro podem vir em qualquer ordem, e cada dependência tem a sua explicação para quando a criança erra.
+- Na tela de lição, a criança vê uma imagem; o texto fica no botão "Para o professor".
 - O erro é explicado na hora, pelo Robô-guia, e só o primeiro problema da sequência. A carta nunca é bloqueada: a criança move de novo.
 - Depois de cada nível aparece a lição, que liga a atividade ao conceito de algoritmo.
 - Estrelas por nível: 3 sem erro, 2 com um erro, 1 com mais (usar dica conta como erro). Cada nível concluído dá +1 dica, e a dica coloca a carta certa no lugar.
@@ -16,7 +17,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 ## Área do professor
 
 - Abra o `editor.html` (ou use o botão "Área do professor" no menu do jogo → "Criar ou editar").
-- O professor escreve os passos na ordem certa, marca quando dois passos podem trocar de lugar e escreve o que o Robô-guia diz se a criança errar. Escolhe também o cenário, as imagens das cartas e os textos da lição.
+- O professor escreve os passos na ordem certa, marca em cada passo quais passos precisam vir antes dele e escreve o que o Robô-guia diz se a criança errar. Escolhe também o cenário, as imagens das cartas, a imagem da lição e o texto para o professor.
 - "Testar este nível" abre o nível exatamente como a criança verá, sem mexer no progresso do jogo.
 - "Salvar arquivo" baixa um `.json` com tudo dentro, inclusive as imagens. Para jogar: menu do jogo → "Área do professor" → "Abrir chamado (.json)".
 - Sem servidor e sem nuvem: o arquivo fica no computador do professor.

@@ -30,10 +30,9 @@
    primeiras fases: primeiro a criança vive a ideia, só depois
    a ideia ganha nome.
 
-   Regras de dependência que o modelo de camadas cria "a mais"
-   (ex.: abrir a garra antes de andar) são sempre narradas na
-   instrucao da fase e no texto da explicacao, para virarem
-   regra do mundo da fase em vez de erro sem sentido.
+   Cada passo diz, em dependeDe, de quais outros passos ele precisa
+   (ver motor.js). Passos que não dependem um do outro podem trocar
+   de lugar: é assim que as ordens alternativas são aceitas.
    ============================================================ */
 
 'use strict';
@@ -61,18 +60,19 @@ const SITUACAO_SANDUICHE = {
       instrucao: 'Arraste as cartas para os espaços — ou toque na carta e depois no espaço.',
       mascote: 'Cada carta é um passo. Qual precisa acontecer primeiro?',
       passos: [
-        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png' },
+        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png', dependeDe: [] },
         {
-          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png',
+          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png', dependeDe: ['pao'],
           explicacao: 'O queijo vai em cima do pão. Sem pão na mesa, o queijo fica voando!',
         },
         {
-          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png',
+          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['queijo'],
           explicacao: 'Fechar o sanduíche agora? O queijo ainda está fora — ele fica sem entrar!',
         },
       ],
       licao: {
         pergunta: 'Por que a ordem dos passos importa?',
+        imagem: 'img/licoes/sanduiche-1.png',
         texto: [
           'Para montar o sanduíche, você colocou os passos em uma ordem.',
           'Se a gente troca os passos de lugar, dá confusão: o queijo pode ficar de fora do sanduíche!',
@@ -92,17 +92,17 @@ const SITUACAO_SANDUICHE = {
       instrucao: 'Alguns passos podem trocar de lugar entre si. Outros não. Fique de olho!',
       mascote: 'O queijo e o presunto podem trocar de lugar. Os outros, não!',
       passos: [
-        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png' },
+        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png', dependeDe: [] },
         {
-          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png',
+          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png', dependeDe: ['pao'],
           explicacao: 'O queijo vai em cima do pão. Sem pão na mesa, o queijo fica voando!',
         },
         {
-          id: 'presunto', texto: 'Coloque o presunto no pão.', imagem: 'img/passos/sanduiche-03.png', ordemLivre: true,
+          id: 'presunto', texto: 'Coloque o presunto no pão.', imagem: 'img/passos/sanduiche-03.png', dependeDe: ['pao'],
           explicacao: 'O presunto vai em cima do pão. Sem pão na mesa, o presunto fica voando!',
         },
         {
-          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png',
+          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['queijo', 'presunto'],
           explicacao: {
             queijo:   'Para fechar o sanduíche, o queijo já precisa estar dentro. Fechando agora, ele fica de fora!',
             presunto: 'Para fechar o sanduíche, o presunto já precisa estar dentro. Fechando agora, ele fica de fora!',
@@ -111,6 +111,7 @@ const SITUACAO_SANDUICHE = {
       ],
       licao: {
         pergunta: 'Todo passo tem uma hora certa?',
+        imagem: 'img/licoes/sanduiche-2.png',
         texto: [
           'O queijo e o presunto podiam entrar em qualquer ordem: um não precisa do outro.',
           'Mas fechar o sanduíche precisa esperar os dois estarem dentro.',
@@ -127,29 +128,30 @@ const SITUACAO_SANDUICHE = {
     {
       id: 'fase-3',
       titulo: 'Monte o sanduíche sem esquecer nenhum passo!',
-      instrucao: 'Primeiro separe na mesa tudo o que vai usar. Depois monte!',
-      mascote: 'Não dá para usar o que ainda está guardado. Separe tudo primeiro!',
+      instrucao: 'Tem passos que a gente faz sem pensar. Não esqueça nenhum!',
+      mascote: 'Não dá para usar o que ainda está guardado. Pegue antes de usar!',
       passos: [
-        { id: 'pegar-pao',      texto: 'Pegue o saco de pão.', imagem: 'img/passos/sanduiche-05.png' },
-        { id: 'pegar-manteiga', texto: 'Pegue a manteiga.',    imagem: 'img/passos/sanduiche-06.png', ordemLivre: true },
+        { id: 'pegar-pao',      texto: 'Pegue o saco de pão.', imagem: 'img/passos/sanduiche-05.png', dependeDe: [] },
+        { id: 'pegar-manteiga', texto: 'Pegue a manteiga.',    imagem: 'img/passos/sanduiche-06.png', dependeDe: [] },
         {
-          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png',
+          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png', dependeDe: ['pegar-pao'],
+          explicacao: 'Para abrir o saco de pão, ele precisa estar na sua mão!',
+        },
+        {
+          id: 'passar', texto: 'Passe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png', dependeDe: ['abrir-saco', 'pegar-manteiga'],
           explicacao: {
-            'pegar-pao':      'Para abrir o saco de pão, ele precisa estar na sua mão!',
-            'pegar-manteiga': 'Antes de começar a abrir, separe tudo na mesa — a manteiga também!',
+            'abrir-saco':     'As fatias ainda estão dentro do saco! Abra o saco primeiro.',
+            'pegar-manteiga': 'Passar a manteiga? Ela ainda está guardada! Pegue a manteiga primeiro.',
           },
         },
         {
-          id: 'passar', texto: 'Passe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png',
-          explicacao: 'As fatias ainda estão dentro do saco! Abra o saco primeiro.',
-        },
-        {
-          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png',
+          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['passar'],
           explicacao: 'Fechar antes de passar a manteiga? Vira um sanduíche de nada!',
         },
       ],
       licao: {
         pergunta: 'Cadê os passos escondidos?',
+        imagem: 'img/licoes/sanduiche-3.png',
         texto: [
           'Abrir o saco de pão… você faz isso sem nem pensar.',
           'Quando a gente explica para alguém, esses passos pequenos ficam escondidos — a pessoa adivinha sozinha.',
@@ -169,30 +171,31 @@ const SITUACAO_SANDUICHE = {
       instrucao: 'O computador não adivinha nada. Diga cada passo, um por um.',
       mascote: 'O computador não sabe nada sobre sanduíche. Conte tudo para ele!',
       passos: [
-        { id: 'pegar-pao',    texto: 'Pegue o saco de pão.',       imagem: 'img/passos/sanduiche-05.png' },
-        { id: 'pegar-queijo', texto: 'Pegue uma fatia de queijo.', imagem: 'img/passos/sanduiche-10.png', ordemLivre: true },
+        { id: 'pegar-pao',    texto: 'Pegue o saco de pão.',       imagem: 'img/passos/sanduiche-05.png', dependeDe: [] },
+        { id: 'pegar-queijo', texto: 'Pegue uma fatia de queijo.', imagem: 'img/passos/sanduiche-10.png', dependeDe: [] },
         {
-          id: 'abrir-saco', texto: 'Abra o saco de pão.', imagem: 'img/passos/sanduiche-07.png',
-          explicacao: {
-            'pegar-pao':    'O saco precisa estar na mão do computador antes de abrir!',
-            'pegar-queijo': 'Primeiro separe tudo na mesa. O computador não sai pegando as coisas sozinho!',
-          },
+          id: 'abrir-saco', texto: 'Abra o saco de pão.', imagem: 'img/passos/sanduiche-07.png', dependeDe: ['pegar-pao'],
+          explicacao: 'O saco precisa estar na mão do computador antes de abrir!',
         },
         {
-          id: 'tirar-fatias', texto: 'Tire duas fatias do saco.', imagem: 'img/passos/sanduiche-08.png',
+          id: 'tirar-fatias', texto: 'Tire duas fatias do saco.', imagem: 'img/passos/sanduiche-08.png', dependeDe: ['abrir-saco'],
           explicacao: 'Tirar fatias de um saco fechado? O computador trava: não dá!',
         },
         {
-          id: 'por-queijo', texto: 'Coloque o queijo na fatia.', imagem: 'img/passos/sanduiche-02.png',
-          explicacao: 'As fatias ainda estão dentro do saco! O queijo cairia em cima da mesa.',
+          id: 'por-queijo', texto: 'Coloque o queijo na fatia.', imagem: 'img/passos/sanduiche-02.png', dependeDe: ['tirar-fatias', 'pegar-queijo'],
+          explicacao: {
+            'tirar-fatias': 'As fatias ainda estão dentro do saco! O queijo cairia em cima da mesa.',
+            'pegar-queijo': 'Colocar qual queijo? Ele ainda está guardado! O computador precisa pegar a fatia antes.',
+          },
         },
         {
-          id: 'fechar', texto: 'Feche com a outra fatia.', imagem: 'img/passos/sanduiche-04.png',
+          id: 'fechar', texto: 'Feche com a outra fatia.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['por-queijo'],
           explicacao: 'Fechar antes de o queijo entrar? O computador entrega um sanduíche de nada!',
         },
       ],
       licao: {
         pergunta: 'E se quem monta o sanduíche for um computador?',
+        imagem: 'img/licoes/sanduiche-4.png',
         texto: [
           'Um amigo adivinha os passos escondidos. O computador não adivinha nada!',
           'Ele só faz o que a gente diz, do jeitinho que a gente diz. Cada frase dessas é uma instrução.',
@@ -212,41 +215,37 @@ const SITUACAO_SANDUICHE = {
       instrucao: 'Pegue tudo, abra tudo, monte — e termine arrumando!',
       mascote: 'Começo, meio e fim: pegar, montar e arrumar a mesa.',
       passos: [
-        { id: 'pegar-pao',      texto: 'Pegue o saco de pão.',      imagem: 'img/passos/sanduiche-05.png' },
-        { id: 'pegar-manteiga', texto: 'Pegue o pote de manteiga.', imagem: 'img/passos/sanduiche-06.png', ordemLivre: true },
-        { id: 'pegar-faca',     texto: 'Pegue uma faca sem ponta.', imagem: 'img/passos/sanduiche-11.png', ordemLivre: true },
+        { id: 'pegar-pao',      texto: 'Pegue o saco de pão.',      imagem: 'img/passos/sanduiche-05.png', dependeDe: [] },
+        { id: 'pegar-manteiga', texto: 'Pegue o pote de manteiga.', imagem: 'img/passos/sanduiche-06.png', dependeDe: [] },
+        { id: 'pegar-faca',     texto: 'Pegue uma faca sem ponta.', imagem: 'img/passos/sanduiche-11.png', dependeDe: [] },
         {
-          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png',
-          explicacao: {
-            'pegar-pao': 'O saco precisa estar na sua mão!',
-            '*':         'Primeiro pegue tudo e deixe na mesa. Depois comece a abrir!',
-          },
+          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png', dependeDe: ['pegar-pao'],
+          explicacao: 'O saco precisa estar na sua mão antes de abrir!',
         },
         {
-          id: 'abrir-pote', texto: 'Abra o pote de manteiga.', imagem: 'img/passos/sanduiche-12.png', ordemLivre: true,
-          explicacao: {
-            'pegar-manteiga': 'O pote precisa estar na sua mão!',
-            '*':              'Primeiro pegue tudo e deixe na mesa. Depois comece a abrir!',
-          },
+          id: 'abrir-pote', texto: 'Abra o pote de manteiga.', imagem: 'img/passos/sanduiche-12.png', dependeDe: ['pegar-manteiga'],
+          explicacao: 'O pote precisa estar na sua mão antes de abrir!',
         },
         {
-          id: 'passar', texto: 'Espalhe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png',
+          id: 'passar', texto: 'Espalhe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png', dependeDe: ['abrir-saco', 'abrir-pote', 'pegar-faca'],
           explicacao: {
             'abrir-saco': 'As fatias ainda estão dentro do saco!',
             'abrir-pote': 'A manteiga ainda está trancada no pote! A faca não atravessa a tampa.',
+            'pegar-faca': 'Espalhar com o quê? Pegue a faca primeiro!',
           },
         },
         {
-          id: 'fechar-sanduiche', texto: 'Junte as duas fatias.', imagem: 'img/passos/sanduiche-04.png',
+          id: 'fechar-sanduiche', texto: 'Junte as duas fatias.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['passar'],
           explicacao: 'Juntar as fatias sem manteiga dentro? Sanduíche de nada!',
         },
         {
-          id: 'guardar', texto: 'Guarde tudo e deixe a mesa limpa.', imagem: 'img/passos/sanduiche-13.png',
+          id: 'guardar', texto: 'Guarde tudo e deixe a mesa limpa.', imagem: 'img/passos/sanduiche-13.png', dependeDe: ['fechar-sanduiche'],
           explicacao: 'O sanduíche ainda não está pronto! Termine de montar antes de guardar as coisas.',
         },
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
+        imagem: 'img/licoes/sanduiche-5.png',
         texto: [
           'Uma lista de instruções completa e na ordem certa tem nome: algoritmo!',
           'E o seu foi até o fim de verdade: montar, guardar tudo, deixar a mesa limpa.',
@@ -288,18 +287,19 @@ const SITUACAO_ROBO = {
       instrucao: 'O robô faz um passo de cada vez. Coloque na ordem!',
       mascote: 'O robô só faz o que você mandar — e na ordem que você mandar.',
       passos: [
-        { id: 'andar', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png' },
+        { id: 'andar', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png', dependeDe: [] },
         {
-          id: 'pegar', texto: 'Pegue o cubo.', imagem: 'img/passos/robo-02.png',
+          id: 'pegar', texto: 'Pegue o cubo.', imagem: 'img/passos/robo-02.png', dependeDe: ['andar'],
           explicacao: 'O braço do robô não estica! De longe, a garra fecha no ar. Primeiro ande até o cubo.',
         },
         {
-          id: 'colocar', texto: 'Coloque o cubo na plataforma.', imagem: 'img/passos/robo-03.png',
+          id: 'colocar', texto: 'Coloque o cubo na plataforma.', imagem: 'img/passos/robo-03.png', dependeDe: ['pegar'],
           explicacao: 'A garra do robô está vazia! Colocar o quê? Primeiro pegue o cubo.',
         },
       ],
       licao: {
         pergunta: 'Como um robô entende um pedido?',
+        imagem: 'img/licoes/robo-1.png',
         texto: [
           'O robô não pensa como a gente: ele faz um passo de cada vez, na ordem que recebe.',
           'Se a ordem estiver trocada, ele tenta mesmo assim — e dá tudo errado!',
@@ -319,22 +319,23 @@ const SITUACAO_ROBO = {
       instrucao: 'A garra começa fechada — e garra fechada não pega nada.',
       mascote: 'Garra fechada não pega nada. Repare quando ela precisa abrir!',
       passos: [
-        { id: 'andar',       texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png' },
-        { id: 'abrir-garra', texto: 'Abra a garra.',    imagem: 'img/passos/robo-04.png', ordemLivre: true },
+        { id: 'andar',       texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png', dependeDe: [] },
+        { id: 'abrir-garra', texto: 'Abra a garra.',    imagem: 'img/passos/robo-04.png', dependeDe: [] },
         {
-          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png',
+          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png', dependeDe: ['andar', 'abrir-garra'],
           explicacao: {
             'andar':       'Fechar a garra daqui? Ela fecha no ar! Primeiro chegue perto do cubo.',
             'abrir-garra': 'A garra está fechada! Garra fechada não pega nada — primeiro abra.',
           },
         },
         {
-          id: 'colocar', texto: 'Coloque o cubo na plataforma.', imagem: 'img/passos/robo-03.png',
+          id: 'colocar', texto: 'Coloque o cubo na plataforma.', imagem: 'img/passos/robo-03.png', dependeDe: ['fechar-garra'],
           explicacao: 'A garra ainda não está segurando o cubo! Feche a garra nele primeiro.',
         },
       ],
       licao: {
         pergunta: 'Todos os passos precisam esperar?',
+        imagem: 'img/licoes/robo-2.png',
         texto: [
           'Andar até o cubo e abrir a garra: tanto faz qual vem primeiro — um não precisa do outro!',
           'Mas fechar a garra no cubo precisa esperar os dois.',
@@ -351,29 +352,30 @@ const SITUACAO_ROBO = {
     {
       id: 'fase-3',
       titulo: 'Vire o robô antes de ele andar!',
-      instrucao: 'Prepare o robô antes de ele sair do lugar: vire-o para o lado certo e abra a garra.',
+      instrucao: 'O robô só anda para a frente. Ele precisa estar virado para o lado certo!',
       mascote: 'O robô anda para onde está virado. Vire antes de mandar andar!',
       passos: [
-        { id: 'virar-cubo',  texto: 'Vire o robô para o cubo.', imagem: 'img/passos/robo-05.png' },
-        { id: 'abrir-garra', texto: 'Abra a garra.',            imagem: 'img/passos/robo-04.png', ordemLivre: true },
+        { id: 'virar-cubo',  texto: 'Vire o robô para o cubo.', imagem: 'img/passos/robo-05.png', dependeDe: [] },
+        { id: 'abrir-garra', texto: 'Abra a garra.',            imagem: 'img/passos/robo-04.png', dependeDe: [] },
         {
-          id: 'andar-cubo', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png',
+          id: 'andar-cubo', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png', dependeDe: ['virar-cubo'],
+          explicacao: 'O robô anda sempre reto, para onde está virado. Sem virar antes, ele bate na parede!',
+        },
+        {
+          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png', dependeDe: ['andar-cubo', 'abrir-garra'],
           explicacao: {
-            'virar-cubo':  'O robô anda sempre reto, para onde está virado. Sem virar antes, ele bate na parede!',
-            'abrir-garra': 'Este robô sai andando já com a garra pronta. Abra a garra antes de mandar ele andar!',
+            'andar-cubo':  'Fechar a garra daqui? Ela fecha no ar! Primeiro chegue perto do cubo.',
+            'abrir-garra': 'A garra está fechada! Garra fechada não pega nada: primeiro abra.',
           },
         },
         {
-          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png',
-          explicacao: 'Fechar a garra daqui? Ela fecha no ar! Primeiro chegue perto do cubo.',
-        },
-        {
-          id: 'colocar', texto: 'Coloque o cubo na plataforma.', imagem: 'img/passos/robo-03.png',
+          id: 'colocar', texto: 'Coloque o cubo na plataforma.', imagem: 'img/passos/robo-03.png', dependeDe: ['fechar-garra'],
           explicacao: 'A garra ainda não está segurando o cubo! Feche a garra nele primeiro.',
         },
       ],
       licao: {
         pergunta: 'Quem manda alguém "se virar antes de andar"?',
+        imagem: 'img/licoes/robo-3.png',
         texto: [
           'Ninguém fala isso — todo mundo se vira sem pensar.',
           'O robô não: se ninguém mandar virar, ele sai reto e bate na parede.',
@@ -393,34 +395,35 @@ const SITUACAO_ROBO = {
       instrucao: 'Agora a viagem é completa: pegar o cubo, levar até a plataforma e soltar.',
       mascote: 'Ida e volta: pegar o cubo aqui, soltar lá na plataforma.',
       passos: [
-        { id: 'virar-cubo',  texto: 'Vire o robô para o cubo.', imagem: 'img/passos/robo-05.png' },
-        { id: 'abrir-garra', texto: 'Abra a garra.',            imagem: 'img/passos/robo-04.png', ordemLivre: true },
+        { id: 'virar-cubo',  texto: 'Vire o robô para o cubo.', imagem: 'img/passos/robo-05.png', dependeDe: [] },
+        { id: 'abrir-garra', texto: 'Abra a garra.',            imagem: 'img/passos/robo-04.png', dependeDe: [] },
         {
-          id: 'andar-cubo', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png',
+          id: 'andar-cubo', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png', dependeDe: ['virar-cubo'],
+          explicacao: 'O robô anda sempre reto, para onde está virado. Sem virar antes, ele bate na parede!',
+        },
+        {
+          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png', dependeDe: ['andar-cubo', 'abrir-garra'],
           explicacao: {
-            'virar-cubo':  'O robô anda sempre reto, para onde está virado. Sem virar antes, ele bate na parede!',
-            'abrir-garra': 'Este robô sai andando já com a garra pronta. Abra a garra antes de mandar ele andar!',
+            'andar-cubo':  'Fechar a garra daqui? Ela fecha no ar! Primeiro chegue perto do cubo.',
+            'abrir-garra': 'A garra está fechada! Garra fechada não pega nada: primeiro abra.',
           },
         },
         {
-          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png',
-          explicacao: 'Fechar a garra daqui? Ela fecha no ar! Primeiro chegue perto do cubo.',
-        },
-        {
-          id: 'virar-plataforma', texto: 'Vire o robô para a plataforma.', imagem: 'img/passos/robo-06.png',
+          id: 'virar-plataforma', texto: 'Vire o robô para a plataforma.', imagem: 'img/passos/robo-06.png', dependeDe: ['fechar-garra'],
           explicacao: 'Se o robô virar agora, o cubo fica para trás, sozinho na mesa! Primeiro feche a garra nele.',
         },
         {
-          id: 'andar-plataforma', texto: 'Ande até a plataforma.', imagem: 'img/passos/robo-07.png',
+          id: 'andar-plataforma', texto: 'Ande até a plataforma.', imagem: 'img/passos/robo-07.png', dependeDe: ['virar-plataforma'],
           explicacao: 'O robô anda para onde está virado. Sem virar antes, ele leva o cubo direto para a parede!',
         },
         {
-          id: 'soltar', texto: 'Abra a garra em cima da plataforma.', imagem: 'img/passos/robo-08.png',
+          id: 'soltar', texto: 'Abra a garra em cima da plataforma.', imagem: 'img/passos/robo-08.png', dependeDe: ['andar-plataforma'],
           explicacao: 'Abrir a garra agora? O cubo despenca no meio do caminho! Primeiro chegue até a plataforma.',
         },
       ],
       licao: {
         pergunta: 'O que se esconde dentro de "coloque na plataforma"?',
+        imagem: 'img/licoes/robo-4.png',
         texto: [
           'Quando a gente fala "coloque lá", tem um monte de passo escondido: virar, andar, soltar.',
           'O robô não adivinha nenhum deles. Cada frase dessas é uma instrução.',
@@ -440,41 +443,42 @@ const SITUACAO_ROBO = {
       instrucao: 'Um robô desligado não faz nada. Comece do comecinho!',
       mascote: 'Faltou um passo bem no comecinho. Percebe qual?',
       passos: [
-        { id: 'ligar', texto: 'Aperte o botão de ligar.', imagem: 'img/passos/robo-09.png' },
+        { id: 'ligar', texto: 'Aperte o botão de ligar.', imagem: 'img/passos/robo-09.png', dependeDe: [] },
         {
-          id: 'virar-cubo', texto: 'Vire o robô para o cubo.', imagem: 'img/passos/robo-05.png',
+          id: 'virar-cubo', texto: 'Vire o robô para o cubo.', imagem: 'img/passos/robo-05.png', dependeDe: ['ligar'],
           explicacao: 'O robô está desligado! Robô sem energia não escuta instrução nenhuma.',
         },
         {
-          id: 'abrir-garra', texto: 'Abra a garra.', imagem: 'img/passos/robo-04.png', ordemLivre: true,
+          id: 'abrir-garra', texto: 'Abra a garra.', imagem: 'img/passos/robo-04.png', dependeDe: ['ligar'],
           explicacao: 'O robô está desligado! Robô sem energia não escuta instrução nenhuma.',
         },
         {
-          id: 'andar-cubo', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png',
+          id: 'andar-cubo', texto: 'Ande até o cubo.', imagem: 'img/passos/robo-01.png', dependeDe: ['virar-cubo'],
+          explicacao: 'O robô anda sempre reto, para onde está virado. Sem virar antes, ele bate na parede!',
+        },
+        {
+          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png', dependeDe: ['andar-cubo', 'abrir-garra'],
           explicacao: {
-            'virar-cubo':  'O robô anda sempre reto, para onde está virado. Sem virar antes, ele bate na parede!',
-            'abrir-garra': 'Este robô sai andando já com a garra pronta. Abra a garra antes de mandar ele andar!',
+            'andar-cubo':  'Fechar a garra daqui? Ela fecha no ar! Primeiro chegue perto do cubo.',
+            'abrir-garra': 'A garra está fechada! Garra fechada não pega nada: primeiro abra.',
           },
         },
         {
-          id: 'fechar-garra', texto: 'Feche a garra no cubo.', imagem: 'img/passos/robo-02.png',
-          explicacao: 'Fechar a garra daqui? Ela fecha no ar! Primeiro chegue perto do cubo.',
-        },
-        {
-          id: 'virar-plataforma', texto: 'Vire o robô para a plataforma.', imagem: 'img/passos/robo-06.png',
+          id: 'virar-plataforma', texto: 'Vire o robô para a plataforma.', imagem: 'img/passos/robo-06.png', dependeDe: ['fechar-garra'],
           explicacao: 'Se o robô virar agora, o cubo fica para trás, sozinho na mesa! Primeiro feche a garra nele.',
         },
         {
-          id: 'andar-plataforma', texto: 'Ande até a plataforma.', imagem: 'img/passos/robo-07.png',
+          id: 'andar-plataforma', texto: 'Ande até a plataforma.', imagem: 'img/passos/robo-07.png', dependeDe: ['virar-plataforma'],
           explicacao: 'O robô anda para onde está virado. Sem virar antes, ele leva o cubo direto para a parede!',
         },
         {
-          id: 'soltar', texto: 'Abra a garra em cima da plataforma.', imagem: 'img/passos/robo-08.png',
+          id: 'soltar', texto: 'Abra a garra em cima da plataforma.', imagem: 'img/passos/robo-08.png', dependeDe: ['andar-plataforma'],
           explicacao: 'Abrir a garra agora? O cubo despenca no meio do caminho! Primeiro chegue até a plataforma.',
         },
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
+        imagem: 'img/licoes/robo-5.png',
         texto: [
           'Uma lista de instruções completa e na ordem certa tem nome: algoritmo!',
           'E o seu começou do verdadeiro começo: ligar o robô — o passo mais esquecido do mundo.',
@@ -516,18 +520,19 @@ const SITUACAO_MOCHILA = {
       instrucao: 'Coloque os passos na ordem certa para nada ficar para trás.',
       mascote: 'O estojo precisa estar fechado antes de entrar na mochila.',
       passos: [
-        { id: 'guardar-lapis', texto: 'Guarde o lápis no estojo.', imagem: 'img/passos/mochila-01.png' },
+        { id: 'guardar-lapis', texto: 'Guarde o lápis no estojo.', imagem: 'img/passos/mochila-01.png', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png',
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis'],
           explicacao: 'Fechar o estojo agora? O lápis fica de fora, perdido na mesa!',
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png',
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo'],
           explicacao: 'O estojo ainda está aberto! Se ele entrar assim, os lápis se espalham dentro da mochila.',
         },
       ],
       licao: {
         pergunta: 'Por que a ordem dos passos importa?',
+        imagem: 'img/licoes/mochila-1.png',
         texto: [
           'Para guardar o material, você colocou os passos em uma ordem.',
           'Se a gente troca os passos de lugar, dá confusão: o lápis pode ficar perdido na mesa!',
@@ -547,26 +552,27 @@ const SITUACAO_MOCHILA = {
       instrucao: 'O lápis e a borracha não brigam: qualquer um pode entrar primeiro!',
       mascote: 'Lápis ou borracha primeiro? Aqui tanto faz!',
       passos: [
-        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png' },
-        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', ordemLivre: true },
+        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', dependeDe: [] },
+        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png',
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis', 'guardar-borracha'],
           explicacao: {
             'guardar-lapis':    'O lápis ainda está fora! Fechando agora, ele fica perdido na mesa.',
             'guardar-borracha': 'A borracha ainda está fora! Fechando agora, ela fica perdida na mesa.',
           },
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png',
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo'],
           explicacao: 'O estojo aberto derrama tudo dentro da mochila! Feche o estojo primeiro.',
         },
         {
-          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png',
+          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', dependeDe: ['estojo-mochila'],
           explicacao: 'Fechar a mochila sem o estojo dentro? Ele fica esquecido na escola!',
         },
       ],
       licao: {
         pergunta: 'Todo passo tem uma hora certa?',
+        imagem: 'img/licoes/mochila-2.png',
         texto: [
           'O lápis e a borracha podiam entrar no estojo em qualquer ordem: um não precisa do outro.',
           'Mas fechar o estojo precisa esperar os dois estarem dentro.',
@@ -583,36 +589,36 @@ const SITUACAO_MOCHILA = {
     {
       id: 'fase-3',
       titulo: 'Tem um passo que ninguém fala…',
-      instrucao: 'Primeiro termine o estojo. Depois é a vez da mochila!',
+      instrucao: 'Tem um passo escondido aqui. A mochila não abre sozinha!',
       mascote: 'Tem um passo que a gente faz sem perceber. Ele está aí!',
       passos: [
-        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png' },
-        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', ordemLivre: true },
+        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', dependeDe: [] },
+        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png',
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis', 'guardar-borracha'],
           explicacao: {
             'guardar-lapis':    'O lápis ainda está fora! Fechando agora, ele fica perdido na mesa.',
             'guardar-borracha': 'A borracha ainda está fora! Fechando agora, ela fica perdida na mesa.',
           },
         },
         {
-          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', ordemLivre: true,
-          explicacao: 'Primeiro termine o estojo: lápis e borracha dentro! A mochila é a próxima parte.',
+          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', dependeDe: [],
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png',
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo', 'abrir-mochila'],
           explicacao: {
             'fechar-estojo': 'O estojo aberto derrama tudo dentro da mochila! Feche o estojo primeiro.',
             'abrir-mochila': 'A mochila está fechada! O estojo não atravessa o zíper — abra a mochila primeiro.',
           },
         },
         {
-          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png',
+          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', dependeDe: ['estojo-mochila'],
           explicacao: 'Fechar a mochila sem o estojo dentro? Ele fica esquecido na escola!',
         },
       ],
       licao: {
         pergunta: 'Quem lembra de falar "abra a mochila"?',
+        imagem: 'img/licoes/mochila-3.png',
         texto: [
           'Ninguém fala "abra a mochila" — todo mundo abre sem pensar.',
           'Mas se esse passo não existir, o estojo não entra: ele bate no zíper fechado!',
@@ -629,50 +635,47 @@ const SITUACAO_MOCHILA = {
     {
       id: 'fase-4',
       titulo: 'Arrumação completa, do lápis às costas!',
-      instrucao: 'Termine o estojo, abra a mochila, guarde tudo — e ela vai para as costas!',
+      instrucao: 'Estojo pronto, mochila aberta, tudo guardado: e ela vai para as costas!',
       mascote: 'Do lápis até as costas: o passo a passo inteiro, sem pular nada.',
       passos: [
-        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png' },
-        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', ordemLivre: true },
+        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', dependeDe: [] },
+        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png',
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis', 'guardar-borracha'],
           explicacao: {
             'guardar-lapis':    'O lápis ainda está fora! Fechando agora, ele fica perdido na mesa.',
             'guardar-borracha': 'A borracha ainda está fora! Fechando agora, ela fica perdida na mesa.',
           },
         },
         {
-          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', ordemLivre: true,
-          explicacao: 'Primeiro termine o estojo: lápis e borracha dentro! A mochila é a próxima parte.',
+          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', dependeDe: [],
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png',
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo', 'abrir-mochila'],
           explicacao: {
             'fechar-estojo': 'O estojo aberto derrama tudo dentro da mochila! Feche o estojo primeiro.',
             'abrir-mochila': 'A mochila está fechada! O estojo não atravessa o zíper — abra a mochila primeiro.',
           },
         },
         {
-          id: 'caderno-mochila', texto: 'Guarde o caderno na mochila.', imagem: 'img/passos/mochila-07.png', ordemLivre: true,
-          explicacao: {
-            'abrir-mochila': 'A mochila está fechada! O caderno não atravessa o zíper — abra a mochila primeiro.',
-            'fechar-estojo': 'Deixe o estojo prontinho e fechado antes de começar a encher a mochila.',
-          },
+          id: 'caderno-mochila', texto: 'Guarde o caderno na mochila.', imagem: 'img/passos/mochila-07.png', dependeDe: ['abrir-mochila'],
+          explicacao: 'A mochila está fechada! O caderno não atravessa o zíper: abra a mochila primeiro.',
         },
         {
-          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png',
+          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', dependeDe: ['estojo-mochila', 'caderno-mochila'],
           explicacao: {
             'estojo-mochila':  'O estojo ainda está fora! Fechando agora, ele fica esquecido na escola.',
             'caderno-mochila': 'O caderno ainda está fora! Fechando agora, ele fica esquecido na escola.',
           },
         },
         {
-          id: 'colocar-costas', texto: 'Coloque a mochila nas costas.', imagem: 'img/passos/mochila-08.png',
+          id: 'colocar-costas', texto: 'Coloque a mochila nas costas.', imagem: 'img/passos/mochila-08.png', dependeDe: ['fechar-mochila'],
           explicacao: 'Mochila aberta nas costas? Vira uma chuva de lápis e caderno pelo chão!',
         },
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
+        imagem: 'img/licoes/mochila-4.png',
         texto: [
           'Uma lista de passos completa e na ordem certa tem nome: algoritmo!',
           'Você montou um algoritmo de verdade — e ele foi até o fim: mochila fechada e nas costas.',
@@ -716,18 +719,19 @@ const SITUACAO_ABELHAS = {
       instrucao: 'A abelha faz um passo de cada vez. Coloque na ordem!',
       mascote: 'O néctar mora dentro da flor. O que a abelha faz primeiro?',
       passos: [
-        { id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png' },
+        { id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png', dependeDe: [] },
         {
-          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png',
+          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png', dependeDe: ['voar-flor'],
           explicacao: 'Coletar néctar daqui? A flor está longe! Primeiro voe até ela.',
         },
         {
-          id: 'voltar', texto: 'Leve o néctar para a colmeia.', imagem: 'img/passos/abelhas-03.png',
+          id: 'voltar', texto: 'Leve o néctar para a colmeia.', imagem: 'img/passos/abelhas-03.png', dependeDe: ['nectar'],
           explicacao: 'Voltar para a colmeia de mãos vazias? Primeiro colete o néctar!',
         },
       ],
       licao: {
         pergunta: 'Por que a ordem dos passos importa?',
+        imagem: 'img/licoes/abelhas-1.png',
         texto: [
           'Para levar néctar para casa, a abelha seguiu os passos em uma ordem.',
           'Se a ordem fica trocada, ela volta para a colmeia sem nada!',
@@ -747,21 +751,21 @@ const SITUACAO_ABELHAS = {
       instrucao: 'Alguns passos podem trocar de lugar entre si. Outros não. Fique de olho!',
       mascote: 'Néctar ou pólen primeiro? Tanto faz — mas os dois só depois de chegar na flor!',
       passos: [
-        { id: 'sair', texto: 'Saia da colmeia.', imagem: 'img/passos/abelhas-04.png' },
+        { id: 'sair', texto: 'Saia da colmeia.', imagem: 'img/passos/abelhas-04.png', dependeDe: [] },
         {
-          id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png',
+          id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png', dependeDe: ['sair'],
           explicacao: 'A abelha ainda está dentro da colmeia! Primeiro ela precisa sair.',
         },
         {
-          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png',
+          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png', dependeDe: ['voar-flor'],
           explicacao: 'Coletar néctar daqui? A flor está longe! Primeiro voe até ela.',
         },
         {
-          id: 'polen', texto: 'Junte o pólen nas patinhas.', imagem: 'img/passos/abelhas-05.png', ordemLivre: true,
+          id: 'polen', texto: 'Junte o pólen nas patinhas.', imagem: 'img/passos/abelhas-05.png', dependeDe: ['voar-flor'],
           explicacao: 'Juntar pólen daqui? A flor está longe! Primeiro voe até ela.',
         },
         {
-          id: 'voltar', texto: 'Leve tudo para a colmeia.', imagem: 'img/passos/abelhas-03.png',
+          id: 'voltar', texto: 'Leve tudo para a colmeia.', imagem: 'img/passos/abelhas-03.png', dependeDe: ['nectar', 'polen'],
           explicacao: {
             nectar: 'Voltar agora? O néctar ficou na flor! Colete antes de ir embora.',
             polen:  'Voltar agora? O pólen ficou na flor! Junte nas patinhas antes de ir embora.',
@@ -770,6 +774,7 @@ const SITUACAO_ABELHAS = {
       ],
       licao: {
         pergunta: 'Todo passo tem uma hora certa?',
+        imagem: 'img/licoes/abelhas-2.png',
         texto: [
           'O néctar e o pólen podiam ser coletados em qualquer ordem: um não precisa do outro.',
           'Mas voltar para a colmeia precisa esperar os dois.',
@@ -789,25 +794,25 @@ const SITUACAO_ABELHAS = {
       instrucao: 'Antes de voar, a abelha precisa saber para onde. Procure a flor!',
       mascote: 'Voar para onde? Tem um passo escondido aqui no meio.',
       passos: [
-        { id: 'sair', texto: 'Saia da colmeia.', imagem: 'img/passos/abelhas-04.png' },
+        { id: 'sair', texto: 'Saia da colmeia.', imagem: 'img/passos/abelhas-04.png', dependeDe: [] },
         {
-          id: 'procurar', texto: 'Procure uma flor aberta.', imagem: 'img/passos/abelhas-06.png',
+          id: 'procurar', texto: 'Procure uma flor aberta.', imagem: 'img/passos/abelhas-06.png', dependeDe: ['sair'],
           explicacao: 'De dentro da colmeia não dá para ver as flores! Primeiro saia.',
         },
         {
-          id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png',
+          id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png', dependeDe: ['procurar'],
           explicacao: 'Voar para onde? A abelha ainda não achou nenhuma flor. Procure primeiro!',
         },
         {
-          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png',
+          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png', dependeDe: ['voar-flor'],
           explicacao: 'Coletar néctar daqui? A flor está longe! Primeiro voe até ela.',
         },
         {
-          id: 'polen', texto: 'Junte o pólen nas patinhas.', imagem: 'img/passos/abelhas-05.png', ordemLivre: true,
+          id: 'polen', texto: 'Junte o pólen nas patinhas.', imagem: 'img/passos/abelhas-05.png', dependeDe: ['voar-flor'],
           explicacao: 'Juntar pólen daqui? A flor está longe! Primeiro voe até ela.',
         },
         {
-          id: 'voltar', texto: 'Leve tudo para a colmeia.', imagem: 'img/passos/abelhas-03.png',
+          id: 'voltar', texto: 'Leve tudo para a colmeia.', imagem: 'img/passos/abelhas-03.png', dependeDe: ['nectar', 'polen'],
           explicacao: {
             nectar: 'Voltar agora? O néctar ficou na flor! Colete antes de ir embora.',
             polen:  'Voltar agora? O pólen ficou na flor! Junte nas patinhas antes de ir embora.',
@@ -816,6 +821,7 @@ const SITUACAO_ABELHAS = {
       ],
       licao: {
         pergunta: 'Quem lembra de falar "procure a flor"?',
+        imagem: 'img/licoes/abelhas-3.png',
         texto: [
           'Quando alguém conta o que a abelha faz, ninguém fala "procure uma flor aberta".',
           'Esse passo fica escondido: parece óbvio, então a gente pula.',
@@ -835,41 +841,42 @@ const SITUACAO_ABELHAS = {
       instrucao: 'Sair, buscar, voltar — e terminar guardando tudo no favo!',
       mascote: 'Começo, meio e fim: o trabalho só acaba quando o favo está fechado.',
       passos: [
-        { id: 'sair', texto: 'Saia da colmeia.', imagem: 'img/passos/abelhas-04.png' },
+        { id: 'sair', texto: 'Saia da colmeia.', imagem: 'img/passos/abelhas-04.png', dependeDe: [] },
         {
-          id: 'procurar', texto: 'Procure uma flor aberta.', imagem: 'img/passos/abelhas-06.png',
+          id: 'procurar', texto: 'Procure uma flor aberta.', imagem: 'img/passos/abelhas-06.png', dependeDe: ['sair'],
           explicacao: 'De dentro da colmeia não dá para ver as flores! Primeiro saia.',
         },
         {
-          id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png',
+          id: 'voar-flor', texto: 'Voe até a flor.', imagem: 'img/passos/abelhas-01.png', dependeDe: ['procurar'],
           explicacao: 'Voar para onde? A abelha ainda não achou nenhuma flor. Procure primeiro!',
         },
         {
-          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png',
+          id: 'nectar', texto: 'Colete o néctar da flor.', imagem: 'img/passos/abelhas-02.png', dependeDe: ['voar-flor'],
           explicacao: 'Coletar néctar daqui? A flor está longe! Primeiro voe até ela.',
         },
         {
-          id: 'polen', texto: 'Junte o pólen nas patinhas.', imagem: 'img/passos/abelhas-05.png', ordemLivre: true,
+          id: 'polen', texto: 'Junte o pólen nas patinhas.', imagem: 'img/passos/abelhas-05.png', dependeDe: ['voar-flor'],
           explicacao: 'Juntar pólen daqui? A flor está longe! Primeiro voe até ela.',
         },
         {
-          id: 'voltar', texto: 'Leve tudo para a colmeia.', imagem: 'img/passos/abelhas-03.png',
+          id: 'voltar', texto: 'Leve tudo para a colmeia.', imagem: 'img/passos/abelhas-03.png', dependeDe: ['nectar', 'polen'],
           explicacao: {
             nectar: 'Voltar agora? O néctar ficou na flor! Colete antes de ir embora.',
             polen:  'Voltar agora? O pólen ficou na flor! Junte nas patinhas antes de ir embora.',
           },
         },
         {
-          id: 'guardar', texto: 'Guarde o néctar no favo.', imagem: 'img/passos/abelhas-07.png',
+          id: 'guardar', texto: 'Guarde o néctar no favo.', imagem: 'img/passos/abelhas-07.png', dependeDe: ['voltar'],
           explicacao: 'Guardar o néctar onde? A abelha ainda está lá fora! Primeiro volte para a colmeia.',
         },
         {
-          id: 'tampar', texto: 'Feche o favo com cera.', imagem: 'img/passos/abelhas-08.png',
+          id: 'tampar', texto: 'Feche o favo com cera.', imagem: 'img/passos/abelhas-08.png', dependeDe: ['guardar'],
           explicacao: 'Fechar o favo vazio? Guarde o néctar dentro antes de tampar!',
         },
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
+        imagem: 'img/licoes/abelhas-4.png',
         texto: [
           'Uma lista de instruções completa e na ordem certa tem nome: algoritmo!',
           'E o seu foi até o fim de verdade: guardar o néctar e fechar o favo para virar mel.',

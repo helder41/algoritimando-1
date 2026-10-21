@@ -1580,17 +1580,44 @@ body.arrastando * {
   color: #6a5238;
 }
 .conclusao-corpo {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 1.6cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9cqw;
 }
-.conclusao-coluna {
+/* para a criança: a imagem que representa a lição */
+.licao-imagem {
+  flex: 1;
+  width: 100%;
+  min-height: 12cqw;
+  background: #fffaf0 center / contain no-repeat;
+  border-radius: 1cqw;
+}
+.licao-imagem.vazia {
+  display: grid;
+  place-items: center;
+  border: 0.22cqw dashed #c9a97c;
+  color: #a88a63;
+  font-size: max(1.1cqw, 10px);
+  font-weight: 700;
+}
+.licao-imagem[hidden],
+.licao-professor[hidden],
+.licao-botao-prof[hidden] {
+  display: none;
+}
+/* para o professor: o texto, atrás do botão */
+.licao-professor {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.9cqw;
-  min-width: 0;
+}
+.licao-botao-prof {
+  flex: none;
 }
 .conclusao-pergunta {
+  text-align: center;
   font-family: Fredoka;
   font-size: max(1.65cqw, 11px);
   font-weight: 700;
@@ -1874,10 +1901,19 @@ body.arrastando * {
   #stage .conclusao-corpo {
     flex: none;
     overflow: visible;
-    grid-template-columns: minmax(0, 1fr);
     gap: 3cqw;
   }
-  #stage .conclusao-coluna {
+  #stage .licao-imagem {
+    flex: none;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    border-radius: 2.6cqw;
+  }
+  #stage .licao-imagem.vazia {
+    border-width: 0.5cqw;
+    font-size: 3.5cqw;
+  }
+  #stage .licao-professor {
     gap: 2.4cqw;
   }
   #stage .conclusao-pergunta {

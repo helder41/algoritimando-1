@@ -12,10 +12,14 @@
    Uma SITUAÇÃO é um tema completo (ex.: "Fazer um sanduíche")
    dividido em FASES. Cada fase tem uma lista de PASSOS.
 
-   O professor NÃO escreve grafo nenhum. Ele só faz duas coisas:
-     a) escreve os passos NA ORDEM CORRETA, de cima para baixo;
-     b) quando um passo pode vir em qualquer ordem em relação ao
-        passo anterior, marca nele  "ordemLivre": true.
+   Cada passo DECLARA de quais outros passos ele depende (dependeDe).
+   A validação é feita sobre esse grafo, não sobre a posição: passos
+   que não dependem um do outro podem vir em qualquer ordem, e cada
+   dependência quebrada vira uma explicação para a criança.
+
+   O professor não escreve grafo nenhum: na Área do professor ele
+   lista os passos na ordem certa e marca, em cada um, "antes deste
+   passo, precisa ter acontecido:" — e o editor grava o dependeDe.
 
    Formato:
 
@@ -28,9 +32,9 @@
          "id": "fase-1",
          "titulo": "Monte o sanduíche na ordem certa!",
          "passos": [
-           { "id": "pao",      "texto": "Pegue o pão.",              "imagem": "img/pao.png" },
-           { "id": "manteiga", "texto": "Pegue a manteiga.",         "imagem": "img/manteiga.png", "ordemLivre": true },
-           { "id": "passar",   "texto": "Passe a manteiga no pão.",  "imagem": "img/passar.png" }
+           { "id": "pao",      "texto": "Pegue o pão.",             "dependeDe": [] },
+           { "id": "manteiga", "texto": "Pegue a manteiga.",        "dependeDe": [] },
+           { "id": "passar",   "texto": "Passe a manteiga no pão.", "dependeDe": ["pao", "manteiga"] }
          ]
        }
      ]
@@ -38,7 +42,8 @@
 
    Leitura em voz alta do exemplo acima:
    "Pegue o pão. Pegue a manteiga — tanto faz qual dos dois vem
-    primeiro (ordemLivre). Depois dos dois, passe a manteiga."
+    primeiro (nenhum depende do outro). Depois dos dois, passe a
+    manteiga."
 
    Campos opcionais da SITUAÇÃO inteira (além de formato, id,
    titulo e fases):
@@ -59,8 +64,13 @@
      imagem     ilustração da carta (caminho "img/..." ou data:).
                 Enquanto o arquivo não existe (ou não carrega), a
                 carta mostra o quadro "ilustração do passo".
-     ordemLivre (opcional, padrão false) — "posso trocar de lugar
-                com o passo de cima"
+     dependeDe  ids dos passos DESTA fase que precisam vir antes
+                deste. [] = pode ser um dos primeiros. A ordem da
+                lista de passos é a ordem que o professor escreveu
+                (a dica segue essa ordem), mas quem decide o que é
+                certo é o dependeDe.
+     ordemLivre (formato antigo, do protótipo) — só é lido quando o
+                passo não traz dependeDe; ver a seção 2.
      explicacao (opcional) — texto mostrado quando este passo é
                 colocado antes de um pré-requisito dele. Duas formas:
                 - uma string única, usada seja qual for o
@@ -99,35 +109,23 @@
    ============================================================ */
 
 /* ============================================================
-   2. DERIVAÇÃO DO GRAFO DE DEPENDÊNCIAS
+   2. O GRAFO DE DEPENDÊNCIAS
 
-   Ideia central: a marcação ordemLivre corta a lista do professor
-   em CAMADAS.
+   Vem direto do dependeDe de cada passo. Ids que não existem na
+   fase (arquivo mexido à mão) e o próprio passo são ignorados.
 
-   - Um passo SEM a marcação abre uma camada nova.
-   - Um passo COM "ordemLivre": true entra na MESMA camada do
-     passo anterior.
+   Basta ligar cada passo aos seus pré-requisitos DIRETOS: se A vem
+   antes de B e B antes de C, então A vem antes de C — e qualquer
+   sequência que desrespeite isso quebra pelo menos um elo direto,
+   que a validação encontra.
 
-   No exemplo do sanduíche:
-
-       camada 1: [pegar o pão, pegar a manteiga]   ← trocáveis entre si
-       camada 2: [passar a manteiga no pão]
-
-   A regra de dependência derivada é uma só:
-
-       CADA PASSO DEPENDE DE TODOS OS PASSOS DA CAMADA ANTERIOR.
-
-   Por que isso basta?
-   - Dentro da mesma camada ninguém depende de ninguém → qualquer
-     ordem interna é aceita (é exatamente o que o professor quis
-     dizer com "tanto faz").
-   - Entre camadas, tudo da camada N precisa vir antes de tudo da
-     camada N+1 → a ordem geral do professor é respeitada.
-   - Não precisamos ligar cada passo a TODAS as camadas anteriores,
-     só à imediatamente anterior: a corrente já garante o resto.
-     (Se A vem antes de B e B antes de C, então A vem antes de C —
-     e qualquer sequência que desrespeite isso sempre quebra pelo
-     menos um elo direto da corrente, que a validação encontra.)
+   Arquivos antigos (do protótipo) não têm dependeDe: neles, a
+   marcação ordemLivre corta a lista do professor em CAMADAS — um
+   passo sem a marcação abre uma camada nova, um passo com ela entra
+   na camada do anterior — e cada passo depende de todos os passos
+   da camada anterior. Esse modelo antigo criava dependências que
+   não existem (ex.: "abrir a garra" antes de "andar"), por isso os
+   chamados do jogo e o editor usam o dependeDe.
    ============================================================ */
 
 /**
@@ -149,7 +147,7 @@ function agruparEmCamadas(passos) {
 }
 
 /**
- * Deriva o grafo de dependências a partir da lista do professor.
+ * O grafo de dependências de uma fase.
  *
  * Devolve um objeto no formato:
  *   { idDoPasso: [ids dos passos de que ele depende], ... }
@@ -158,17 +156,22 @@ function agruparEmCamadas(passos) {
  *   { pao: [], manteiga: [], passar: ["pao", "manteiga"] }
  */
 function derivarDependencias(passos) {
-  const camadas = agruparEmCamadas(passos);
+  const ids = new Set(passos.map(p => p.id));
   const dependencias = {};
 
+  // formato antigo: só para os passos que não declaram dependeDe
+  const camadas = agruparEmCamadas(passos);
   camadas.forEach((camada, i) => {
-    // A camada anterior inteira é o pré-requisito desta camada.
-    // A primeira camada não tem pré-requisito nenhum.
     const anterior = i === 0 ? [] : camadas[i - 1].map(p => p.id);
-    for (const passo of camada) {
-      dependencias[passo.id] = anterior.slice();
-    }
+    for (const passo of camada) dependencias[passo.id] = anterior.slice();
   });
+
+  for (const passo of passos) {
+    if (Array.isArray(passo.dependeDe)) {
+      dependencias[passo.id] = [...new Set(passo.dependeDe)]
+        .filter(id => id !== passo.id && ids.has(id));
+    }
+  }
 
   return dependencias;
 }
@@ -312,25 +315,25 @@ const SITUACAO_EXEMPLO = {
       id: 'fase-1',
       titulo: 'Monte o sanduíche na ordem certa!',
       passos: [
-        { id: 'pao',      texto: 'Pegue o pão.',      imagem: 'img/pao.png' },
-        { id: 'manteiga', texto: 'Pegue a manteiga.', imagem: 'img/manteiga.png', ordemLivre: true },
+        { id: 'pao',      texto: 'Pegue o pão.',      dependeDe: [] },
+        { id: 'manteiga', texto: 'Pegue a manteiga.', dependeDe: [] },
         {
-          id: 'passar', texto: 'Passe a manteiga no pão.', imagem: 'img/passar.png',
+          id: 'passar', texto: 'Passe a manteiga no pão.', dependeDe: ['pao', 'manteiga'],
           explicacao: {
             pao:      'A manteiga precisa do pão já na mesa. Do jeito que está, não tem onde passar!',
             manteiga: 'Para passar a manteiga, ela precisa estar na mesa. Do jeito que está, a faca vai raspar o ar!',
           },
         },
         {
-          id: 'queijo', texto: 'Coloque o queijo.', imagem: 'img/queijo.png',
+          id: 'queijo', texto: 'Coloque o queijo.', dependeDe: ['passar'],
           explicacao: 'O queijo vai por cima da manteiga. Do jeito que está, ele cai no pão ainda seco!',
         },
         {
-          id: 'presunto', texto: 'Coloque o presunto.', imagem: 'img/presunto.png', ordemLivre: true,
+          id: 'presunto', texto: 'Coloque o presunto.', dependeDe: ['passar'],
           explicacao: 'O presunto vai por cima da manteiga. Do jeito que está, ele cai no pão ainda seco!',
         },
         {
-          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/fechar.png',
+          id: 'fechar', texto: 'Feche o sanduíche.', dependeDe: ['queijo', 'presunto'],
           explicacao: {
             queijo:   'Para fechar o sanduíche, o queijo já precisa estar dentro. Fechando agora, ele fica de fora!',
             presunto: 'Para fechar o sanduíche, o presunto já precisa estar dentro. Fechando agora, ele fica de fora!',
@@ -345,8 +348,8 @@ function rodarTestes() {
   const fase = SITUACAO_EXEMPLO.fases[0];
   let passou = 0, falhou = 0;
 
-  function teste(nome, sequencia, esperado) {
-    const r = validarSequencia(fase, sequencia);
+  function teste(nome, sequencia, esperado, outraFase) {
+    const r = validarSequencia(outraFase || fase, sequencia);
     const obtido = {
       ok: r.ok,
       completa: r.completa,
@@ -364,9 +367,7 @@ function rodarTestes() {
     if (r.erro) console.log('  mensagem :', r.erro.mensagem);
   }
 
-  console.log('=== Camadas derivadas da lista do professor ===');
-  console.log(agruparEmCamadas(fase.passos).map(c => c.map(p => p.id)));
-  console.log('\n=== Grafo de dependências derivado ===');
+  console.log('=== Grafo de dependências ===');
   console.log(derivarDependencias(fase.passos));
 
   teste(
@@ -397,6 +398,46 @@ function rodarTestes() {
     'sequência incompleta JÁ impossível (queijo no primeiro espaço: não sobrou espaço antes para o pré-requisito)',
     ['queijo', null, null, null, null, null],
     { ok: false, completa: false, tipoErro: 'sem-espaco-antes', passo: 'queijo', preRequisito: 'passar' },
+  );
+
+  // o robô: abrir a garra só precisa vir antes de FECHAR a garra,
+  // não antes de andar (era a dependência falsa do modelo antigo)
+  const robo = { passos: [
+    { id: 'virar', texto: 'Vire o robô.', dependeDe: [] },
+    { id: 'abrir', texto: 'Abra a garra.', dependeDe: [] },
+    { id: 'andar', texto: 'Ande até o cubo.', dependeDe: ['virar'] },
+    { id: 'fechar', texto: 'Feche a garra.', dependeDe: ['andar', 'abrir'] },
+  ] };
+  teste(
+    'dependência declarada: andar ANTES de abrir a garra é aceito',
+    ['virar', 'andar', 'abrir', 'fechar'],
+    { ok: true, completa: true, tipoErro: null, passo: null, preRequisito: null },
+    robo,
+  );
+  teste(
+    'dependência declarada: fechar antes de abrir a garra é erro',
+    ['virar', 'andar', 'fechar', 'abrir'],
+    { ok: false, completa: true, tipoErro: 'pre-requisito-depois', passo: 'fechar', preRequisito: 'abrir' },
+    robo,
+  );
+
+  // arquivo antigo, sem dependeDe: as camadas do ordemLivre valem
+  const antigo = { passos: [
+    { id: 'a', texto: 'A' },
+    { id: 'b', texto: 'B', ordemLivre: true },
+    { id: 'c', texto: 'C' },
+  ] };
+  teste(
+    'formato antigo (ordemLivre): A e B trocam de lugar',
+    ['b', 'a', 'c'],
+    { ok: true, completa: true, tipoErro: null, passo: null, preRequisito: null },
+    antigo,
+  );
+  teste(
+    'formato antigo (ordemLivre): C antes de B é erro',
+    ['a', 'c', 'b'],
+    { ok: false, completa: true, tipoErro: 'pre-requisito-depois', passo: 'c', preRequisito: 'b' },
+    antigo,
   );
 
   console.log(`\n=== Resultado: ${passou} passou(aram), ${falhou} falhou(aram) ===`);

@@ -217,18 +217,27 @@
             <p class="conclusao-progresso conclusao-progresso-texto"></p>
           </header>
           <div class="conclusao-corpo">
-            <div class="conclusao-coluna">
-              <h3 class="conclusao-pergunta" id="conclusao-pergunta">
-                <span class="conclusao-pergunta-texto"></span>
-              </h3>
+            <h3 class="conclusao-pergunta" id="conclusao-pergunta">
+              <span class="conclusao-pergunta-texto"></span>
+            </h3>
+            <!-- para a criança: a imagem que representa a lição -->
+            <div class="licao-imagem" role="img"></div>
+            <!-- para o professor: o texto da lição, atrás de um botão -->
+            <div class="licao-professor" id="licao-professor" hidden>
               <div class="conclusao-texto"></div>
-            </div>
-            <div class="conclusao-coluna">
               <div class="conclusao-reflexao">
                 <h3>Pense e converse</h3>
                 <ul></ul>
               </div>
             </div>
+            <button
+              class="btn ghost small licao-botao-prof"
+              type="button"
+              aria-expanded="false"
+              aria-controls="licao-professor"
+            >
+              Para o professor: ler a lição
+            </button>
           </div>
           <footer class="conclusao-rodape">
             <div class="rewards">

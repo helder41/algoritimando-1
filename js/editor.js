@@ -8,11 +8,11 @@
 
    O professor nunca vê a palavra "grafo". Ele:
      - escreve os passos NA ORDEM CERTA, de cima para baixo;
-     - marca "pode vir antes ou depois do anterior" quando a ordem
-       entre dois passos tanto faz (vira ordemLivre nos dados);
-     - escreve o que o Robô-guia diz à criança que coloca o passo
-       cedo demais (vira explicacao nos dados).
-   O motor deriva as dependências disso, no editor e no jogo.
+     - marca, em cada passo, quais passos de cima precisam ter
+       acontecido antes dele (vira dependeDe nos dados) — o que não
+       for marcado pode trocar de lugar;
+     - escreve, para cada um desses, o que o Robô-guia diz à criança
+       que coloca o passo cedo demais (vira explicacao nos dados).
 
    A PRÉVIA é o jogo de verdade: o editor.html traz as telas de fase
    e de lição do index.html, e quem joga é o jogo.js, com o arrasto.js
@@ -32,7 +32,8 @@
   // foto de celular chega com 4000px e 3–5MB; no jogo a carta tem
   // ~200px. Cada imagem é reduzida a esta largura ANTES de entrar
   // nos dados — só o resultado é guardado, o original é descartado
-  const LARGURA_MAX_IMAGEM = 400;
+  const LARGURA_MAX_IMAGEM = 400;   // carta de passo
+  const LARGURA_MAX_LICAO  = 800;   // imagem da lição, que é grande
 
   // acima disso o arquivo fica pesado para abrir e compartilhar
   const LIMITE_TAMANHO = 4 * 1024 * 1024;
@@ -55,6 +56,7 @@
   const campoTextoLicao    = $('#campo-licao-texto');
   const campoReflexao1     = $('#campo-licao-reflexao1');
   const campoReflexao2     = $('#campo-licao-reflexao2');
+  const licaoImagemEditor  = $('#licao-imagem-editor');
   const caixaAvisos        = $('#avisos');
   const btnAbrir           = $('#btn-abrir');
   const btnNovo            = $('#btn-novo');
@@ -70,7 +72,7 @@
 
   let situacao = null;              // o que está sendo editado
   let indiceFase = 0;               // nível aberto no painel
-  let passoAguardandoImagem = null; // passo que pediu imagem
+  let pedidoDeImagem = null;   // { dono, largura, depois }: quem pediu imagem
   let salvarConfirmado = false;     // já viu os avisos e insistiu?
   let avisouRascunho = false;       // aviso de rascunho cheio, uma vez só
 
@@ -107,17 +109,30 @@
   function novaFase() {
     return {
       titulo: '', instrucao: '', mascote: '',
-      passos: [novoPasso(), novoPasso(), novoPasso()],
-      licao: { pergunta: '', texto: '', reflexao: ['', ''] },
+      passos: novosPassos(3),
+      licao: { pergunta: '', imagem: '', texto: '', reflexao: ['', ''] },
     };
   }
 
-  function novoPasso() {
+  /* dependeDe: ids dos passos de cima que precisam vir antes.
+     explicacao: { idDoPreRequisito: fala do Robô-guia } — uma fala
+     para cada dependência (o "*" de arquivos antigos vale para as
+     que não têm a sua). */
+  function novoPasso(anterior) {
     // id provisório único; vira um id legível na hora de exportar
     return {
       id: 'p-' + Math.random().toString(36).slice(2, 8),
-      texto: '', imagem: '', ordemLivre: false, explicacao: '',
+      texto: '', imagem: '',
+      // por padrão, um passo novo espera o de cima
+      dependeDe: anterior ? [anterior.id] : [],
+      explicacao: {},
     };
+  }
+
+  function novosPassos(qtd) {
+    const lista = [];
+    for (let i = 0; i < qtd; i++) lista.push(novoPasso(lista[i - 1]));
+    return lista;
   }
 
   /* qualquer coisa vinda de fora (arquivo aberto, rascunho antigo)
@@ -136,24 +151,35 @@
   function normalizarFase(f) {
     const licao = f.licao || {};
     const reflexao = Array.isArray(licao.reflexao) ? licao.reflexao : [];
+    const brutos = (Array.isArray(f.passos) ? f.passos : [])
+      .filter(p => p && typeof p === 'object')
+      .map(p => ({ ...p, id: (typeof p.id === 'string' && p.id) ? p.id : novoPasso().id }));
+    // o grafo vem do motor: dependeDe quando o arquivo traz, e as
+    // camadas do ordemLivre nos arquivos antigos do protótipo
+    const grafo = derivarDependencias(brutos);
+    const passos = brutos.map(p => ({
+      id: p.id,
+      texto: typeof p.texto === 'string' ? p.texto : '',
+      // só imagens embutidas (data:) viajam com o arquivo; um
+      // caminho de outro computador não abriria aqui
+      imagem: typeof p.imagem === 'string' ? p.imagem : '',
+      dependeDe: grafo[p.id] || [],
+      explicacao: typeof p.explicacao === 'string' ? (p.explicacao ? { '*': p.explicacao } : {})
+                : (p.explicacao && typeof p.explicacao === 'object' ? { ...p.explicacao } : {}),
+    }));
+    // no editor, só passos de CIMA podem ser pré-requisito
+    passos.forEach((p, i) => {
+      const acima = new Set(passos.slice(0, i).map(x => x.id));
+      p.dependeDe = p.dependeDe.filter(id => acima.has(id));
+    });
     return {
       titulo: typeof f.titulo === 'string' ? f.titulo : '',
       instrucao: typeof f.instrucao === 'string' ? f.instrucao : '',
       mascote: typeof f.mascote === 'string' ? f.mascote : '',
-      passos: (Array.isArray(f.passos) ? f.passos : [])
-        .filter(p => p && typeof p === 'object').map(p => ({
-          id: (typeof p.id === 'string' && p.id) ? p.id : novoPasso().id,
-          texto: typeof p.texto === 'string' ? p.texto : '',
-          // só imagens embutidas (data:) viajam com o arquivo; um
-          // caminho de outro computador não abriria aqui
-          imagem: typeof p.imagem === 'string' ? p.imagem : '',
-          ordemLivre: !!p.ordemLivre,
-          // string OU objeto {idPreRequisito: texto} — o objeto é
-          // preservado até o professor mexer no campo
-          explicacao: p.explicacao || '',
-        })),
+      passos,
       licao: {
         pergunta: typeof licao.pergunta === 'string' ? licao.pergunta : '',
+        imagem: typeof licao.imagem === 'string' ? licao.imagem : '',
         // no editor o texto vive numa caixa só: cada linha = um parágrafo
         texto: Array.isArray(licao.texto) ? licao.texto.join('\n')
              : (typeof licao.texto === 'string' ? licao.texto : ''),
@@ -235,13 +261,23 @@
      não quebrar explicações que apontam para eles */
   function estabilizarIds(fase) {
     const usados = new Set(fase.passos.filter(p => !/^p-/.test(p.id)).map(p => p.id));
+    const novo = {};
     for (const p of fase.passos) {
       if (!/^p-/.test(p.id)) continue;
       const base = slug(p.texto).slice(0, 30) || p.id;
       let id = base, n = 2;
       while (usados.has(id)) id = `${base}-${n++}`;
       usados.add(id);
+      novo[p.id] = id;
       p.id = id;
+    }
+    // quem apontava para o id antigo passa a apontar para o novo
+    const trocar = id => novo[id] || id;
+    for (const p of fase.passos) {
+      p.dependeDe = p.dependeDe.map(trocar);
+      const expl = {};
+      for (const [k, v] of Object.entries(p.explicacao)) expl[trocar(k)] = v;
+      p.explicacao = expl;
     }
   }
 
@@ -268,16 +304,17 @@
     if (fase.instrucao.trim()) fora.instrucao = fase.instrucao.trim();
     if (fase.mascote.trim()) fora.mascote = fase.mascote.trim();
 
-    fora.passos = fase.passos.map((p, j) => {
+    fora.passos = fase.passos.map(p => {
       const passo = { id: p.id, texto: p.texto.trim() };
       if (p.imagem) passo.imagem = p.imagem;
-      // o primeiro passo não tem "anterior": a marcação não vale nele
-      if (p.ordemLivre && j > 0) passo.ordemLivre = true;
-      if (typeof p.explicacao === 'string') {
-        if (p.explicacao.trim()) passo.explicacao = p.explicacao.trim();
-      } else if (p.explicacao) {
-        passo.explicacao = p.explicacao;   // objeto vindo de arquivo
+      passo.dependeDe = p.dependeDe.slice();
+      // só as falas das dependências marcadas (e o "*" antigo)
+      const expl = {};
+      for (const id of p.dependeDe.concat('*')) {
+        const t = (p.explicacao[id] || '').trim();
+        if (t) expl[id] = t;
       }
+      if (Object.keys(expl).length) passo.explicacao = expl;
       return passo;
     });
 
@@ -289,6 +326,7 @@
   function exportarLicao(licao) {
     const fora = {};
     if (licao.pergunta.trim()) fora.pergunta = licao.pergunta.trim();
+    if (licao.imagem) fora.imagem = licao.imagem;
     const linhas = licao.texto.split('\n').map(l => l.trim()).filter(Boolean);
     if (linhas.length === 1) fora.texto = linhas[0];
     else if (linhas.length > 1) fora.texto = linhas;
@@ -339,12 +377,15 @@
         }
         if (!p.texto) avisos.push(`${nomeFase}: ${nomePasso} está sem legenda.`);
 
-        const temPre = (dependencias[p.id] || []).length > 0;
-        const temExplicacao = typeof p.explicacao === 'string'
-          ? p.explicacao.trim() !== '' : !!p.explicacao;
-        if (temPre && !temExplicacao) {
-          avisos.push(`${nomeFase}: ${nomePasso} está sem a fala do Robô-guia. Se a criança ` +
-            'o colocar cedo demais, vai ver só uma frase automática do jogo, não a sua explicação.');
+        const porId = {};
+        fase.passos.forEach(x => { porId[x.id] = x; });
+        const expl = p.explicacao && typeof p.explicacao === 'object' ? p.explicacao : {};
+        for (const id of dependencias[p.id] || []) {
+          if (!expl[id] && !expl['*']) {
+            const pre = porId[id] && porId[id].texto ? `"${porId[id].texto}"` : 'o passo de que ele depende';
+            avisos.push(`${nomeFase}: ${nomePasso} está sem a fala do Robô-guia para quando vier ` +
+              `antes de ${pre}. Sem ela, a criança vê só uma frase automática do jogo.`);
+          }
         }
       });
 
@@ -480,6 +521,7 @@
     campoTextoLicao.value = fase.licao.texto;
     campoReflexao1.value = fase.licao.reflexao[0];
     campoReflexao2.value = fase.licao.reflexao[1];
+    renderizarImagemLicao();
 
     renderizarPassos();
   }
@@ -555,99 +597,94 @@
     campoLegenda.append(rotuloLegenda, inputLegenda);
     campos.append(campoLegenda);
 
-    // caixa de marcação (o primeiro passo não tem "anterior")
-    if (indice > 0) {
+    // do que este passo depende: uma caixinha para cada passo de cima
+    const acima = fase.passos.slice(0, indice);
+    const bloco = document.createElement('fieldset');
+    bloco.className = 'ed-depende';
+    const legenda = document.createElement('legend');
+    legenda.className = 'ed-rotulo';
+    legenda.textContent = indice === 0 ? 'Este é o primeiro passo da lista'
+      : 'Antes deste passo, precisa ter acontecido:';
+    bloco.append(legenda);
+
+    if (!acima.length) {
+      const livre = document.createElement('p');
+      livre.className = 'ed-vem-depois livre';
+      livre.textContent = 'Não precisa esperar nenhum outro passo.';
+      bloco.append(livre);
+    }
+
+    acima.forEach(pre => {
+      const linha = document.createElement('div');
+      linha.className = 'ed-dep';
       const check = document.createElement('label');
       check.className = 'ed-check';
       const caixa = document.createElement('input');
       caixa.type = 'checkbox';
-      caixa.checked = passo.ordemLivre;
+      caixa.checked = passo.dependeDe.includes(pre.id);
       caixa.addEventListener('change', () => {
-        passo.ordemLivre = caixa.checked;
-        // a mudança rearruma quem espera quem: redesenha os cartões
+        passo.dependeDe = caixa.checked
+          ? fase.passos.filter(x => x.id === pre.id || passo.dependeDe.includes(x.id)).map(x => x.id)
+          : passo.dependeDe.filter(id => id !== pre.id);
         renderizarPassos();
         mudou();
       });
-      const textos = document.createElement('span');
-      textos.className = 'ed-check-textos';
-      const frase = document.createElement('span');
-      frase.textContent = 'Este passo pode vir antes ou depois do anterior';
+      const nome = document.createElement('span');
+      nome.className = 'ed-dep-nome';
+      nome.dataset.passo = pre.id;
+      nome.textContent = nomeDoPasso(pre);
+      check.append(caixa, nome);
+      linha.append(check);
+
+      if (caixa.checked) {
+        const area = document.createElement('textarea');
+        area.rows = 2;
+        area.placeholder = 'O que o Robô-guia diz se a criança colocar este passo antes dele? ' +
+          'Ex.: Sem a semente no algodão, a água não tem o que molhar!';
+        area.value = passo.explicacao[pre.id] || passo.explicacao['*'] || '';
+        area.setAttribute('aria-label', `Fala do Robô-guia se este passo vier antes de ${nomeDoPasso(pre)}`);
+        area.addEventListener('input', () => {
+          passo.explicacao[pre.id] = area.value;
+          mudou();
+        });
+        linha.append(area);
+      }
+      bloco.append(linha);
+    });
+
+    if (acima.length) {
       const ajuda = document.createElement('span');
       ajuda.className = 'ed-ajuda';
-      ajuda.textContent = 'Marque quando a ordem entre os dois tanto faz. ' +
-        'Ex.: "colocar o queijo" e "colocar o presunto": qualquer um pode vir primeiro.';
-      textos.append(frase, ajuda);
-      check.append(caixa, textos);
-      campos.append(check);
+      ajuda.textContent = passo.dependeDe.length
+        ? 'Os passos não marcados podem vir antes ou depois deste. Na fala, conte a consequência do erro, não a regra.'
+        : 'Nada marcado: este passo pode ser um dos primeiros, em qualquer ordem.';
+      bloco.append(ajuda);
     }
-
-    // a regra derivada, em palavras — e o texto do Robô-guia no erro
-    const meusPre = dependencias[passo.id] || [];
-    if (meusPre.length) {
-      const linha = document.createElement('p');
-      linha.className = 'ed-vem-depois';
-      linha.dataset.passo = passo.id;
-      linha.textContent = fraseVemDepois(meusPre, porId);
-      campos.append(linha);
-
-      const campoExpl = document.createElement('label');
-      campoExpl.className = 'ed-campo';
-      const rotuloExpl = document.createElement('span');
-      rotuloExpl.className = 'ed-rotulo';
-      rotuloExpl.textContent = 'O que o Robô-guia diz se a criança colocar este passo cedo demais?';
-      const areaExpl = document.createElement('textarea');
-      areaExpl.rows = 2;
-      areaExpl.placeholder = 'Ex.: Sem a semente no algodão, a água não tem o que molhar!';
-      areaExpl.value = explicacaoComoTexto(passo.explicacao);
-      areaExpl.addEventListener('input', () => {
-        passo.explicacao = areaExpl.value;   // mexeu: vira texto único
-        mudou();
-      });
-      const ajudaExpl = document.createElement('span');
-      ajudaExpl.className = 'ed-ajuda';
-      ajudaExpl.textContent = typeof passo.explicacao === 'object' && passo.explicacao
-        ? 'Este passo veio de um arquivo com um texto para cada caso; se você editar aqui, vira um texto único.'
-        : 'Conte a consequência do erro, não a regra. Sem esse texto, o jogo mostra uma frase automática.';
-      campoExpl.append(rotuloExpl, areaExpl, ajudaExpl);
-      campos.append(campoExpl);
-    } else {
-      const linha = document.createElement('p');
-      linha.className = 'ed-vem-depois livre';
-      linha.dataset.passo = passo.id;
-      linha.textContent = 'Este passo pode ser um dos primeiros: não precisa esperar nenhum outro.';
-      campos.append(linha);
-    }
+    campos.append(bloco);
 
     corpo.append(campos);
     li.append(alca, corpo);
     return li;
   }
 
-  function fraseVemDepois(idsPre, porId) {
-    const nomes = idsPre.map(id => nomeDoPasso(porId[id]));
-    return 'No jogo, este passo só pode entrar depois de: ' + nomes.join(' e ') + '.';
-  }
-
-  // legendas mudaram: refaz só as frases "vem depois de", sem
-  // redesenhar os cartões (o professor está digitando neles)
+  // legendas mudaram: atualiza os nomes nas listas "precisa ter
+  // acontecido", sem redesenhar os cartões (o professor está digitando)
   function atualizarVemDepois() {
     const fase = faseAtual();
     if (!fase) return;
-    const dependencias = derivarDependencias(fase.passos);
     const porId = {};
     fase.passos.forEach(p => { porId[p.id] = p; });
-    listaPassos.querySelectorAll('.ed-vem-depois[data-passo]').forEach(el => {
-      const pre = dependencias[el.dataset.passo] || [];
-      if (pre.length) el.textContent = fraseVemDepois(pre, porId);
+    listaPassos.querySelectorAll('.ed-dep-nome[data-passo]').forEach(el => {
+      el.textContent = nomeDoPasso(porId[el.dataset.passo]);
     });
   }
 
-  function explicacaoComoTexto(explicacao) {
-    if (typeof explicacao === 'string') return explicacao;
-    if (explicacao && typeof explicacao === 'object') {
-      return explicacao['*'] || Object.values(explicacao)[0] || '';
-    }
-    return '';
+  // depois de mover ou apagar: só passos de cima continuam valendo
+  function podarDependencias(fase) {
+    fase.passos.forEach((p, i) => {
+      const acima = new Set(fase.passos.slice(0, i).map(x => x.id));
+      p.dependeDe = p.dependeDe.filter(id => acima.has(id));
+    });
   }
 
   function moverPasso(indice, delta) {
@@ -656,6 +693,7 @@
     if (j < 0 || j >= fase.passos.length) return;
     const [p] = fase.passos.splice(indice, 1);
     fase.passos.splice(j, 0, p);
+    podarDependencias(fase);
     renderizarPassos();
     mudou();
   }
@@ -666,6 +704,7 @@
     const nome = passo.texto ? `"${passo.texto}"` : `o passo ${indice + 1}`;
     if (!confirm(`Apagar ${nome}?`)) return;
     fase.passos.splice(indice, 1);
+    podarDependencias(fase);
     renderizarPassos();
     renderizarFases();   // a contagem de passos do nível mudou
     mudou();
@@ -678,16 +717,39 @@
      carta mostra o quadro "ilustração do passo", como no jogo. */
 
   function botaoDeImagem(passo, indice) {
+    return seletorDeImagem(passo, {
+      nome: `a imagem do passo ${indice + 1}`,
+      vazio: 'ilustração do passo',
+      largura: LARGURA_MAX_IMAGEM,
+      depois: renderizarPassos,
+    });
+  }
+
+  /* A lição usa o mesmo seletor: a imagem é o que a criança vê;
+     o texto fica atrás do botão "Para o professor". */
+  function renderizarImagemLicao() {
+    const fase = faseAtual();
+    licaoImagemEditor.textContent = '';
+    if (!fase) return;
+    licaoImagemEditor.append(seletorDeImagem(fase.licao, {
+      nome: 'a imagem da lição',
+      vazio: 'ilustração da lição',
+      largura: LARGURA_MAX_LICAO,
+      depois: renderizarImagemLicao,
+    }));
+  }
+
+  // dono = qualquer objeto com o campo "imagem" (passo ou lição)
+  function seletorDeImagem(passo, { nome, vazio, largura, depois }) {
     const botao = document.createElement('button');
     botao.type = 'button';
     botao.className = 'ed-miniatura' + (passo.imagem ? '' : ' vazia');
-    botao.setAttribute('aria-label',
-      (passo.imagem ? 'Trocar' : 'Escolher') + ` a imagem do passo ${indice + 1}`);
+    botao.setAttribute('aria-label', (passo.imagem ? 'Trocar ' : 'Escolher ') + nome);
 
     const figura = document.createElement('span');
     figura.className = 'ed-miniatura-figura';
     if (passo.imagem) figura.style.backgroundImage = `url("${passo.imagem}")`;
-    else figura.textContent = 'ilustração do passo';
+    else figura.textContent = vazio;
 
     const rotulo = document.createElement('span');
     rotulo.className = 'ed-miniatura-rotulo';
@@ -695,7 +757,7 @@
 
     botao.append(figura, rotulo);
     botao.addEventListener('click', () => {
-      passoAguardandoImagem = passo;
+      pedidoDeImagem = { dono: passo, largura, depois };
       inputImagem.click();
     });
 
@@ -710,7 +772,7 @@
     tirar.textContent = 'Tirar imagem';
     tirar.addEventListener('click', () => {
       passo.imagem = '';
-      renderizarPassos();
+      depois();
       mudou();
     });
     bloco.append(botao, tirar);
@@ -720,16 +782,16 @@
   inputImagem.addEventListener('change', () => {
     const arquivo = inputImagem.files[0];
     inputImagem.value = '';
-    if (!arquivo || !passoAguardandoImagem) return;
-    const passo = passoAguardandoImagem;
-    passoAguardandoImagem = null;
+    if (!arquivo || !pedidoDeImagem) return;
+    const { dono, largura, depois } = pedidoDeImagem;
+    pedidoDeImagem = null;
 
     const leitor = new FileReader();
     leitor.onload = () => {
       const img = new Image();
       img.onload = () => {
         // encolhe até a largura máxima, mantendo a proporção
-        const escala = Math.min(1, LARGURA_MAX_IMAGEM / img.width);
+        const escala = Math.min(1, largura / img.width);
         const canvas = document.createElement('canvas');
         canvas.width = Math.max(1, Math.round(img.width * escala));
         canvas.height = Math.max(1, Math.round(img.height * escala));
@@ -740,8 +802,8 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         // só o resultado reduzido é guardado; o original é descartado
-        passo.imagem = canvas.toDataURL('image/jpeg', 0.8);
-        renderizarPassos();
+        dono.imagem = canvas.toDataURL('image/jpeg', 0.8);
+        depois();
         mudou();
       };
       img.onerror = () => {
@@ -796,7 +858,7 @@
   btnNovoPasso.addEventListener('click', () => {
     const fase = faseAtual();
     if (!fase) return;
-    fase.passos.push(novoPasso());
+    fase.passos.push(novoPasso(fase.passos[fase.passos.length - 1]));
     renderizarPassos();
     renderizarFases();
     mudou();

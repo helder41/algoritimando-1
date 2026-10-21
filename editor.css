@@ -389,6 +389,44 @@ section.ed-cartao.ed-linha-campos {
   color: #2f7a46;
   background: #e3f4e8;
 }
+/* do que o passo depende: uma caixinha por passo de cima */
+.ed-depende {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.ed-depende legend {
+  padding: 0;
+  margin-bottom: 4px;
+}
+.ed-dep {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fbf3e4;
+}
+.ed-dep:has(input:checked) {
+  background: #f7e6c8;
+}
+.ed-dep textarea {
+  margin-left: 26px;
+  width: calc(100% - 26px);
+}
+/* imagem da lição: o mesmo seletor, maior */
+.ed-licao-imagem .ed-miniatura,
+.ed-licao-imagem .ed-figura {
+  width: min(100%, 360px);
+}
+.ed-licao-imagem .ed-miniatura-figura {
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
 .ed-rodape-fase {
   display: flex;
   justify-content: center;
@@ -427,5 +465,9 @@ section.ed-cartao.ed-linha-campos {
   }
   .ed-miniatura-figura {
     height: 140px;
+  }
+  .ed-dep textarea {
+    margin-left: 0;
+    width: 100%;
   }
 }

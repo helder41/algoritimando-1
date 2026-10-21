@@ -177,8 +177,18 @@
                   placeholder="Ex.: Por que a ordem dos passos importa?"
                 />
               </label>
+              <div class="ed-campo">
+                <span class="ed-rotulo"
+                  >Imagem da lição (é o que a criança vê)</span
+                >
+                <div id="licao-imagem-editor" class="ed-licao-imagem"></div>
+                <span class="ed-ajuda"
+                  >Um desenho que mostre a ideia da lição. O texto abaixo fica
+                  no botão "Para o professor", para guiar a conversa.</span
+                >
+              </div>
               <label class="ed-campo">
-                <span class="ed-rotulo">Texto da lição</span>
+                <span class="ed-rotulo">Texto da lição (para o professor)</span>
                 <textarea
                   id="campo-licao-texto"
                   rows="4"
@@ -346,18 +356,27 @@
               <p class="conclusao-progresso conclusao-progresso-texto"></p>
             </header>
             <div class="conclusao-corpo">
-              <div class="conclusao-coluna">
-                <h3 class="conclusao-pergunta" id="conclusao-pergunta">
-                  <span class="conclusao-pergunta-texto"></span>
-                </h3>
+              <h3 class="conclusao-pergunta" id="conclusao-pergunta">
+                <span class="conclusao-pergunta-texto"></span>
+              </h3>
+              <!-- para a criança: a imagem que representa a lição -->
+              <div class="licao-imagem" role="img"></div>
+              <!-- para o professor: o texto da lição, atrás de um botão -->
+              <div class="licao-professor" id="licao-professor" hidden>
                 <div class="conclusao-texto"></div>
-              </div>
-              <div class="conclusao-coluna">
                 <div class="conclusao-reflexao">
                   <h3>Pense e converse</h3>
                   <ul></ul>
                 </div>
               </div>
+              <button
+                class="btn ghost small licao-botao-prof"
+                type="button"
+                aria-expanded="false"
+                aria-controls="licao-professor"
+              >
+                Para o professor: ler a lição
+              </button>
             </div>
             <footer class="conclusao-rodape">
               <div class="rewards">
