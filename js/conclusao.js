@@ -3,8 +3,13 @@
 
    É aqui que a atividade vira conceito: ao completar a fase, a
    tela de "Parabéns! Você completou o nível!" mostra a LIÇÃO
-   daquela fase — um título-pergunta, um texto curto e duas
-   perguntas para pensar e conversar — e as recompensas.
+   daquela fase e as recompensas.
+
+   Para a criança, a lição é uma IMAGEM (licao.imagem) com a
+   pergunta-título. O texto e as perguntas para conversar ficam
+   atrás do botão "Para o professor": servem para ele conduzir a
+   conversa — e são a base para desenhar a imagem. Enquanto a
+   imagem não existe, aparece o quadro "ilustração da lição".
 
    TODO o conteúdo vem de fase.licao (ver o formato no motor.js);
    este arquivo só monta a tela. Nada de frase de sanduíche aqui.
@@ -31,6 +36,9 @@
   const perguntaTexto  = raiz.querySelector('.conclusao-pergunta-texto');
   const blocoTexto     = raiz.querySelector('.conclusao-texto');
   const reflexao       = raiz.querySelector('.conclusao-reflexao');
+  const imagem         = raiz.querySelector('.licao-imagem');
+  const professor      = raiz.querySelector('.licao-professor');
+  const botaoProf      = raiz.querySelector('.licao-botao-prof');
   const listaReflexao  = raiz.querySelector('.conclusao-reflexao ul');
   const botao          = raiz.querySelector('.conclusao-continuar');
   const botaoTexto     = raiz.querySelector('.conclusao-continuar-texto');
@@ -51,6 +59,34 @@
     }
   }
 
+  /* imagem da lição, ou o quadro tracejado enquanto ela não existe
+     (background-image não avisa quando falha: um Image() escuta) */
+  function preencherImagem(src, legenda) {
+    imagem.classList.remove('vazia');
+    imagem.textContent = '';
+    imagem.style.backgroundImage = '';
+    imagem.setAttribute('aria-label', legenda || 'Ilustração da lição');
+    const vazia = () => {
+      imagem.style.backgroundImage = '';
+      imagem.classList.add('vazia');
+      imagem.textContent = 'ilustração da lição';
+    };
+    if (!src) { vazia(); return; }
+    imagem.style.backgroundImage = `url("${src}")`;
+    const sonda = new Image();
+    sonda.onerror = vazia;
+    sonda.src = src;
+  }
+
+  // o botão troca a imagem pelo texto do professor, e de volta
+  function mostrarProfessor(sim) {
+    professor.hidden = !sim;
+    imagem.hidden = sim;
+    botaoProf.setAttribute('aria-expanded', String(sim));
+    botaoProf.textContent = sim ? 'Ver a imagem da lição' : 'Para o professor: ler a lição';
+  }
+  botaoProf.addEventListener('click', () => mostrarProfessor(professor.hidden));
+
   /* ------------- abrir e fechar ------------- */
 
   function mostrarConclusao(situacao, indiceFase, premio = { estrelas: 0, dicas: 0 }) {
@@ -64,6 +100,10 @@
 
     blocoTexto.hidden = !licao.texto;
     if (licao.texto) preencherParagrafos(blocoTexto, licao.texto);
+
+    preencherImagem(licao.imagem, licao.pergunta);
+    mostrarProfessor(false);
+    botaoProf.hidden = !licao.texto && !(licao.reflexao && licao.reflexao.length);
 
     reflexao.hidden = !(licao.reflexao && licao.reflexao.length);
     listaReflexao.textContent = '';

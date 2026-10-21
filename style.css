@@ -981,6 +981,8 @@ body {
   #stage #hub.on {
     display: flex;
     flex-direction: column;
+    /* tela baixa (Safari com as barras): rola em vez de espremer */
+    overflow-y: auto;
   }
   #stage #hub .top {
     position: static;
@@ -998,17 +1000,18 @@ body {
     position: static;
     width: auto;
     height: auto;
-    flex: 1;
-    min-height: 0;
+    flex: 1 0 auto;
     margin: 3cqw 4cqw 0;
     padding: 2.6cqw;
     gap: 2.4cqw;
     border-radius: 3.6cqw;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(4, minmax(0, 1fr));
+    /* o cartão nunca fica menor que o conteúdo; sobrando altura, cresce */
+    grid-template-rows: repeat(4, minmax(min-content, 1fr));
     box-shadow: 0 1.2cqw 0 #5b4326;
   }
   #stage .call {
+    height: auto;
     grid-template-columns: 15cqw minmax(0, 1fr) 25cqw;
     grid-template-rows: minmax(0, 1fr);
     gap: 0 2.2cqw;
@@ -1580,17 +1583,44 @@ body.arrastando * {
   color: #6a5238;
 }
 .conclusao-corpo {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 1.6cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9cqw;
 }
-.conclusao-coluna {
+/* para a criança: a imagem que representa a lição */
+.licao-imagem {
+  flex: 1;
+  width: 100%;
+  min-height: 12cqw;
+  background: #fffaf0 center / contain no-repeat;
+  border-radius: 1cqw;
+}
+.licao-imagem.vazia {
+  display: grid;
+  place-items: center;
+  border: 0.22cqw dashed #c9a97c;
+  color: #a88a63;
+  font-size: max(1.1cqw, 10px);
+  font-weight: 700;
+}
+.licao-imagem[hidden],
+.licao-professor[hidden],
+.licao-botao-prof[hidden] {
+  display: none;
+}
+/* para o professor: o texto, atrás do botão */
+.licao-professor {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.9cqw;
-  min-width: 0;
+}
+.licao-botao-prof {
+  flex: none;
 }
 .conclusao-pergunta {
+  text-align: center;
   font-family: Fredoka;
   font-size: max(1.65cqw, 11px);
   font-weight: 700;
@@ -1853,12 +1883,14 @@ body.arrastando * {
   }
   #stage .licao-arte {
     position: relative;
-    flex: 0 0 50cqw;
+    /* a arte fica com a sobra de altura; o painel, só com o conteúdo */
+    flex: 1 0 50cqw;
     background-position: 22% 72%;
   }
   #stage .conclusao-painel {
     position: static;
-    flex: 1;
+    /* o painel cresce só até o conteúdo: sem buraco antes do rodapé */
+    flex: 0 1 auto;
     min-height: 0;
     margin: -5cqw 3cqw 3cqw;
     padding: 4cqw;
@@ -1874,10 +1906,19 @@ body.arrastando * {
   #stage .conclusao-corpo {
     flex: none;
     overflow: visible;
-    grid-template-columns: minmax(0, 1fr);
     gap: 3cqw;
   }
-  #stage .conclusao-coluna {
+  #stage .licao-imagem {
+    flex: none;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    border-radius: 2.6cqw;
+  }
+  #stage .licao-imagem.vazia {
+    border-width: 0.5cqw;
+    font-size: 3.5cqw;
+  }
+  #stage .licao-professor {
     gap: 2.4cqw;
   }
   #stage .conclusao-pergunta {
@@ -2062,4 +2103,382 @@ body.arrastando * {
   #stage .nivel-btn .st {
     font-size: 4.2cqw;
   }
+}
+
+/* Área do professor (menu) */
+.aviso-prof {
+  max-width: 100%;
+  background: #fde7e4;
+  border: 0.25cqw solid #d9443b;
+  border-radius: 1cqw;
+  padding: 0.6cqw 1cqw;
+  font-weight: 700;
+  font-size: max(1.1cqw, 10px);
+  text-align: center;
+}
+#prof a.btn {
+  text-decoration: none;
+  display: inline-block;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .aviso-prof {
+    font-size: 3.2cqw;
+  }
+}
+
+/* ===== montagem: a imagem que se monta conforme as cartas ===== */
+/* dentro dela, cqw/cqh medem a própria montagem */
+.montagem {
+  /* usa só a sobra da área de jogo; sem sobra, some (montagem.js) */
+  flex: 1 1 0;
+  min-height: 0;
+  position: relative;
+  container-type: size;
+  background: rgba(252, 242, 226, 0.95);
+  border: 0.5cqw solid var(--cor);
+  border-radius: 1.6cqw;
+  box-shadow: 0 0.5cqw 0 rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.montagem[hidden] {
+  display: none;
+}
+.montagem.com-erro {
+  border-color: #e0574f;
+}
+.montagem.completa {
+  border-color: #3f9c5a;
+}
+.montagem-vazia {
+  position: absolute;
+  inset: 0 6cqw auto;
+  top: 8cqh;
+  text-align: center;
+  font-weight: 800;
+  font-size: clamp(9px, 9cqh, 15px);
+  color: #a88a63;
+}
+/* pilha: as peças sobem a partir do prato, na ordem dos espaços */
+.pilha {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 7cqh;
+}
+.pilha-pecas {
+  position: relative;
+  z-index: 1;
+  /* cabe a pilha inteira do nível: cada peça tem ~1/4 da largura */
+  width: min(50cqw, calc(82cqh / (0.25 * var(--camadas, 3) + 0.15)));
+  display: flex;
+  flex-direction: column-reverse;
+}
+.peca {
+  display: block;
+  width: 100%;
+  margin-top: -3.5%;
+  animation: peca-cai 0.3s ease-out;
+}
+@keyframes peca-cai {
+  from {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+}
+.peca-errada {
+  filter: drop-shadow(0 0 1.2cqh #e0574f) drop-shadow(0 0 0.6cqh #e0574f);
+  animation:
+    peca-cai 0.3s ease-out,
+    peca-tremer 0.45s 0.3s;
+}
+@keyframes peca-tremer {
+  25% {
+    transform: translateX(-3%);
+  }
+  75% {
+    transform: translateX(3%);
+  }
+}
+.pilha-prato {
+  width: min(58cqw, 104cqh);
+  height: 9cqh;
+  margin-top: -5cqh;
+  border-radius: 50%;
+  background: #fff;
+  border: 0.9cqh solid #c9a97c;
+  box-shadow: 0 1cqh 0 rgba(74, 52, 38, 0.18);
+}
+
+/* tirinha: um quadrinho por espaço */
+.tirinha {
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  inset: 7cqh 3cqw;
+  display: grid;
+  grid-template-columns: repeat(var(--quadros, 4), minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 5cqh 2.4cqw;
+}
+.quadro {
+  position: relative;
+  min-height: 0;
+  background: #fff;
+  border: max(2px, 1.4cqh) solid #4a3426;
+  border-radius: max(4px, 4cqh);
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+.quadro.vazio {
+  background: transparent;
+  border-style: dashed;
+  border-color: #c9a97c;
+}
+.quadro-figura {
+  position: absolute;
+  inset: 0;
+  background: #fdf5e8 center / contain no-repeat;
+  animation: peca-cai 0.3s ease-out;
+}
+.quadro-figura.sem-imagem {
+  display: grid;
+  place-items: center;
+  padding: 1.9em 0.4em 0.3em;
+  text-align: center;
+  font-weight: 800;
+  font-size: clamp(8px, 6.5cqh, 13px);
+  overflow-wrap: anywhere;
+  line-height: 1.15;
+  color: #6a5238;
+}
+.quadro-numero {
+  position: absolute;
+  left: 0.35em;
+  top: 0.35em;
+  width: 1.5em;
+  height: 1.5em;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cor);
+  color: #fff;
+  font-family: Fredoka;
+  font-weight: 700;
+  font-size: clamp(8px, 7cqh, 13px);
+}
+.quadro.vazio .quadro-numero {
+  background: #c9a97c;
+}
+.quadro-erro {
+  border-color: #e0574f;
+  box-shadow: 0 0 0 max(2px, 1.2cqh) rgba(224, 87, 79, 0.35);
+}
+.quadro-erro::after {
+  content: "?";
+  position: absolute;
+  right: 0.3em;
+  top: 0.15em;
+  font-family: Fredoka;
+  font-weight: 700;
+  font-size: clamp(12px, 14cqh, 26px);
+  color: #e0574f;
+}
+.quadro-parado {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+/* o botão de ligar/desligar só existe no celular */
+#btn-montagem {
+  display: none;
+}
+
+@media (max-aspect-ratio: 4/5) {
+  /* a área de jogo "se desfaz" para a montagem poder ocupar
+     o lugar da cena, lá no alto */
+  #stage .area-jogo {
+    display: contents;
+  }
+  #stage .tabuleiro,
+  #stage .bandeja {
+    order: 3;
+    margin: 2.4cqw 3cqw 0;
+  }
+  #stage .montagem {
+    display: none;
+    order: 1;
+    margin: 2.4cqw 3cqw 0;
+    min-height: 46cqw;
+    border-width: 1cqw;
+    border-radius: 3cqw;
+  }
+  #stage #fase.tem-montagem.ver-montagem .montagem:not([hidden]) {
+    display: block;
+  }
+  #stage #fase.tem-montagem.ver-montagem .fase-arte {
+    display: none;
+  }
+  #stage #btn-montagem:not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+  }
+  #stage #btn-montagem[aria-pressed="true"] {
+    background: var(--p);
+    color: #fff;
+  }
+}
+
+/* ===== abertura: a arte inteira, texto e botões numa faixa embaixo ===== */
+#story {
+  --faixa: 11.5cqw;
+  background: #2b2233;
+}
+#story::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 var(--faixa);
+  background: var(--arte) center / cover no-repeat;
+  filter: blur(1.2cqw) brightness(0.75);
+  transform: scale(1.08);
+}
+#story .scene {
+  inset: 0 0 var(--faixa);
+  background: var(--arte) center / contain no-repeat;
+  transition: none;
+}
+#story .caption {
+  top: auto;
+  bottom: 3.4cqw;
+  width: 58cqw;
+  font-size: max(1.75cqw, 9px);
+  padding: 0.9cqw 2cqw;
+}
+#story .dots {
+  bottom: 1.1cqw;
+}
+#story .skip {
+  top: auto;
+  right: auto;
+  left: 2cqw;
+  bottom: 3.6cqw;
+}
+#story .next {
+  bottom: 3.2cqw;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage #story {
+    --faixa: 56cqw;
+  }
+  #stage #story .caption {
+    bottom: 26cqw;
+    width: 88cqw;
+    font-size: 4.3cqw;
+    padding: 3cqw 4cqw;
+  }
+  #stage #story .skip {
+    left: 4cqw;
+    bottom: 6cqw;
+  }
+  #stage #story .next {
+    bottom: 6cqw;
+  }
+  #stage #story .dots {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 18cqw;
+  }
+}
+
+/* dica: a quantidade é uma bolinha no canto do ícone (como uma
+   notificação), para não ser lida como "dica número 2" */
+#btn-dica {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+}
+.dica-icone {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+#btn-dica .dica-icone img {
+  vertical-align: 0;
+  display: block;
+}
+.dica-restantes {
+  position: absolute;
+  top: -0.5em;
+  right: -1.05em;
+  min-width: 1.45em;
+  height: 1.45em;
+  padding: 0 0.3em;
+  display: grid;
+  place-items: center;
+  border-radius: 1em;
+  background: var(--p);
+  color: #fff;
+  border: 0.15em solid #fff;
+  font-size: 0.78em;
+  font-weight: 900;
+  line-height: 1;
+}
+#btn-dica:disabled .dica-restantes,
+#btn-dica.sem-dicas .dica-restantes {
+  background: #9a8b78;
+}
+#btn-dica .dica-icone img {
+  height: 2.3cqw;
+}
+.dica-curta {
+  display: none;
+}
+#stage .rodape .chip {
+  white-space: nowrap;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage #btn-dica .dica-icone img {
+    height: 6cqw;
+  }
+  #stage #btn-dica {
+    gap: 3.4cqw;
+  }
+  /* no celular, só "Dica": a bolinha já diz quantas */
+  #stage .dica-pedir {
+    display: none;
+  }
+  #stage .dica-curta {
+    display: inline;
+  }
+}
+
+/* estrelas das seleções (central e lista de níveis): o png do placar */
+.st {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15em;
+}
+.st img.estrela {
+  height: 1.25em;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0.08em 0 rgba(74, 52, 38, 0.25));
+}
+.st img.estrela.apagada {
+  filter: grayscale(1) brightness(1.25);
+  opacity: 0.45;
+}
+/* na central, as estrelas são o botão (abrem a lista de níveis) */
+.call button.st {
+  background: none;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+.montagem.apertada {
+  visibility: hidden;
 }
