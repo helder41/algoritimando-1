@@ -1396,6 +1396,11 @@ img.badge-sm {
 .carta-origem {
   opacity: 0.3;
 }
+/* a cópia que segue o ponteiro nunca anima: as animações de piscar,
+   tremer e assentar mexem no transform, que é o que posiciona a cópia */
+.carta.carta-clone {
+  animation: none;
+}
 .carta-clone {
   position: fixed;
   left: 0;

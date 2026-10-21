@@ -214,7 +214,8 @@
 
     // o clone é quem viaja; a carta original fica no lugar, apagada
     const clone = carta.cloneNode(true);
-    clone.classList.remove('carta-selecionada');
+    clone.classList.remove('carta-selecionada', 'carta-piscar', 'carta-dica',
+                           'carta-atencao', 'carta-assentou');
     clone.classList.add('carta-clone');
     clone.removeAttribute('tabindex');
     clone.setAttribute('aria-hidden', 'true');
