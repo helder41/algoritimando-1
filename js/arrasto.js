@@ -51,9 +51,9 @@
   const leitor    = document.querySelector('.leitor-avisos');
 
   // o clone nasce dentro do palco (#stage) para herdar as medidas e o
-  // estilo das cartas, que são relativas ao palco. O palco tem
-  // container-type, então ele é o bloco de referência do
-  // position:fixed: as coordenadas do clone descontam o canto dele.
+  // estilo das cartas, que são relativas ao palco. Onde fica o ponto
+  // (0, 0) do position:fixed depende do navegador (a janela ou o
+  // palco), então ele é MEDIDO no começo de cada arrasto.
   const palco     = document.querySelector('#stage') || document.body;
 
   const reduzMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -221,7 +221,9 @@
     clone.style.width = rect.width + 'px';
     clone.style.height = rect.height + 'px';
     palco.appendChild(clone);
-    const base = palco === document.body ? { left: 0, top: 0 } : palco.getBoundingClientRect();
+    // com transform zerado, o clone mostra onde está o (0, 0) dele
+    clone.style.transform = 'none';
+    const base = clone.getBoundingClientRect();
 
     carta.classList.add('carta-origem');
     document.body.classList.add('arrastando');
