@@ -230,6 +230,7 @@
   function atualizarBotaoDica() {
     const restam = Perfil.dados.dicas;
     dicaRestantes.textContent = restam;
+    btnDica.classList.toggle('sem-dicas', restam <= 0);
     btnDica.setAttribute('aria-label', restam > 0
       ? `Pedir uma dica — ${restam === 1 ? 'resta 1 dica' : `restam ${restam} dicas`}`
       : 'Suas dicas acabaram. Conclua um nível para ganhar mais!');

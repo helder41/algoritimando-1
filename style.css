@@ -2391,3 +2391,65 @@ body.arrastando * {
     bottom: 18cqw;
   }
 }
+
+/* dica: a quantidade é uma bolinha no canto do ícone (como uma
+   notificação), para não ser lida como "dica número 2" */
+#btn-dica {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+}
+.dica-icone {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+#btn-dica .dica-icone img {
+  vertical-align: 0;
+  display: block;
+}
+.dica-restantes {
+  position: absolute;
+  top: -0.5em;
+  right: -1.05em;
+  min-width: 1.45em;
+  height: 1.45em;
+  padding: 0 0.3em;
+  display: grid;
+  place-items: center;
+  border-radius: 1em;
+  background: var(--p);
+  color: #fff;
+  border: 0.15em solid #fff;
+  font-size: 0.78em;
+  font-weight: 900;
+  line-height: 1;
+}
+#btn-dica:disabled .dica-restantes,
+#btn-dica.sem-dicas .dica-restantes {
+  background: #9a8b78;
+}
+#btn-dica .dica-icone img {
+  height: 2.3cqw;
+}
+.dica-curta {
+  display: none;
+}
+#stage .rodape .chip {
+  white-space: nowrap;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage #btn-dica .dica-icone img {
+    height: 6cqw;
+  }
+  #stage #btn-dica {
+    gap: 3.4cqw;
+  }
+  /* no celular, só "Dica": a bolinha já diz quantas */
+  #stage .dica-pedir {
+    display: none;
+  }
+  #stage .dica-curta {
+    display: inline;
+  }
+}

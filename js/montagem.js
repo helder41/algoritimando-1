@@ -50,7 +50,7 @@
   function mostrarNoCelular(sim) {
     tela.classList.toggle('ver-montagem', sim);
     botao.setAttribute('aria-pressed', String(sim));
-    botao.textContent = sim ? 'Ver a cena' : 'Ver a montagem';
+    botao.textContent = sim ? 'Ver cena' : 'Ver montagem';
     try { localStorage.setItem(CHAVE, sim ? '1' : '0'); } catch { /* sem memória: tudo bem */ }
   }
 
