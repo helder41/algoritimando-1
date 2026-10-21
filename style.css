@@ -1195,7 +1195,7 @@ body {
   display: none !important;
 }
 #stage {
-  --carta-l: 9.4cqw;
+  --carta-l: 9.2cqw;
   --carta-a: 9.2cqw;
 }
 .starsum img,
@@ -1244,8 +1244,8 @@ img.badge-sm {
 }
 .area-jogo {
   position: absolute;
-  left: 36cqw;
-  right: 19.5cqw;
+  left: 41cqw;
+  right: 16cqw;
   top: 8.8cqw;
   bottom: 1.4cqw;
   display: flex;
@@ -1448,7 +1448,7 @@ body.arrastando * {
   position: absolute;
   right: 1.5cqw;
   top: 8.8cqw;
-  width: 16.5cqw;
+  width: 13.5cqw;
   background: var(--cream);
   border: 0.3cqw solid var(--brown);
   border-radius: 1.4cqw;
@@ -1459,8 +1459,8 @@ body.arrastando * {
     background 0.2s;
 }
 .guia .face {
-  width: 7.5cqw;
-  height: 7.5cqw;
+  width: 6.5cqw;
+  height: 6.5cqw;
   margin: 0 auto 0.5cqw;
   border-radius: 50%;
   border: 0.35cqw solid var(--brown);
@@ -1479,7 +1479,7 @@ body.arrastando * {
   font-size: max(1.6cqw, 10px);
 }
 .guia p {
-  font-size: max(1.15cqw, 10px);
+  font-size: max(1.05cqw, 10px);
   font-weight: 700;
   line-height: 1.35;
   margin-top: 0.5cqw;
@@ -1847,8 +1847,8 @@ body.arrastando * {
   }
   #stage .licao-arte {
     position: relative;
-    flex: 0 0 46cqw;
-    background-position: 20% 40%;
+    flex: 0 0 50cqw;
+    background-position: 22% 72%;
   }
   #stage .conclusao-painel {
     position: static;
