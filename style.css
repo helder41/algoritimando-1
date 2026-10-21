@@ -981,6 +981,8 @@ body {
   #stage #hub.on {
     display: flex;
     flex-direction: column;
+    /* tela baixa (Safari com as barras): rola em vez de espremer */
+    overflow-y: auto;
   }
   #stage #hub .top {
     position: static;
@@ -998,17 +1000,18 @@ body {
     position: static;
     width: auto;
     height: auto;
-    flex: 1;
-    min-height: 0;
+    flex: 1 0 auto;
     margin: 3cqw 4cqw 0;
     padding: 2.6cqw;
     gap: 2.4cqw;
     border-radius: 3.6cqw;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(4, minmax(0, 1fr));
+    /* o cartão nunca fica menor que o conteúdo; sobrando altura, cresce */
+    grid-template-rows: repeat(4, minmax(min-content, 1fr));
     box-shadow: 0 1.2cqw 0 #5b4326;
   }
   #stage .call {
+    height: auto;
     grid-template-columns: 15cqw minmax(0, 1fr) 25cqw;
     grid-template-rows: minmax(0, 1fr);
     gap: 0 2.2cqw;
