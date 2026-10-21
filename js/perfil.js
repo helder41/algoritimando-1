@@ -6,7 +6,7 @@
 
      {
        nome:       nome digitado no crachá
-       avatar:     "0" a "5" — qual dos 6 agentes (ver AGENTES no app.js)
+       avatar:     "0" a "5" — qual dos 6 agentes (ver CORPO no app.js)
        comecou:    já passou pela abertura e pelo crachá
        dicas:      estoque de dicas — começa com DICAS_INICIAIS e
                    ganha +1 a cada fase concluída (é o "+1 dica" da
