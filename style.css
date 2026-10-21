@@ -2330,3 +2330,64 @@ body.arrastando * {
     color: #fff;
   }
 }
+
+/* ===== abertura: a arte inteira, texto e botões numa faixa embaixo ===== */
+#story {
+  --faixa: 11.5cqw;
+  background: #2b2233;
+}
+#story::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 var(--faixa);
+  background: var(--arte) center / cover no-repeat;
+  filter: blur(1.2cqw) brightness(0.75);
+  transform: scale(1.08);
+}
+#story .scene {
+  inset: 0 0 var(--faixa);
+  background: var(--arte) center / contain no-repeat;
+  transition: none;
+}
+#story .caption {
+  top: auto;
+  bottom: 3.4cqw;
+  width: 58cqw;
+  font-size: max(1.75cqw, 9px);
+  padding: 0.9cqw 2cqw;
+}
+#story .dots {
+  bottom: 1.1cqw;
+}
+#story .skip {
+  top: auto;
+  right: auto;
+  left: 2cqw;
+  bottom: 3.6cqw;
+}
+#story .next {
+  bottom: 3.2cqw;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage #story {
+    --faixa: 56cqw;
+  }
+  #stage #story .caption {
+    bottom: 26cqw;
+    width: 88cqw;
+    font-size: 4.3cqw;
+    padding: 3cqw 4cqw;
+  }
+  #stage #story .skip {
+    left: 4cqw;
+    bottom: 6cqw;
+  }
+  #stage #story .next {
+    bottom: 6cqw;
+  }
+  #stage #story .dots {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 18cqw;
+  }
+}

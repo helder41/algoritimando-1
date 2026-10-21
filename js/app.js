@@ -77,8 +77,9 @@
   let qi = 0;
   function quadro(i) {
     qi = i;
-    $('#sceneArt').style.backgroundImage = `url(img/story${i + 1}.jpg)`;
-    $('#sceneArt').style.backgroundPosition = ['50%', '78%', '58%', '50%'][i] + ' center';
+    // a arte aparece inteira; o fundo desfocado (a mesma imagem)
+    // preenche a sobra, seja qual for o formato da tela
+    $('#story').style.setProperty('--arte', `url(img/story${i + 1}.jpg)`);
     $('#sceneText').textContent = ABERTURA[i];
     $('#dots').innerHTML = ABERTURA.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
     $('#bNext').textContent = i === ABERTURA.length - 1 ? 'Começar!' : 'Avançar ›';
