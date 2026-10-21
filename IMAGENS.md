@@ -72,7 +72,6 @@ Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 �
 |---|---|---|
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.png` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.png` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
-| Promoção dos 4 agentes novos (`promo2.jpg` a `promo5.jpg`) | montagem: escritório da promoção desfocado + o agente e o Robô-guia recortados | uma cena de promoção de cada um, como `promocao-agente-menina.jpg` (16:9) |
 | Carta sem imagem do professor | quadro "ilustração do passo" | a imagem que o professor escolher no editor (próxima etapa) |
 
 ## 3. Imagens do Drive que ainda não têm onde entrar
