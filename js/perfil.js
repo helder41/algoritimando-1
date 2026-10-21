@@ -25,7 +25,9 @@
 
 (function () {
 
-  const CHAVE = 'algoritimando-perfil';
+  // a prévia do editor do professor usa uma chave própria: testar
+  // um nível lá não mexe no jogo de quem usa este computador
+  const CHAVE = window.ALGORITIMANDO_PREVIA ? 'algoritimando-previa-perfil' : 'algoritimando-perfil';
   const DICAS_INICIAIS = 1;
 
   function padrao() {

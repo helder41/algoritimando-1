@@ -184,7 +184,9 @@
   // fim da última fase de um chamado
   document.addEventListener('situacao-concluida', ev => {
     const s = ev.detail.situacao;
-    if (concluidos() === SITUACOES.length && !P.promovido) {
+    if (!SITUACOES.includes(s)) {
+      central(`Chamado do professor "${s.titulo}" concluído!`);
+    } else if (concluidos() === SITUACOES.length && !P.promovido) {
       P.promovido = true;
       Perfil.gravar();
       promocao();
@@ -222,6 +224,51 @@
     $('#again').classList.remove('on');
     recomecar();
   };
+
+  /* ---------------- chamado do professor ----------------
+     Um arquivo .json salvo pela Área do professor (editor.html),
+     aberto do computador (FileReader, sem servidor) e conferido
+     pela mesma função do editor (Comum.validarArquivoSituacao). */
+
+  const inputProf = $('#input-situacao');
+  const avisoProf = $('#avisoProf');
+
+  function mostrarAvisoProf(texto) {
+    avisoProf.textContent = texto;
+    avisoProf.hidden = !texto;
+  }
+
+  $('#bProf').onclick = () => {
+    mostrarAvisoProf('');
+    $('#prof').classList.add('on');
+  };
+  $('#bProfFechar').onclick = () => $('#prof').classList.remove('on');
+  $('#bAbrirProf').onclick = () => inputProf.click();
+
+  inputProf.addEventListener('change', () => {
+    const arquivo = inputProf.files[0];
+    inputProf.value = '';
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onerror = () => {
+      mostrarAvisoProf('Não deu para ler esse arquivo. Confira se ele ainda existe e tente de novo.');
+    };
+    leitor.onload = () => {
+      // cada recusa tem a sua frase: quem abre fica sabendo O QUE há
+      // de errado, e a tela nunca trava
+      const conferencia = Comum.validarArquivoSituacao(leitor.result, true);
+      if (!conferencia.ok) {
+        mostrarAvisoProf(conferencia.mensagem);
+        return;
+      }
+      const obj = conferencia.situacao;
+      $('#prof').classList.remove('on');
+      atualizarTopo();
+      iniciarSituacao(obj, 'prof:' + (obj.id || 'chamado'));
+    };
+    leitor.readAsText(arquivo);
+  });
 
   /* ---------------- partida ---------------- */
 

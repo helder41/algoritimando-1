@@ -22,6 +22,7 @@
           <button class="btn" id="bPlay">Jogar</button>
           <button class="btn green" id="bSound">Sons: ligado</button>
           <button class="btn ghost" id="bHow">Como jogar</button>
+          <button class="btn ghost small" id="bProf">Área do professor</button>
         </div>
       </section>
 
@@ -339,6 +340,31 @@
           </p>
           <div class="lista-niveis"></div>
           <button class="btn ghost niveis-fechar" type="button">Voltar</button>
+        </div>
+      </div>
+      <div class="modal" id="prof">
+        <div class="panel">
+          <h2>Área do professor</h2>
+          <p>
+            Abra um chamado criado na Área do professor (arquivo .json salvo
+            neste computador) para a turma jogar, ou crie um novo.
+          </p>
+          <p class="aviso-prof" id="avisoProf" hidden></p>
+          <div class="row">
+            <button class="btn" id="bAbrirProf" type="button">
+              Abrir chamado (.json)
+            </button>
+            <a class="btn brown" href="editor.html">Criar ou editar</a>
+          </div>
+          <button class="btn ghost small" id="bProfFechar" type="button">
+            Voltar
+          </button>
+          <input
+            type="file"
+            id="input-situacao"
+            accept=".json,application/json"
+            hidden
+          />
         </div>
       </div>
       <div class="modal" id="how">

@@ -11,7 +11,15 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 - Depois de cada nível aparece a lição, que liga a atividade ao conceito de algoritmo.
 - Estrelas por nível: 3 sem erro, 2 com um erro, 1 com mais (usar dica conta como erro). Cada nível concluído dá +1 dica, e a dica coloca a carta certa no lugar.
 - O arrasto usa Pointer Events (mouse, dedo e teclado).
-- As situações usam o mesmo formato que o editor do professor vai gerar em `.json` (o editor fica para a próxima etapa).
+- Os chamados ficam em dados (`js/situacoes.js`), no mesmo formato do `.json` que a Área do professor gera.
+
+## Área do professor
+
+- Abra o `editor.html` (ou use o botão "Área do professor" no menu do jogo → "Criar ou editar").
+- O professor escreve os passos na ordem certa, marca quando dois passos podem trocar de lugar e escreve o que o Robô-guia diz se a criança errar. Escolhe também o cenário, as imagens das cartas e os textos da lição.
+- "Testar este nível" abre o nível exatamente como a criança verá, sem mexer no progresso do jogo.
+- "Salvar arquivo" baixa um `.json` com tudo dentro, inclusive as imagens. Para jogar: menu do jogo → "Área do professor" → "Abrir chamado (.json)".
+- Sem servidor e sem nuvem: o arquivo fica no computador do professor.
 
 ## Arquivos
 
@@ -22,7 +30,8 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 | `js/arrasto.js` | arrastar, tocar e teclado |
 | `js/jogo.js` | a partida: tabuleiro, erros, estrelas e dicas |
 | `js/conclusao.js` | a tela de lição |
-| `js/app.js` | menu, abertura, crachá, central, promoção e final |
+| `js/app.js` | menu, abertura, crachá, central, promoção, final e abrir o chamado do professor |
+| `editor.html`, `editor.css`, `js/editor.js` | a Área do professor |
 | `js/comum.js`, `js/som.js`, `js/progresso.js`, `js/perfil.js` | cartas, sons e memória do jogo |
 
 ## Imagens que ainda faltam

@@ -2063,3 +2063,24 @@ body.arrastando * {
     font-size: 4.2cqw;
   }
 }
+
+/* Área do professor (menu) */
+.aviso-prof {
+  max-width: 100%;
+  background: #fde7e4;
+  border: 0.25cqw solid #d9443b;
+  border-radius: 1cqw;
+  padding: 0.6cqw 1cqw;
+  font-weight: 700;
+  font-size: max(1.1cqw, 10px);
+  text-align: center;
+}
+#prof a.btn {
+  text-decoration: none;
+  display: inline-block;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .aviso-prof {
+    font-size: 3.2cqw;
+  }
+}

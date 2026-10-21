@@ -1,8 +1,9 @@
 /* ============================================================
-   comum.js — a carta de um passo e o embaralhamento da bandeja.
+   comum.js — o que o jogo e o editor do professor fazem igual:
+   a carta de um passo, o embaralhamento da bandeja e a conferência
+   de um arquivo .json.
 
-   Moram aqui (e não no jogo.js) porque o editor do professor, na
-   próxima etapa, vai mostrar a MESMA carta na prévia: se as duas
+   A prévia do editor mostra a MESMA carta do jogo: se as duas
    divergirem, o professor testa uma coisa e a criança joga outra.
 
    Este arquivo mexe no DOM — ao contrário do motor.js, que roda
@@ -89,6 +90,58 @@
     return lista;
   }
 
-  window.Comum = { criarCarta, embaralhar };
+  /* ============================================================
+     CONFERIR UM ARQUIVO .json
+
+     A MESMA conferência no jogo (abrir o chamado do professor) e no
+     editor (abrir para continuar editando). Devolve { ok: true,
+     situacao } ou { ok: false, mensagem } — cada recusa tem a sua
+     frase, e a tela nunca trava.
+
+     paraJogar = true  → vai ser jogado agora: exige níveis com passos;
+     paraJogar = false → o editor vai COMPLETAR o arquivo, então
+                         aceita níveis vazios de propósito.
+     ============================================================ */
+
+  function validarArquivoSituacao(texto, paraJogar) {
+    let obj;
+    try { obj = JSON.parse(texto); }
+    catch {
+      return { ok: false, mensagem: 'Este arquivo não é um .json válido. ' +
+        'Ele foi salvo pela Área do professor?' };
+    }
+
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) {
+      return { ok: false, mensagem: 'Este arquivo não parece ser um chamado do jogo.' };
+    }
+
+    if (typeof obj.formato === 'string' && !obj.formato.startsWith('passo-a-passo/')) {
+      return { ok: false, mensagem: `Este arquivo é de outro programa ` +
+        `(formato "${obj.formato}"), não um chamado do Algoritimando.` };
+    }
+
+    if (!Array.isArray(obj.fases)) {
+      return { ok: false, mensagem: 'Este arquivo não parece ser um chamado ' +
+        'do jogo (não achei os níveis).' };
+    }
+
+    if (!paraJogar) return { ok: true, situacao: obj };
+
+    if (!obj.fases.length) {
+      return { ok: false, mensagem: 'Este arquivo não tem nenhum nível para jogar. ' +
+        'Abra-o na Área do professor para completá-lo.' };
+    }
+
+    const jogavel = obj.fases.every(f =>
+      f && typeof f === 'object' && Array.isArray(f.passos) && f.passos.length);
+    if (!jogavel) {
+      return { ok: false, mensagem: 'Este arquivo tem nível sem nenhum passo: ' +
+        'abra-o na Área do professor para completá-lo.' };
+    }
+
+    return { ok: true, situacao: obj };
+  }
+
+  window.Comum = { criarCarta, embaralhar, validarArquivoSituacao };
 
 })();

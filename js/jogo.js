@@ -181,7 +181,8 @@
 
     Perfil.dados.dicas += 1;
     const ultima = indiceFase + 1 >= situacao.fases.length;
-    if (ultima) Perfil.dados.concluidos[situacao.id] = true;
+    // chamado do professor não entra na conta da promoção
+    if (ultima && !chave.startsWith('prof:')) Perfil.dados.concluidos[situacao.id] = true;
     Perfil.gravar();
 
     const premio = { estrelas: ganhas, dicas: 1 };
@@ -216,7 +217,8 @@
 
   // o topo mostra o total do agente, como na central
   function atualizarEstrelas() {
-    contadorNum.textContent = Progresso.total();
+    contadorNum.textContent = chave && chave.startsWith('prof:')
+      ? Progresso.estrelas(chave) : Progresso.total();
     contador.setAttribute('aria-label', `${contadorNum.textContent} estrelas`);
   }
 
