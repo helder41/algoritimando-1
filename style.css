@@ -1880,12 +1880,14 @@ body.arrastando * {
   }
   #stage .licao-arte {
     position: relative;
-    flex: 0 0 50cqw;
+    /* a arte fica com a sobra de altura; o painel, só com o conteúdo */
+    flex: 1 0 50cqw;
     background-position: 22% 72%;
   }
   #stage .conclusao-painel {
     position: static;
-    flex: 1;
+    /* o painel cresce só até o conteúdo: sem buraco antes do rodapé */
+    flex: 0 1 auto;
     min-height: 0;
     margin: -5cqw 3cqw 3cqw;
     padding: 4cqw;
