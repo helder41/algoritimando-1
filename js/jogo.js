@@ -3,7 +3,7 @@
 
    Liga as partes: a tela da fase (index.html), as cartas
    (comum.js), o arrasto (arrasto.js), o motor de validação
-   (motor.js), o som (som.js), a lição (conclusao.js) e a memória
+   (motor.js), a montagem (montagem.js), o som (som.js), a lição (conclusao.js) e a memória
    (progresso.js e perfil.js). A central de chamados (app.js) chama
    iniciarSituacao(situacao, chave); daqui para a frente:
 
@@ -168,6 +168,7 @@
     erroQueSoou = null;
     limparReacao();
     atualizarEstrelas();
+    Montagem.preparar(situacao, f);
   }
 
   /* Fase completa sem erro: grava o avanço e mostra a lição. */
@@ -369,7 +370,10 @@
 
     limparReacao();
 
-    const resultado = validarSequencia(fase(), lerSequencia());
+    const sequencia = lerSequencia();
+    const resultado = validarSequencia(fase(), sequencia);
+    // a montagem mostra a ordem que está na tela, certa ou errada
+    Montagem.atualizar(sequencia, resultado.erro, resultado.completa);
 
     if (resultado.erro) {
       faseConcluida = false;

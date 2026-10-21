@@ -44,6 +44,7 @@
 
   const campoTitulo        = $('#campo-titulo');
   const campoCenario       = $('#campo-cenario');
+  const campoMontagem      = $('#campo-montagem');
   const listaFases         = $('#lista-fases');
   const semFase            = $('#sem-fase');
   const faseConteudo       = $('#fase-conteudo');
@@ -103,7 +104,7 @@
      ============================================================ */
 
   function novaSituacao() {
-    return { id: '', titulo: '', cenario: '', fases: [novaFase()] };
+    return { id: '', titulo: '', cenario: '', montagem: '', fases: [novaFase()] };
   }
 
   function novaFase() {
@@ -122,7 +123,7 @@
     // id provisório único; vira um id legível na hora de exportar
     return {
       id: 'p-' + Math.random().toString(36).slice(2, 8),
-      texto: '', imagem: '',
+      texto: '', imagem: '', peca: '',
       // por padrão, um passo novo espera o de cima
       dependeDe: anterior ? [anterior.id] : [],
       explicacao: {},
@@ -143,6 +144,7 @@
       id: typeof obj.id === 'string' ? obj.id : '',
       titulo: typeof obj.titulo === 'string' ? obj.titulo : '',
       cenario: typeof obj.cenario === 'string' ? obj.cenario : cenarioDoFundo(obj.fundo),
+      montagem: obj.montagem === 'pilha' || obj.montagem === 'tirinha' ? obj.montagem : '',
       // entradas que não são objetos (arquivo mexido à mão) são puladas
       fases: fases.filter(f => f && typeof f === 'object').map(normalizarFase),
     };
@@ -163,6 +165,7 @@
       // só imagens embutidas (data:) viajam com o arquivo; um
       // caminho de outro computador não abriria aqui
       imagem: typeof p.imagem === 'string' ? p.imagem : '',
+      peca: typeof p.peca === 'string' ? p.peca : '',
       dependeDe: grafo[p.id] || [],
       explicacao: typeof p.explicacao === 'string' ? (p.explicacao ? { '*': p.explicacao } : {})
                 : (p.explicacao && typeof p.explicacao === 'object' ? { ...p.explicacao } : {}),
@@ -293,6 +296,7 @@
       fora.fundo = cenario.fundo;
       fora.fundoConclusao = cenario.fundoConclusao;
     }
+    if (situacao.montagem) fora.montagem = situacao.montagem;
     fora.fases = situacao.fases.map(exportarFase);
     return fora;
   }
@@ -307,6 +311,7 @@
     fora.passos = fase.passos.map(p => {
       const passo = { id: p.id, texto: p.texto.trim() };
       if (p.imagem) passo.imagem = p.imagem;
+      if (p.peca && situacao.montagem) passo.peca = p.peca;
       passo.dependeDe = p.dependeDe.slice();
       // só as falas das dependências marcadas (e o "*" antigo)
       const expl = {};
@@ -573,7 +578,11 @@
     /* corpo: imagem + campos */
     const corpo = document.createElement('div');
     corpo.className = 'ed-passo-corpo';
-    corpo.append(botaoDeImagem(passo, indice));
+    const figuras = document.createElement('div');
+    figuras.className = 'ed-figuras';
+    figuras.append(botaoDeImagem(passo, indice));
+    if (situacao.montagem) figuras.append(botaoDePeca(passo, indice));
+    corpo.append(figuras);
 
     const campos = document.createElement('div');
     campos.className = 'ed-passo-campos';
@@ -725,6 +734,22 @@
     });
   }
 
+  /* A peça da montagem: na pilha, uma camada recortada (png com
+     fundo transparente — por isso não vira jpeg); na tirinha, o
+     quadrinho do passo. Sem ela, a tirinha usa a imagem da carta. */
+  function botaoDePeca(passo, indice) {
+    const pilha = situacao.montagem === 'pilha';
+    return seletorDeImagem(passo, {
+      campo: 'peca',
+      nome: `a peça da montagem do passo ${indice + 1}`,
+      vazio: pilha ? 'peça da pilha (opcional)' : 'quadrinho (opcional)',
+      rotulo: pilha ? 'peça' : 'quadrinho',
+      largura: LARGURA_MAX_IMAGEM,
+      transparente: true,
+      depois: renderizarPassos,
+    });
+  }
+
   /* A lição usa o mesmo seletor: a imagem é o que a criança vê;
      o texto fica atrás do botão "Para o professor". */
   function renderizarImagemLicao() {
@@ -739,8 +764,10 @@
     }));
   }
 
-  // dono = qualquer objeto com o campo "imagem" (passo ou lição)
-  function seletorDeImagem(passo, { nome, vazio, largura, depois }) {
+  // dono = qualquer objeto com o campo da imagem ("imagem" ou "peca")
+  function seletorDeImagem(dono, { campo = 'imagem', nome, vazio, rotulo = 'imagem',
+                                   largura, transparente = false, depois }) {
+    const passo = { get imagem() { return dono[campo]; }, set imagem(v) { dono[campo] = v; } };
     const botao = document.createElement('button');
     botao.type = 'button';
     botao.className = 'ed-miniatura' + (passo.imagem ? '' : ' vazia');
@@ -751,13 +778,13 @@
     if (passo.imagem) figura.style.backgroundImage = `url("${passo.imagem}")`;
     else figura.textContent = vazio;
 
-    const rotulo = document.createElement('span');
-    rotulo.className = 'ed-miniatura-rotulo';
-    rotulo.textContent = passo.imagem ? 'Trocar imagem' : 'Escolher imagem…';
+    const legenda = document.createElement('span');
+    legenda.className = 'ed-miniatura-rotulo';
+    legenda.textContent = passo.imagem ? `Trocar ${rotulo}` : `Escolher ${rotulo}…`;
 
-    botao.append(figura, rotulo);
+    botao.append(figura, legenda);
     botao.addEventListener('click', () => {
-      pedidoDeImagem = { dono: passo, largura, depois };
+      pedidoDeImagem = { dono: passo, largura, transparente, depois };
       inputImagem.click();
     });
 
@@ -769,7 +796,7 @@
     const tirar = document.createElement('button');
     tirar.type = 'button';
     tirar.className = 'ed-tirar-imagem';
-    tirar.textContent = 'Tirar imagem';
+    tirar.textContent = `Tirar ${rotulo}`;
     tirar.addEventListener('click', () => {
       passo.imagem = '';
       depois();
@@ -783,7 +810,7 @@
     const arquivo = inputImagem.files[0];
     inputImagem.value = '';
     if (!arquivo || !pedidoDeImagem) return;
-    const { dono, largura, depois } = pedidoDeImagem;
+    const { dono, largura, transparente, depois } = pedidoDeImagem;
     pedidoDeImagem = null;
 
     const leitor = new FileReader();
@@ -797,12 +824,16 @@
         canvas.height = Math.max(1, Math.round(img.height * escala));
         const ctx = canvas.getContext('2d');
         // jpeg não tem transparência: sem este fundo, um png
-        // transparente sairia com fundo preto
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // transparente sairia com fundo preto. A peça da pilha
+        // precisa do recorte, então fica em png.
+        if (!transparente) {
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         // só o resultado reduzido é guardado; o original é descartado
-        dono.imagem = canvas.toDataURL('image/jpeg', 0.8);
+        dono.imagem = transparente ? canvas.toDataURL('image/png')
+                                   : canvas.toDataURL('image/jpeg', 0.8);
         depois();
         mudou();
       };
@@ -828,6 +859,11 @@
   ligarCampo(campoTitulo, v => { situacao.titulo = v; });
   campoCenario.addEventListener('change', () => {
     situacao.cenario = campoCenario.value;
+    mudou();
+  });
+  campoMontagem.addEventListener('change', () => {
+    situacao.montagem = campoMontagem.value;
+    renderizarPassos();   // aparece (ou some) o seletor de peça
     mudou();
   });
   ligarCampo(campoFaseTitulo, v => {
@@ -872,6 +908,7 @@
     indiceFase = 0;
     campoTitulo.value = situacao.titulo;
     campoCenario.value = situacao.cenario;
+    campoMontagem.value = situacao.montagem;
     renderizarFases();
     renderizarFase();
   }

@@ -2,7 +2,7 @@
 
 Lista de todos os lugares do jogo que pedem uma imagem e ainda não têm. Enquanto o arquivo não existe, o jogo mostra um quadro tracejado no lugar (nas cartas, "ilustração do passo"). Basta salvar o arquivo com o nome e a pasta indicados: ele aparece sozinho, sem mexer no código.
 
-Há dois tipos principais: as cartas dos passos (seção 1) e as imagens das lições (seção 2), que substituem o texto da tela de "Parabéns" para a criança.
+Há três tipos principais: as cartas dos passos (seção 1), as imagens das lições (seção 2), que substituem o texto da tela de "Parabéns" para a criança, e as peças da montagem (seção 3).
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
@@ -114,7 +114,27 @@ Formato sugerido: PNG ou JPG em 4:3 (por exemplo 1200 × 900), mesmo estilo das 
 | `abelhas-3.png` (nível 3) | Quem lembra de falar "procure a flor"? | Quando alguém conta o que a abelha faz, ninguém fala "procure uma flor aberta". Esse passo fica escondido: parece óbvio, então a gente pula. Mas sem ele a abelha voa sem rumo e não acha néctar nenhum! |
 | `abelhas-4.png` (nível 4) | Esse passo a passo tem um nome? | Uma lista de instruções completa e na ordem certa tem nome: algoritmo! E o seu foi até o fim de verdade: guardar o néctar e fechar o favo para virar mel. Quem cria um algoritmo pensa no começo, no meio e no fim. |
 
-## 3. Outras partes que usam um desenho provisório
+## 3. Peças da montagem (`img/pecas/`)
+
+A montagem é a imagem que se forma ao lado do tabuleiro conforme a criança coloca as cartas, na ordem em que elas estão (certa ou errada). No PC ela fica abaixo da bandeja; no celular é opcional, no botão "Ver a montagem".
+
+### Pilha: Fazer um sanduíche
+
+Hoje são **recortes provisórios** desenhados em código (SVG). Para trocar, salve um PNG com fundo transparente, **todos com a mesma largura** (por exemplo 600 px), vistos de lado, e troque a extensão no `js/situacoes.js` (`.svg` → `.png`).
+
+| Arquivo | O que desenhar | Passos que usam |
+|---|---|---|
+| `sanduiche-pao.svg` | fatia de pão de baixo, vista de lado | Pegue duas fatias de pão. / Abra o saco e tire duas fatias. / Tire duas fatias do saco. |
+| `sanduiche-manteiga.svg` | camada fina de manteiga | Passe (espalhe) a manteiga nas fatias. |
+| `sanduiche-queijo.svg` | fatia de queijo, com as pontas caindo | Coloque o queijo no pão. / Coloque o queijo na fatia. |
+| `sanduiche-presunto.svg` | fatia de presunto ondulada | Coloque o presunto no pão. |
+| `sanduiche-pao-cima.svg` | fatia de pão de cima, arredondada | Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias. |
+
+### Tirinha: robô, mochila e abelhas
+
+Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela não existe, mostra a legenda do passo. Se quiserem quadrinhos próprios (a cena DEPOIS do passo: o robô já perto do cubo, a garra já fechada...), basta pôr o caminho no campo `peca` do passo, em 4:3.
+
+## 4. Outras partes que usam um desenho provisório
 
 | Onde | Como está hoje | Imagem que entraria |
 |---|---|---|
@@ -122,7 +142,7 @@ Formato sugerido: PNG ou JPG em 4:3 (por exemplo 1200 × 900), mesmo estilo das 
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.png` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 
-## 4. Imagens do Drive que ainda não têm onde entrar
+## 5. Imagens do Drive que ainda não têm onde entrar
 
 - `cracha_nivel1_estagiario.png` e `cracha_nivel3_senior.png`: não há tela que mostre o crachá de Estagiário nem promoção para Sênior.
 - `robo_comemorando`, `robo_confuso`, `robo_feliz`, `robo_pensativo`: o Robô-guia usa os rostos recortados que já estavam em `img/` (`guide.png`, `guide-feliz.png`, `guide-triste.png`).

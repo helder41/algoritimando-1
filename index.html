@@ -150,6 +150,8 @@
           <section class="bandeja" aria-label="Cartas ainda não usadas">
             <ul class="bandeja-fila"></ul>
           </section>
+          <!-- Montagem: a imagem que se monta conforme as cartas (montagem.js) -->
+          <section class="montagem" aria-hidden="true" hidden></section>
         </main>
         <!-- Robô-guia: fala da fase e, quando a criança erra, a
              explicação do erro (sempre do PRIMEIRO problema) -->
@@ -172,6 +174,16 @@
             <span class="progresso-texto">Nível 1 de 5</span> ▾
           </button>
           <div class="rodape-direita">
+            <!-- só no celular: a montagem é opcional e troca de lugar com a cena -->
+            <button
+              class="chip"
+              id="btn-montagem"
+              type="button"
+              aria-pressed="false"
+              hidden
+            >
+              Ver a montagem
+            </button>
             <button class="chip" id="btn-dica" type="button">
               <img src="img/ui/dica.png" alt="" /> Dica
               <b class="dica-restantes" aria-hidden="true">1</b>
@@ -401,6 +413,7 @@
     <script src="js/perfil.js"></script>
     <script src="js/arrasto.js"></script>
     <script src="js/conclusao.js"></script>
+    <script src="js/montagem.js"></script>
     <script src="js/jogo.js"></script>
     <script src="js/app.js"></script>
   </body>

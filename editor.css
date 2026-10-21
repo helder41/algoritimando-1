@@ -309,6 +309,11 @@ section.ed-cartao.ed-linha-campos {
   gap: 14px;
   align-items: start;
 }
+.ed-figuras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .ed-figura {
   display: flex;
   flex-direction: column;

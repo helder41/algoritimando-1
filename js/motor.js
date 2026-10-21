@@ -55,6 +55,16 @@
      cliente     retrato de quem fez o chamado (círculo do cartão)
      fundo       ilustração de fundo da tela da fase
      fundoConclusao  ilustração da tela de lição (fase concluída)
+     montagem    a imagem que se monta ao lado do tabuleiro,
+                 conforme a criança coloca as cartas:
+                 "pilha"   — cada passo com "peca" põe a sua peça
+                             em cima das anteriores, NA ORDEM DOS
+                             ESPAÇOS (o sanduíche): fora de ordem, o
+                             queijo aparece por cima do pão fechado;
+                 "tirinha" — um quadrinho por espaço, como uma
+                             história em quadrinhos; no primeiro
+                             erro a história "trava" ali.
+                 Sem o campo, não há montagem.
    Todos são só aparência: sem eles o jogo usa um visual padrão,
    e nenhum deles muda a validação.
 
@@ -69,6 +79,10 @@
                 lista de passos é a ordem que o professor escreveu
                 (a dica segue essa ordem), mas quem decide o que é
                 certo é o dependeDe.
+     peca       (opcional) imagem que o passo acrescenta à montagem:
+                na pilha, uma camada recortada (fundo transparente,
+                todas com a mesma largura); na tirinha, o quadrinho
+                do passo (sem ela, a tirinha usa a "imagem").
      ordemLivre (formato antigo, do protótipo) — só é lido quando o
                 passo não traz dependeDe; ver a seção 2.
      explicacao (opcional) — texto mostrado quando este passo é

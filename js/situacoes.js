@@ -51,6 +51,8 @@ const SITUACAO_SANDUICHE = {
   cena: 'img/pic1.jpg',
   fundo: 'img/level1.jpg',
   fundoConclusao: 'img/win1.jpg',
+  // a imagem que se monta ao lado do tabuleiro (ver motor.js)
+  montagem: 'pilha',
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
@@ -60,13 +62,13 @@ const SITUACAO_SANDUICHE = {
       instrucao: 'Arraste as cartas para os espaços — ou toque na carta e depois no espaço.',
       mascote: 'Cada carta é um passo. Qual precisa acontecer primeiro?',
       passos: [
-        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png', dependeDe: [] },
+        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png', peca: 'img/pecas/sanduiche-pao.svg', dependeDe: [] },
         {
-          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png', dependeDe: ['pao'],
+          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png', peca: 'img/pecas/sanduiche-queijo.svg', dependeDe: ['pao'],
           explicacao: 'O queijo vai em cima do pão. Sem pão na mesa, o queijo fica voando!',
         },
         {
-          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['queijo'],
+          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', peca: 'img/pecas/sanduiche-pao-cima.svg', dependeDe: ['queijo'],
           explicacao: 'Fechar o sanduíche agora? O queijo ainda está fora — ele fica sem entrar!',
         },
       ],
@@ -92,17 +94,17 @@ const SITUACAO_SANDUICHE = {
       instrucao: 'Alguns passos podem trocar de lugar entre si. Outros não. Fique de olho!',
       mascote: 'O queijo e o presunto podem trocar de lugar. Os outros, não!',
       passos: [
-        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png', dependeDe: [] },
+        { id: 'pao', texto: 'Pegue duas fatias de pão.', imagem: 'img/passos/sanduiche-01.png', peca: 'img/pecas/sanduiche-pao.svg', dependeDe: [] },
         {
-          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png', dependeDe: ['pao'],
+          id: 'queijo', texto: 'Coloque o queijo no pão.', imagem: 'img/passos/sanduiche-02.png', peca: 'img/pecas/sanduiche-queijo.svg', dependeDe: ['pao'],
           explicacao: 'O queijo vai em cima do pão. Sem pão na mesa, o queijo fica voando!',
         },
         {
-          id: 'presunto', texto: 'Coloque o presunto no pão.', imagem: 'img/passos/sanduiche-03.png', dependeDe: ['pao'],
+          id: 'presunto', texto: 'Coloque o presunto no pão.', imagem: 'img/passos/sanduiche-03.png', peca: 'img/pecas/sanduiche-presunto.svg', dependeDe: ['pao'],
           explicacao: 'O presunto vai em cima do pão. Sem pão na mesa, o presunto fica voando!',
         },
         {
-          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['queijo', 'presunto'],
+          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', peca: 'img/pecas/sanduiche-pao-cima.svg', dependeDe: ['queijo', 'presunto'],
           explicacao: {
             queijo:   'Para fechar o sanduíche, o queijo já precisa estar dentro. Fechando agora, ele fica de fora!',
             presunto: 'Para fechar o sanduíche, o presunto já precisa estar dentro. Fechando agora, ele fica de fora!',
@@ -134,18 +136,18 @@ const SITUACAO_SANDUICHE = {
         { id: 'pegar-pao',      texto: 'Pegue o saco de pão.', imagem: 'img/passos/sanduiche-05.png', dependeDe: [] },
         { id: 'pegar-manteiga', texto: 'Pegue a manteiga.',    imagem: 'img/passos/sanduiche-06.png', dependeDe: [] },
         {
-          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png', dependeDe: ['pegar-pao'],
+          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png', peca: 'img/pecas/sanduiche-pao.svg', dependeDe: ['pegar-pao'],
           explicacao: 'Para abrir o saco de pão, ele precisa estar na sua mão!',
         },
         {
-          id: 'passar', texto: 'Passe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png', dependeDe: ['abrir-saco', 'pegar-manteiga'],
+          id: 'passar', texto: 'Passe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png', peca: 'img/pecas/sanduiche-manteiga.svg', dependeDe: ['abrir-saco', 'pegar-manteiga'],
           explicacao: {
             'abrir-saco':     'As fatias ainda estão dentro do saco! Abra o saco primeiro.',
             'pegar-manteiga': 'Passar a manteiga? Ela ainda está guardada! Pegue a manteiga primeiro.',
           },
         },
         {
-          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['passar'],
+          id: 'fechar', texto: 'Feche o sanduíche.', imagem: 'img/passos/sanduiche-04.png', peca: 'img/pecas/sanduiche-pao-cima.svg', dependeDe: ['passar'],
           explicacao: 'Fechar antes de passar a manteiga? Vira um sanduíche de nada!',
         },
       ],
@@ -178,18 +180,18 @@ const SITUACAO_SANDUICHE = {
           explicacao: 'O saco precisa estar na mão do computador antes de abrir!',
         },
         {
-          id: 'tirar-fatias', texto: 'Tire duas fatias do saco.', imagem: 'img/passos/sanduiche-08.png', dependeDe: ['abrir-saco'],
+          id: 'tirar-fatias', texto: 'Tire duas fatias do saco.', imagem: 'img/passos/sanduiche-08.png', peca: 'img/pecas/sanduiche-pao.svg', dependeDe: ['abrir-saco'],
           explicacao: 'Tirar fatias de um saco fechado? O computador trava: não dá!',
         },
         {
-          id: 'por-queijo', texto: 'Coloque o queijo na fatia.', imagem: 'img/passos/sanduiche-02.png', dependeDe: ['tirar-fatias', 'pegar-queijo'],
+          id: 'por-queijo', texto: 'Coloque o queijo na fatia.', imagem: 'img/passos/sanduiche-02.png', peca: 'img/pecas/sanduiche-queijo.svg', dependeDe: ['tirar-fatias', 'pegar-queijo'],
           explicacao: {
             'tirar-fatias': 'As fatias ainda estão dentro do saco! O queijo cairia em cima da mesa.',
             'pegar-queijo': 'Colocar qual queijo? Ele ainda está guardado! O computador precisa pegar a fatia antes.',
           },
         },
         {
-          id: 'fechar', texto: 'Feche com a outra fatia.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['por-queijo'],
+          id: 'fechar', texto: 'Feche com a outra fatia.', imagem: 'img/passos/sanduiche-04.png', peca: 'img/pecas/sanduiche-pao-cima.svg', dependeDe: ['por-queijo'],
           explicacao: 'Fechar antes de o queijo entrar? O computador entrega um sanduíche de nada!',
         },
       ],
@@ -219,7 +221,7 @@ const SITUACAO_SANDUICHE = {
         { id: 'pegar-manteiga', texto: 'Pegue o pote de manteiga.', imagem: 'img/passos/sanduiche-06.png', dependeDe: [] },
         { id: 'pegar-faca',     texto: 'Pegue uma faca sem ponta.', imagem: 'img/passos/sanduiche-11.png', dependeDe: [] },
         {
-          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png', dependeDe: ['pegar-pao'],
+          id: 'abrir-saco', texto: 'Abra o saco e tire duas fatias.', imagem: 'img/passos/sanduiche-07.png', peca: 'img/pecas/sanduiche-pao.svg', dependeDe: ['pegar-pao'],
           explicacao: 'O saco precisa estar na sua mão antes de abrir!',
         },
         {
@@ -227,7 +229,7 @@ const SITUACAO_SANDUICHE = {
           explicacao: 'O pote precisa estar na sua mão antes de abrir!',
         },
         {
-          id: 'passar', texto: 'Espalhe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png', dependeDe: ['abrir-saco', 'abrir-pote', 'pegar-faca'],
+          id: 'passar', texto: 'Espalhe a manteiga nas fatias.', imagem: 'img/passos/sanduiche-09.png', peca: 'img/pecas/sanduiche-manteiga.svg', dependeDe: ['abrir-saco', 'abrir-pote', 'pegar-faca'],
           explicacao: {
             'abrir-saco': 'As fatias ainda estão dentro do saco!',
             'abrir-pote': 'A manteiga ainda está trancada no pote! A faca não atravessa a tampa.',
@@ -235,7 +237,7 @@ const SITUACAO_SANDUICHE = {
           },
         },
         {
-          id: 'fechar-sanduiche', texto: 'Junte as duas fatias.', imagem: 'img/passos/sanduiche-04.png', dependeDe: ['passar'],
+          id: 'fechar-sanduiche', texto: 'Junte as duas fatias.', imagem: 'img/passos/sanduiche-04.png', peca: 'img/pecas/sanduiche-pao-cima.svg', dependeDe: ['passar'],
           explicacao: 'Juntar as fatias sem manteiga dentro? Sanduíche de nada!',
         },
         {
@@ -278,6 +280,8 @@ const SITUACAO_ROBO = {
   cena: 'img/pic2.jpg',
   fundo: 'img/level2.jpg',
   fundoConclusao: 'img/win2.jpg',
+  // a imagem que se monta ao lado do tabuleiro (ver motor.js)
+  montagem: 'tirinha',
   fases: [
 
     /* ---------- FASE 1 · a máquina precisa de ordem (3 passos) ---------- */
@@ -511,6 +515,8 @@ const SITUACAO_MOCHILA = {
   cena: 'img/pic3.jpg',
   fundo: 'img/level3.jpg',
   fundoConclusao: 'img/win3.jpg',
+  // a imagem que se monta ao lado do tabuleiro (ver motor.js)
+  montagem: 'tirinha',
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
@@ -710,6 +716,8 @@ const SITUACAO_ABELHAS = {
   cena: 'img/pic4.jpg',
   fundo: 'img/level4.jpg',
   fundoConclusao: 'img/win4.jpg',
+  // a imagem que se monta ao lado do tabuleiro (ver motor.js)
+  montagem: 'tirinha',
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
