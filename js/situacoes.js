@@ -12,6 +12,9 @@
 
    Os campos visuais (local, cor, cliente, cena, fundo,
    fundoConclusao) são opcionais e estão descritos no motor.js.
+   As ilustrações das cartas (img/passos/) ainda não existem: a
+   carta mostra o quadro "ilustração do passo" até o arquivo
+   chegar. A lista do que desenhar está em IMAGENS.md.
 
    A dificuldade cresce de propósito: a cada fase os passos
    ficam mais detalhados, para expor as etapas que a gente
@@ -47,7 +50,6 @@ const SITUACAO_SANDUICHE = {
   cor: '#8a5a2b',
   cliente: 'img/who1.png',
   cena: 'img/pic1.jpg',
-  cenaReserva: '🥪',
   fundo: 'img/level1.jpg',
   fundoConclusao: 'img/win1.jpg',
   fases: [
@@ -76,15 +78,10 @@ const SITUACAO_SANDUICHE = {
           'Se a gente troca os passos de lugar, dá confusão: o queijo pode ficar de fora do sanduíche!',
           'Com a ordem certa, tudo dá certo no final.',
         ],
-        comparacao: {
-          certa:  ['queijo', 'fechar'],
-          errada: ['fechar', 'queijo'],
-        },
         reflexao: [
           'O que acontece com o queijo se você fechar o sanduíche antes de colocá-lo?',
           'O que mais você faz no seu dia que só dá certo em uma ordem?',
         ],
-        reforco: 'Quando os passos estão na ordem certa, a gente chega onde quer!',
       },
     },
 
@@ -119,15 +116,10 @@ const SITUACAO_SANDUICHE = {
           'Mas fechar o sanduíche precisa esperar os dois estarem dentro.',
           'Um passo só espera aquilo de que ele precisa — os outros são livres!',
         ],
-        comparacao: {
-          certa:  ['presunto', 'queijo'],
-          errada: ['fechar', 'queijo'],
-        },
         reflexao: [
           'Quais cartas podiam trocar de lugar sem estragar nada?',
           'Por que fechar o sanduíche não pode vir antes do recheio?',
         ],
-        reforco: 'Cada passo espera só os passos de que ele precisa — os outros são livres!',
       },
     },
 
@@ -163,15 +155,10 @@ const SITUACAO_SANDUICHE = {
           'Quando a gente explica para alguém, esses passos pequenos ficam escondidos — a pessoa adivinha sozinha.',
           'Mas eles existem! Sem eles, o sanduíche não sai.',
         ],
-        comparacao: {
-          certa:  ['pegar-manteiga', 'pegar-pao'],
-          errada: ['passar', 'abrir-saco'],
-        },
         reflexao: [
           'Qual passo desta fase você nunca fala em voz alta quando ensina alguém a fazer um sanduíche?',
           'Se ninguém abrir o saco, como as fatias vão parar na mesa?',
         ],
-        reforco: 'Os passos pequenos também contam — mesmo quando ninguém fala deles!',
       },
     },
 
@@ -211,15 +198,10 @@ const SITUACAO_SANDUICHE = {
           'Ele só faz o que a gente diz, do jeitinho que a gente diz. Cada frase dessas é uma instrução.',
           'Por isso a lista para ele precisa ter todos os passos, na ordem certa.',
         ],
-        comparacao: {
-          certa:  ['abrir-saco', 'tirar-fatias'],
-          errada: ['tirar-fatias', 'abrir-saco'],
-        },
         reflexao: [
           'Por que o computador não consegue tirar o pão de um saco fechado?',
           'Qual passo desta fase você esqueceria de falar?',
         ],
-        reforco: 'O computador faz exatamente o que a gente manda — nem mais, nem menos.',
       },
     },
 
@@ -270,15 +252,10 @@ const SITUACAO_SANDUICHE = {
           'E o seu foi até o fim de verdade: montar, guardar tudo, deixar a mesa limpa.',
           'Quem cria um algoritmo pensa no começo, no meio e no fim.',
         ],
-        comparacao: {
-          certa:  ['fechar-sanduiche', 'guardar'],
-          errada: ['guardar', 'fechar-sanduiche'],
-        },
         reflexao: [
           'Por que guardar as coisas também faz parte do passo a passo?',
           'Qual outro algoritmo você segue todo dia sem perceber?',
         ],
-        reforco: 'Algoritmo é um passo a passo completo, na ordem certa — com começo, meio e fim!',
       },
     },
 
@@ -300,7 +277,6 @@ const SITUACAO_ROBO = {
   cor: '#2f4f7f',
   cliente: 'img/who2.png',
   cena: 'img/pic2.jpg',
-  cenaReserva: '🤖',
   fundo: 'img/level2.jpg',
   fundoConclusao: 'img/win2.jpg',
   fases: [
@@ -329,15 +305,10 @@ const SITUACAO_ROBO = {
           'Se a ordem estiver trocada, ele tenta mesmo assim — e dá tudo errado!',
           'Com a ordem certa, o cubo chega à plataforma.',
         ],
-        comparacao: {
-          certa:  ['andar', 'pegar'],
-          errada: ['pegar', 'andar'],
-        },
         reflexao: [
           'Por que o robô não consegue pegar o cubo de longe?',
           'Se você fosse um robô, o que faria primeiro ao acordar?',
         ],
-        reforco: 'Máquina segue os passos na ordem em que eles chegam!',
       },
     },
 
@@ -369,15 +340,10 @@ const SITUACAO_ROBO = {
           'Mas fechar a garra no cubo precisa esperar os dois.',
           'Um passo só espera aquilo de que ele precisa.',
         ],
-        comparacao: {
-          certa:  ['abrir-garra', 'andar'],
-          errada: ['fechar-garra', 'abrir-garra'],
-        },
         reflexao: [
           'Quais dois passos podiam trocar de lugar sem estragar nada?',
           'Por que abrir a garra precisa vir antes de fechar a garra?',
         ],
-        reforco: 'Passos que não dependem um do outro podem vir em qualquer ordem!',
       },
     },
 
@@ -413,15 +379,10 @@ const SITUACAO_ROBO = {
           'O robô não: se ninguém mandar virar, ele sai reto e bate na parede.',
           'Para uma máquina, até o passo mais óbvio precisa ser dito.',
         ],
-        comparacao: {
-          certa:  ['virar-cubo', 'andar-cubo'],
-          errada: ['andar-cubo', 'virar-cubo'],
-        },
         reflexao: [
           'Que outros passos você faz sem perceber quando atravessa a sala?',
           'O que acontece com um robô que anda sem virar para o lugar certo?',
         ],
-        reforco: 'O que é óbvio para a gente precisa ser dito para a máquina!',
       },
     },
 
@@ -465,15 +426,10 @@ const SITUACAO_ROBO = {
           'O robô não adivinha nenhum deles. Cada frase dessas é uma instrução.',
           'Se a instrução de soltar não existir, o cubo fica preso na garra para sempre!',
         ],
-        comparacao: {
-          certa:  ['andar-plataforma', 'soltar'],
-          errada: ['soltar', 'andar-plataforma'],
-        },
         reflexao: [
           'O que acontece se ninguém mandar o robô soltar o cubo?',
           'Quantos passos escondidos tem em "guarde o brinquedo na caixa"?',
         ],
-        reforco: 'Para a máquina, cada pedacinho do caminho é uma instrução!',
       },
     },
 
@@ -524,15 +480,10 @@ const SITUACAO_ROBO = {
           'E o seu começou do verdadeiro começo: ligar o robô — o passo mais esquecido do mundo.',
           'Quem cria um algoritmo pensa no começo, no meio e no fim.',
         ],
-        comparacao: {
-          certa:  ['ligar', 'abrir-garra'],
-          errada: ['abrir-garra', 'ligar'],
-        },
         reflexao: [
           'O nosso algoritmo esqueceu um passo lá no finzinho. Qual? Pense no botão…',
           'O que mais precisa ser "ligado" antes de funcionar na sua casa?',
         ],
-        reforco: 'Algoritmo é o passo a passo completo — do ligar até o desligar!',
       },
     },
 
@@ -554,7 +505,6 @@ const SITUACAO_MOCHILA = {
   cor: '#3f7d3f',
   cliente: 'img/who3.png',
   cena: 'img/pic3.jpg',
-  cenaReserva: '🎒',
   fundo: 'img/level3.jpg',
   fundoConclusao: 'img/win3.jpg',
   fases: [
@@ -583,15 +533,10 @@ const SITUACAO_MOCHILA = {
           'Se a gente troca os passos de lugar, dá confusão: o lápis pode ficar perdido na mesa!',
           'Com a ordem certa, nada fica para trás.',
         ],
-        comparacao: {
-          certa:  ['guardar-lapis', 'fechar-estojo'],
-          errada: ['fechar-estojo', 'guardar-lapis'],
-        },
         reflexao: [
           'O que acontece com o lápis se o estojo fechar antes de ele entrar?',
           'O que você guarda todo dia na hora da saída?',
         ],
-        reforco: 'Quando os passos estão na ordem certa, nada fica para trás!',
       },
     },
 
@@ -627,15 +572,10 @@ const SITUACAO_MOCHILA = {
           'Mas fechar o estojo precisa esperar os dois estarem dentro.',
           'Um passo só espera aquilo de que ele precisa — os outros são livres!',
         ],
-        comparacao: {
-          certa:  ['guardar-borracha', 'guardar-lapis'],
-          errada: ['fechar-estojo', 'guardar-borracha'],
-        },
         reflexao: [
           'Quais cartas podiam trocar de lugar sem estragar nada?',
           'Por que fechar o estojo precisa esperar o lápis E a borracha?',
         ],
-        reforco: 'Cada passo espera só os passos de que ele precisa — os outros são livres!',
       },
     },
 
@@ -678,15 +618,10 @@ const SITUACAO_MOCHILA = {
           'Mas se esse passo não existir, o estojo não entra: ele bate no zíper fechado!',
           'Os passos escondidos existem, mesmo quando ninguém fala deles.',
         ],
-        comparacao: {
-          certa:  ['abrir-mochila', 'estojo-mochila'],
-          errada: ['estojo-mochila', 'abrir-mochila'],
-        },
         reflexao: [
           'Qual passo desta fase você faz todo dia sem nem perceber?',
           'O que mais você abre sem pensar antes de guardar alguma coisa?',
         ],
-        reforco: 'Os passos pequenos também contam — mesmo quando ninguém fala deles!',
       },
     },
 
@@ -743,15 +678,10 @@ const SITUACAO_MOCHILA = {
           'Você montou um algoritmo de verdade — e ele foi até o fim: mochila fechada e nas costas.',
           'Quem cria um algoritmo pensa no começo, no meio e no fim.',
         ],
-        comparacao: {
-          certa:  ['fechar-mochila', 'colocar-costas'],
-          errada: ['colocar-costas', 'fechar-mochila'],
-        },
         reflexao: [
           'O que ainda falta fazer antes de sair da sala? Olhe para a cadeira…',
           'Qual algoritmo você segue amanhã de manhã antes de vir para a escola?',
         ],
-        reforco: 'Algoritmo é um passo a passo completo, na ordem certa — com começo, meio e fim!',
       },
     },
 
@@ -775,7 +705,6 @@ const SITUACAO_ABELHAS = {
   cor: '#a8820a',
   cliente: 'img/who4.png',
   cena: 'img/pic4.jpg',
-  cenaReserva: '🐝',
   fundo: 'img/level4.jpg',
   fundoConclusao: 'img/win4.jpg',
   fases: [
@@ -804,15 +733,10 @@ const SITUACAO_ABELHAS = {
           'Se a ordem fica trocada, ela volta para a colmeia sem nada!',
           'Com a ordem certa, o néctar chega em casa.',
         ],
-        comparacao: {
-          certa:  ['voar-flor', 'nectar'],
-          errada: ['nectar', 'voar-flor'],
-        },
         reflexao: [
           'O que acontece se a abelha voltar para a colmeia antes de coletar o néctar?',
           'Que caminho você faz todo dia que só dá certo em uma ordem?',
         ],
-        reforco: 'Quando os passos estão na ordem certa, a gente chega onde quer!',
       },
     },
 
@@ -851,15 +775,10 @@ const SITUACAO_ABELHAS = {
           'Mas voltar para a colmeia precisa esperar os dois.',
           'Um passo só espera aquilo de que ele precisa — os outros são livres!',
         ],
-        comparacao: {
-          certa:  ['polen', 'nectar'],
-          errada: ['voltar', 'nectar'],
-        },
         reflexao: [
           'Quais cartas podiam trocar de lugar sem estragar nada?',
           'Por que voltar para a colmeia não pode vir antes de coletar?',
         ],
-        reforco: 'Cada passo espera só os passos de que ele precisa — os outros são livres!',
       },
     },
 
@@ -902,15 +821,10 @@ const SITUACAO_ABELHAS = {
           'Esse passo fica escondido: parece óbvio, então a gente pula.',
           'Mas sem ele a abelha voa sem rumo e não acha néctar nenhum!',
         ],
-        comparacao: {
-          certa:  ['procurar', 'voar-flor'],
-          errada: ['voar-flor', 'procurar'],
-        },
         reflexao: [
           'Qual passo desta fase você esqueceria de contar para alguém?',
           'Para onde a abelha iria se voasse antes de procurar a flor?',
         ],
-        reforco: 'Os passos pequenos também contam — mesmo quando ninguém fala deles!',
       },
     },
 
@@ -961,15 +875,10 @@ const SITUACAO_ABELHAS = {
           'E o seu foi até o fim de verdade: guardar o néctar e fechar o favo para virar mel.',
           'Quem cria um algoritmo pensa no começo, no meio e no fim.',
         ],
-        comparacao: {
-          certa:  ['guardar', 'tampar'],
-          errada: ['tampar', 'guardar'],
-        },
         reflexao: [
           'Por que fechar o favo também faz parte do passo a passo?',
           'Qual outro algoritmo você vê na natureza?',
         ],
-        reforco: 'Algoritmo é um passo a passo completo, na ordem certa — com começo, meio e fim!',
       },
     },
 
@@ -977,85 +886,3 @@ const SITUACAO_ABELHAS = {
 };
 
 const SITUACOES = [SITUACAO_SANDUICHE, SITUACAO_ROBO, SITUACAO_MOCHILA, SITUACAO_ABELHAS];
-
-/* ============================================================
-   EMOJI DE RESERVA DE CADA IMAGEM
-
-   Os desenhos de img/ ainda não existem. Sem reserva, toda carta
-   seria um retângulo bege vazio e a criança jogaria lendo só a
-   legenda — que é justamente o contrário da ideia do jogo, onde a
-   figura carrega o passo para quem ainda lê devagar.
-
-   A tabela é por ARQUIVO, não por passo, porque a mesma imagem é
-   reaproveitada em todas as fases em que o passo aparece (as 38
-   imagens cobrem os 96 passos). Trocar um
-   emoji aqui troca em todas as fases de uma vez.
-
-   Regra ao escolher: dentro de UMA MESMA FASE, dois passos nunca
-   podem ter o mesmo emoji — a criança precisa distinguir as cartas
-   de relance. Entre fases diferentes, repetir é livre.
-
-   O laço logo abaixo copia o emoji para dentro de cada passo, de
-   modo que o objeto que o jogo lê fica idêntico ao que o editor do
-   professor exporta: campo imagemReserva em cada passo, um formato
-   só. Quando as ilustrações ficarem prontas, nada muda aqui — o
-   emoji simplesmente para de aparecer.
-   ============================================================ */
-
-const EMOJI_RESERVA = {
-  // sanduíche
-  'img/passos/sanduiche-01.png': '🍞',   // duas fatias de pão na mesa
-  'img/passos/sanduiche-02.png': '🫓',   // queijo já em cima da fatia
-  'img/passos/sanduiche-03.png': '🥓',   // presunto
-  'img/passos/sanduiche-04.png': '🥪',   // sanduíche fechado
-  'img/passos/sanduiche-05.png': '🛍️',   // saco de pão fechado
-  'img/passos/sanduiche-06.png': '🧈',   // pote de manteiga
-  'img/passos/sanduiche-07.png': '👐',   // abrindo o saco
-  'img/passos/sanduiche-08.png': '🍞',   // fatias saindo do saco
-  'img/passos/sanduiche-09.png': '🫓',   // fatia com a manteiga espalhada
-  'img/passos/sanduiche-10.png': '🧀',   // fatia de queijo na mão
-  'img/passos/sanduiche-11.png': '🔪',   // faca sem ponta
-  'img/passos/sanduiche-12.png': '🫙',   // pote sendo aberto
-  'img/passos/sanduiche-13.png': '🧹',   // guardar tudo, mesa limpa
-
-  // robô
-  'img/passos/robo-01.png': '🚶',        // andando até o cubo
-  'img/passos/robo-02.png': '✊',        // garra fechando no cubo
-  'img/passos/robo-03.png': '⬇️',        // pousando o cubo
-  'img/passos/robo-04.png': '🖐️',        // garra abrindo, vazia
-  'img/passos/robo-05.png': '🔄',        // virando para o cubo
-  'img/passos/robo-06.png': '↩️',        // virando para a plataforma
-  'img/passos/robo-07.png': '🏃',        // andando com o cubo
-  'img/passos/robo-08.png': '👐',        // soltando o cubo na plataforma
-  'img/passos/robo-09.png': '⚡',        // apertando o botão de ligar
-
-  // mochila
-  'img/passos/mochila-01.png': '✏️',      // lápis no estojo
-  'img/passos/mochila-02.png': '🧽',      // borracha no estojo
-  'img/passos/mochila-03.png': '🧰',      // estojo fechado
-  'img/passos/mochila-04.png': '🎒',      // estojo entrando na mochila
-  'img/passos/mochila-05.png': '🔒',      // zíper da mochila fechando
-  'img/passos/mochila-06.png': '🔓',      // zíper da mochila abrindo
-  'img/passos/mochila-07.png': '📒',      // caderno na mochila
-  'img/passos/mochila-08.png': '🧍',      // mochila nas costas
-
-  // abelhas
-  'img/passos/abelhas-01.png': '🌻',      // voando até a flor
-  'img/passos/abelhas-02.png': '💧',      // sugando o néctar
-  'img/passos/abelhas-03.png': '🏠',      // voltando para a colmeia
-  'img/passos/abelhas-04.png': '🐝',      // saindo da colmeia
-  'img/passos/abelhas-05.png': '🌼',      // pólen nas patinhas
-  'img/passos/abelhas-06.png': '👀',      // procurando uma flor aberta
-  'img/passos/abelhas-07.png': '🍯',      // néctar entrando no favo
-  'img/passos/abelhas-08.png': '🕯️',      // favo fechado com cera
-};
-
-for (const situacao of SITUACOES) {
-  for (const fase of situacao.fases) {
-    for (const passo of fase.passos) {
-      if (!passo.imagemReserva && EMOJI_RESERVA[passo.imagem]) {
-        passo.imagemReserva = EMOJI_RESERVA[passo.imagem];
-      }
-    }
-  }
-}

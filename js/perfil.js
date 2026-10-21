@@ -26,7 +26,7 @@
 (function () {
 
   const CHAVE = 'algoritimando-perfil';
-  const DICAS_INICIAIS = 2;
+  const DICAS_INICIAIS = 1;
 
   function padrao() {
     return { nome: 'Agente', avatar: '0', comecou: false, dicas: DICAS_INICIAIS,

@@ -1,5 +1,6 @@
 /* ============================================================
-   arrasto.js — manipulação das cartas (ainda SEM validação)
+   arrasto.js — manipulação das cartas (SEM validação: quem valida
+   é o jogo.js, ouvindo o evento 'carta-movida')
 
    Três jeitos de mover a mesma carta:
 
@@ -528,5 +529,15 @@
   }
 
   preparar();
+
+  // a dica do jogo.js coloca a carta com as MESMAS regras de
+  // movimento (troca, volta para a bandeja, aviso de 'carta-movida')
+  window.Arrasto = {
+    mover(carta, alvo) {
+      cancelarSelecao();
+      const aviso = executarMovimento(carta, alvo);
+      if (aviso) anunciar(aviso);
+    },
+  };
 
 })();

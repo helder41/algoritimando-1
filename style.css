@@ -166,7 +166,7 @@ input:focus-visible {
   align-items: center;
 }
 .bg-city::before {
-  content: "🏢";
+  content: "";
   position: absolute;
   left: 50%;
   top: 26cqw;
@@ -1203,27 +1203,9 @@ body {
   height: 1.7cqw;
   vertical-align: -0.35cqw;
 }
-.starsum.estrela-ganha {
-  animation: pop 0.4s;
-}
-@keyframes pop {
-  from {
-    transform: scale(1.35);
-  }
-}
 .call .btn.ghost {
   background: #fff;
   color: var(--ink);
-}
-.aviso-prof {
-  max-width: 34cqw;
-  background: var(--cream);
-  border: 0.25cqw solid #d9443b;
-  border-radius: 1cqw;
-  padding: 0.6cqw 1cqw;
-  font-weight: 700;
-  font-size: max(1.1cqw, 10px);
-  text-align: center;
 }
 img.badge-sm {
   height: 13cqw;
@@ -1395,13 +1377,6 @@ img.badge-sm {
   display: grid;
   place-items: center;
 }
-.figura-emoji {
-  font-size: max(3.4cqw, 18px);
-  line-height: 1;
-}
-.figura-emoji-duplo {
-  font-size: max(2.4cqw, 14px);
-}
 .carta-legenda {
   font-weight: 800;
   font-size: max(0.92cqw, 9px);
@@ -1535,28 +1510,6 @@ body.arrastando * {
   align-items: center;
   gap: 0.8cqw;
 }
-.progresso-bolinhas,
-.conclusao-bolinhas {
-  display: inline-flex;
-  gap: 0.35cqw;
-}
-.bolinha,
-.conclusao-bolinha {
-  width: 0.95cqw;
-  height: 0.95cqw;
-  border-radius: 50%;
-  border: 0.18cqw solid var(--brown);
-  background: #fff;
-}
-.bolinha.feita,
-.conclusao-bolinha.feita {
-  background: var(--g);
-  border-color: #1f6a3a;
-}
-.bolinha.atual {
-  background: var(--p);
-  border-color: var(--ink);
-}
 .rodape-direita {
   display: flex;
   gap: 0.8cqw;
@@ -1564,13 +1517,6 @@ body.arrastando * {
 #btn-dica:disabled {
   opacity: 0.55;
   cursor: not-allowed;
-}
-#btn-som .som-mudo,
-#btn-som.mudo .som-ligado {
-  display: none;
-}
-#btn-som.mudo .som-mudo {
-  display: inline;
 }
 
 /* ===== v7: lição (fase concluída) ===== */
@@ -1652,70 +1598,6 @@ body.arrastando * {
 .conclusao-texto p + p {
   margin-top: 0.4cqw;
 }
-.conclusao-comparacao {
-  display: grid;
-  gap: 0.7cqw;
-}
-.comparacao-caixa {
-  border: 0.22cqw solid;
-  border-radius: 1cqw;
-  padding: 0.6cqw 0.8cqw;
-  background: #fff;
-}
-.comparacao-certa {
-  border-color: var(--g);
-}
-.comparacao-errada {
-  border-color: #e0574f;
-}
-.comparacao-rotulo {
-  font-weight: 800;
-  font-size: max(1cqw, 9px);
-  margin-bottom: 0.4cqw;
-}
-.comparacao-certa .comparacao-selo {
-  color: var(--g);
-}
-.comparacao-errada .comparacao-selo {
-  color: #d9443b;
-}
-.comparacao-fila {
-  display: flex;
-  align-items: center;
-  gap: 0.5cqw;
-  flex-wrap: wrap;
-}
-.comparacao-seta {
-  font-weight: 800;
-  color: var(--brown);
-}
-.mini-carta {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2cqw;
-  width: 7.4cqw;
-  padding: 0.3cqw;
-  border: 0.18cqw solid var(--ink);
-  border-radius: 0.6cqw;
-  background: #fff;
-}
-.mini-figura {
-  width: 100%;
-  height: 3.2cqw;
-  border-radius: 0.4cqw;
-  background: #f3e6cf;
-  display: grid;
-  place-items: center;
-  font-size: max(2cqw, 14px);
-  line-height: 1;
-}
-.mini-legenda {
-  font-weight: 800;
-  font-size: max(0.78cqw, 8px);
-  line-height: 1.1;
-  text-align: center;
-}
 .conclusao-reflexao {
   background: #f7e6c8;
   border: 0.22cqw solid #d9b98a;
@@ -1735,15 +1617,6 @@ body.arrastando * {
 .conclusao-reflexao li {
   font-size: max(1.05cqw, 10px);
   font-weight: 600;
-  line-height: 1.35;
-}
-.conclusao-reforco {
-  background: var(--p);
-  color: #fff;
-  border-radius: 1cqw;
-  padding: 0.8cqw 1.1cqw;
-  font-weight: 800;
-  font-size: max(1.1cqw, 10px);
   line-height: 1.35;
 }
 .conclusao-rodape {
@@ -2061,5 +1934,42 @@ body.arrastando * {
   }
   #stage .rewards b {
     font-size: 4cqw;
+  }
+}
+
+/* ===== v8: sem emojis — imagens e quadros no lugar ===== */
+.icone {
+  width: 1.1em;
+  height: 1.1em;
+  fill: currentColor;
+  display: block;
+}
+.chip.home {
+  display: grid;
+  place-items: center;
+}
+.figura-vazia {
+  border: 0.2cqw dashed #c9a97c;
+  color: #a88a63;
+  font-size: max(0.7cqw, 8px);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
+  padding: 0.3cqw;
+}
+.conclusao-parabens img,
+.final-stars img {
+  height: 1.2em;
+  vertical-align: -0.25em;
+}
+.final-stars {
+  font-family: Fredoka;
+  font-weight: 700;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .figura-vazia {
+    border-width: 0.45cqw;
+    font-size: 2cqw;
+    padding: 0.6cqw;
   }
 }

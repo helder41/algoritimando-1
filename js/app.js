@@ -8,10 +8,6 @@
    Cada tela é uma <section class="screen"> do index.html; só uma
    fica com a classe "on" por vez (irPara). Quem joga a fase é o
    jogo.js; aqui só se escolhe O QUE jogar e para onde ir depois.
-
-   Também é aqui que entra a situação do professor: um arquivo
-   .json aberto do computador (FileReader, sem servidor), conferido
-   pela mesma função do editor (Comum.validarArquivoSituacao).
    ============================================================ */
 
 'use strict';
@@ -137,12 +133,20 @@
 
       const nivel = emAndamento ? prog.fase + 1 : feito ? s.fases.length : 1;
       cartao.querySelector('small').textContent =
-        `Chamado ${i + 1}${s.local ? ' · ' + s.local : ''} · Nível ${nivel} de ${s.fases.length}` +
-        (prog.estrelas ? ` · ⭐ ${prog.estrelas}` : '');
+        `Chamado ${i + 1}${s.local ? ' · ' + s.local : ''} · Nível ${nivel} de ${s.fases.length}`;
 
       const botao = cartao.querySelector('.btn');
-      botao.textContent = emAndamento ? 'Continuar ›' : feito ? 'Jogar de novo ↺' : 'Atender ›';
-      if (feito && !emAndamento) botao.classList.add('ghost');
+      if (feito && !emAndamento) {
+        // concluído: mostra a média de estrelas dos níveis (de 1 a 3);
+        // tocar nelas joga o chamado de novo
+        const media = Math.round(Progresso.estrelas(s.id) / s.fases.length);
+        botao.className = 'st';
+        botao.innerHTML = '★'.repeat(media) + '<u>' + '★'.repeat(3 - media) + '</u>';
+        botao.title = 'Jogar de novo';
+        botao.setAttribute('aria-label', `${media} de 3 estrelas. Jogar de novo`);
+      } else {
+        botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
+      }
       botao.onclick = () => iniciarSituacao(s, s.id);
 
       lista.append(cartao);
@@ -162,15 +166,12 @@
   // fim da última fase de um chamado
   document.addEventListener('situacao-concluida', ev => {
     const s = ev.detail.situacao;
-    const deProfessor = !SITUACOES.includes(s);
-    if (!deProfessor && concluidos() === SITUACOES.length && !P.promovido) {
+    if (concluidos() === SITUACOES.length && !P.promovido) {
       P.promovido = true;
       Perfil.gravar();
       promocao();
     } else {
-      central(deProfessor
-        ? 'Situação do professor concluída! Escolha um chamado.'
-        : `Chamado "${s.titulo}" concluído! Escolha o próximo.`);
+      central(`Chamado "${s.titulo}" concluído! Escolha o próximo.`);
     }
   });
 
@@ -186,7 +187,7 @@
   $('#bPromoNext').onclick = () => {
     $('#finName').textContent = P.nome;
     $('#finAg').src = 'img/agente-' + (P.avatar === '1' ? 'menino' : 'menina') + '.png';
-    $('#finStars').textContent = `⭐ ${Progresso.total()} estrelas`;
+    $('#finStarsN').textContent = Progresso.total();
     irPara('final');
   };
   $('#bToHub').onclick = () => central();
@@ -203,39 +204,6 @@
     $('#again').classList.remove('on');
     recomecar();
   };
-
-  /* ---------------- situação do professor ---------------- */
-
-  const input = $('#input-situacao');
-  const aviso = $('#avisoProf');
-
-  $('#bProf').onclick = () => input.click();
-  input.addEventListener('change', () => {
-    const arquivo = input.files[0];
-    input.value = '';
-    if (!arquivo) return;
-
-    const leitor = new FileReader();
-    leitor.onerror = () => {
-      aviso.textContent = 'Não deu para ler esse arquivo. Confira se ele ainda existe e tente de novo.';
-      aviso.hidden = false;
-    };
-    leitor.onload = () => {
-      /* cada recusa tem a sua frase: quem abre fica sabendo O QUE há
-         de errado, e a tela nunca trava */
-      const conferencia = Comum.validarArquivoSituacao(leitor.result, true);
-      if (!conferencia.ok) {
-        aviso.textContent = conferencia.mensagem;
-        aviso.hidden = false;
-        return;
-      }
-      aviso.hidden = true;
-      atualizarTopo();
-      const obj = conferencia.situacao;
-      iniciarSituacao(obj, 'prof:' + (obj.id || obj.titulo || 'situacao'));
-    };
-    leitor.readAsText(arquivo);
-  });
 
   /* ---------------- partida ---------------- */
 

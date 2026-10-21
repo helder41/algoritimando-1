@@ -22,16 +22,6 @@
           <button class="btn" id="bPlay">Jogar</button>
           <button class="btn green" id="bSound">Sons: ligado</button>
           <button class="btn ghost" id="bHow">Como jogar</button>
-          <button class="btn ghost small" id="bProf">
-            🧑‍🏫 Abrir situação do professor
-          </button>
-          <input
-            type="file"
-            id="input-situacao"
-            accept=".json,application/json"
-            hidden
-          />
-          <p class="aviso-prof" id="avisoProf" hidden></p>
         </div>
       </section>
 
@@ -60,11 +50,7 @@
                 <img src="img/av1.png" alt="" />
               </button>
             </div>
-            <input
-              id="nameIn"
-              maxlength="14"
-              placeholder="✏️ Digite seu nome"
-            />
+            <input id="nameIn" maxlength="14" placeholder="Digite seu nome" />
             <button class="btn" id="bConfirm">Confirmar</button>
           </div>
         </div>
@@ -78,10 +64,15 @@
             title="Voltar ao menu principal"
             aria-label="Voltar ao menu principal"
           >
-            🏠</button
+            <svg class="icone" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3.2 2.8 11h2.7v9.3h5V14h3v6.3h5V11h2.7Z" />
+            </svg></button
           ><span class="chip who"></span>
           <h2 class="title-box">Central de chamados</h2>
-          <span class="chip starsum">⭐ <b id="hubStars">0</b></span>
+          <span class="chip starsum"
+            ><img src="img/ui/estrela.png" alt="" />
+            <b class="gStars">0</b></span
+          >
         </header>
         <div class="hub-grid" id="calls"></div>
         <aside class="side">
@@ -109,7 +100,9 @@
             title="Voltar ao menu principal"
             aria-label="Voltar ao menu principal"
           >
-            🏠</button
+            <svg class="icone" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3.2 2.8 11h2.7v9.3h5V14h3v6.3h5V11h2.7Z" />
+            </svg></button
           ><span class="chip who"></span>
           <div class="title-box fase-faixa">
             <h2 class="fase-titulo"></h2>
@@ -149,18 +142,11 @@
           </div>
         </aside>
         <footer class="rodape">
-          <span class="chip progresso"
-            ><span class="progresso-texto">Nível 1 de 5</span
-            ><span class="progresso-bolinhas" aria-hidden="true"></span
-          ></span>
+          <span class="chip progresso progresso-texto">Nível 1 de 5</span>
           <div class="rodape-direita">
-            <button class="chip" id="btn-som" type="button" aria-pressed="true">
-              <span class="som-ligado" aria-hidden="true">🔊</span
-              ><span class="som-mudo" aria-hidden="true">🔇</span>
-            </button>
             <button class="chip" id="btn-dica" type="button">
               <img src="img/ui/dica.png" alt="" /> Dica
-              <b class="dica-restantes" aria-hidden="true">2</b>
+              <b class="dica-restantes" aria-hidden="true">1</b>
             </button>
           </div>
         </footer>
@@ -176,7 +162,9 @@
             title="Voltar ao menu principal"
             aria-label="Voltar ao menu principal"
           >
-            🏠</button
+            <svg class="icone" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3.2 2.8 11h2.7v9.3h5V14h3v6.3h5V11h2.7Z" />
+            </svg></button
           ><span class="chip who"></span>
           <span class="chip starsum"
             ><img src="img/ui/estrela.png" alt="" />
@@ -191,12 +179,10 @@
         >
           <header class="conclusao-topo">
             <p class="title-box conclusao-parabens" id="conclusao-parabens">
-              ⭐ Parabéns! Você completou o nível!
+              <img src="img/ui/estrela.png" alt="" /> Parabéns! Você completou o
+              nível!
             </p>
-            <div class="conclusao-progresso">
-              <span class="conclusao-bolinhas" aria-hidden="true"></span>
-              <span class="conclusao-progresso-texto"></span>
-            </div>
+            <p class="conclusao-progresso conclusao-progresso-texto"></p>
           </header>
           <div class="conclusao-corpo">
             <div class="conclusao-coluna">
@@ -204,31 +190,12 @@
                 <span class="conclusao-pergunta-texto"></span>
               </h3>
               <div class="conclusao-texto"></div>
-              <div class="conclusao-comparacao">
-                <div class="comparacao-caixa comparacao-certa">
-                  <p class="comparacao-rotulo">
-                    <span class="comparacao-selo" aria-hidden="true">✓</span>
-                    Essa ordem funciona
-                  </p>
-                  <div class="comparacao-fila"></div>
-                </div>
-                <div class="comparacao-caixa comparacao-errada">
-                  <p class="comparacao-rotulo">
-                    <span class="comparacao-selo" aria-hidden="true">✗</span>
-                    Essa ordem não funciona
-                  </p>
-                  <div class="comparacao-fila"></div>
-                </div>
-              </div>
             </div>
             <div class="conclusao-coluna">
               <div class="conclusao-reflexao">
                 <h3>Pense e converse</h3>
                 <ul></ul>
               </div>
-              <p class="conclusao-reforco">
-                ⭐ <span class="conclusao-reforco-texto"></span>
-              </p>
             </div>
           </div>
           <footer class="conclusao-rodape">
@@ -260,9 +227,14 @@
             title="Voltar ao menu principal"
             aria-label="Voltar ao menu principal"
           >
-            🏠</button
+            <svg class="icone" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3.2 2.8 11h2.7v9.3h5V14h3v6.3h5V11h2.7Z" />
+            </svg></button
           ><span class="chip who"></span
-          ><span class="chip starsum">⭐ <b class="gStars">4</b></span>
+          ><span class="chip starsum"
+            ><img src="img/ui/estrela.png" alt="" />
+            <b class="gStars">0</b></span
+          >
         </header>
         <div class="hero" id="promoHero"></div>
         <aside class="promo-card">
@@ -299,7 +271,10 @@
         <div class="panel final-panel">
           <h2>Missão cumprida, <span id="finName"></span>!</h2>
           <p>Você ensinou o robô a pensar em passos. Isso é um algoritmo!</p>
-          <div class="final-stars" id="finStars"></div>
+          <p class="final-stars">
+            <img src="img/ui/estrela.png" alt="" />
+            <b id="finStarsN">0</b> estrelas
+          </p>
           <div class="row">
             <button class="btn" id="bAgain">Jogar de novo</button
             ><button class="btn brown" id="bToHub">Voltar à central</button>
@@ -326,8 +301,8 @@
           <p>
             1. Escolha um chamado na central.<br />2. Arraste as cartas para os
             espaços numerados — ou toque na carta e depois no espaço.<br />3.
-            Errou? O robô-guia explica na hora. É só mover de novo!<br />4. Cada
-            carta certa vale uma estrela. Errar não tira nada.
+            Errou? O robô-guia explica na hora. É só mover de novo!<br />4.
+            Quanto menos erros, mais estrelas!
           </p>
           <button class="btn" id="bHowClose">Entendi</button>
         </div>

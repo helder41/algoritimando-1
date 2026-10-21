@@ -42,12 +42,8 @@
 
    Campos opcionais da SITUAÇÃO inteira (além de formato, id,
    titulo e fases):
-     cena        ilustração grande da situação, mostrada ao lado
-                 dela na tela inicial (o desenho do mundo em que a
-                 aventura acontece: a cozinha, o pátio do robô…)
-     cenaReserva emoji desenhado no lugar da cena quando a imagem
-                 não carrega — o mesmo papel que imagemReserva faz
-                 na carta.
+     cena        ilustração do chamado no cartão da central (o
+                 sanduíche, a caixa, a mochila, o favo)
      local       onde o chamado acontece ("Cozinha"), mostrado no
                  cartão da central de chamados
      cor         cor do título da fase e do cartão na central
@@ -60,13 +56,9 @@
    Campos de cada passo:
      id         identificador único dentro da fase
      texto      legenda da carta
-     imagem     referência da imagem da carta (caminho, emoji ou data:)
-     imagemReserva (opcional) — um emoji desenhado quando a imagem
-                não carrega (arquivo que ainda não existe, .json
-                movido de pasta, caminho errado). Sem ele a carta
-                fica um retângulo bege vazio; com ele a criança
-                sempre vê alguma figura. Vale também sozinho, sem
-                nenhuma "imagem": aí o emoji É a figura da carta.
+     imagem     ilustração da carta (caminho "img/..." ou data:).
+                Enquanto o arquivo não existe (ou não carrega), a
+                carta mostra o quadro "ilustração do passo".
      ordemLivre (opcional, padrão false) — "posso trocar de lugar
                 com o passo de cima"
      explicacao (opcional) — texto mostrado quando este passo é
@@ -83,10 +75,10 @@
 
    Campos opcionais de cada FASE (além de id, titulo e passos):
      instrucao  frase curta mostrada sob o título da fase
-     mascote    fala do mascote enquanto a fase é jogada (o balão
-                ao lado dele). Sem o campo, ele diz a frase padrão
-                do jogo. É a fase que dá a deixa: aqui o mascote
-                fala do que ESTA fase tem de novo. Quando a criança
+     mascote    fala do Robô-guia enquanto a fase é jogada. Sem o
+                campo, ele diz a frase padrão do jogo. É a fase que
+                dá a deixa: aqui o robô fala do que ESTA fase tem
+                de novo. Quando a criança
                 erra, a explicação do erro toma o balão; corrigido
                 o erro, esta frase volta.
      licao      conteúdo da tela de conclusão da fase, mostrada
@@ -96,14 +88,9 @@
                   texto:      2 ou 3 frases curtas (string única ou
                               array de strings — cada uma vira um
                               parágrafo)
-                  comparacao: { certa: [ids], errada: [ids] } —
-                              duas mini-ordens montadas com passos
-                              DESTA fase, mostradas lado a lado com
-                              marcação de certo e errado
                   reflexao:   [pergunta, pergunta] — para a criança
                               pensar ou conversar com o professor;
                               não há campo de resposta
-                  reforco:    a lição inteira em uma frase
                 }
                 Como a explicacao dos passos, a licao mora nos
                 DADOS: a tela de conclusão (conclusao.js) só lê
@@ -370,7 +357,7 @@ function rodarTestes() {
     const deuCerto = JSON.stringify(obtido) === JSON.stringify(esperado);
     if (deuCerto) passou++; else falhou++;
 
-    console.log(`\n${deuCerto ? '✅ PASSOU' : '❌ FALHOU'} — ${nome}`);
+    console.log(`\n${deuCerto ? 'PASSOU' : 'FALHOU'} — ${nome}`);
     console.log('  sequência:', JSON.stringify(sequencia));
     console.log('  esperava :', JSON.stringify(esperado));
     console.log('  obteve   :', JSON.stringify(obtido));

@@ -10,7 +10,7 @@
    - o tabuleiro e a bandeja são MONTADOS DOS DADOS da fase
      (situacoes.js ou arquivo do professor — mesmo formato);
    - a cada movimento a sequência é lida do DOM e validada;
-   - acerto → a carta "assenta", soa e pode render uma estrela;
+   - acerto → a carta "assenta" e soa;
    - erro → a carta ganha marcação de atenção, o pré-requisito
      pisca, o robô-guia fica confuso e a explicação (escrita nos
      DADOS) toma o balão dele;
@@ -18,14 +18,14 @@
    - última fase → evento 'situacao-concluida' (o app.js decide se
      é hora da promoção ou de voltar à central).
 
-   ESTRELAS contam acertos e nunca punem o erro: cada carta que
-   entra no lugar sem criar problema vale 1 estrela (uma vez por
-   fase). Errar e corrigir não tira nada — a criança que erra e
-   conserta aprende mais do que a que acerta de primeira.
+   ESTRELAS por fase, como no resto do jogo: 3 sem nenhum erro,
+   2 com um erro, 1 com mais. Cada problema NOVO que aparece no
+   tabuleiro conta como um erro (o mesmo problema continuando na
+   tela não conta de novo), e usar uma dica também conta.
 
    DICAS são um estoque do agente (perfil.js): cada fase concluída
-   dá +1. A dica destaca a carta que pode entrar AGORA, sem
-   colocá-la — quem coloca é sempre a criança.
+   dá +1. A dica coloca no tabuleiro a carta do primeiro espaço
+   que está vazio ou errado, e o robô-guia diz qual passo é.
    ============================================================ */
 
 'use strict';
@@ -46,7 +46,6 @@
   const contador     = tela.querySelector('.contador-estrelas');
   const contadorNum  = tela.querySelector('.contador-estrelas-num');
   const progTexto    = tela.querySelector('.progresso-texto');
-  const progBolinhas = tela.querySelector('.progresso-bolinhas');
   const btnDica      = tela.querySelector('#btn-dica');
   const dicaRestantes = tela.querySelector('.dica-restantes');
 
@@ -59,8 +58,6 @@
     erro:   'img/guide-triste.png',
     dica:   'img/guide-feliz.png',
   };
-
-  Som.ligarBotao(tela.querySelector('#btn-som'));
 
   /* A fala do robô-guia sai dos DADOS da fase (campo "mascote"),
      como a explicação de erro e a lição. É o que o balão mostra
@@ -75,8 +72,8 @@
   let situacao   = null;   // situação em jogo
   let chave      = null;   // chave do progresso no localStorage
   let indiceFase = 0;
-  let progresso  = null;   // { fase, estrelas, cartas } — ver progresso.js
-  let estrelasNoInicio = 0; // para a lição dizer quantas a fase rendeu
+  let progresso  = null;   // { fase, niveis } — ver progresso.js
+  let erros      = 0;      // erros nesta fase (decide as estrelas)
   let faseConcluida = false;
   /* qual erro já soou: o som do erro toca UMA vez por problema.
      Sem isto, mexer numa carta qualquer enquanto o mesmo problema
@@ -102,7 +99,7 @@
     // continua de onde parou; quem concluiu tudo recomeça da fase 1
     indiceFase = progresso.fase < situacao.fases.length ? progresso.fase : 0;
     if (progresso.fase >= situacao.fases.length) {
-      progresso = { fase: 0, estrelas: progresso.estrelas, cartas: [] };
+      progresso = { fase: 0, niveis: progresso.niveis };
     }
 
     // aparência do chamado (campos opcionais — ver motor.js)
@@ -159,36 +156,32 @@
       fila.append(li);
     });
 
-    // rodapé: nível atual e bolinhas
+    // rodapé: nível atual
     progTexto.textContent = `Nível ${indiceFase + 1} de ${situacao.fases.length}`;
-    progBolinhas.textContent = '';
-    situacao.fases.forEach((_, i) => {
-      const b = document.createElement('i');
-      b.className = 'bolinha' + (i < indiceFase ? ' feita' : i === indiceFase ? ' atual' : '');
-      progBolinhas.append(b);
-    });
 
     atualizarBotaoDica();
 
-    estrelasNoInicio = progresso.estrelas;
+    erros = 0;
     faseConcluida = false;
     erroQueSoou = null;
     limparReacao();
-    atualizarEstrelas(false);
+    atualizarEstrelas();
   }
 
   /* Fase completa sem erro: grava o avanço e mostra a lição. */
   function aoConcluirFase() {
+    const ganhas = erros === 0 ? 3 : erros === 1 ? 2 : 1;
+    progresso.niveis[indiceFase] = Math.max(progresso.niveis[indiceFase] || 0, ganhas);
     progresso.fase = indiceFase + 1;
-    progresso.cartas = [];
     Progresso.gravar(chave, progresso);
+    atualizarEstrelas();
 
     Perfil.dados.dicas += 1;
     const ultima = indiceFase + 1 >= situacao.fases.length;
     if (ultima) Perfil.dados.concluidos[situacao.id] = true;
     Perfil.gravar();
 
-    const premio = { estrelas: progresso.estrelas - estrelasNoInicio, dicas: 1 };
+    const premio = { estrelas: ganhas, dicas: 1 };
     document.querySelectorAll('#licao .gStars').forEach(e => { e.textContent = contadorNum.textContent; });
     rosto.src = ROSTO.dica;
     // a espera deixa a criança ver a última carta assentar; o som de
@@ -216,97 +209,75 @@
     }
   });
 
-  /* ============================================================
-     ESTRELAS — contam acertos, nunca punem o erro
-     ============================================================ */
+  /* ---------------- estrelas do topo ---------------- */
 
-  function atualizarEstrelas(animar) {
-    // o topo mostra o total do agente, como na central; a situação
-    // do professor conta à parte, só ela
-    contadorNum.textContent = chave.startsWith('prof:') ? progresso.estrelas : Progresso.total();
+  // o topo mostra o total do agente, como na central
+  function atualizarEstrelas() {
+    contadorNum.textContent = Progresso.total();
     contador.setAttribute('aria-label', `${contadorNum.textContent} estrelas`);
-    if (animar) {
-      contador.classList.remove('estrela-ganha');
-      void contador.offsetWidth;
-      contador.classList.add('estrela-ganha');
-    }
-  }
-
-  /* A carta entrou num espaço e os pré-requisitos dela já estão
-     todos ANTES dela no tabuleiro: acerto de verdade, vale 1
-     estrela — uma única vez por fase (tirar e recolocar não paga
-     de novo, e errar antes de acertar não desconta nada). */
-  function premiarSePrimeiraVez(carta) {
-    const id = carta.dataset.passo;
-    if (progresso.cartas.includes(id)) return;
-
-    const seq = lerSequencia();
-    const indice = seq.indexOf(id);
-    if (indice < 0) return;
-    const antes = new Set(seq.slice(0, indice).filter(Boolean));
-    const dependencias = derivarDependencias(fase().passos);
-    if (!dependencias[id].every(d => antes.has(d))) return;
-    progresso.cartas.push(id);
-    progresso.estrelas += 1;
-    Progresso.gravar(chave, progresso);
-    atualizarEstrelas(true);
   }
 
   /* ============================================================
-     DICA — mostra qual carta pode entrar agora, sem colocá-la
+     DICA — coloca a carta do primeiro espaço vazio ou errado
      ============================================================ */
 
   function atualizarBotaoDica() {
     const restam = Perfil.dados.dicas;
     dicaRestantes.textContent = restam;
-    btnDica.disabled = restam <= 0;
     btnDica.setAttribute('aria-label', restam > 0
       ? `Pedir uma dica — ${restam === 1 ? 'resta 1 dica' : `restam ${restam} dicas`}`
       : 'Suas dicas acabaram. Conclua um nível para ganhar mais!');
   }
 
-  /* Qual carta "deveria vir agora"?
-     - Se o tabuleiro tem um problema, é o pré-requisito que falta:
-       destacá-lo liga a explicação ao objeto na tela.
-     - Senão, é o primeiro passo (na ordem do professor) ainda fora
-       do tabuleiro cujos pré-requisitos já estão todos colocados. */
-  function passoDaDica() {
+  /* Onde a dica age: o primeiro espaço que está vazio ou que tem
+     uma carta cujos pré-requisitos não estão todos antes dela. A
+     carta que vai para lá é o primeiro passo (na ordem do
+     professor) que ainda não está nesse começo certo e cujos
+     pré-requisitos já estão todos nele. */
+  function lugarDaDica() {
     const seq = lerSequencia();
-    const resultado = validarSequencia(fase(), seq);
-    if (resultado.erro && resultado.erro.preRequisito) {
-      return resultado.erro.preRequisito;
-    }
-    const colocados = new Set(seq.filter(Boolean));
     const dependencias = derivarDependencias(fase().passos);
-    for (const p of fase().passos) {
-      if (colocados.has(p.id)) continue;
-      if (dependencias[p.id].every(d => colocados.has(d))) return p;
+    const certos = new Set();
+    for (let i = 0; i < seq.length; i++) {
+      const id = seq[i];
+      if (id && dependencias[id].every(d => certos.has(d))) {
+        certos.add(id);
+        continue;
+      }
+      const passo = fase().passos.find(p =>
+        !certos.has(p.id) && dependencias[p.id].every(d => certos.has(d)));
+      return passo ? { indice: i, passo } : null;
     }
-    return null;
+    return null;                                // tabuleiro já completo
   }
 
   btnDica.addEventListener('click', () => {
-    if (Perfil.dados.dicas <= 0 || faseConcluida) return;
+    if (faseConcluida) return;
+    if (Perfil.dados.dicas <= 0) {
+      balao.textContent = 'Você não tem dicas. Conclua um nível para ganhar mais!';
+      return;
+    }
 
-    const passo = passoDaDica();
-    if (!passo) return;                        // tabuleiro já completo
-
-    const carta = cartaDe(passo.id);
-    if (!carta) return;
-
-    // a dica não some sozinha: fica até o próximo movimento
-    document.querySelectorAll('.carta-dica').forEach(c => c.classList.remove('carta-dica'));
-    void carta.offsetWidth;
-    carta.classList.add('carta-dica');
-    carta.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    const lugar = lugarDaDica();
+    if (!lugar) return;
+    const carta = cartaDe(lugar.passo.id);
+    const espaco = grade.querySelectorAll('.espaco')[lugar.indice];
+    if (!carta || !espaco) return;
 
     Perfil.dados.dicas -= 1;
     Perfil.gravar();
     atualizarBotaoDica();
+    erros += 1;
 
+    // a carta entra pelas mesmas regras do arrasto (o jogo valida
+    // ao ouvir 'carta-movida'); depois o robô diz qual passo era
+    Arrasto.mover(carta, { tipo: 'espaco', espaco });
+    if (faseConcluida) return;
+    carta.classList.add('carta-dica');
     rosto.src = ROSTO.dica;
-    balao.textContent = `Dica: a carta "${legendaDe(carta)}" pode entrar agora!`;
-    anunciar(`Dica: a carta "${legendaDe(carta)}" pode entrar agora.`);
+    balao.textContent =
+      `Passo ${lugar.indice + 1}: "${lugar.passo.texto}" Dá para fazer o resto!`;
+    anunciar(balao.textContent);
   });
 
   /* ---------------- leitura do tabuleiro ---------------- */
@@ -349,7 +320,6 @@
     if (mudou && alvo.tipo === 'espaco') {
       assentar(carta);
       Som.acerto();
-      premiarSePrimeiraVez(carta);
     }
 
     if (resultado.completa) {
@@ -386,6 +356,7 @@
     const chaveErro = erro.passo.id + '→' + (erro.preRequisito ? erro.preRequisito.id : '');
     if (chaveErro !== erroQueSoou) {
       erroQueSoou = chaveErro;
+      erros += 1;
       Som.erro();
     }
 
