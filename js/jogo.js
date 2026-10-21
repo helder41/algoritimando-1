@@ -16,7 +16,9 @@
      DADOS) toma o balão dele;
    - fase completa sem erro → tela de lição → próxima fase;
    - última fase → evento 'situacao-concluida' (o app.js decide se
-     é hora da promoção ou de voltar à central).
+     é hora da promoção ou de voltar à central);
+   - o botão "Nível X de N" abre a lista de níveis: qualquer fase já
+     liberada pode ser jogada de novo.
 
    ESTRELAS por fase, como no resto do jogo: 3 sem nenhum erro,
    2 com um erro, 1 com mais. Cada problema NOVO que aparece no
@@ -88,19 +90,19 @@
      ============================================================ */
 
   /**
-   * Começa (ou continua) uma situação. Chamada pela central.
-   * chaveProgresso identifica a situação no localStorage.
+   * Começa (ou continua) uma situação. Chamada pela central e pela
+   * lista de níveis. chaveProgresso identifica a situação no
+   * localStorage; nivel (opcional) é a fase escolhida para jogar —
+   * sem ele, continua de onde parou, e quem concluiu tudo joga de
+   * novo desde a fase 1.
    */
-  function iniciarSituacao(obj, chaveProgresso) {
+  function iniciarSituacao(obj, chaveProgresso, nivel) {
     situacao = obj;
     chave = chaveProgresso;
     progresso = Progresso.ler(chave);
 
-    // continua de onde parou; quem concluiu tudo recomeça da fase 1
-    indiceFase = progresso.fase < situacao.fases.length ? progresso.fase : 0;
-    if (progresso.fase >= situacao.fases.length) {
-      progresso = { fase: 0, niveis: progresso.niveis };
-    }
+    if (Number.isInteger(nivel)) indiceFase = nivel;
+    else indiceFase = progresso.fase < situacao.fases.length ? progresso.fase : 0;
 
     // aparência do chamado (campos opcionais — ver motor.js)
     tela.style.setProperty('--img', situacao.fundo ? `url("${situacao.fundo}")` : 'none');
@@ -172,7 +174,8 @@
   function aoConcluirFase() {
     const ganhas = erros === 0 ? 3 : erros === 1 ? 2 : 1;
     progresso.niveis[indiceFase] = Math.max(progresso.niveis[indiceFase] || 0, ganhas);
-    progresso.fase = indiceFase + 1;
+    // rejogar um nível antigo nunca faz o chamado voltar atrás
+    progresso.fase = Math.max(progresso.fase, indiceFase + 1);
     Progresso.gravar(chave, progresso);
     atualizarEstrelas();
 
@@ -278,6 +281,64 @@
     balao.textContent =
       `Passo ${lugar.indice + 1}: "${lugar.passo.texto}" Dá para fazer o resto!`;
     anunciar(balao.textContent);
+  });
+
+  /* ============================================================
+     ESCOLHER NÍVEL — rejogar qualquer fase já liberada
+     ============================================================ */
+
+  const modalNiveis = document.querySelector('#niveis');
+  const listaNiveis = modalNiveis.querySelector('.lista-niveis');
+
+  /* Mostra todas as fases do chamado: as já concluídas com as suas
+     estrelas, a próxima como "Novo!" e as que vêm depois bloqueadas
+     (cada fase é mais detalhada que a anterior, então a ordem
+     importa na primeira vez). */
+  function abrirNiveis(obj, chaveProgresso) {
+    const prog = Progresso.ler(chaveProgresso);
+    modalNiveis.querySelector('.niveis-titulo').textContent = obj.titulo;
+    listaNiveis.textContent = '';
+    obj.fases.forEach((f, i) => {
+      const botao = document.createElement('button');
+      botao.type = 'button';
+      botao.className = 'nivel-btn';
+      const nome = document.createElement('b');
+      nome.textContent = `Nível ${i + 1}`;
+      const info = document.createElement('span');
+      const estrelas = prog.niveis[i] || 0;
+      if (i > prog.fase) {
+        botao.disabled = true;
+        info.textContent = 'bloqueado';
+        botao.setAttribute('aria-label', `Nível ${i + 1}, bloqueado`);
+      } else if (estrelas) {
+        info.className = 'st';
+        info.innerHTML = '★'.repeat(estrelas) + '<u>' + '★'.repeat(3 - estrelas) + '</u>';
+        botao.setAttribute('aria-label', `Nível ${i + 1}, ${estrelas} de 3 estrelas. Jogar de novo`);
+      } else {
+        info.textContent = 'Novo!';
+        botao.classList.add('novo');
+      }
+      if (situacao === obj && i === indiceFase && document.querySelector('#fase.on')) {
+        botao.classList.add('atual');
+      }
+      botao.append(nome, info);
+      botao.onclick = () => {
+        modalNiveis.classList.remove('on');
+        iniciarSituacao(obj, chaveProgresso, i);
+      };
+      listaNiveis.append(botao);
+    });
+    modalNiveis.classList.add('on');
+    const primeiro = listaNiveis.querySelector('.atual, .novo') || listaNiveis.querySelector('button:not(:disabled)');
+    if (primeiro) primeiro.focus();
+  }
+
+  modalNiveis.querySelector('.niveis-fechar').addEventListener('click', () => {
+    modalNiveis.classList.remove('on');
+  });
+
+  tela.querySelector('#btn-niveis').addEventListener('click', () => {
+    if (situacao) abrirNiveis(situacao, chave);
   });
 
   /* ---------------- leitura do tabuleiro ---------------- */
@@ -403,5 +464,6 @@
   document.addEventListener('carta-movida', aoMoverCarta);
 
   window.iniciarSituacao = iniciarSituacao;
+  window.abrirNiveis = abrirNiveis;
 
 })();

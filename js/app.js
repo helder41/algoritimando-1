@@ -156,16 +156,16 @@
       const botao = cartao.querySelector('.btn');
       if (feito && !emAndamento) {
         // concluído: mostra a média de estrelas dos níveis (de 1 a 3);
-        // tocar nelas joga o chamado de novo
+        // tocar nelas abre a lista de níveis para jogar de novo
         const media = Math.round(Progresso.estrelas(s.id) / s.fases.length);
         botao.className = 'st';
         botao.innerHTML = '★'.repeat(media) + '<u>' + '★'.repeat(3 - media) + '</u>';
-        botao.title = 'Jogar de novo';
-        botao.setAttribute('aria-label', `${media} de 3 estrelas. Jogar de novo`);
+        botao.title = 'Escolher nível';
+        botao.setAttribute('aria-label', `${media} de 3 estrelas. Escolher nível para jogar de novo`);
       } else {
         botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
       }
-      botao.onclick = () => iniciarSituacao(s, s.id);
+      botao.onclick = () => (feito && !emAndamento ? abrirNiveis(s, s.id) : iniciarSituacao(s, s.id));
 
       lista.append(cartao);
     });

@@ -162,7 +162,14 @@
           </div>
         </aside>
         <footer class="rodape">
-          <span class="chip progresso progresso-texto">Nível 1 de 5</span>
+          <button
+            class="chip progresso"
+            id="btn-niveis"
+            type="button"
+            title="Escolher nível"
+          >
+            <span class="progresso-texto">Nível 1 de 5</span> ▾
+          </button>
           <div class="rodape-direita">
             <button class="chip" id="btn-dica" type="button">
               <img src="img/ui/dica.png" alt="" /> Dica
@@ -321,6 +328,17 @@
             <button class="btn" id="bYes">Sim, recomeçar</button
             ><button class="btn ghost" id="bNo">Cancelar</button>
           </div>
+        </div>
+      </div>
+      <div class="modal" id="niveis">
+        <div class="panel">
+          <h2 class="niveis-titulo"></h2>
+          <p>
+            Escolha um nível para jogar. Os que você já fez podem ser jogados de
+            novo!
+          </p>
+          <div class="lista-niveis"></div>
+          <button class="btn ghost niveis-fechar" type="button">Voltar</button>
         </div>
       </div>
       <div class="modal" id="how">
