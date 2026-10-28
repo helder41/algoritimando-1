@@ -45,6 +45,8 @@
   const campoTitulo        = $('#campo-titulo');
   const campoCenario       = $('#campo-cenario');
   const campoMontagem      = $('#campo-montagem');
+  const blocoBaseCena      = $('#bloco-base-cena');
+  const baseCenaEditor     = $('#base-cena-editor');
   const listaFases         = $('#lista-fases');
   const semFase            = $('#sem-fase');
   const faseConteudo       = $('#fase-conteudo');
@@ -104,7 +106,7 @@
      ============================================================ */
 
   function novaSituacao() {
-    return { id: '', titulo: '', cenario: '', montagem: '', fases: [novaFase()] };
+    return { id: '', titulo: '', cenario: '', montagem: '', montagemBase: '', fases: [novaFase()] };
   }
 
   function novaFase() {
@@ -144,7 +146,8 @@
       id: typeof obj.id === 'string' ? obj.id : '',
       titulo: typeof obj.titulo === 'string' ? obj.titulo : '',
       cenario: typeof obj.cenario === 'string' ? obj.cenario : cenarioDoFundo(obj.fundo),
-      montagem: obj.montagem === 'pilha' || obj.montagem === 'tirinha' ? obj.montagem : '',
+      montagem: ['pilha', 'cena', 'tirinha'].includes(obj.montagem) ? obj.montagem : '',
+      montagemBase: typeof obj.montagemBase === 'string' ? obj.montagemBase : '',
       // entradas que não são objetos (arquivo mexido à mão) são puladas
       fases: fases.filter(f => f && typeof f === 'object').map(normalizarFase),
     };
@@ -297,6 +300,7 @@
       fora.fundoConclusao = cenario.fundoConclusao;
     }
     if (situacao.montagem) fora.montagem = situacao.montagem;
+    if (situacao.montagem === 'cena' && situacao.montagemBase) fora.montagemBase = situacao.montagemBase;
     fora.fases = situacao.fases.map(exportarFase);
     return fora;
   }
@@ -735,19 +739,36 @@
   }
 
   /* A peça da montagem: na pilha, uma camada recortada (png com
-     fundo transparente — por isso não vira jpeg); na tirinha, o
+     fundo transparente — por isso não vira jpeg); na cena, a peça já
+     no seu lugar, do tamanho do fundo da cena; na tirinha, o
      quadrinho do passo. Sem ela, a tirinha usa a imagem da carta. */
   function botaoDePeca(passo, indice) {
-    const pilha = situacao.montagem === 'pilha';
+    const modo = situacao.montagem;
     return seletorDeImagem(passo, {
       campo: 'peca',
       nome: `a peça da montagem do passo ${indice + 1}`,
-      vazio: pilha ? 'peça da pilha (opcional)' : 'quadrinho (opcional)',
-      rotulo: pilha ? 'peça' : 'quadrinho',
-      largura: LARGURA_MAX_IMAGEM,
+      vazio: modo === 'pilha' ? 'peça da pilha (opcional)'
+           : modo === 'cena' ? 'peça da cena (opcional)' : 'quadrinho (opcional)',
+      rotulo: modo === 'tirinha' ? 'quadrinho' : 'peça',
+      largura: modo === 'cena' ? LARGURA_MAX_LICAO : LARGURA_MAX_IMAGEM,
       transparente: true,
       depois: renderizarPassos,
     });
+  }
+
+  // cena: o fundo onde as peças vão sendo desenhadas
+  function renderizarBaseCena() {
+    blocoBaseCena.hidden = situacao.montagem !== 'cena';
+    baseCenaEditor.textContent = '';
+    if (blocoBaseCena.hidden) return;
+    baseCenaEditor.append(seletorDeImagem(situacao, {
+      campo: 'montagemBase',
+      nome: 'o fundo da cena',
+      vazio: 'fundo da cena',
+      rotulo: 'fundo',
+      largura: LARGURA_MAX_LICAO,
+      depois: renderizarBaseCena,
+    }));
   }
 
   /* A lição usa o mesmo seletor: a imagem é o que a criança vê;
@@ -863,6 +884,7 @@
   });
   campoMontagem.addEventListener('change', () => {
     situacao.montagem = campoMontagem.value;
+    renderizarBaseCena();
     renderizarPassos();   // aparece (ou some) o seletor de peça
     mudou();
   });
@@ -909,6 +931,7 @@
     campoTitulo.value = situacao.titulo;
     campoCenario.value = situacao.cenario;
     campoMontagem.value = situacao.montagem;
+    renderizarBaseCena();
     renderizarFases();
     renderizarFase();
   }

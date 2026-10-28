@@ -132,7 +132,23 @@ Hoje são **recortes provisórios** desenhados em código (SVG). Para trocar, sa
 | `sanduiche-presunto.svg` | fatia de presunto ondulada | Coloque o presunto no pão. |
 | `sanduiche-pao-cima.svg` | fatia de pão de cima, arredondada | Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias. |
 
-### Tirinha: robô, mochila e abelhas
+### Cena: Arrumar a mochila
+
+Também são **recortes provisórios** em SVG. Na cena, cada peça é uma imagem do **mesmo tamanho do fundo** (4:3, por exemplo 1200 × 900), com fundo transparente e a peça já desenhada **no lugar dela**: o estojo à esquerda, a mochila à direita. As peças vão sendo desenhadas umas por cima das outras, na ordem dos espaços.
+
+| Arquivo | O que desenhar | Passos que usam |
+|---|---|---|
+| `mochila-cena-fechada.svg` | fundo: estojo aberto e vazio na mesa, mochila fechada | níveis 3 e 4 (fundo) |
+| `mochila-cena-aberta.svg` | fundo: estojo aberto e vazio, mochila já aberta | níveis 1 e 2 (fundo) |
+| `mochila-lapis.svg` | lápis entrando no estojo | Guarde o lápis no estojo. |
+| `mochila-borracha.svg` | borracha entrando no estojo | Guarde a borracha no estojo. |
+| `mochila-estojo-fechado.svg` | estojo fechado, cobrindo o que está dentro | Feche o estojo. |
+| `mochila-abrir.svg` | mochila aberta (cobre a fechada) | Abra o zíper da mochila. |
+| `mochila-estojo-dentro.svg` | estojo aparecendo na boca da mochila, e a mesa vazia | Guarde o estojo na mochila. |
+| `mochila-caderno.svg` | caderno aparecendo na boca da mochila | Guarde o caderno na mochila. |
+| `mochila-fechar.svg` | mochila fechada (cobre o que está dentro) | Feche o zíper da mochila. |
+
+### Tirinha: robô e abelhas
 
 Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela não existe, mostra a legenda do passo. Se quiserem quadrinhos próprios (a cena DEPOIS do passo: o robô já perto do cubo, a garra já fechada...), basta pôr o caminho no campo `peca` do passo, em 4:3.
 

@@ -2181,6 +2181,9 @@ body.arrastando * {
   display: block;
   width: 100%;
   margin-top: -3.5%;
+}
+/* só a peça que acabou de chegar cai */
+.montagem .nova {
   animation: peca-cai 0.3s ease-out;
 }
 @keyframes peca-cai {
@@ -2191,6 +2194,9 @@ body.arrastando * {
 }
 .peca-errada {
   filter: drop-shadow(0 0 1.2cqh #e0574f) drop-shadow(0 0 0.6cqh #e0574f);
+  animation: peca-tremer 0.45s;
+}
+.peca-errada.nova {
   animation:
     peca-cai 0.3s ease-out,
     peca-tremer 0.45s 0.3s;
@@ -2211,6 +2217,34 @@ body.arrastando * {
   background: #fff;
   border: 0.9cqh solid #c9a97c;
   box-shadow: 0 1cqh 0 rgba(74, 52, 38, 0.18);
+}
+
+/* cena: peças do mesmo tamanho, umas por cima das outras */
+.montagem[data-modo="cena"] {
+  background: #fcf2e2;
+}
+.cena {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92cqw, 122cqh);
+  aspect-ratio: 4 / 3;
+  /* a mesma cor que as peças usam para "limpar" a mesa */
+  background: #fcf2e2;
+  border-radius: 4%;
+}
+.cena img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* na cena o brilho contornaria a peça inteira (e a mesa limpa):
+   o erro aparece pela peça vindo para a frente, tremendo */
+.cena .peca-errada {
+  filter: none;
 }
 
 /* tirinha: um quadrinho por espaço */
@@ -2242,7 +2276,6 @@ body.arrastando * {
   position: absolute;
   inset: 0;
   background: #fdf5e8 center / contain no-repeat;
-  animation: peca-cai 0.3s ease-out;
 }
 .quadro-figura.sem-imagem {
   display: grid;

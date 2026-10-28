@@ -61,10 +61,18 @@
                              em cima das anteriores, NA ORDEM DOS
                              ESPAÇOS (o sanduíche): fora de ordem, o
                              queijo aparece por cima do pão fechado;
+                 "cena"    — cada passo com "peca" desenha a sua
+                             peça num lugar fixo, por cima das
+                             anteriores, na ordem dos espaços (a
+                             mochila): fechar o estojo antes de
+                             guardar o lápis deixa o lápis de fora;
                  "tirinha" — um quadrinho por espaço, como uma
                              história em quadrinhos; no primeiro
                              erro a história "trava" ali.
                  Sem o campo, não há montagem.
+     montagemBase  (só na "cena") imagem que fica no fundo antes de
+                 qualquer peça. A fase pode ter a sua própria, que
+                 vale no lugar desta.
    Todos são só aparência: sem eles o jogo usa um visual padrão,
    e nenhum deles muda a validação.
 
@@ -81,7 +89,9 @@
                 certo é o dependeDe.
      peca       (opcional) imagem que o passo acrescenta à montagem:
                 na pilha, uma camada recortada (fundo transparente,
-                todas com a mesma largura); na tirinha, o quadrinho
+                todas com a mesma largura); na cena, a peça já no
+                seu lugar, numa imagem do mesmo tamanho da base
+                (fundo transparente); na tirinha, o quadrinho
                 do passo (sem ela, a tirinha usa a "imagem").
      ordemLivre (formato antigo, do protótipo) — só é lido quando o
                 passo não traz dependeDe; ver a seção 2.

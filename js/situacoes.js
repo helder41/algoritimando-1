@@ -516,23 +516,27 @@ const SITUACAO_MOCHILA = {
   fundo: 'img/level3.jpg',
   fundoConclusao: 'img/win3.jpg',
   // a imagem que se monta ao lado do tabuleiro (ver motor.js)
-  montagem: 'tirinha',
+  montagem: 'cena',
+  // a cena começa com o estojo aberto e a mochila fechada; nos níveis
+  // sem a carta "Abra o zíper", a mochila já começa aberta
+  montagemBase: 'img/pecas/mochila-cena-fechada.svg',
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
     {
       id: 'fase-1',
+      montagemBase: 'img/pecas/mochila-cena-aberta.svg',
       titulo: 'O sinal tocou! Guarde o material.',
       instrucao: 'Coloque os passos na ordem certa para nada ficar para trás.',
       mascote: 'O estojo precisa estar fechado antes de entrar na mochila.',
       passos: [
-        { id: 'guardar-lapis', texto: 'Guarde o lápis no estojo.', imagem: 'img/passos/mochila-01.png', dependeDe: [] },
+        { id: 'guardar-lapis', texto: 'Guarde o lápis no estojo.', imagem: 'img/passos/mochila-01.png', peca: 'img/pecas/mochila-lapis.svg', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis'],
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', peca: 'img/pecas/mochila-estojo-fechado.svg', dependeDe: ['guardar-lapis'],
           explicacao: 'Fechar o estojo agora? O lápis fica de fora, perdido na mesa!',
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo'],
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', peca: 'img/pecas/mochila-estojo-dentro.svg', dependeDe: ['fechar-estojo'],
           explicacao: 'O estojo ainda está aberto! Se ele entrar assim, os lápis se espalham dentro da mochila.',
         },
       ],
@@ -554,25 +558,26 @@ const SITUACAO_MOCHILA = {
     /* ---------- FASE 2 · lápis e borracha não brigam (5 passos) ---------- */
     {
       id: 'fase-2',
+      montagemBase: 'img/pecas/mochila-cena-aberta.svg',
       titulo: 'Agora tem mais coisa na mesa!',
       instrucao: 'O lápis e a borracha não brigam: qualquer um pode entrar primeiro!',
       mascote: 'Lápis ou borracha primeiro? Aqui tanto faz!',
       passos: [
-        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', dependeDe: [] },
-        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', dependeDe: [] },
+        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', peca: 'img/pecas/mochila-lapis.svg', dependeDe: [] },
+        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', peca: 'img/pecas/mochila-borracha.svg', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis', 'guardar-borracha'],
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', peca: 'img/pecas/mochila-estojo-fechado.svg', dependeDe: ['guardar-lapis', 'guardar-borracha'],
           explicacao: {
             'guardar-lapis':    'O lápis ainda está fora! Fechando agora, ele fica perdido na mesa.',
             'guardar-borracha': 'A borracha ainda está fora! Fechando agora, ela fica perdida na mesa.',
           },
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo'],
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', peca: 'img/pecas/mochila-estojo-dentro.svg', dependeDe: ['fechar-estojo'],
           explicacao: 'O estojo aberto derrama tudo dentro da mochila! Feche o estojo primeiro.',
         },
         {
-          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', dependeDe: ['estojo-mochila'],
+          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', peca: 'img/pecas/mochila-fechar.svg', dependeDe: ['estojo-mochila'],
           explicacao: 'Fechar a mochila sem o estojo dentro? Ele fica esquecido na escola!',
         },
       ],
@@ -598,27 +603,27 @@ const SITUACAO_MOCHILA = {
       instrucao: 'Tem um passo escondido aqui. A mochila não abre sozinha!',
       mascote: 'Tem um passo que a gente faz sem perceber. Ele está aí!',
       passos: [
-        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', dependeDe: [] },
-        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', dependeDe: [] },
+        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', peca: 'img/pecas/mochila-lapis.svg', dependeDe: [] },
+        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', peca: 'img/pecas/mochila-borracha.svg', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis', 'guardar-borracha'],
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', peca: 'img/pecas/mochila-estojo-fechado.svg', dependeDe: ['guardar-lapis', 'guardar-borracha'],
           explicacao: {
             'guardar-lapis':    'O lápis ainda está fora! Fechando agora, ele fica perdido na mesa.',
             'guardar-borracha': 'A borracha ainda está fora! Fechando agora, ela fica perdida na mesa.',
           },
         },
         {
-          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', dependeDe: [],
+          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', peca: 'img/pecas/mochila-abrir.svg', dependeDe: [],
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo', 'abrir-mochila'],
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', peca: 'img/pecas/mochila-estojo-dentro.svg', dependeDe: ['fechar-estojo', 'abrir-mochila'],
           explicacao: {
             'fechar-estojo': 'O estojo aberto derrama tudo dentro da mochila! Feche o estojo primeiro.',
             'abrir-mochila': 'A mochila está fechada! O estojo não atravessa o zíper — abra a mochila primeiro.',
           },
         },
         {
-          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', dependeDe: ['estojo-mochila'],
+          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', peca: 'img/pecas/mochila-fechar.svg', dependeDe: ['estojo-mochila'],
           explicacao: 'Fechar a mochila sem o estojo dentro? Ele fica esquecido na escola!',
         },
       ],
@@ -644,31 +649,31 @@ const SITUACAO_MOCHILA = {
       instrucao: 'Estojo pronto, mochila aberta, tudo guardado: e ela vai para as costas!',
       mascote: 'Do lápis até as costas: o passo a passo inteiro, sem pular nada.',
       passos: [
-        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', dependeDe: [] },
-        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', dependeDe: [] },
+        { id: 'guardar-lapis',    texto: 'Guarde o lápis no estojo.',    imagem: 'img/passos/mochila-01.png', peca: 'img/pecas/mochila-lapis.svg', dependeDe: [] },
+        { id: 'guardar-borracha', texto: 'Guarde a borracha no estojo.', imagem: 'img/passos/mochila-02.png', peca: 'img/pecas/mochila-borracha.svg', dependeDe: [] },
         {
-          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', dependeDe: ['guardar-lapis', 'guardar-borracha'],
+          id: 'fechar-estojo', texto: 'Feche o estojo.', imagem: 'img/passos/mochila-03.png', peca: 'img/pecas/mochila-estojo-fechado.svg', dependeDe: ['guardar-lapis', 'guardar-borracha'],
           explicacao: {
             'guardar-lapis':    'O lápis ainda está fora! Fechando agora, ele fica perdido na mesa.',
             'guardar-borracha': 'A borracha ainda está fora! Fechando agora, ela fica perdida na mesa.',
           },
         },
         {
-          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', dependeDe: [],
+          id: 'abrir-mochila', texto: 'Abra o zíper da mochila.', imagem: 'img/passos/mochila-06.png', peca: 'img/pecas/mochila-abrir.svg', dependeDe: [],
         },
         {
-          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', dependeDe: ['fechar-estojo', 'abrir-mochila'],
+          id: 'estojo-mochila', texto: 'Guarde o estojo na mochila.', imagem: 'img/passos/mochila-04.png', peca: 'img/pecas/mochila-estojo-dentro.svg', dependeDe: ['fechar-estojo', 'abrir-mochila'],
           explicacao: {
             'fechar-estojo': 'O estojo aberto derrama tudo dentro da mochila! Feche o estojo primeiro.',
             'abrir-mochila': 'A mochila está fechada! O estojo não atravessa o zíper — abra a mochila primeiro.',
           },
         },
         {
-          id: 'caderno-mochila', texto: 'Guarde o caderno na mochila.', imagem: 'img/passos/mochila-07.png', dependeDe: ['abrir-mochila'],
+          id: 'caderno-mochila', texto: 'Guarde o caderno na mochila.', imagem: 'img/passos/mochila-07.png', peca: 'img/pecas/mochila-caderno.svg', dependeDe: ['abrir-mochila'],
           explicacao: 'A mochila está fechada! O caderno não atravessa o zíper: abra a mochila primeiro.',
         },
         {
-          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', dependeDe: ['estojo-mochila', 'caderno-mochila'],
+          id: 'fechar-mochila', texto: 'Feche o zíper da mochila.', imagem: 'img/passos/mochila-05.png', peca: 'img/pecas/mochila-fechar.svg', dependeDe: ['estojo-mochila', 'caderno-mochila'],
           explicacao: {
             'estojo-mochila':  'O estojo ainda está fora! Fechando agora, ele fica esquecido na escola.',
             'caderno-mochila': 'O caderno ainda está fora! Fechando agora, ele fica esquecido na escola.',

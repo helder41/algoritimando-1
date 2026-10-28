@@ -69,6 +69,9 @@
           <select id="campo-montagem">
             <option value="">Nenhuma</option>
             <option value="pilha">Pilha (como um sanduíche)</option>
+            <option value="cena">
+              Cena (as peças entram numa cena, como a mochila)
+            </option>
             <option value="tirinha">Tirinha (um quadrinho por passo)</option>
           </select>
           <span class="ed-ajuda"
@@ -76,6 +79,14 @@
             criança coloca as cartas. Cada passo ganha um campo de peça.</span
           >
         </label>
+        <div class="ed-campo" id="bloco-base-cena" hidden>
+          <span class="ed-rotulo">Fundo da cena</span>
+          <div id="base-cena-editor" class="ed-licao-imagem"></div>
+          <span class="ed-ajuda"
+            >O que aparece antes de qualquer carta. As peças precisam ter o
+            mesmo tamanho deste fundo e fundo transparente.</span
+          >
+        </div>
       </section>
 
       <!-- avisos da validação (preenchidos pelo editor.js) -->
