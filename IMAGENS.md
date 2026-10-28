@@ -10,6 +10,8 @@ Faltam 37 de 38.
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
+Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CARTAS.md).
+
 ### Fazer um sanduíche (Cozinha)
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
