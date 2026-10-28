@@ -2471,42 +2471,31 @@ body.arrastando * {
   filter: grayscale(1) brightness(1.25);
   opacity: 0.45;
 }
-/* chamado concluído: botão "Jogar de novo" e as estrelas. No PC elas
-   ficam num selinho sobre a imagem do chamado (o cartão é baixo);
-   no celular, embaixo do nome. */
+/* chamado concluído: as estrelas logo acima do botão "Jogar de novo" */
 .call .btn.rejogar {
   background: #3f9c5a;
   white-space: nowrap;
+  padding-inline: 1cqw;
 }
-/* no PC, mais justo: o nome do chamado cabe numa linha */
 .call .meta > div {
   min-width: 0;
 }
-.call .meta .btn.rejogar {
-  padding-inline: 1cqw;
+.rejogar-coluna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4cqw;
+  flex: none;
 }
-.call .meta .st {
-  position: absolute;
-  left: 11.6cqw;
-  top: 1.9cqw;
-  padding: 0.3cqw 0.6cqw;
-  border-radius: 2cqw;
-  background: rgba(255, 250, 240, 0.92);
-  border: 0.15cqw solid #d9b98a;
-}
-.call .meta .st img.estrela {
-  height: 1.7cqw;
+.rejogar-coluna .st img.estrela {
+  height: 1.8cqw;
 }
 @media (max-aspect-ratio: 4/5) {
-  #stage .call .meta .st {
-    position: static;
-    display: flex;
-    margin-top: 1.2cqw;
-    padding: 0;
-    background: none;
-    border: 0;
+  #stage .rejogar-coluna {
+    align-items: flex-start;
+    gap: 1.4cqw;
   }
-  #stage .call .meta .st img.estrela {
+  #stage .rejogar-coluna .st img.estrela {
     height: 6cqw;
   }
 }

@@ -164,7 +164,11 @@
         estrelas.setAttribute('role', 'img');
         estrelas.setAttribute('aria-label', `${media} de 3 estrelas`);
         estrelas.innerHTML = Comum.estrelasHTML(media);
-        cartao.querySelector('small').after(estrelas);
+        // as estrelas ficam logo acima do botão
+        const coluna = document.createElement('div');
+        coluna.className = 'rejogar-coluna';
+        botao.before(coluna);
+        coluna.append(estrelas, botao);
         botao.classList.add('rejogar');
         botao.textContent = 'Jogar de novo ›';
         botao.title = 'Escolher um nível para jogar de novo';
