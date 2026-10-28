@@ -10,7 +10,9 @@
                 ordem das fases — jogar de novo guarda a melhor
      }
 
-   A chave de cada chamado é o id da situação.
+   A chave de cada chamado é o id da situação; os chamados abertos
+   de um arquivo do professor ganham o prefixo "prof:", para nunca
+   disputarem com os que vêm no jogo.
 
    Se o localStorage estiver indisponível (modo anônimo restrito,
    memória cheia), o jogo segue funcionando — só não lembra.
@@ -20,7 +22,9 @@
 
 (function () {
 
-  const CHAVE = 'algoritimando-progresso';
+  // a prévia do editor do professor usa uma chave própria: testar
+  // um nível lá não mexe no jogo de quem usa este computador
+  const CHAVE = window.ALGORITIMANDO_PREVIA ? 'algoritimando-previa-progresso' : 'algoritimando-progresso';
 
   function lerTudo() {
     try {
@@ -64,9 +68,12 @@
     return ler(id).niveis.reduce((soma, n) => soma + n, 0);
   }
 
-  /** Estrelas de todos os chamados, somadas. */
+  /** Estrelas dos chamados do jogo, somadas (os do professor, com
+      chave "prof:", contam à parte). */
   function total() {
-    return Object.keys(lerTudo()).reduce((soma, id) => soma + estrelas(id), 0);
+    return Object.keys(lerTudo())
+      .filter(id => !id.startsWith('prof:'))
+      .reduce((soma, id) => soma + estrelas(id), 0);
   }
 
   window.Progresso = { ler, gravar, apagar, estrelas, total };

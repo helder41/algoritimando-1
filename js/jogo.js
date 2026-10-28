@@ -3,7 +3,7 @@
 
    Liga as partes: a tela da fase (index.html), as cartas
    (comum.js), o arrasto (arrasto.js), o motor de validação
-   (motor.js), o som (som.js), a lição (conclusao.js) e a memória
+   (motor.js), a montagem (montagem.js), o som (som.js), a lição (conclusao.js) e a memória
    (progresso.js e perfil.js). A central de chamados (app.js) chama
    iniciarSituacao(situacao, chave); daqui para a frente:
 
@@ -168,6 +168,7 @@
     erroQueSoou = null;
     limparReacao();
     atualizarEstrelas();
+    Montagem.preparar(situacao, f);
   }
 
   /* Fase completa sem erro: grava o avanço e mostra a lição. */
@@ -181,7 +182,8 @@
 
     Perfil.dados.dicas += 1;
     const ultima = indiceFase + 1 >= situacao.fases.length;
-    if (ultima) Perfil.dados.concluidos[situacao.id] = true;
+    // chamado do professor não entra na conta da promoção
+    if (ultima && !chave.startsWith('prof:')) Perfil.dados.concluidos[situacao.id] = true;
     Perfil.gravar();
 
     const premio = { estrelas: ganhas, dicas: 1 };
@@ -216,7 +218,8 @@
 
   // o topo mostra o total do agente, como na central
   function atualizarEstrelas() {
-    contadorNum.textContent = Progresso.total();
+    contadorNum.textContent = chave && chave.startsWith('prof:')
+      ? Progresso.estrelas(chave) : Progresso.total();
     contador.setAttribute('aria-label', `${contadorNum.textContent} estrelas`);
   }
 
@@ -227,6 +230,7 @@
   function atualizarBotaoDica() {
     const restam = Perfil.dados.dicas;
     dicaRestantes.textContent = restam;
+    btnDica.classList.toggle('sem-dicas', restam <= 0);
     btnDica.setAttribute('aria-label', restam > 0
       ? `Pedir uma dica — ${restam === 1 ? 'resta 1 dica' : `restam ${restam} dicas`}`
       : 'Suas dicas acabaram. Conclua um nível para ganhar mais!');
@@ -312,7 +316,7 @@
         botao.setAttribute('aria-label', `Nível ${i + 1}, bloqueado`);
       } else if (estrelas) {
         info.className = 'st';
-        info.innerHTML = '★'.repeat(estrelas) + '<u>' + '★'.repeat(3 - estrelas) + '</u>';
+        info.innerHTML = Comum.estrelasHTML(estrelas);
         botao.setAttribute('aria-label', `Nível ${i + 1}, ${estrelas} de 3 estrelas. Jogar de novo`);
       } else {
         info.textContent = 'Novo!';
@@ -367,7 +371,10 @@
 
     limparReacao();
 
-    const resultado = validarSequencia(fase(), lerSequencia());
+    const sequencia = lerSequencia();
+    const resultado = validarSequencia(fase(), sequencia);
+    // a montagem mostra a ordem que está na tela, certa ou errada
+    Montagem.atualizar(sequencia, resultado.erro, resultado.completa);
 
     if (resultado.erro) {
       faseConcluida = false;

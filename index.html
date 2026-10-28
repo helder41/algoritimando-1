@@ -22,6 +22,7 @@
           <button class="btn" id="bPlay">Jogar</button>
           <button class="btn green" id="bSound">Sons: ligado</button>
           <button class="btn ghost" id="bHow">Como jogar</button>
+          <button class="btn ghost small" id="bProf">Área do professor</button>
         </div>
       </section>
 
@@ -105,6 +106,14 @@
               ↺ Jogar tudo de novo
             </button>
           </div>
+          <!-- protótipos de chamados novos, atrás de senha (em-progresso.js) -->
+          <button
+            class="btn ghost small em-progresso-botao"
+            id="bEmProgresso"
+            type="button"
+          >
+            Em progresso
+          </button>
         </aside>
       </section>
 
@@ -149,6 +158,8 @@
           <section class="bandeja" aria-label="Cartas ainda não usadas">
             <ul class="bandeja-fila"></ul>
           </section>
+          <!-- Montagem: a imagem que se monta conforme as cartas (montagem.js) -->
+          <section class="montagem" aria-hidden="true" hidden></section>
         </main>
         <!-- Robô-guia: fala da fase e, quando a criança erra, a
              explicação do erro (sempre do PRIMEIRO problema) -->
@@ -171,9 +182,26 @@
             <span class="progresso-texto">Nível 1 de 5</span> ▾
           </button>
           <div class="rodape-direita">
+            <!-- só no celular: a montagem é opcional e troca de lugar com a cena -->
+            <button
+              class="chip"
+              id="btn-montagem"
+              type="button"
+              aria-pressed="false"
+              hidden
+            >
+              Ver montagem
+            </button>
             <button class="chip" id="btn-dica" type="button">
-              <img src="img/ui/dica.png" alt="" /> Dica
-              <b class="dica-restantes" aria-hidden="true">1</b>
+              <span class="dica-icone"
+                ><img src="img/ui/dica.png" alt="" /><b
+                  class="dica-restantes"
+                  aria-hidden="true"
+                  >1</b
+                ></span
+              >
+              <span class="dica-pedir">Pedir dica</span
+              ><span class="dica-curta">Dica</span>
             </button>
           </div>
         </footer>
@@ -216,18 +244,27 @@
             <p class="conclusao-progresso conclusao-progresso-texto"></p>
           </header>
           <div class="conclusao-corpo">
-            <div class="conclusao-coluna">
-              <h3 class="conclusao-pergunta" id="conclusao-pergunta">
-                <span class="conclusao-pergunta-texto"></span>
-              </h3>
+            <h3 class="conclusao-pergunta" id="conclusao-pergunta">
+              <span class="conclusao-pergunta-texto"></span>
+            </h3>
+            <!-- para a criança: a imagem que representa a lição -->
+            <div class="licao-imagem" role="img"></div>
+            <!-- para o professor: o texto da lição, atrás de um botão -->
+            <div class="licao-professor" id="licao-professor" hidden>
               <div class="conclusao-texto"></div>
-            </div>
-            <div class="conclusao-coluna">
               <div class="conclusao-reflexao">
                 <h3>Pense e converse</h3>
                 <ul></ul>
               </div>
             </div>
+            <button
+              class="btn ghost small licao-botao-prof"
+              type="button"
+              aria-expanded="false"
+              aria-controls="licao-professor"
+            >
+              Para o professor: ler a lição
+            </button>
           </div>
           <footer class="conclusao-rodape">
             <div class="rewards">
@@ -341,6 +378,57 @@
           <button class="btn ghost niveis-fechar" type="button">Voltar</button>
         </div>
       </div>
+      <div class="modal" id="senha">
+        <div class="panel">
+          <h2>Em progresso</h2>
+          <p>
+            Protótipos de chamados novos, ainda sem imagens, para testar os
+            passos e as explicações. Digite a senha:
+          </p>
+          <input
+            class="senha-campo"
+            id="senhaCampo"
+            type="password"
+            inputmode="numeric"
+            autocomplete="off"
+            maxlength="12"
+            aria-label="Senha"
+          />
+          <p class="aviso-prof" id="senhaAviso" hidden></p>
+          <div class="row">
+            <button class="btn ghost" id="bSenhaCancelar" type="button">
+              Cancelar
+            </button>
+            <button class="btn" id="bSenhaEntrar" type="button">Entrar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="prof">
+        <div class="panel">
+          <h2>Área do professor</h2>
+          <p>
+            Abra um chamado criado na Área do professor (arquivo .json salvo
+            neste computador) para a turma jogar, ou crie um novo.
+          </p>
+          <p class="aviso-prof" id="avisoProf" hidden></p>
+          <div class="row">
+            <button class="btn" id="bAbrirProf" type="button">
+              Abrir chamado (.json)
+            </button>
+            <a class="btn brown" href="editor.html">Criar ou editar</a>
+          </div>
+          <button class="btn ghost small" id="bProfFechar" type="button">
+            Voltar
+          </button>
+          <input
+            type="file"
+            id="input-situacao"
+            accept=".json,application/json"
+            hidden
+          />
+        </div>
+      </div>
       <div class="modal" id="how">
         <div class="panel">
           <h2>Como jogar</h2>
@@ -361,11 +449,13 @@
     <script src="js/motor.js"></script>
     <script src="js/comum.js"></script>
     <script src="js/situacoes.js"></script>
+    <script src="js/em-progresso.js"></script>
     <script src="js/som.js"></script>
     <script src="js/progresso.js"></script>
     <script src="js/perfil.js"></script>
     <script src="js/arrasto.js"></script>
     <script src="js/conclusao.js"></script>
+    <script src="js/montagem.js"></script>
     <script src="js/jogo.js"></script>
     <script src="js/app.js"></script>
   </body>
