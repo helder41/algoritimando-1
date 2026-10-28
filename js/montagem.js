@@ -7,10 +7,16 @@
    fechado. O jogo continua sem bloquear nada; a montagem só
    mostra a consequência da ordem que está na tela.
 
-   Dois modos (campo "montagem" da situação — ver motor.js):
+   Três modos (campo "montagem" da situação — ver motor.js):
    - "pilha":   as peças ("peca" de cada passo) empilham de baixo
                 para cima na ordem dos espaços. Passos sem peça
                 (pegar, abrir…) não aparecem.
+   - "cena":    cada peça tem um lugar fixo numa cena (todas do
+                mesmo tamanho, por cima de "montagemBase") e é
+                desenhada por cima das anteriores, na ordem dos
+                espaços: fechar o estojo antes de guardar o lápis
+                deixa o lápis por fora. No erro, a peça que ficou de
+                fora (o pré-requisito) vai para a frente, marcada.
    - "tirinha": um quadrinho por espaço; no primeiro erro aquele
                 quadrinho fica marcado e os seguintes ficam
                 apagados — a história "trava" ali.
@@ -38,8 +44,18 @@
 
   const CHAVE = (window.ALGORITIMANDO_PREVIA ? 'algoritimando-previa' : 'algoritimando') + '-montagem';
 
-  let modo = null;     // 'pilha' | 'tirinha' | null
+  let modo = null;     // 'pilha' | 'cena' | 'tirinha' | null
   let passos = {};     // id → passo da fase atual
+  let base = '';       // cena: a imagem de fundo (montagemBase)
+  // o que já estava na tela: só o que chegou agora anima (senão
+  // tudo "cairia" de novo a cada carta movida)
+  let jaMostrados = new Set();
+  let agoraMostrados = new Set();
+
+  function marcarNovo(el, chave) {
+    agoraMostrados.add(chave);
+    if (!jaMostrados.has(chave)) el.classList.add('nova');
+  }
 
   /* ---------------- botão do celular ---------------- */
 
@@ -68,7 +84,10 @@
   /* ---------------- preparar a fase ---------------- */
 
   function preparar(situacao, fase) {
-    modo = situacao.montagem === 'pilha' || situacao.montagem === 'tirinha' ? situacao.montagem : null;
+    modo = ['pilha', 'cena', 'tirinha'].includes(situacao.montagem) ? situacao.montagem : null;
+    // a fase pode trocar o fundo da cena (ex.: a mochila já aberta)
+    base = fase.montagemBase || situacao.montagemBase || '';
+    jaMostrados = new Set();
     passos = {};
     fase.passos.forEach(p => { passos[p.id] = p; });
 
@@ -89,11 +108,44 @@
   function atualizar(sequencia, erro, completa) {
     if (!modo) return;
     caixa.textContent = '';
+    agoraMostrados = new Set();
     caixa.classList.toggle('com-erro', !!erro);
     caixa.classList.toggle('completa', !!completa && !erro);
 
     if (modo === 'pilha') desenharPilha(sequencia, erro);
+    else if (modo === 'cena') desenharCena(sequencia, erro);
     else desenharTirinha(sequencia, erro);
+    jaMostrados = agoraMostrados;
+  }
+
+  function imagemDePeca(src, classe) {
+    const img = document.createElement('img');
+    img.className = classe;
+    img.src = src;
+    img.alt = '';
+    img.onerror = () => img.remove();   // peça que não carrega some
+    return img;
+  }
+
+  function desenharCena(sequencia, erro) {
+    const cena = document.createElement('div');
+    cena.className = 'cena';
+    if (base) cena.append(imagemDePeca(base, 'cena-base'));
+
+    const ids = sequencia.filter(id => id && passos[id] && passos[id].peca);
+    // no erro, o que ficou de fora vem para a frente: senão uma peça
+    // posta depois (a mochila fechada, a mesa limpa) poderia escondê-lo
+    const deFora = erro && erro.preRequisito && ids.includes(erro.preRequisito.id)
+      ? erro.preRequisito.id : null;
+    const ordem = deFora ? ids.filter(id => id !== deFora).concat(deFora) : ids;
+
+    ordem.forEach(id => {
+      const img = imagemDePeca(passos[id].peca, 'cena-peca');
+      marcarNovo(img, id);
+      if (erro && (id === deFora || (erro.passo && erro.passo.id === id))) img.classList.add('peca-errada');
+      cena.append(img);
+    });
+    caixa.append(cena);
   }
 
   function desenharPilha(sequencia, erro) {
@@ -111,6 +163,7 @@
       img.alt = '';
       img.onerror = () => img.remove();   // peça que não carrega some
       if (erro && erro.passo && erro.passo.id === id) img.classList.add('peca-errada');
+      marcarNovo(img, id);
       pecas.append(img);
     });
 
@@ -153,6 +206,7 @@
 
       const figura = document.createElement('div');
       figura.className = 'quadro-figura';
+      marcarNovo(figura, i + ':' + id);
       const src = passo.peca || passo.imagem;
       const semImagem = () => {
         figura.style.backgroundImage = '';

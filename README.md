@@ -8,7 +8,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 - Cada chamado tem 4 ou 5 níveis, e cada nível tem de 3 a 8 passos. Os passos ficam mais detalhados a cada nível, para mostrar as etapas que a gente pula quando explica algo para outra pessoa.
 - A resposta não é uma ordem fixa: cada passo diz de quais outros ele depende (`dependeDe`). Passos que não dependem um do outro podem vir em qualquer ordem, e cada dependência tem a sua explicação para quando a criança erra.
 - Na tela de lição, a criança vê uma imagem; o texto fica no botão "Para o professor".
-- Montagem: ao lado do tabuleiro, a imagem se monta na ordem das cartas — em **pilha** (o sanduíche vai sendo empilhado; fora de ordem, o queijo aparece por cima do pão fechado) ou em **tirinha** (um quadrinho por passo; no primeiro erro a história trava). No celular ela é opcional, no botão "Ver a montagem", e ocupa o lugar da cena.
+- Montagem: ao lado do tabuleiro, a imagem se monta na ordem das cartas — em **pilha** (o sanduíche vai sendo empilhado; fora de ordem, o queijo aparece por cima do pão fechado), em **cena** (na mochila, cada peça entra no seu lugar; fechar o estojo antes deixa o lápis de fora) ou em **tirinha** (um quadrinho por passo; no primeiro erro a história trava). No celular ela é opcional, no botão "Ver a montagem", e ocupa o lugar da cena.
 - O erro é explicado na hora, pelo Robô-guia, e só o primeiro problema da sequência. A carta nunca é bloqueada: a criança move de novo.
 - Depois de cada nível aparece a lição, que liga a atividade ao conceito de algoritmo.
 - Estrelas por nível: 3 sem erro, 2 com um erro, 1 com mais (usar dica conta como erro). Cada nível concluído dá +1 dica, e a dica coloca a carta certa no lugar.
