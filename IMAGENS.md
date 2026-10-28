@@ -6,7 +6,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-Faltam 37 de 38.
+Faltam 25 de 38 (o sanduíche está completo).
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -16,19 +16,19 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
-| `sanduiche-01.png` | duas fatias de pão na mesa | Pegue duas fatias de pão. | 1, 2 |
-| `sanduiche-02.png` | queijo já em cima da fatia | Coloque o queijo no pão. / Coloque o queijo na fatia. | 1, 2, 4 |
+| `sanduiche-01.png` (já existe) | duas fatias de pão na mesa | Pegue duas fatias de pão. | 1, 2 |
+| `sanduiche-02.png` (já existe) | queijo já em cima da fatia | Coloque o queijo no pão. / Coloque o queijo na fatia. | 1, 2, 4 |
 | `sanduiche-03.png` (já existe) | presunto | Coloque o presunto no pão. | 2 |
-| `sanduiche-04.png` | sanduíche fechado | Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias. | 1, 2, 3, 4, 5 |
-| `sanduiche-05.png` | saco de pão fechado | Pegue o saco de pão. | 3, 4, 5 |
-| `sanduiche-06.png` | pote de manteiga | Pegue a manteiga. / Pegue o pote de manteiga. | 3, 5 |
-| `sanduiche-07.png` | abrindo o saco | Abra o saco e tire duas fatias. / Abra o saco de pão. | 3, 4, 5 |
-| `sanduiche-08.png` | fatias saindo do saco | Tire duas fatias do saco. | 4 |
-| `sanduiche-09.png` | fatia com a manteiga espalhada | Passe a manteiga nas fatias. / Espalhe a manteiga nas fatias. | 3, 5 |
-| `sanduiche-10.png` | fatia de queijo na mão | Pegue uma fatia de queijo. | 4 |
-| `sanduiche-11.png` | faca sem ponta | Pegue uma faca sem ponta. | 5 |
-| `sanduiche-12.png` | pote sendo aberto | Abra o pote de manteiga. | 5 |
-| `sanduiche-13.png` | guardar tudo, mesa limpa | Guarde tudo e deixe a mesa limpa. | 5 |
+| `sanduiche-04.png` (já existe) | sanduíche fechado | Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias. | 1, 2, 3, 4, 5 |
+| `sanduiche-05.png` (já existe) | saco de pão fechado | Pegue o saco de pão. | 3, 4, 5 |
+| `sanduiche-06.png` (já existe) | pote de manteiga | Pegue a manteiga. / Pegue o pote de manteiga. | 3, 5 |
+| `sanduiche-07.png` (já existe) | abrindo o saco | Abra o saco e tire duas fatias. / Abra o saco de pão. | 3, 4, 5 |
+| `sanduiche-08.png` (já existe) | fatias saindo do saco | Tire duas fatias do saco. | 4 |
+| `sanduiche-09.png` (já existe) | fatia com a manteiga espalhada | Passe a manteiga nas fatias. / Espalhe a manteiga nas fatias. | 3, 5 |
+| `sanduiche-10.png` (já existe) | fatia de queijo na mão | Pegue uma fatia de queijo. | 4 |
+| `sanduiche-11.png` (já existe) | faca sem ponta | Pegue uma faca sem ponta. | 5 |
+| `sanduiche-12.png` (já existe) | pote sendo aberto | Abra o pote de manteiga. | 5 |
+| `sanduiche-13.png` (já existe) | guardar tudo, mesa limpa | Guarde tudo e deixe a mesa limpa. | 5 |
 
 ### O robô e o cubo (Fábrica)
 
