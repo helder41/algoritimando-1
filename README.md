@@ -29,6 +29,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 |---|---|
 | `js/motor.js` | formato dos dados e validação pelas dependências (`node js/motor.js` roda os testes) |
 | `js/situacoes.js` | os 4 chamados, no mesmo formato do `.json` do professor |
+| `js/em-progresso.js` | protótipos de chamados novos (seção "Em progresso" da central, senha 6234), ainda sem imagens |
 | `js/arrasto.js` | arrastar, tocar e teclado |
 | `js/jogo.js` | a partida: tabuleiro, erros, estrelas e dicas |
 | `js/montagem.js` | a montagem (pilha ou tirinha) ao lado do tabuleiro |

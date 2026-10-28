@@ -126,14 +126,26 @@
 
   const concluidos = () => SITUACOES.filter(s => P.concluidos[s.id]).length;
 
-  function central(mensagem) {
+  /* emProgresso = true mostra os protótipos (em-progresso.js) no
+     lugar dos chamados. O progresso deles fica numa chave "prof:",
+     como os do professor: não soma estrelas nem conta como
+     concluído. */
+  let emProgresso = false;
+  const chaveDe = s => (emProgresso ? 'prof:em-progresso:' + s.id : s.id);
+
+  function central(mensagem, modoEmProgresso = false) {
+    emProgresso = modoEmProgresso;
     atualizarTopo();
     const lista = $('#calls');
     lista.textContent = '';
+    $('#hub').classList.toggle('em-progresso', emProgresso);
+    $('#hub .title-box').textContent = emProgresso ? 'Em progresso' : 'Central de chamados';
+    $('#bEmProgresso').textContent = emProgresso ? '‹ Voltar à central' : 'Em progresso';
 
-    SITUACOES.forEach((s, i) => {
-      const prog = Progresso.ler(s.id);
-      const feito = !!P.concluidos[s.id];
+    (emProgresso ? SITUACOES_EM_PROGRESSO : SITUACOES).forEach((s, i) => {
+      const chave = chaveDe(s);
+      const prog = Progresso.ler(chave);
+      const feito = emProgresso ? prog.fase >= s.fases.length : !!P.concluidos[s.id];
       const emAndamento = prog.fase > 0 && prog.fase < s.fases.length;
 
       const cartao = document.createElement('div');
@@ -147,18 +159,24 @@
           <button class="btn"></button>
         </div>`;
       cartao.querySelector('.who img').src = s.cliente || 'img/guide.png';
-      cartao.querySelector('.pic img').src = s.cena || 'img/guide.png';
+      if (s.cena) cartao.querySelector('.pic img').src = s.cena;
+      else {
+        // protótipo ainda sem ilustração: o quadro tracejado do jogo
+        const pic = cartao.querySelector('.pic');
+        pic.textContent = 'ilustração do chamado';
+        pic.classList.add('figura-vazia');
+      }
       cartao.querySelector('b').textContent = s.titulo;
 
       const nivel = emAndamento ? prog.fase + 1 : feito ? s.fases.length : 1;
       cartao.querySelector('small').textContent =
-        `Chamado ${i + 1}${s.local ? ' · ' + s.local : ''} · Nível ${nivel} de ${s.fases.length}`;
+        `${emProgresso ? 'Protótipo' : 'Chamado'} ${i + 1}${s.local ? ' · ' + s.local : ''} · Nível ${nivel} de ${s.fases.length}`;
 
       const botao = cartao.querySelector('.btn');
       if (feito && !emAndamento) {
         // concluído: a média de estrelas dos níveis (de 1 a 3) e um
         // botão claro para jogar de novo — ele abre a lista de níveis
-        const media = Math.round(Progresso.estrelas(s.id) / s.fases.length);
+        const media = Math.round(Progresso.estrelas(chave) / s.fases.length);
         const estrelas = document.createElement('span');
         estrelas.className = 'st';
         estrelas.setAttribute('role', 'img');
@@ -175,10 +193,17 @@
       } else {
         botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
       }
-      botao.onclick = () => (feito && !emAndamento ? abrirNiveis(s, s.id) : iniciarSituacao(s, s.id));
+      botao.onclick = () => (feito && !emAndamento ? abrirNiveis(s, chave) : iniciarSituacao(s, chave));
 
       lista.append(cartao);
     });
+
+    if (emProgresso) {
+      $('#hubMsg').textContent = mensagem ||
+        'Protótipos de chamados novos. O progresso daqui não conta para o jogo.';
+      irPara('hub');
+      return;
+    }
 
     const n = concluidos(), total = SITUACOES.length;
     $('#bRestart').hidden = n < total;
@@ -194,7 +219,9 @@
   // fim da última fase de um chamado
   document.addEventListener('situacao-concluida', ev => {
     const s = ev.detail.situacao;
-    if (!SITUACOES.includes(s)) {
+    if (SITUACOES_EM_PROGRESSO.includes(s)) {
+      central(`Protótipo "${s.titulo}" concluído!`, true);
+    } else if (!SITUACOES.includes(s)) {
       central(`Chamado do professor "${s.titulo}" concluído!`);
     } else if (concluidos() === SITUACOES.length && !P.promovido) {
       P.promovido = true;
@@ -234,6 +261,45 @@
     $('#again').classList.remove('on');
     recomecar();
   };
+
+  /* ---------------- em progresso (protótipos, com senha) ----------------
+     A senha só evita que a turma entre sem querer: está no código,
+     então não é proteção de verdade. Depois de digitada, vale até
+     fechar o navegador. */
+
+  const SENHA_EM_PROGRESSO = '6234';
+  const campoSenha = $('#senhaCampo');
+  const avisoSenha = $('#senhaAviso');
+  let liberado = false;
+  try { liberado = sessionStorage.getItem('algoritimando-em-progresso') === '1'; } catch { /* sem memória */ }
+
+  function entrarEmProgresso() {
+    if (campoSenha.value.trim() !== SENHA_EM_PROGRESSO) {
+      avisoSenha.textContent = 'Senha errada. Tente de novo.';
+      avisoSenha.hidden = false;
+      campoSenha.select();
+      return;
+    }
+    liberado = true;
+    try { sessionStorage.setItem('algoritimando-em-progresso', '1'); } catch { /* sem memória */ }
+    $('#senha').classList.remove('on');
+    central('', true);
+  }
+
+  $('#bEmProgresso').onclick = () => {
+    if (emProgresso) { central(); return; }
+    if (liberado) { central('', true); return; }
+    campoSenha.value = '';
+    avisoSenha.hidden = true;
+    $('#senha').classList.add('on');
+    setTimeout(() => campoSenha.focus(), 50);
+  };
+  $('#bSenhaEntrar').onclick = entrarEmProgresso;
+  $('#bSenhaCancelar').onclick = () => $('#senha').classList.remove('on');
+  campoSenha.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter') entrarEmProgresso();
+    if (ev.key === 'Escape') $('#senha').classList.remove('on');
+  });
 
   /* ---------------- chamado do professor ----------------
      Um arquivo .json salvo pela Área do professor (editor.html),

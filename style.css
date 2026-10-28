@@ -2502,3 +2502,64 @@ body.arrastando * {
 .montagem.apertada {
   visibility: hidden;
 }
+
+/* ===== em progresso: protótipos atrás de senha ===== */
+.em-progresso-botao {
+  align-self: center;
+}
+#hub.em-progresso .guide.prog {
+  display: none;
+}
+#hub.em-progresso .title-box {
+  background: #5b4a6b;
+}
+/* até 6 protótipos: 3 colunas no PC */
+#hub.em-progresso .hub-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+#hub.em-progresso .call b {
+  font-size: max(1.6cqw, 9px);
+}
+#hub.em-progresso .call .btn {
+  white-space: nowrap;
+  padding-inline: 1cqw;
+}
+.call .pic.figura-vazia {
+  display: grid;
+  place-items: center;
+  font-size: max(1cqw, 9px);
+}
+.senha-campo {
+  font: inherit;
+  font-size: max(2cqw, 16px);
+  letter-spacing: 0.4em;
+  text-align: center;
+  width: min(100%, 16em);
+  align-self: center;
+  padding: 0.5em;
+  border: 0.2cqw solid #d9b98a;
+  border-radius: 1cqw;
+  background: #fff;
+}
+.senha-campo:focus-visible {
+  outline: 3px solid var(--p);
+  outline-offset: 2px;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage #hub .side {
+    flex-wrap: wrap;
+  }
+  #stage .em-progresso-botao {
+    flex-basis: 100%;
+  }
+  #stage .call .pic.figura-vazia {
+    font-size: 2.6cqw;
+  }
+  #stage #hub.em-progresso .hub-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #stage .senha-campo {
+    border-width: 0.5cqw;
+    border-radius: 2.4cqw;
+  }
+}

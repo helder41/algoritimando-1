@@ -106,6 +106,14 @@
               ↺ Jogar tudo de novo
             </button>
           </div>
+          <!-- protótipos de chamados novos, atrás de senha (em-progresso.js) -->
+          <button
+            class="btn ghost small em-progresso-botao"
+            id="bEmProgresso"
+            type="button"
+          >
+            Em progresso
+          </button>
         </aside>
       </section>
 
@@ -370,6 +378,32 @@
           <button class="btn ghost niveis-fechar" type="button">Voltar</button>
         </div>
       </div>
+      <div class="modal" id="senha">
+        <div class="panel">
+          <h2>Em progresso</h2>
+          <p>
+            Protótipos de chamados novos, ainda sem imagens, para testar os
+            passos e as explicações. Digite a senha:
+          </p>
+          <input
+            class="senha-campo"
+            id="senhaCampo"
+            type="password"
+            inputmode="numeric"
+            autocomplete="off"
+            maxlength="12"
+            aria-label="Senha"
+          />
+          <p class="aviso-prof" id="senhaAviso" hidden></p>
+          <div class="row">
+            <button class="btn ghost" id="bSenhaCancelar" type="button">
+              Cancelar
+            </button>
+            <button class="btn" id="bSenhaEntrar" type="button">Entrar</button>
+          </div>
+        </div>
+      </div>
+
       <div class="modal" id="prof">
         <div class="panel">
           <h2>Área do professor</h2>
@@ -415,6 +449,7 @@
     <script src="js/motor.js"></script>
     <script src="js/comum.js"></script>
     <script src="js/situacoes.js"></script>
+    <script src="js/em-progresso.js"></script>
     <script src="js/som.js"></script>
     <script src="js/progresso.js"></script>
     <script src="js/perfil.js"></script>
