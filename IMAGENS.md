@@ -6,7 +6,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-Faltam 25 de 38 (o sanduíche está completo).
+Faltam 16 de 38 (sanduíche e robô estão completos).
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -34,15 +34,15 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
-| `robo-01.png` | andando até o cubo | Ande até o cubo. | 1, 2, 3, 4, 5 |
-| `robo-02.png` | garra fechando no cubo | Pegue o cubo. / Feche a garra no cubo. | 1, 2, 3, 4, 5 |
-| `robo-03.png` | pousando o cubo | Coloque o cubo na plataforma. | 1, 2, 3 |
-| `robo-04.png` | garra abrindo, vazia | Abra a garra. | 2, 3, 4, 5 |
-| `robo-05.png` | virando para o cubo | Vire o robô para o cubo. | 3, 4, 5 |
-| `robo-06.png` | virando para a plataforma | Vire o robô para a plataforma. | 4, 5 |
-| `robo-07.png` | andando com o cubo | Ande até a plataforma. | 4, 5 |
-| `robo-08.png` | soltando o cubo na plataforma | Abra a garra em cima da plataforma. | 4, 5 |
-| `robo-09.png` | apertando o botão de ligar | Aperte o botão de ligar. | 5 |
+| `robo-01.png` (já existe) | andando até o cubo | Ande até o cubo. | 1, 2, 3, 4, 5 |
+| `robo-02.png` (já existe) | garra fechando no cubo | Pegue o cubo. / Feche a garra no cubo. | 1, 2, 3, 4, 5 |
+| `robo-03.png` (já existe) | pousando o cubo | Coloque o cubo na plataforma. | 1, 2, 3 |
+| `robo-04.png` (já existe) | garra abrindo, vazia | Abra a garra. | 2, 3, 4, 5 |
+| `robo-05.png` (já existe) | virando para o cubo | Vire o robô para o cubo. | 3, 4, 5 |
+| `robo-06.png` (já existe) | virando para a plataforma | Vire o robô para a plataforma. | 4, 5 |
+| `robo-07.png` (já existe) | andando com o cubo | Ande até a plataforma. | 4, 5 |
+| `robo-08.png` (já existe) | soltando o cubo na plataforma | Abra a garra em cima da plataforma. | 4, 5 |
+| `robo-09.png` (já existe) | apertando o botão de ligar | Aperte o botão de ligar. | 5 |
 
 ### Arrumar a mochila (Escola)
 

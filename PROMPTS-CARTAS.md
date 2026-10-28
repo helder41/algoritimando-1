@@ -128,6 +128,8 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ## O robô e o cubo (Fábrica)
 
+**Pronto:** as 9 cartas já estão no jogo.
+
 **Anexe como referência:** `img/who2.png` (o robô laranja) e `img/level2.jpg` (o cubo cinza e a plataforma redonda com luz verde, no balão de pensamento).
 
 **Consistência:** Sempre o MESMO robô laranja quadrado, de rodinhas e com duas garras cinza, visto de lado. Sempre o mesmo cubo cinza-claro e a mesma plataforma redonda cinza com anel de luz verde. Personagem pode ter rosto (é o robô do jogo).
