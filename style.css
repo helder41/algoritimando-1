@@ -2471,13 +2471,44 @@ body.arrastando * {
   filter: grayscale(1) brightness(1.25);
   opacity: 0.45;
 }
-/* na central, as estrelas são o botão (abrem a lista de níveis) */
-.call button.st {
-  background: none;
-  border: 0;
-  padding: 0;
-  box-shadow: none;
-  cursor: pointer;
+/* chamado concluído: botão "Jogar de novo" e as estrelas. No PC elas
+   ficam num selinho sobre a imagem do chamado (o cartão é baixo);
+   no celular, embaixo do nome. */
+.call .btn.rejogar {
+  background: #3f9c5a;
+  white-space: nowrap;
+}
+/* no PC, mais justo: o nome do chamado cabe numa linha */
+.call .meta > div {
+  min-width: 0;
+}
+.call .meta .btn.rejogar {
+  padding-inline: 1cqw;
+}
+.call .meta .st {
+  position: absolute;
+  left: 11.6cqw;
+  top: 1.9cqw;
+  padding: 0.3cqw 0.6cqw;
+  border-radius: 2cqw;
+  background: rgba(255, 250, 240, 0.92);
+  border: 0.15cqw solid #d9b98a;
+}
+.call .meta .st img.estrela {
+  height: 1.7cqw;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .call .meta .st {
+    position: static;
+    display: flex;
+    margin-top: 1.2cqw;
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+  #stage .call .meta .st img.estrela {
+    height: 6cqw;
+  }
 }
 .montagem.apertada {
   visibility: hidden;

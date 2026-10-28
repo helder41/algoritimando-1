@@ -156,13 +156,18 @@
 
       const botao = cartao.querySelector('.btn');
       if (feito && !emAndamento) {
-        // concluído: mostra a média de estrelas dos níveis (de 1 a 3);
-        // tocar nelas abre a lista de níveis para jogar de novo
+        // concluído: a média de estrelas dos níveis (de 1 a 3) e um
+        // botão claro para jogar de novo — ele abre a lista de níveis
         const media = Math.round(Progresso.estrelas(s.id) / s.fases.length);
-        botao.className = 'st';
-        botao.innerHTML = Comum.estrelasHTML(media);
-        botao.title = 'Escolher nível';
-        botao.setAttribute('aria-label', `${media} de 3 estrelas. Escolher nível para jogar de novo`);
+        const estrelas = document.createElement('span');
+        estrelas.className = 'st';
+        estrelas.setAttribute('role', 'img');
+        estrelas.setAttribute('aria-label', `${media} de 3 estrelas`);
+        estrelas.innerHTML = Comum.estrelasHTML(media);
+        cartao.querySelector('small').after(estrelas);
+        botao.classList.add('rejogar');
+        botao.textContent = 'Jogar de novo ›';
+        botao.title = 'Escolher um nível para jogar de novo';
       } else {
         botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
       }
