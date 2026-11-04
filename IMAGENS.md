@@ -124,15 +124,7 @@ A montagem é a imagem que se forma ao lado do tabuleiro conforme a criança col
 
 ### Pilha: Fazer um sanduíche
 
-Hoje são **recortes provisórios** desenhados em código (SVG). Os prompts para as versões finais estão em [PROMPTS-PECAS.md](PROMPTS-PECAS.md): PNG com fundo transparente, **todos com a mesma largura**, vistos de lado.
-
-| Arquivo | O que desenhar | Passos que usam |
-|---|---|---|
-| `sanduiche-pao.svg` | fatia de pão de baixo, vista de lado | Pegue duas fatias de pão. / Abra o saco e tire duas fatias. / Tire duas fatias do saco. |
-| `sanduiche-manteiga.svg` | camada fina de manteiga | Passe (espalhe) a manteiga nas fatias. |
-| `sanduiche-queijo.svg` | fatia de queijo, com as pontas caindo | Coloque o queijo no pão. / Coloque o queijo na fatia. |
-| `sanduiche-presunto.svg` | fatia de presunto ondulada | Coloque o presunto no pão. |
-| `sanduiche-pao-cima.svg` | fatia de pão de cima, arredondada | Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias. |
+**Pronto.** As 5 peças (`sanduiche-pao`, `sanduiche-manteiga`, `sanduiche-queijo`, `sanduiche-presunto`, `sanduiche-pao-cima`) são PNG transparentes, vistas de lado, todas com 600 px de largura.
 
 ### Cena: Arrumar a mochila
 
