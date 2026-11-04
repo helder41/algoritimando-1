@@ -83,7 +83,7 @@
     professor.hidden = !sim;
     imagem.hidden = sim;
     botaoProf.setAttribute('aria-expanded', String(sim));
-    botaoProf.textContent = sim ? 'Ver a imagem da lição' : 'Para o professor: ler a lição';
+    botaoProf.textContent = sim ? 'Ver a imagem da lição' : 'Ler a lição';
   }
   botaoProf.addEventListener('click', () => mostrarProfessor(professor.hidden));
 

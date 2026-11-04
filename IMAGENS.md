@@ -76,7 +76,7 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 
 Todas as 18 estão prontas, em `img/licoes/` como WebP (1200 × 896).
 
-Na tela de "Parabéns! Você completou o nível!", a criança vê só a pergunta e esta imagem. O texto da lição fica atrás do botão "Para o professor: ler a lição", para ele conduzir a conversa. Enquanto a imagem não existe, aparece o quadro "ilustração da lição".
+Na tela de "Parabéns! Você completou o nível!", a criança vê só a pergunta e esta imagem. O texto da lição fica atrás do botão "Ler a lição", para o professor conduzir a conversa. Enquanto a imagem não existe, aparece o quadro "ilustração da lição".
 
 Os prompts prontos para gerar cada uma estão em [PROMPTS-LICOES.md](PROMPTS-LICOES.md).
 
