@@ -280,6 +280,8 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ## Ajudar as abelhas (Jardim)
 
+**Pronto:** as 8 cartas já estão no jogo.
+
 **Anexe como referência:** `img/who4.png` (a abelha) e `img/level4.jpg` (colmeia pendurada, girassóis e o favo no balão).
 
 **Consistência:** Sempre a MESMA abelha gordinha e peluda com a cestinha, o mesmo girassol, a mesma colmeia dourada pendurada e o mesmo favo de hexágonos. A abelha tem rosto (é personagem); flores e objetos não.

@@ -6,7 +6,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-Faltam 8 de 38 (sanduíche, robô e mochila estão completos; faltam as abelhas).
+Todas as 38 estão prontas.
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -61,14 +61,14 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
-| `abelhas-01.png` | abelha voando até a flor | Voe até a flor. | 1, 2, 3, 4 |
-| `abelhas-02.png` | abelha sugando o néctar da flor | Colete o néctar da flor. | 1, 2, 3, 4 |
-| `abelhas-03.png` | abelha voltando para a colmeia | Leve o néctar para a colmeia. / Leve tudo para a colmeia. | 1, 2, 3, 4 |
-| `abelhas-04.png` | abelha saindo da colmeia | Saia da colmeia. | 2, 3, 4 |
-| `abelhas-05.png` | pólen amarelo nas patinhas da abelha | Junte o pólen nas patinhas. | 2, 3, 4 |
-| `abelhas-06.png` | abelha procurando uma flor aberta | Procure uma flor aberta. | 3, 4 |
-| `abelhas-07.png` | néctar entrando no favo | Guarde o néctar no favo. | 4 |
-| `abelhas-08.png` | favo fechado com cera | Feche o favo com cera. | 4 |
+| `abelhas-01.png` (já existe) | abelha voando até a flor | Voe até a flor. | 1, 2, 3, 4 |
+| `abelhas-02.png` (já existe) | abelha sugando o néctar da flor | Colete o néctar da flor. | 1, 2, 3, 4 |
+| `abelhas-03.png` (já existe) | abelha voltando para a colmeia | Leve o néctar para a colmeia. / Leve tudo para a colmeia. | 1, 2, 3, 4 |
+| `abelhas-04.png` (já existe) | abelha saindo da colmeia | Saia da colmeia. | 2, 3, 4 |
+| `abelhas-05.png` (já existe) | pólen amarelo nas patinhas da abelha | Junte o pólen nas patinhas. | 2, 3, 4 |
+| `abelhas-06.png` (já existe) | abelha procurando uma flor aberta | Procure uma flor aberta. | 3, 4 |
+| `abelhas-07.png` (já existe) | néctar entrando no favo | Guarde o néctar no favo. | 4 |
+| `abelhas-08.png` (já existe) | favo fechado com cera | Feche o favo com cera. | 4 |
 
 ## 2. Imagens das lições (`img/licoes/`)
 
