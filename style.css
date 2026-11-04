@@ -2838,3 +2838,15 @@ body.arrastando * {
     min-height: 26cqw;
   }
 }
+
+/* o cartão do chamado inteiro é clicável */
+.call-clicavel {
+  cursor: pointer;
+}
+.call-clicavel:hover {
+  filter: brightness(1.04);
+}
+.call-clicavel:focus-visible {
+  outline: 0.4cqw solid var(--p);
+  outline-offset: 0.3cqw;
+}

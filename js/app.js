@@ -235,9 +235,21 @@
     } else {
       botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
     }
-    botao.onclick = () => {
+    // o cartão inteiro abre o chamado; o botão fica só como sinal
+    // visual do que vai acontecer (e não recebe foco separado)
+    const abrir = () => {
       $('#local').classList.remove('on');
       if (feito && !emAndamento) abrirNiveis(s, chave); else iniciarSituacao(s, chave);
+    };
+    botao.tabIndex = -1;
+    botao.setAttribute('aria-hidden', 'true');
+    cartao.classList.add('call-clicavel');
+    cartao.tabIndex = 0;
+    cartao.setAttribute('role', 'button');
+    cartao.setAttribute('aria-label', `${s.titulo}: ${botao.textContent.replace('›', '').trim()}`);
+    cartao.onclick = abrir;
+    cartao.onkeydown = ev => {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); abrir(); }
     };
     return cartao;
   }
