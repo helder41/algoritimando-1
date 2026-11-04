@@ -67,7 +67,8 @@
     if (P.comecou) central();
     else { quadro(0); irPara('story'); }
   };
-  Som.ligarBotao($('#bSound'), true);
+  Som.abrirMenuBotao($('#bSound'));
+  $('#bSonsFechar').onclick = () => $('#sons').classList.remove('on');
   $('#bHow').onclick = () => $('#how').classList.add('on');
   $('#bHowClose').onclick = () => $('#how').classList.remove('on');
   $$('[data-home]').forEach(b => { b.onclick = irParaMenu; });

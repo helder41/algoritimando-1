@@ -2596,3 +2596,40 @@ body.arrastando * {
     border-radius: 2.4cqw;
   }
 }
+
+/* ===== menu de sons: música e efeitos, cada um com volume ===== */
+.som-linha {
+  display: grid;
+  grid-template-columns: 7em 8.5em minmax(0, 1fr);
+  align-items: center;
+  gap: 1em;
+  width: min(100%, 34em);
+}
+.som-nome {
+  font-family: Fredoka;
+  font-weight: 700;
+  font-size: 1.15em;
+  text-align: left;
+}
+.som-liga {
+  background: var(--g);
+}
+.som-liga.mudo {
+  background: #9a8b78;
+}
+.som-volume {
+  width: 100%;
+  accent-color: var(--p);
+}
+.som-volume:disabled {
+  opacity: 0.4;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .som-linha {
+    grid-template-columns: 1fr auto;
+    gap: 2cqw 3cqw;
+  }
+  #stage .som-volume {
+    grid-column: 1 / -1;
+  }
+}
