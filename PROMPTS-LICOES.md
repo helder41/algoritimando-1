@@ -15,7 +15,7 @@
 
 ## Fazer um sanduíche
 
-**Anexe como referência:** `img/who1.png` (o menino), `img/guide.png` (Robô-guia) e as cartas `img/passos/sanduiche-01.png`, `-02.png`, `-03.png` e `-04.png` (pão, queijo, presunto, sanduíche).
+**Anexe como referência:** `img/cliente0.png` (o menino de avental), `img/guide.png` (Robô-guia) e as cartas `img/passos/sanduiche-01.png`, `-02.png`, `-03.png` e `-04.png` (pão, queijo, presunto, sanduíche).
 
 ### `sanduiche-1.png` — Nível 1: Por que a ordem dos passos importa?
 
@@ -59,7 +59,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## O robô e o cubo
 
-**Anexe como referência:** `img/who2.png` (o robô laranja), `img/guide.png` (Robô-guia), `img/level2.jpg` (cubo e plataforma) e as cartas `img/passos/robo-01.png` a `robo-09.png`.
+**Anexe como referência:** `img/cliente1.png` (o robô laranja), `img/guide.png` (Robô-guia), `img/level2.jpg` (cubo e plataforma) e as cartas `img/passos/robo-01.png` a `robo-09.png`.
 
 ### `robo-1.png` — Nível 1: Como um robô entende um pedido?
 
@@ -103,7 +103,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Arrumar a mochila
 
-**Anexe como referência:** `img/who3.png` (a menina), `img/guide.png` (Robô-guia) e as cartas `img/passos/mochila-01.png` a `mochila-08.png` (estojo lilás, mochila azul e amarela).
+**Anexe como referência:** `img/cliente2.png` (a menina), `img/guide.png` (Robô-guia) e as cartas `img/passos/mochila-01.png` a `mochila-08.png` (estojo lilás, mochila azul e amarela).
 
 ### `mochila-1.png` — Nível 1: Por que a ordem dos passos importa?
 
@@ -139,7 +139,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Ajudar as abelhas
 
-**Anexe como referência:** `img/who4.png` (a abelha), `img/guide.png` (Robô-guia) e `img/level4.jpg` (colmeia, girassóis e favo).
+**Anexe como referência:** `img/cliente3.png` (a abelha), `img/guide.png` (Robô-guia) e `img/level4.jpg` (colmeia, girassóis e favo).
 
 ### `abelhas-1.png` — Nível 1: Por que a ordem dos passos importa?
 

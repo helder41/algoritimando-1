@@ -130,7 +130,7 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 **Pronto:** as 9 cartas já estão no jogo.
 
-**Anexe como referência:** `img/who2.png` (o robô laranja) e `img/level2.jpg` (o cubo cinza e a plataforma redonda com luz verde, no balão de pensamento).
+**Anexe como referência:** `img/cliente1.png` (o robô laranja) e `img/level2.jpg` (o cubo cinza e a plataforma redonda com luz verde, no balão de pensamento).
 
 **Consistência:** Sempre o MESMO robô laranja quadrado, de rodinhas e com duas garras cinza, visto de lado. Sempre o mesmo cubo cinza-claro e a mesma plataforma redonda cinza com anel de luz verde. Personagem pode ter rosto (é o robô do jogo).
 
@@ -210,7 +210,7 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 **Pronto:** as 8 cartas já estão no jogo.
 
-**Anexe como referência:** `img/pic3.jpg` (a mochila azul e amarela da central) e, só para a carta 08, `img/who3.png` (a menina do chamado).
+**Anexe como referência:** `img/pic3.jpg` (a mochila azul e amarela da central) e, só para a carta 08, `img/cliente2.png` (a menina do chamado).
 
 **Consistência:** Sempre a MESMA mochila azul com bolso amarelo, o mesmo estojo (de pano lilás com zíper), o mesmo lápis amarelo, a mesma borracha rosa e o mesmo caderno azul. Objetos sem rosto.
 
@@ -282,7 +282,7 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 **Pronto:** as 8 cartas já estão no jogo.
 
-**Anexe como referência:** `img/who4.png` (a abelha) e `img/level4.jpg` (colmeia pendurada, girassóis e o favo no balão).
+**Anexe como referência:** `img/cliente3.png` (a abelha) e `img/level4.jpg` (colmeia pendurada, girassóis e o favo no balão).
 
 **Consistência:** Sempre a MESMA abelha gordinha e peluda com a cestinha, o mesmo girassol, a mesma colmeia dourada pendurada e o mesmo favo de hexágonos. A abelha tem rosto (é personagem); flores e objetos não.
 
