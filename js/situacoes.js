@@ -74,7 +74,7 @@ const SITUACAO_SANDUICHE = {
       ],
       licao: {
         pergunta: 'Por que a ordem dos passos importa?',
-        imagem: 'img/licoes/sanduiche-1.png',
+        imagem: 'img/licoes/sanduiche-1.jpg',
         texto: [
           'Para montar o sanduíche, você colocou os passos em uma ordem.',
           'Se a gente troca os passos de lugar, dá confusão: o queijo pode ficar de fora do sanduíche!',
@@ -113,7 +113,7 @@ const SITUACAO_SANDUICHE = {
       ],
       licao: {
         pergunta: 'Todo passo tem uma hora certa?',
-        imagem: 'img/licoes/sanduiche-2.png',
+        imagem: 'img/licoes/sanduiche-2.jpg',
         texto: [
           'O queijo e o presunto podiam entrar em qualquer ordem: um não precisa do outro.',
           'Mas fechar o sanduíche precisa esperar os dois estarem dentro.',
@@ -153,7 +153,7 @@ const SITUACAO_SANDUICHE = {
       ],
       licao: {
         pergunta: 'Cadê os passos escondidos?',
-        imagem: 'img/licoes/sanduiche-3.png',
+        imagem: 'img/licoes/sanduiche-3.jpg',
         texto: [
           'Abrir o saco de pão… você faz isso sem nem pensar.',
           'Quando a gente explica para alguém, esses passos pequenos ficam escondidos — a pessoa adivinha sozinha.',
@@ -197,7 +197,7 @@ const SITUACAO_SANDUICHE = {
       ],
       licao: {
         pergunta: 'E se quem monta o sanduíche for um computador?',
-        imagem: 'img/licoes/sanduiche-4.png',
+        imagem: 'img/licoes/sanduiche-4.jpg',
         texto: [
           'Um amigo adivinha os passos escondidos. O computador não adivinha nada!',
           'Ele só faz o que a gente diz, do jeitinho que a gente diz. Cada frase dessas é uma instrução.',
@@ -247,7 +247,7 @@ const SITUACAO_SANDUICHE = {
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
-        imagem: 'img/licoes/sanduiche-5.png',
+        imagem: 'img/licoes/sanduiche-5.jpg',
         texto: [
           'Uma lista de instruções completa e na ordem certa tem nome: algoritmo!',
           'E o seu foi até o fim de verdade: montar, guardar tudo, deixar a mesa limpa.',
@@ -303,7 +303,7 @@ const SITUACAO_ROBO = {
       ],
       licao: {
         pergunta: 'Como um robô entende um pedido?',
-        imagem: 'img/licoes/robo-1.png',
+        imagem: 'img/licoes/robo-1.jpg',
         texto: [
           'O robô não pensa como a gente: ele faz um passo de cada vez, na ordem que recebe.',
           'Se a ordem estiver trocada, ele tenta mesmo assim — e dá tudo errado!',
@@ -339,7 +339,7 @@ const SITUACAO_ROBO = {
       ],
       licao: {
         pergunta: 'Todos os passos precisam esperar?',
-        imagem: 'img/licoes/robo-2.png',
+        imagem: 'img/licoes/robo-2.jpg',
         texto: [
           'Andar até o cubo e abrir a garra: tanto faz qual vem primeiro — um não precisa do outro!',
           'Mas fechar a garra no cubo precisa esperar os dois.',
@@ -379,7 +379,7 @@ const SITUACAO_ROBO = {
       ],
       licao: {
         pergunta: 'Quem manda alguém "se virar antes de andar"?',
-        imagem: 'img/licoes/robo-3.png',
+        imagem: 'img/licoes/robo-3.jpg',
         texto: [
           'Ninguém fala isso — todo mundo se vira sem pensar.',
           'O robô não: se ninguém mandar virar, ele sai reto e bate na parede.',
@@ -427,7 +427,7 @@ const SITUACAO_ROBO = {
       ],
       licao: {
         pergunta: 'O que se esconde dentro de "coloque na plataforma"?',
-        imagem: 'img/licoes/robo-4.png',
+        imagem: 'img/licoes/robo-4.jpg',
         texto: [
           'Quando a gente fala "coloque lá", tem um monte de passo escondido: virar, andar, soltar.',
           'O robô não adivinha nenhum deles. Cada frase dessas é uma instrução.',
@@ -482,7 +482,7 @@ const SITUACAO_ROBO = {
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
-        imagem: 'img/licoes/robo-5.png',
+        imagem: 'img/licoes/robo-5.jpg',
         texto: [
           'Uma lista de instruções completa e na ordem certa tem nome: algoritmo!',
           'E o seu começou do verdadeiro começo: ligar o robô — o passo mais esquecido do mundo.',
@@ -542,7 +542,7 @@ const SITUACAO_MOCHILA = {
       ],
       licao: {
         pergunta: 'Por que a ordem dos passos importa?',
-        imagem: 'img/licoes/mochila-1.png',
+        imagem: 'img/licoes/mochila-1.jpg',
         texto: [
           'Para guardar o material, você colocou os passos em uma ordem.',
           'Se a gente troca os passos de lugar, dá confusão: o lápis pode ficar perdido na mesa!',
@@ -583,7 +583,7 @@ const SITUACAO_MOCHILA = {
       ],
       licao: {
         pergunta: 'Todo passo tem uma hora certa?',
-        imagem: 'img/licoes/mochila-2.png',
+        imagem: 'img/licoes/mochila-2.jpg',
         texto: [
           'O lápis e a borracha podiam entrar no estojo em qualquer ordem: um não precisa do outro.',
           'Mas fechar o estojo precisa esperar os dois estarem dentro.',
@@ -629,7 +629,7 @@ const SITUACAO_MOCHILA = {
       ],
       licao: {
         pergunta: 'Quem lembra de falar "abra a mochila"?',
-        imagem: 'img/licoes/mochila-3.png',
+        imagem: 'img/licoes/mochila-3.jpg',
         texto: [
           'Ninguém fala "abra a mochila" — todo mundo abre sem pensar.',
           'Mas se esse passo não existir, o estojo não entra: ele bate no zíper fechado!',
@@ -686,7 +686,7 @@ const SITUACAO_MOCHILA = {
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
-        imagem: 'img/licoes/mochila-4.png',
+        imagem: 'img/licoes/mochila-4.jpg',
         texto: [
           'Uma lista de passos completa e na ordem certa tem nome: algoritmo!',
           'Você montou um algoritmo de verdade — e ele foi até o fim: mochila fechada e nas costas.',
@@ -744,7 +744,7 @@ const SITUACAO_ABELHAS = {
       ],
       licao: {
         pergunta: 'Por que a ordem dos passos importa?',
-        imagem: 'img/licoes/abelhas-1.png',
+        imagem: 'img/licoes/abelhas-1.jpg',
         texto: [
           'Para levar néctar para casa, a abelha seguiu os passos em uma ordem.',
           'Se a ordem fica trocada, ela volta para a colmeia sem nada!',
@@ -787,7 +787,7 @@ const SITUACAO_ABELHAS = {
       ],
       licao: {
         pergunta: 'Todo passo tem uma hora certa?',
-        imagem: 'img/licoes/abelhas-2.png',
+        imagem: 'img/licoes/abelhas-2.jpg',
         texto: [
           'O néctar e o pólen podiam ser coletados em qualquer ordem: um não precisa do outro.',
           'Mas voltar para a colmeia precisa esperar os dois.',
@@ -834,7 +834,7 @@ const SITUACAO_ABELHAS = {
       ],
       licao: {
         pergunta: 'Quem lembra de falar "procure a flor"?',
-        imagem: 'img/licoes/abelhas-3.png',
+        imagem: 'img/licoes/abelhas-3.jpg',
         texto: [
           'Quando alguém conta o que a abelha faz, ninguém fala "procure uma flor aberta".',
           'Esse passo fica escondido: parece óbvio, então a gente pula.',
@@ -889,7 +889,7 @@ const SITUACAO_ABELHAS = {
       ],
       licao: {
         pergunta: 'Esse passo a passo tem um nome?',
-        imagem: 'img/licoes/abelhas-4.png',
+        imagem: 'img/licoes/abelhas-4.jpg',
         texto: [
           'Uma lista de instruções completa e na ordem certa tem nome: algoritmo!',
           'E o seu foi até o fim de verdade: guardar o néctar e fechar o favo para virar mel.',
