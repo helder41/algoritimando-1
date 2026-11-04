@@ -1,9 +1,13 @@
 /* ============================================================
-   som.js — os três retornos sonoros do jogo.
+   som.js — a música do jogo e os retornos sonoros.
 
-   Nada de arquivos de áudio: as notas são sintetizadas na hora
-   pelo Web Audio, então o jogo continua sendo uma pasta que abre
-   com dois cliques, sem download nenhum.
+   MÚSICA: a trilha "Agentes de Algoritimando" (audio/musica-
+   tema.mp3) toca em loop, baixinha, em todas as telas. Ela só
+   começa no primeiro toque na tela — os navegadores não deixam
+   tocar som antes disso — e pausa quando a aba fica escondida.
+
+   EFEITOS: nada de arquivos — as notas são sintetizadas na hora
+   pelo Web Audio:
 
      acerto   duas notas subindo — a carta entrou no lugar
      erro     duas notas descendo, graves e curtas — sem susto,
@@ -12,10 +16,12 @@
      vitoria  quatro notas subindo — a fase acabou
      clique   uma nota curta — troca de tela
 
-   DESLIGAR É DE VERDADE. Sala de aula com trinta crianças, criança
-   que se incomoda com som, professor explicando: o botão está no
-   topo da tela, e a escolha fica guardada no navegador. Enquanto
-   estiver desligado nenhum oscilador chega a ser criado.
+   O MENU "Sons" liga e desliga a música e os efeitos separados, e
+   tem um volume para cada um. Desligar é de verdade (sala com
+   trinta crianças, professor explicando): música desligada não é
+   nem carregada, efeito desligado não cria oscilador. A escolha
+   fica guardada no navegador. No iPhone o navegador não deixa
+   mudar o volume de uma música: lá vale o volume do aparelho.
 
    O contexto de áudio só nasce no primeiro som — ou seja, depois
    de a criança já ter tocado na tela. É o que os navegadores
@@ -26,19 +32,33 @@
 
 (function () {
 
-  const CHAVE = 'algoritimando-som';
+  const CHAVE = 'algoritimando-som';            // efeitos: 'ligado' | 'desligado'
+  const CHAVE_AJUSTES = 'algoritimando-som-ajustes';
+  const ARQUIVO_MUSICA = 'audio/musica-tema.mp3';
 
-  let ligado = lerPreferencia();
+  let ligado = lerPreferencia();                // efeitos
   let contexto = null;
+  // a prévia do editor não toca música: o professor está editando
+  const ajustes = Object.assign(
+    { musica: !window.ALGORITIMANDO_PREVIA, volumeMusica: 0.35, volumeEfeitos: 0.8 },
+    lerAjustes());
+  if (window.ALGORITIMANDO_PREVIA) ajustes.musica = false;
 
   function lerPreferencia() {
     try { return localStorage.getItem(CHAVE) !== 'desligado'; }
     catch { return true; }          // sem localStorage, o som vem ligado
   }
 
+  function lerAjustes() {
+    try { return JSON.parse(localStorage.getItem(CHAVE_AJUSTES)) || {}; }
+    catch { return {}; }
+  }
+
   function gravarPreferencia() {
-    try { localStorage.setItem(CHAVE, ligado ? 'ligado' : 'desligado'); }
-    catch { /* segue sem lembrar na próxima visita */ }
+    try {
+      localStorage.setItem(CHAVE, ligado ? 'ligado' : 'desligado');
+      if (!window.ALGORITIMANDO_PREVIA) localStorage.setItem(CHAVE_AJUSTES, JSON.stringify(ajustes));
+    } catch { /* segue sem lembrar na próxima visita */ }
   }
 
   /* ---------------- síntese ---------------- */
@@ -61,7 +81,7 @@
         const ganho = contexto.createGain();
         oscilador.type = 'sine';                  // onda macia, sem aspereza
         oscilador.frequency.value = frequencia;
-        ganho.gain.setValueAtTime(volume, t);
+        ganho.gain.setValueAtTime(Math.max(0.0001, volume * ajustes.volumeEfeitos), t);
         ganho.gain.exponentialRampToValueAtTime(0.0001, t + duracao);
         oscilador.connect(ganho).connect(contexto.destination);
         oscilador.start(t);
@@ -75,6 +95,88 @@
   const erro    = () => tocar([[233, 0.14], [196, 0.20]], 0.07);
   const clique  = () => tocar([[440, 0.07]], 0.06);
   const vitoria = () => tocar([[523, 0.13], [659, 0.13], [784, 0.13], [1047, 0.32]], 0.11);
+
+  /* ---------------- música ---------------- */
+
+  let musica = null;      // <audio>, criado só quando a música for tocar
+
+  function tocarMusica() {
+    if (!ajustes.musica || document.hidden) return;
+    if (!musica) {
+      musica = new Audio(ARQUIVO_MUSICA);
+      musica.loop = true;
+      musica.preload = 'auto';
+    }
+    musica.volume = ajustes.volumeMusica;
+    // play() recusado (antes do primeiro toque): tenta de novo no próximo
+    const tentativa = musica.play();
+    if (tentativa) tentativa.catch(() => {});
+  }
+
+  function pausarMusica() {
+    if (musica) musica.pause();
+  }
+
+  // o primeiro toque, clique ou tecla destrava o som
+  ['pointerdown', 'keydown'].forEach(tipo =>
+    document.addEventListener(tipo, () => {
+      if (ajustes.musica && (!musica || musica.paused)) tocarMusica();
+    }, { capture: true }));
+
+  // aba escondida (outra aba, celular bloqueado): a música espera
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) pausarMusica();
+    else tocarMusica();
+  });
+
+  /* ---------------- menu "Sons" ----------------
+     Os controles estão no index.html (#sons); se a página não os
+     tiver (o editor), nada aqui é ligado. */
+
+  function ligarMenu() {
+    const painel = document.querySelector('#sons');
+    if (!painel) return;
+    const btnMusica  = painel.querySelector('#somMusica');
+    const btnEfeitos = painel.querySelector('#somEfeitos');
+    const volMusica  = painel.querySelector('#volMusica');
+    const volEfeitos = painel.querySelector('#volEfeitos');
+
+    function atualizar() {
+      btnMusica.textContent = ajustes.musica ? 'Ligada' : 'Desligada';
+      btnMusica.setAttribute('aria-pressed', String(ajustes.musica));
+      btnMusica.classList.toggle('mudo', !ajustes.musica);
+      btnEfeitos.textContent = ligado ? 'Ligados' : 'Desligados';
+      btnEfeitos.setAttribute('aria-pressed', String(ligado));
+      btnEfeitos.classList.toggle('mudo', !ligado);
+      volMusica.value = Math.round(ajustes.volumeMusica * 100);
+      volEfeitos.value = Math.round(ajustes.volumeEfeitos * 100);
+      volMusica.disabled = !ajustes.musica;
+      volEfeitos.disabled = !ligado;
+      atualizarBotoes();
+    }
+
+    btnMusica.addEventListener('click', () => {
+      ajustes.musica = !ajustes.musica;
+      if (ajustes.musica) tocarMusica(); else pausarMusica();
+      gravarPreferencia(); atualizar();
+    });
+    btnEfeitos.addEventListener('click', () => {
+      ligado = !ligado;
+      gravarPreferencia(); atualizar();
+      if (ligado) acerto();
+    });
+    volMusica.addEventListener('input', () => {
+      ajustes.volumeMusica = volMusica.value / 100;
+      if (musica) musica.volume = ajustes.volumeMusica;
+      gravarPreferencia();
+    });
+    volEfeitos.addEventListener('change', () => acerto());   // ouvir o volume escolhido
+    volEfeitos.addEventListener('input', () => {
+      ajustes.volumeEfeitos = volEfeitos.value / 100;
+      gravarPreferencia();
+    });
+    atualizar();
+  }
 
   /* ---------------- botões de ligar/desligar ---------------- */
 
@@ -90,7 +192,8 @@
       botao.setAttribute('aria-pressed', String(ligado));
       const rotulo = ligado ? 'Desligar o som' : 'Ligar o som';
       if (comTexto) {
-        botao.textContent = 'Sons: ' + (ligado ? 'ligado' : 'desligado');
+        const algum = ligado || ajustes.musica;
+        botao.textContent = 'Sons: ' + (algum ? 'ligado' : 'desligado');
       } else {
         botao.setAttribute('aria-label', rotulo);
         botao.title = rotulo;
@@ -110,6 +213,16 @@
     atualizarBotoes();
   }
 
-  window.Som = { acerto, erro, vitoria, clique, ligarBotao };
+  /* O botão "Sons" do menu abre o painel de ajustes. */
+  function abrirMenuBotao(botao) {
+    if (!botao) return;
+    botoes.push({ botao, comTexto: true });
+    botao.addEventListener('click', () => document.querySelector('#sons').classList.add('on'));
+    atualizarBotoes();
+  }
+
+  ligarMenu();
+
+  window.Som = { acerto, erro, vitoria, clique, ligarBotao, abrirMenuBotao };
 
 })();

@@ -36,7 +36,8 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 | `js/conclusao.js` | a tela de lição |
 | `js/app.js` | menu, abertura, crachá, central, promoção, final e abrir o chamado do professor |
 | `editor.html`, `editor.css`, `js/editor.js` | a Área do professor |
-| `js/comum.js`, `js/som.js`, `js/progresso.js`, `js/perfil.js` | cartas, sons e memória do jogo |
+| `js/som.js`, `audio/musica-tema.mp3` | música ("Agentes de Algoritimando", em loop) e efeitos, com o menu "Sons" (liga/desliga e volume de cada um) |
+| `js/comum.js`, `js/progresso.js`, `js/perfil.js` | cartas e memória do jogo |
 
 ## Imagens que ainda faltam
 

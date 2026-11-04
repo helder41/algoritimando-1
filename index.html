@@ -20,7 +20,9 @@
         <img class="menu-robo" src="img/robo-sorrindo.png" alt="" />
         <div class="menu-btns">
           <button class="btn" id="bPlay">Jogar</button>
-          <button class="btn green" id="bSound">Sons: ligado</button>
+          <button class="btn green" id="bSound" type="button">
+            Sons: ligado
+          </button>
           <button class="btn ghost" id="bHow">Como jogar</button>
           <button class="btn ghost small" id="bProf">Área do professor</button>
         </div>
@@ -429,6 +431,53 @@
           />
         </div>
       </div>
+      <div class="modal" id="sons">
+        <div class="panel">
+          <h2>Sons</h2>
+          <div class="som-linha">
+            <span class="som-nome">Música</span>
+            <button
+              class="btn small som-liga"
+              id="somMusica"
+              type="button"
+              aria-pressed="true"
+            >
+              Ligada
+            </button>
+            <input
+              class="som-volume"
+              id="volMusica"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              aria-label="Volume da música"
+            />
+          </div>
+          <div class="som-linha">
+            <span class="som-nome">Efeitos</span>
+            <button
+              class="btn small som-liga"
+              id="somEfeitos"
+              type="button"
+              aria-pressed="true"
+            >
+              Ligados
+            </button>
+            <input
+              class="som-volume"
+              id="volEfeitos"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              aria-label="Volume dos efeitos"
+            />
+          </div>
+          <button class="btn" id="bSonsFechar" type="button">Pronto</button>
+        </div>
+      </div>
+
       <div class="modal" id="how">
         <div class="panel">
           <h2>Como jogar</h2>
