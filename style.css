@@ -2850,3 +2850,32 @@ body.arrastando * {
   outline: 0.4cqw solid var(--p);
   outline-offset: 0.3cqw;
 }
+
+/* menu: rever a história e reiniciar */
+.menu-linha {
+  display: flex;
+  gap: 1cqw;
+  justify-content: center;
+}
+.menu-linha .btn {
+  white-space: nowrap;
+}
+.menu-linha .btn[hidden] {
+  display: none;
+}
+.btn.perigo {
+  background: #c2453c;
+  color: #fff;
+}
+.btn.ghost.perigo {
+  background: #fff;
+  color: #b3382f;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .menu-linha {
+    gap: 2.4cqw;
+  }
+}
+#bEmProgresso[hidden] {
+  display: none;
+}

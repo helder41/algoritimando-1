@@ -60,12 +60,32 @@
 
   function irParaMenu() {
     $('#bPlay').textContent = P.comecou ? 'Continuar' : 'Jogar';
+    // sem progresso, não há o que reiniciar
+    $('#bReiniciar').hidden = !P.comecou;
     irPara('menu');
   }
 
   $('#bPlay').onclick = () => {
     if (P.comecou) central();
-    else { quadro(0); irPara('story'); }
+    else { revendo = false; quadro(0); irPara('story'); }
+  };
+
+  // rever a abertura: no fim (ou no "Pular") volta para o menu
+  $('#bHistoria').onclick = () => {
+    revendo = P.comecou;
+    quadro(0);
+    irPara('story');
+  };
+
+  /* Reiniciar apaga o progresso, o perfil e os protótipos jogados;
+     os ajustes de som ficam. Pede confirmação, porque não tem volta. */
+  $('#bReiniciar').onclick = () => $('#reiniciar').classList.add('on');
+  $('#bReiniciarNao').onclick = () => $('#reiniciar').classList.remove('on');
+  $('#bReiniciarSim').onclick = () => {
+    ['algoritimando-progresso', 'algoritimando-perfil', 'algoritimando-montagem'].forEach(k => {
+      try { localStorage.removeItem(k); } catch { /* sem memória: nada a apagar */ }
+    });
+    location.reload();
   };
   Som.abrirMenuBotao($('#bSound'));
   $('#bSonsFechar').onclick = () => $('#sons').classList.remove('on');
@@ -76,6 +96,7 @@
   /* ---------------- abertura ---------------- */
 
   let qi = 0;
+  let revendo = false;   // abertura vista de novo pelo menu
   function quadro(i) {
     qi = i;
     // a arte aparece inteira; o fundo desfocado (a mesma imagem)
@@ -83,10 +104,12 @@
     $('#story').style.setProperty('--arte', `url(img/story${i + 1}.jpg)`);
     $('#sceneText').textContent = ABERTURA[i];
     $('#dots').innerHTML = ABERTURA.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
-    $('#bNext').textContent = i === ABERTURA.length - 1 ? 'Começar!' : 'Avançar ›';
+    const ultimo = i === ABERTURA.length - 1;
+    $('#bNext').textContent = ultimo ? (revendo ? 'Voltar ao menu' : 'Começar!') : 'Avançar ›';
   }
-  $('#bNext').onclick = () => (qi < ABERTURA.length - 1 ? quadro(qi + 1) : irParaCracha());
-  $('#bSkip').onclick = irParaCracha;
+  const fimDaHistoria = () => (revendo ? irParaMenu() : irParaCracha());
+  $('#bNext').onclick = () => (qi < ABERTURA.length - 1 ? quadro(qi + 1) : fimDaHistoria());
+  $('#bSkip').onclick = fimDaHistoria;
 
   /* ---------------- crachá ---------------- */
 
@@ -424,6 +447,7 @@
   $('#badgeFace').src = avatarSrc();
   atualizarTopo();
   $('#bPlay').textContent = P.comecou ? 'Continuar' : 'Jogar';
+  $('#bReiniciar').hidden = !P.comecou;
   $('#menu').classList.add('on');
 
 })();
