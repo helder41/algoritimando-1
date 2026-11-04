@@ -120,7 +120,7 @@
     P.comecou = true;
     P.nome = $('#nameIn').value.trim().slice(0, 14) || 'Agente';
     Perfil.gravar();
-    central(`Bem-vindo, ${P.nome}! Escolha um chamado e toque em "Atender".`);
+    central(`Bem-vindo, ${P.nome}! Toque num lugar do mapa para ver os chamados.`);
   };
 
   /* ---------------- central de chamados ---------------- */
@@ -134,84 +134,141 @@
   let emProgresso = false;
   const chaveDe = s => (emProgresso ? 'prof:em-progresso:' + s.id : s.id);
 
+  /* ---------------- mapa da cidade ----------------
+     A central é o mapa da abertura (story1.jpg). Cada lugar é a casa
+     de um cliente; tocar nele abre os chamados daquele lugar (campo
+     "area" da situação). Chamados novos de um cliente — escovar os
+     dentes depois do sanduíche — entram no mesmo lugar. As posições
+     são em % da imagem, em cima de cada construção. */
+  const LUGARES = [
+    { id: 'casa',    nome: 'Casa',    rosto: 'img/who1.png', x: 31, y: 30 },
+    { id: 'escola',  nome: 'Escola',  rosto: 'img/who3.png', x: 68, y: 33 },
+    { id: 'fabrica', nome: 'Fábrica', rosto: 'img/who2.png', x: 38, y: 66 },
+    { id: 'jardim',  nome: 'Jardim',  rosto: 'img/who4.png', x: 72, y: 74 },
+  ];
+  const doLugar = id => SITUACOES.filter(s => s.area === id);
+
+  function desenharMapa() {
+    const mapa = $('#mapa');
+    mapa.textContent = '';
+    for (const lugar of LUGARES) {
+      const lista = doLugar(lugar.id);
+      if (!lista.length) continue;
+      const feitos = lista.filter(s => P.concluidos[s.id]).length;
+      const botao = document.createElement('button');
+      botao.type = 'button';
+      botao.className = 'lugar' + (feitos === lista.length ? ' feito' : '');
+      botao.style.left = lugar.x + '%';
+      botao.style.top = lugar.y + '%';
+      botao.setAttribute('aria-label',
+        `${lugar.nome}: ${feitos} de ${lista.length} ${lista.length === 1 ? 'chamado concluído' : 'chamados concluídos'}`);
+      botao.innerHTML = `<span class="lugar-rosto"><img alt=""></span>
+        <span class="lugar-nome"></span><span class="lugar-conta"></span>`;
+      botao.querySelector('img').src = lugar.rosto;
+      botao.querySelector('.lugar-nome').textContent = lugar.nome;
+      botao.querySelector('.lugar-conta').textContent = `${feitos}/${lista.length}`;
+      botao.onclick = () => abrirLugar(lugar);
+      mapa.append(botao);
+    }
+  }
+
+  function abrirLugar(lugar) {
+    const modal = $('#local');
+    modal.querySelector('.local-nome').textContent = lugar.nome;
+    modal.querySelector('.local-rosto').src = lugar.rosto;
+    const lista = modal.querySelector('.local-chamados');
+    lista.textContent = '';
+    doLugar(lugar.id).forEach(s => lista.append(cartaoDeChamado(s, SITUACOES.indexOf(s))));
+    modal.classList.add('on');
+  }
+  $('#local .local-fechar').onclick = () => $('#local').classList.remove('on');
+
+  /* o cartão de um chamado: no lugar do mapa e na lista "Em progresso" */
+  function cartaoDeChamado(s, i) {
+    const chave = chaveDe(s);
+    const prog = Progresso.ler(chave);
+    const feito = emProgresso ? prog.fase >= s.fases.length : !!P.concluidos[s.id];
+    const emAndamento = prog.fase > 0 && prog.fase < s.fases.length;
+
+    const cartao = document.createElement('div');
+    cartao.className = 'call' + (feito ? ' done' : '');
+    if (s.cor) cartao.style.setProperty('--c', s.cor);
+    cartao.innerHTML = `
+      <div class="who"><img alt=""></div>
+      <div class="pic"><img alt=""></div>
+      <div class="meta">
+        <div><b></b><small></small></div>
+        <button class="btn"></button>
+      </div>`;
+    cartao.querySelector('.who img').src = s.cliente || 'img/guide.png';
+    if (s.cena) cartao.querySelector('.pic img').src = s.cena;
+    else {
+      // protótipo ainda sem ilustração: o quadro tracejado do jogo
+      const pic = cartao.querySelector('.pic');
+      pic.textContent = 'ilustração do chamado';
+      pic.classList.add('figura-vazia');
+    }
+    cartao.querySelector('b').textContent = s.titulo;
+
+    const nivel = emAndamento ? prog.fase + 1 : feito ? s.fases.length : 1;
+    cartao.querySelector('small').textContent =
+      `${emProgresso ? 'Protótipo' : 'Chamado'} ${i + 1}${s.local ? ' · ' + s.local : ''} · Nível ${nivel} de ${s.fases.length}`;
+
+    const botao = cartao.querySelector('.btn');
+    if (feito && !emAndamento) {
+      // concluído: a média de estrelas dos níveis (de 1 a 3) e um
+      // botão claro para jogar de novo — ele abre a lista de níveis
+      const media = Math.round(Progresso.estrelas(chave) / s.fases.length);
+      const estrelas = document.createElement('span');
+      estrelas.className = 'st';
+      estrelas.setAttribute('role', 'img');
+      estrelas.setAttribute('aria-label', `${media} de 3 estrelas`);
+      estrelas.innerHTML = Comum.estrelasHTML(media);
+      // as estrelas ficam logo acima do botão
+      const coluna = document.createElement('div');
+      coluna.className = 'rejogar-coluna';
+      botao.before(coluna);
+      coluna.append(estrelas, botao);
+      botao.classList.add('rejogar');
+      botao.textContent = 'Jogar de novo ›';
+      botao.title = 'Escolher um nível para jogar de novo';
+    } else {
+      botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
+    }
+    botao.onclick = () => {
+      $('#local').classList.remove('on');
+      if (feito && !emAndamento) abrirNiveis(s, chave); else iniciarSituacao(s, chave);
+    };
+    return cartao;
+  }
+
   function central(mensagem, modoEmProgresso = false) {
     emProgresso = modoEmProgresso;
     atualizarTopo();
+    $('#local').classList.remove('on');
     const lista = $('#calls');
     lista.textContent = '';
     $('#hub').classList.toggle('em-progresso', emProgresso);
-    $('#hub .title-box').textContent = emProgresso ? 'Em progresso' : 'Central de chamados';
-    $('#bEmProgresso').textContent = emProgresso ? '‹ Voltar à central' : 'Em progresso';
-
-    (emProgresso ? SITUACOES_EM_PROGRESSO : SITUACOES).forEach((s, i) => {
-      const chave = chaveDe(s);
-      const prog = Progresso.ler(chave);
-      const feito = emProgresso ? prog.fase >= s.fases.length : !!P.concluidos[s.id];
-      const emAndamento = prog.fase > 0 && prog.fase < s.fases.length;
-
-      const cartao = document.createElement('div');
-      cartao.className = 'call' + (feito ? ' done' : '');
-      if (s.cor) cartao.style.setProperty('--c', s.cor);
-      cartao.innerHTML = `
-        <div class="who"><img alt=""></div>
-        <div class="pic"><img alt=""></div>
-        <div class="meta">
-          <div><b></b><small></small></div>
-          <button class="btn"></button>
-        </div>`;
-      cartao.querySelector('.who img').src = s.cliente || 'img/guide.png';
-      if (s.cena) cartao.querySelector('.pic img').src = s.cena;
-      else {
-        // protótipo ainda sem ilustração: o quadro tracejado do jogo
-        const pic = cartao.querySelector('.pic');
-        pic.textContent = 'ilustração do chamado';
-        pic.classList.add('figura-vazia');
-      }
-      cartao.querySelector('b').textContent = s.titulo;
-
-      const nivel = emAndamento ? prog.fase + 1 : feito ? s.fases.length : 1;
-      cartao.querySelector('small').textContent =
-        `${emProgresso ? 'Protótipo' : 'Chamado'} ${i + 1}${s.local ? ' · ' + s.local : ''} · Nível ${nivel} de ${s.fases.length}`;
-
-      const botao = cartao.querySelector('.btn');
-      if (feito && !emAndamento) {
-        // concluído: a média de estrelas dos níveis (de 1 a 3) e um
-        // botão claro para jogar de novo — ele abre a lista de níveis
-        const media = Math.round(Progresso.estrelas(chave) / s.fases.length);
-        const estrelas = document.createElement('span');
-        estrelas.className = 'st';
-        estrelas.setAttribute('role', 'img');
-        estrelas.setAttribute('aria-label', `${media} de 3 estrelas`);
-        estrelas.innerHTML = Comum.estrelasHTML(media);
-        // as estrelas ficam logo acima do botão
-        const coluna = document.createElement('div');
-        coluna.className = 'rejogar-coluna';
-        botao.before(coluna);
-        coluna.append(estrelas, botao);
-        botao.classList.add('rejogar');
-        botao.textContent = 'Jogar de novo ›';
-        botao.title = 'Escolher um nível para jogar de novo';
-      } else {
-        botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
-      }
-      botao.onclick = () => (feito && !emAndamento ? abrirNiveis(s, chave) : iniciarSituacao(s, chave));
-
-      lista.append(cartao);
-    });
+    $('#hub .title-box').textContent = emProgresso ? 'Em progresso' : 'Mapa da cidade';
+    $('#bEmProgresso').textContent = emProgresso ? '‹ Voltar ao mapa' : 'Em progresso';
+    $('#mapa').hidden = emProgresso;
+    lista.hidden = !emProgresso;
 
     if (emProgresso) {
+      SITUACOES_EM_PROGRESSO.forEach((s, i) => lista.append(cartaoDeChamado(s, i)));
       $('#hubMsg').textContent = mensagem ||
         'Protótipos de chamados novos. O progresso daqui não conta para o jogo.';
       irPara('hub');
       return;
     }
 
+    desenharMapa();
     const n = concluidos(), total = SITUACOES.length;
     $('#bRestart').hidden = n < total;
     $('#progTxt').textContent = `${n} de ${total}`;
     $('#progBar').style.width = (n / total) * 100 + '%';
     $('#hubMsg').textContent = mensagem ||
-      (n === 0 ? 'Toque em "Atender" para começar. Cada chamado tem vários níveis!'
+      (n === 0 ? 'Toque num lugar do mapa para ver os chamados de lá.'
         : n < total ? `Ótimo trabalho! Ainda faltam ${total - n} chamados.`
         : 'Todos os chamados concluídos! Você pode jogar qualquer um de novo.');
     irPara('hub');

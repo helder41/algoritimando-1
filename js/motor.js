@@ -51,6 +51,9 @@
                  sanduíche, a caixa, a mochila, o favo)
      local       onde o chamado acontece ("Cozinha"), mostrado no
                  cartão da central de chamados
+     area        o lugar do mapa da cidade onde o chamado fica
+                 ("casa", "escola", "fabrica", "jardim"); um lugar
+                 junta vários chamados do mesmo cliente
      cor         cor do título da fase e do cartão na central
      cliente     retrato de quem fez o chamado (círculo do cartão)
      fundo       ilustração de fundo da tela da fase

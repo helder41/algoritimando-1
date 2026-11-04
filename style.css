@@ -2633,3 +2633,208 @@ body.arrastando * {
     grid-column: 1 / -1;
   }
 }
+
+/* ===== verificação: a ordem só é conferida no "Verificar" ===== */
+#btn-verificar {
+  font-size: max(1.35cqw, 11px);
+  padding: 0.6cqw 2cqw;
+  white-space: nowrap;
+}
+#btn-verificar:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+.rodape-direita {
+  align-items: center;
+}
+.verificacao {
+  margin-top: 0.8cqw;
+  text-align: center;
+  font-weight: 800;
+  font-size: max(1.05cqw, 10px);
+  color: #8c2a22;
+}
+.verificacao[hidden] {
+  display: none;
+}
+.verificacao[data-tipo="certo"] {
+  color: #2f7a46;
+}
+.tabuleiro.errado {
+  border-color: #e0574f;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .rodape {
+    flex-wrap: wrap;
+    row-gap: 2.4cqw;
+  }
+  #stage .rodape-direita {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  #stage #btn-verificar {
+    order: -1;
+    flex-basis: 100%;
+    font-size: 4.4cqw;
+    padding: 2cqw;
+  }
+  #stage .verificacao {
+    margin-top: 2cqw;
+    font-size: 3.4cqw;
+  }
+}
+
+/* ===== mapa da cidade (central) ===== */
+.mapa {
+  position: absolute;
+  left: 5cqw;
+  top: 9cqw;
+  width: 67cqw;
+  aspect-ratio: 1376 / 768;
+  border-radius: 1.6cqw;
+  border: 0.5cqw solid var(--brown);
+  box-shadow: 0 0.6cqw 0 #5b4326;
+  background: url(img/story1.jpg) center / cover;
+  overflow: hidden;
+}
+.mapa[hidden] {
+  display: none;
+}
+.lugar {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3cqw;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.lugar:hover,
+.lugar:focus-visible {
+  transform: translate(-50%, -50%) scale(1.07);
+}
+.lugar-rosto {
+  position: relative;
+  width: 6.4cqw;
+  height: 6.4cqw;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  border: 0.4cqw solid #fff;
+  box-shadow:
+    0 0 0 0.3cqw var(--brown),
+    0 0.6cqw 1cqw rgba(0, 0, 0, 0.3);
+}
+.lugar-rosto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lugar-nome {
+  font-family: Fredoka;
+  font-weight: 700;
+  font-size: max(1.3cqw, 10px);
+  color: #fff;
+  background: var(--brown);
+  padding: 0.2cqw 1cqw;
+  border-radius: 1cqw;
+  box-shadow: 0 0.3cqw 0 #5b4326;
+  white-space: nowrap;
+}
+.lugar-conta {
+  position: absolute;
+  top: -0.6cqw;
+  right: -1.4cqw;
+  font-weight: 900;
+  font-size: max(1cqw, 9px);
+  background: #ff8a3d;
+  color: #fff;
+  border: 0.2cqw solid #fff;
+  border-radius: 1cqw;
+  padding: 0.1cqw 0.6cqw;
+}
+.lugar.feito .lugar-conta {
+  background: var(--g);
+}
+/* chamados de um lugar */
+.local-painel {
+  width: min(64cqw, 92%);
+}
+.local-cabeca {
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+}
+.local-rosto {
+  width: 6cqw;
+  height: 6cqw;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.3cqw solid var(--brown);
+  background: #fff;
+}
+.local-chamados {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2cqw;
+}
+.local-chamados .call {
+  height: 12cqw;
+  grid-template-columns: 7cqw 1fr;
+}
+.local-chamados .call .who {
+  width: 7cqw;
+  height: 7cqw;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .mapa {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    flex: none;
+    margin: 3cqw 4cqw 0;
+    border-width: 1cqw;
+    border-radius: 3.6cqw;
+  }
+  #stage .lugar {
+    gap: 0.8cqw;
+  }
+  #stage .lugar-rosto {
+    width: 11cqw;
+    height: 11cqw;
+    border-width: 0.6cqw;
+  }
+  #stage .lugar-nome {
+    font-size: 3.2cqw;
+    padding: 0.4cqw 2cqw;
+    border-radius: 2cqw;
+  }
+  #stage .lugar-conta {
+    font-size: 2.8cqw;
+    top: -1.2cqw;
+    right: -3cqw;
+    padding: 0.2cqw 1.2cqw;
+    border-radius: 2cqw;
+  }
+  #stage .local-painel {
+    width: 92cqw;
+  }
+  #stage .local-rosto {
+    width: 14cqw;
+    height: 14cqw;
+  }
+  #stage .local-chamados {
+    gap: 3cqw;
+  }
+  #stage .local-chamados .call {
+    height: auto;
+    min-height: 26cqw;
+  }
+}
