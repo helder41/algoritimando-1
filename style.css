@@ -2876,3 +2876,6 @@ body.arrastando * {
     gap: 2.4cqw;
   }
 }
+#bEmProgresso[hidden] {
+  display: none;
+}
