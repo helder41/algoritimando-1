@@ -2958,3 +2958,20 @@ body.arrastando * {
     margin: 0.2cqw 0;
   }
 }
+
+/* ===== nada de seleção acidental: o jogo não tem texto para copiar ===== */
+#stage {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none; /* iPhone: sem o menu de "salvar imagem" */
+}
+#stage img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+/* onde se digita, a seleção continua normal */
+#stage input,
+#stage textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}

@@ -56,6 +56,12 @@
     $$('.gStars').forEach(e => { e.textContent = total; });
   }
 
+  // imagens não são arrastáveis (o arrasto das cartas é outro, por
+  // Pointer Events) — evita o "fantasma" da imagem ao segurar o mouse
+  document.addEventListener('dragstart', ev => {
+    if (ev.target instanceof HTMLImageElement) ev.preventDefault();
+  });
+
   /* ---------------- menu ---------------- */
 
   function irParaMenu() {
