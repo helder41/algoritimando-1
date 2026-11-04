@@ -26,7 +26,7 @@
 
 **Pronto:** as 13 cartas já estão no jogo.
 
-**Anexe como referência:** `img/pic1.jpg` (o sanduíche da central) e `img/passos/sanduiche-03.png` (o presunto, já pronto).
+**Anexe como referência:** `img/pic1.jpg` (o sanduíche da central: pão, presunto e queijo, sem alface) e `img/passos/sanduiche-03.png` (o presunto, já pronto).
 
 **Consistência:** Mesmo pão, mesmo queijo e mesma manteiga em todas: pão de forma branco com casca dourada, queijo amarelo quadrado, manteiga amarelo-clara. Sem alface nem tomate (o jogo não tem esses passos).
 

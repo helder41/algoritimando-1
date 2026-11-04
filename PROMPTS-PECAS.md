@@ -4,7 +4,7 @@
 
 ## Antes de começar
 
-- **Anexe como referência** (estão no repositório): `img/pic1.jpg` (o sanduíche da central) e as cartas `img/passos/sanduiche-01.png`, `sanduiche-02.png` e `sanduiche-03.png`.
+- **Anexe como referência** (estão no repositório): `img/pic1.jpg` (o sanduíche da central: pão, presunto e queijo, sem alface) e as cartas `img/passos/sanduiche-01.png`, `sanduiche-02.png` e `sanduiche-03.png`.
 - **Gere as 5 na mesma conversa.** Quando a primeira ficar boa, anexe-a nas seguintes e peça "same width and same side view as the previous image".
 - **Formato:** bem largo e baixo (4:1, por exemplo 1600 × 400). Se o gerador não tiver esse formato, use 16:9; o recorte acerta depois.
 - **Sem sombra e sem prato.** O jogo já desenha o prato embaixo da pilha.
