@@ -124,7 +124,7 @@ A montagem é a imagem que se forma ao lado do tabuleiro conforme a criança col
 
 ### Pilha: Fazer um sanduíche
 
-Hoje são **recortes provisórios** desenhados em código (SVG). Para trocar, salve um PNG com fundo transparente, **todos com a mesma largura** (por exemplo 600 px), vistos de lado, e troque a extensão no `js/situacoes.js` (`.svg` → `.png`).
+Hoje são **recortes provisórios** desenhados em código (SVG). Os prompts para as versões finais estão em [PROMPTS-PECAS.md](PROMPTS-PECAS.md): PNG com fundo transparente, **todos com a mesma largura**, vistos de lado.
 
 | Arquivo | O que desenhar | Passos que usam |
 |---|---|---|
@@ -136,19 +136,7 @@ Hoje são **recortes provisórios** desenhados em código (SVG). Para trocar, sa
 
 ### Cena: Arrumar a mochila
 
-Também são **recortes provisórios** em SVG. Na cena, cada peça é uma imagem do **mesmo tamanho do fundo** (4:3, por exemplo 1200 × 900), com fundo transparente e a peça já desenhada **no lugar dela**: o estojo à esquerda, a mochila à direita. As peças vão sendo desenhadas umas por cima das outras, na ordem dos espaços.
-
-| Arquivo | O que desenhar | Passos que usam |
-|---|---|---|
-| `mochila-cena-fechada.svg` | fundo: estojo aberto e vazio na mesa, mochila fechada | níveis 3 e 4 (fundo) |
-| `mochila-cena-aberta.svg` | fundo: estojo aberto e vazio, mochila já aberta | níveis 1 e 2 (fundo) |
-| `mochila-lapis.svg` | lápis entrando no estojo | Guarde o lápis no estojo. |
-| `mochila-borracha.svg` | borracha entrando no estojo | Guarde a borracha no estojo. |
-| `mochila-estojo-fechado.svg` | estojo fechado, cobrindo o que está dentro | Feche o estojo. |
-| `mochila-abrir.svg` | mochila aberta (cobre a fechada) | Abra o zíper da mochila. |
-| `mochila-estojo-dentro.svg` | estojo aparecendo na boca da mochila, e a mesa vazia | Guarde o estojo na mochila. |
-| `mochila-caderno.svg` | caderno aparecendo na boca da mochila | Guarde o caderno na mochila. |
-| `mochila-fechar.svg` | mochila fechada (cobre o que está dentro) | Feche o zíper da mochila. |
+**Pronto.** As 9 imagens foram montadas a partir das ilustrações das cartas da mochila (o estojo, o lápis, a borracha, a mochila e o caderno são recortados delas e colocados sempre no mesmo lugar): `mochila-cena-fechada`, `mochila-cena-aberta`, `mochila-lapis`, `mochila-borracha`, `mochila-estojo-fechado`, `mochila-abrir`, `mochila-estojo-dentro`, `mochila-caderno` e `mochila-fechar` (PNG, 1600 × 1200, fundo transparente).
 
 ### Tirinha: robô e abelhas
 
