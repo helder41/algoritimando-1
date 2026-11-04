@@ -32,6 +32,7 @@ const PROTO_DENTES = {
   id: 'dentes',
   titulo: 'Escovar os dentes',
   local: 'Banheiro',
+  area: 'casa',
   cor: '#3f8fb5',
   montagem: 'tirinha',
   fases: [
@@ -209,6 +210,7 @@ const PROTO_MAOS = {
   id: 'maos',
   titulo: 'Lavar as mãos',
   local: 'Banheiro',
+  area: 'casa',
   cor: '#3f9c8a',
   montagem: 'tirinha',
   fases: [
@@ -333,6 +335,7 @@ const PROTO_PLANTA = {
   id: 'planta',
   titulo: 'Plantar uma semente',
   local: 'Horta',
+  area: 'jardim',
   cor: '#5f8f3a',
   montagem: 'tirinha',
   fases: [
@@ -457,6 +460,7 @@ const PROTO_RUA = {
   id: 'rua',
   titulo: 'Atravessar a rua',
   local: 'Rua',
+  area: 'escola',
   cor: '#c0663a',
   montagem: 'tirinha',
   fases: [
@@ -581,6 +585,7 @@ const PROTO_LIMONADA = {
   id: 'limonada',
   titulo: 'Fazer uma limonada',
   local: 'Cozinha',
+  area: 'casa',
   cor: '#b8941f',
   montagem: 'tirinha',
   fases: [

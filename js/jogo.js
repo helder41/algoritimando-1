@@ -9,25 +9,28 @@
 
    - o tabuleiro e a bandeja são MONTADOS DOS DADOS da fase
      (situacoes.js ou arquivo do professor — mesmo formato);
-   - a cada movimento a sequência é lida do DOM e validada;
-   - acerto → a carta "assenta" e soa;
-   - erro → a carta ganha marcação de atenção, o pré-requisito
-     pisca, o robô-guia fica confuso e a explicação (escrita nos
-     DADOS) toma o balão dele;
-   - fase completa sem erro → tela de lição → próxima fase;
+   - a criança monta a sequência inteira SEM avaliação a cada
+     carta (a carta só "assenta"); com todos os espaços cheios, o
+     botão "Verificar" confere a ordem;
+   - verificação errada → o tabuleiro avisa que algo está fora de
+     ordem e a montagem mostra a consequência, mas sem dizer qual
+     passo — quem explica é o robô-guia, e só quando a criança
+     pede uma DICA;
+   - verificação certa → tela de lição → próxima fase;
    - última fase → evento 'situacao-concluida' (o app.js decide se
      é hora da promoção ou de voltar à central);
    - o botão "Nível X de N" abre a lista de níveis: qualquer fase já
      liberada pode ser jogada de novo.
 
    ESTRELAS por fase, como no resto do jogo: 3 sem nenhum erro,
-   2 com um erro, 1 com mais. Cada problema NOVO que aparece no
-   tabuleiro conta como um erro (o mesmo problema continuando na
-   tela não conta de novo), e usar uma dica também conta.
+   2 com um erro, 1 com mais. Cada verificação errada conta como
+   um erro, e usar uma dica também conta.
 
    DICAS são um estoque do agente (perfil.js): cada fase concluída
-   dá +1. A dica coloca no tabuleiro a carta do primeiro espaço
-   que está vazio ou errado, e o robô-guia diz qual passo é.
+   dá +1. Com algo fora de ordem no tabuleiro, a dica faz o
+   robô-guia explicar o PRIMEIRO problema (a explicação escrita
+   nos DADOS); sem problema, ela coloca a carta do primeiro
+   espaço vazio e o robô diz qual passo é.
    ============================================================ */
 
 'use strict';
@@ -50,6 +53,9 @@
   const progTexto    = tela.querySelector('.progresso-texto');
   const btnDica      = tela.querySelector('#btn-dica');
   const dicaRestantes = tela.querySelector('.dica-restantes');
+  const btnVerificar = tela.querySelector('#btn-verificar');
+  const avisoVerificacao = tela.querySelector('.verificacao');
+  const tabuleiro    = tela.querySelector('.tabuleiro');
 
   // fala do robô-guia quando a fase não traz a sua própria
   const balaoPadrao = 'Pense na ordem dos passos!';
@@ -77,11 +83,6 @@
   let progresso  = null;   // { fase, niveis } — ver progresso.js
   let erros      = 0;      // erros nesta fase (decide as estrelas)
   let faseConcluida = false;
-  /* qual erro já soou: o som do erro toca UMA vez por problema.
-     Sem isto, mexer numa carta qualquer enquanto o mesmo problema
-     continua na tela repetiria o som — insistência que a explicação
-     escrita, essa sim, já faz de graça e sem barulho. */
-  let erroQueSoou = null;
 
   function fase() { return situacao.fases[indiceFase]; }
 
@@ -165,8 +166,8 @@
 
     erros = 0;
     faseConcluida = false;
-    erroQueSoou = null;
     limparReacao();
+    atualizarVerificar();
     atualizarEstrelas();
     Montagem.preparar(situacao, f);
   }
@@ -265,26 +266,86 @@
       return;
     }
 
+    // algo fora de ordem: o robô explica o primeiro problema
+    const sequencia = lerSequencia();
+    const resultado = validarSequencia(fase(), sequencia);
+    if (resultado.erro) {
+      gastarDica();
+      limparReacao();
+      mostrarErro(resultado.erro);
+      Montagem.atualizar(sequencia, resultado.erro, resultado.completa);
+      return;
+    }
+
     const lugar = lugarDaDica();
+    if (!lugar) {
+      balao.textContent = 'Está tudo no lugar! Toque em "Verificar".';
+      return;
+    }
     if (!lugar) return;
     const carta = cartaDe(lugar.passo.id);
     const espaco = grade.querySelectorAll('.espaco')[lugar.indice];
     if (!carta || !espaco) return;
 
-    Perfil.dados.dicas -= 1;
-    Perfil.gravar();
-    atualizarBotaoDica();
-    erros += 1;
+    gastarDica();
 
-    // a carta entra pelas mesmas regras do arrasto (o jogo valida
-    // ao ouvir 'carta-movida'); depois o robô diz qual passo era
+    // a carta entra pelas mesmas regras do arrasto; depois o robô
+    // diz qual passo era
     Arrasto.mover(carta, { tipo: 'espaco', espaco });
-    if (faseConcluida) return;
     carta.classList.add('carta-dica');
     rosto.src = ROSTO.dica;
     balao.textContent =
       `Passo ${lugar.indice + 1}: "${lugar.passo.texto}" Dá para fazer o resto!`;
     anunciar(balao.textContent);
+  });
+
+  function gastarDica() {
+    Perfil.dados.dicas -= 1;
+    Perfil.gravar();
+    atualizarBotaoDica();
+    erros += 1;
+  }
+
+  /* ============================================================
+     VERIFICAR — só com todos os espaços cheios
+     ============================================================ */
+
+  function atualizarVerificar() {
+    const cheio = lerSequencia().every(Boolean);
+    btnVerificar.disabled = !cheio || faseConcluida;
+    btnVerificar.title = cheio ? 'Conferir a ordem' : 'Coloque todas as cartas para verificar';
+  }
+
+  function mostrarAviso(texto, tipo) {
+    avisoVerificacao.textContent = texto;
+    avisoVerificacao.hidden = !texto;
+    avisoVerificacao.dataset.tipo = tipo || '';
+    tabuleiro.classList.toggle('errado', tipo === 'erro');
+  }
+
+  btnVerificar.addEventListener('click', () => {
+    if (faseConcluida || !situacao) return;
+    const sequencia = lerSequencia();
+    const resultado = validarSequencia(fase(), sequencia);
+    if (!resultado.completa) return;
+
+    if (resultado.erro) {
+      erros += 1;
+      Som.erro();
+      // a montagem mostra a consequência; o porquê fica com a dica
+      Montagem.atualizar(sequencia, resultado.erro, true);
+      const texto = 'Ainda não está na ordem certa. Confira os passos ou peça uma dica ao Robô-guia.';
+      mostrarAviso(texto, 'erro');
+      anunciar(texto);
+      return;
+    }
+
+    faseConcluida = true;
+    atualizarVerificar();
+    mostrarAviso('Tudo certo!', 'certo');
+    grade.querySelectorAll('.carta').forEach(assentar);
+    Som.acerto();
+    aoConcluirFase();
   });
 
   /* ============================================================
@@ -369,35 +430,20 @@
   function aoMoverCarta(ev) {
     if (!situacao || !tela.classList.contains('on')) return;
 
+    if (faseConcluida) return;
     limparReacao();
+    mostrarAviso('');
 
-    const sequencia = lerSequencia();
-    const resultado = validarSequencia(fase(), sequencia);
-    // a montagem mostra a ordem que está na tela, certa ou errada
-    Montagem.atualizar(sequencia, resultado.erro, resultado.completa);
-
-    if (resultado.erro) {
-      faseConcluida = false;
-      mostrarErro(resultado.erro);
-      return;
-    }
-
-    erroQueSoou = null;                        // caminho livre de novo
+    // a montagem mostra a ordem que está na tela, sem marcar o erro:
+    // quem avalia é o "Verificar"
+    Montagem.atualizar(lerSequencia(), null, false);
 
     const { carta, alvo, mudou } = ev.detail;
     if (mudou && alvo.tipo === 'espaco') {
       assentar(carta);
-      Som.acerto();
+      Som.clique();
     }
-
-    if (resultado.completa) {
-      if (!faseConcluida) {
-        faseConcluida = true;
-        aoConcluirFase();
-      }
-    } else {
-      faseConcluida = false;
-    }
+    atualizarVerificar();
   }
 
   /* ---------------- acerto: retorno discreto ---------------- */
@@ -410,7 +456,7 @@
       () => carta.classList.remove('carta-assentou'), { once: true });
   }
 
-  /* ---------------- erro: mostrar, não corrigir ---------------- */
+  /* ---------------- erro: explicado pela dica ---------------- */
 
   /* A carta mal colocada NÃO volta sozinha para o lugar certo, de
      propósito. Se o jogo corrigisse automaticamente, o tabuleiro se
@@ -420,14 +466,6 @@
      marcada com atenção, ao lado da explicação da consequência; quem
      decide o que mover, e quando, é a criança. */
   function mostrarErro(erro) {
-    // o som só marca a CHEGADA do problema, não a permanência dele
-    const chaveErro = erro.passo.id + '→' + (erro.preRequisito ? erro.preRequisito.id : '');
-    if (chaveErro !== erroQueSoou) {
-      erroQueSoou = chaveErro;
-      erros += 1;
-      Som.erro();
-    }
-
     const cartaProblema = cartaDe(erro.passo.id);
     if (cartaProblema) cartaProblema.classList.add('carta-atencao');
 

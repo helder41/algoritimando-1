@@ -307,6 +307,8 @@
               aria-label="Tabuleiro com os passos em ordem"
             >
               <ol class="tabuleiro-grade"></ol>
+              <!-- resultado do "Verificar" (jogo.js) -->
+              <p class="verificacao" role="status" hidden></p>
             </section>
             <!-- Bandeja: as cartas entram embaralhadas (montada pelo jogo.js) -->
             <section class="bandeja" aria-label="Cartas ainda não usadas">
@@ -345,6 +347,14 @@
                 hidden
               >
                 Ver montagem
+              </button>
+              <button
+                class="btn green"
+                id="btn-verificar"
+                type="button"
+                disabled
+              >
+                Verificar
               </button>
               <button class="chip" id="btn-dica" type="button">
                 <span class="dica-icone"

@@ -24,7 +24,10 @@
             Sons: ligado
           </button>
           <button class="btn ghost" id="bHow">Como jogar</button>
-          <button class="btn ghost small" id="bProf">Área do professor</button>
+          <!-- Área do professor: fora do jogo por enquanto (editor.html continua no projeto) -->
+          <button class="btn ghost small" id="bProf" hidden>
+            Área do professor
+          </button>
         </div>
       </section>
 
@@ -93,7 +96,15 @@
             <b class="gStars">0</b></span
           >
         </header>
-        <div class="hub-grid" id="calls"></div>
+        <!-- mapa da cidade: cada lugar abre os chamados do seu cliente -->
+        <div
+          class="mapa"
+          id="mapa"
+          role="group"
+          aria-label="Mapa da cidade"
+        ></div>
+        <!-- lista de chamados: usada na seção "Em progresso" -->
+        <div class="hub-grid" id="calls" hidden></div>
         <aside class="side">
           <div class="guide">
             <div class="face"><img src="img/guide.png" alt="" /></div>
@@ -155,6 +166,8 @@
             aria-label="Tabuleiro com os passos em ordem"
           >
             <ol class="tabuleiro-grade"></ol>
+            <!-- resultado do "Verificar" (jogo.js) -->
+            <p class="verificacao" role="status" hidden></p>
           </section>
           <!-- Bandeja: as cartas entram embaralhadas (montada pelo jogo.js) -->
           <section class="bandeja" aria-label="Cartas ainda não usadas">
@@ -193,6 +206,9 @@
               hidden
             >
               Ver montagem
+            </button>
+            <button class="btn green" id="btn-verificar" type="button" disabled>
+              Verificar
             </button>
             <button class="chip" id="btn-dica" type="button">
               <span class="dica-icone"
@@ -356,6 +372,19 @@
         </div>
       </section>
 
+      <div class="modal" id="local">
+        <div class="panel local-painel">
+          <div class="local-cabeca">
+            <img class="local-rosto" alt="" />
+            <h2 class="local-nome"></h2>
+          </div>
+          <div class="local-chamados"></div>
+          <button class="btn ghost local-fechar" type="button">
+            Voltar ao mapa
+          </button>
+        </div>
+      </div>
+
       <div class="modal" id="again">
         <div class="panel">
           <h2>Recomeçar do zero?</h2>
@@ -484,8 +513,10 @@
           <p>
             1. Escolha um chamado na central.<br />2. Arraste as cartas para os
             espaços numerados — ou toque na carta e depois no espaço.<br />3.
-            Errou? O robô-guia explica na hora. É só mover de novo!<br />4.
-            Quanto menos erros, mais estrelas!
+            Com tudo no lugar, toque em <b>Verificar</b>. Se algo estiver fora
+            de ordem, mova de novo — ou peça uma <b>dica</b>: o Robô-guia
+            explica o que está errado.<br />4. Quanto menos erros, mais
+            estrelas!
           </p>
           <button class="btn" id="bHowClose">Entendi</button>
         </div>
