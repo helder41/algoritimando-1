@@ -2879,3 +2879,82 @@ body.arrastando * {
 #bEmProgresso[hidden] {
   display: none;
 }
+
+/* ===== mapa em tela cheia (PC): as informações ficam sobre o mapa ===== */
+@media not (max-aspect-ratio: 4/5) {
+  #hub:not(.em-progresso) .mapa {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  /* uma sombra suave em cima e embaixo deixa o topo e os cartões legíveis */
+  #hub:not(.em-progresso) .mapa::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(30, 20, 40, 0.35), transparent 16%),
+      linear-gradient(0deg, rgba(30, 20, 40, 0.35), transparent 22%);
+  }
+  #hub:not(.em-progresso) .top {
+    z-index: 2;
+  }
+  #hub:not(.em-progresso) .lugar {
+    z-index: 1;
+  }
+  #hub:not(.em-progresso) .lugar-rosto {
+    width: 7.4cqw;
+    height: 7.4cqw;
+  }
+  #hub:not(.em-progresso) .lugar-nome {
+    font-size: max(1.5cqw, 11px);
+  }
+  /* robô-guia embaixo à esquerda, progresso embaixo à direita */
+  #hub:not(.em-progresso) .side {
+    z-index: 2;
+    top: auto;
+    left: 2cqw;
+    right: 2cqw;
+    bottom: 2cqw;
+    width: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+  }
+  #hub:not(.em-progresso) .side > * {
+    pointer-events: auto;
+  }
+  #hub:not(.em-progresso) .guide {
+    box-shadow: 0 0.5cqw 1.4cqw rgba(0, 0, 0, 0.3);
+  }
+  #hub:not(.em-progresso) .side > .guide:not(.prog) {
+    display: grid;
+    grid-template-columns: 5.6cqw minmax(0, 1fr);
+    column-gap: 1.2cqw;
+    align-items: center;
+    text-align: left;
+    width: 32cqw;
+    padding: 1cqw 1.4cqw;
+  }
+  #hub:not(.em-progresso) .side > .guide:not(.prog) .face {
+    grid-row: 1 / 3;
+    width: 5.6cqw;
+    height: 5.6cqw;
+    margin: 0;
+  }
+  #hub:not(.em-progresso) .prog {
+    width: 18cqw;
+    padding: 1cqw 1.4cqw;
+  }
+  #hub:not(.em-progresso) .prog strong {
+    font-size: max(2.4cqw, 14px);
+    margin: 0.2cqw 0;
+  }
+}
