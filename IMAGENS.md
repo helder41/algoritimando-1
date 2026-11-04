@@ -6,7 +6,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-Faltam 8 de 38 (sanduíche, robô e mochila estão completos; faltam as abelhas).
+Todas as 38 estão prontas.
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -61,18 +61,18 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
-| `abelhas-01.png` | abelha voando até a flor | Voe até a flor. | 1, 2, 3, 4 |
-| `abelhas-02.png` | abelha sugando o néctar da flor | Colete o néctar da flor. | 1, 2, 3, 4 |
-| `abelhas-03.png` | abelha voltando para a colmeia | Leve o néctar para a colmeia. / Leve tudo para a colmeia. | 1, 2, 3, 4 |
-| `abelhas-04.png` | abelha saindo da colmeia | Saia da colmeia. | 2, 3, 4 |
-| `abelhas-05.png` | pólen amarelo nas patinhas da abelha | Junte o pólen nas patinhas. | 2, 3, 4 |
-| `abelhas-06.png` | abelha procurando uma flor aberta | Procure uma flor aberta. | 3, 4 |
-| `abelhas-07.png` | néctar entrando no favo | Guarde o néctar no favo. | 4 |
-| `abelhas-08.png` | favo fechado com cera | Feche o favo com cera. | 4 |
+| `abelhas-01.png` (já existe) | abelha voando até a flor | Voe até a flor. | 1, 2, 3, 4 |
+| `abelhas-02.png` (já existe) | abelha sugando o néctar da flor | Colete o néctar da flor. | 1, 2, 3, 4 |
+| `abelhas-03.png` (já existe) | abelha voltando para a colmeia | Leve o néctar para a colmeia. / Leve tudo para a colmeia. | 1, 2, 3, 4 |
+| `abelhas-04.png` (já existe) | abelha saindo da colmeia | Saia da colmeia. | 2, 3, 4 |
+| `abelhas-05.png` (já existe) | pólen amarelo nas patinhas da abelha | Junte o pólen nas patinhas. | 2, 3, 4 |
+| `abelhas-06.png` (já existe) | abelha procurando uma flor aberta | Procure uma flor aberta. | 3, 4 |
+| `abelhas-07.png` (já existe) | néctar entrando no favo | Guarde o néctar no favo. | 4 |
+| `abelhas-08.png` (já existe) | favo fechado com cera | Feche o favo com cera. | 4 |
 
 ## 2. Imagens das lições (`img/licoes/`)
 
-Faltam 18 de 18.
+Todas as 18 estão prontas, em `img/licoes/` como JPG (1200 × 896).
 
 Na tela de "Parabéns! Você completou o nível!", a criança vê só a pergunta e esta imagem. O texto da lição fica atrás do botão "Para o professor: ler a lição", para ele conduzir a conversa. Enquanto a imagem não existe, aparece o quadro "ilustração da lição".
 
@@ -124,31 +124,11 @@ A montagem é a imagem que se forma ao lado do tabuleiro conforme a criança col
 
 ### Pilha: Fazer um sanduíche
 
-Hoje são **recortes provisórios** desenhados em código (SVG). Para trocar, salve um PNG com fundo transparente, **todos com a mesma largura** (por exemplo 600 px), vistos de lado, e troque a extensão no `js/situacoes.js` (`.svg` → `.png`).
-
-| Arquivo | O que desenhar | Passos que usam |
-|---|---|---|
-| `sanduiche-pao.svg` | fatia de pão de baixo, vista de lado | Pegue duas fatias de pão. / Abra o saco e tire duas fatias. / Tire duas fatias do saco. |
-| `sanduiche-manteiga.svg` | camada fina de manteiga | Passe (espalhe) a manteiga nas fatias. |
-| `sanduiche-queijo.svg` | fatia de queijo, com as pontas caindo | Coloque o queijo no pão. / Coloque o queijo na fatia. |
-| `sanduiche-presunto.svg` | fatia de presunto ondulada | Coloque o presunto no pão. |
-| `sanduiche-pao-cima.svg` | fatia de pão de cima, arredondada | Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias. |
+**Pronto.** As 5 peças (`sanduiche-pao`, `sanduiche-manteiga`, `sanduiche-queijo`, `sanduiche-presunto`, `sanduiche-pao-cima`) são PNG transparentes, vistas de lado, todas com 600 px de largura.
 
 ### Cena: Arrumar a mochila
 
-Também são **recortes provisórios** em SVG. Na cena, cada peça é uma imagem do **mesmo tamanho do fundo** (4:3, por exemplo 1200 × 900), com fundo transparente e a peça já desenhada **no lugar dela**: o estojo à esquerda, a mochila à direita. As peças vão sendo desenhadas umas por cima das outras, na ordem dos espaços.
-
-| Arquivo | O que desenhar | Passos que usam |
-|---|---|---|
-| `mochila-cena-fechada.svg` | fundo: estojo aberto e vazio na mesa, mochila fechada | níveis 3 e 4 (fundo) |
-| `mochila-cena-aberta.svg` | fundo: estojo aberto e vazio, mochila já aberta | níveis 1 e 2 (fundo) |
-| `mochila-lapis.svg` | lápis entrando no estojo | Guarde o lápis no estojo. |
-| `mochila-borracha.svg` | borracha entrando no estojo | Guarde a borracha no estojo. |
-| `mochila-estojo-fechado.svg` | estojo fechado, cobrindo o que está dentro | Feche o estojo. |
-| `mochila-abrir.svg` | mochila aberta (cobre a fechada) | Abra o zíper da mochila. |
-| `mochila-estojo-dentro.svg` | estojo aparecendo na boca da mochila, e a mesa vazia | Guarde o estojo na mochila. |
-| `mochila-caderno.svg` | caderno aparecendo na boca da mochila | Guarde o caderno na mochila. |
-| `mochila-fechar.svg` | mochila fechada (cobre o que está dentro) | Feche o zíper da mochila. |
+**Pronto.** As 9 imagens foram montadas a partir das ilustrações das cartas da mochila (o estojo, o lápis, a borracha, a mochila e o caderno são recortados delas e colocados sempre no mesmo lugar): `mochila-cena-fechada`, `mochila-cena-aberta`, `mochila-lapis`, `mochila-borracha`, `mochila-estojo-fechado`, `mochila-abrir`, `mochila-estojo-dentro`, `mochila-caderno` e `mochila-fechar` (PNG, 1600 × 1200, fundo transparente).
 
 ### Tirinha: robô e abelhas
 

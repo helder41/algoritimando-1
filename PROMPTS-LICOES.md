@@ -15,7 +15,7 @@
 
 ## Fazer um sanduíche
 
-**Anexe como referência:** `img/who1.png` (o menino), `img/guide.png` (Robô-guia) e as cartas `img/passos/sanduiche-01.png`, `-02.png`, `-03.png` e `-04.png` (pão, queijo, presunto, sanduíche).
+**Anexe como referência:** `img/cliente0.png` (o menino de avental), `img/guide.png` (Robô-guia) e as cartas `img/passos/sanduiche-01.png`, `-02.png`, `-03.png` e `-04.png` (pão, queijo, presunto, sanduíche).
 
 ### `sanduiche-1.png` — Nível 1: Por que a ordem dos passos importa?
 
@@ -44,9 +44,11 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 ### `sanduiche-4.png` — Nível 4: E se quem monta o sanduíche for um computador?
 
 ```
-Scene: Two side-by-side panels separated by a thin vertical gap: left panel with a small red X in its top corner, right panel with a small green check mark in its top corner. Left: a friend (the boy from the reference) understanding a vague gesture and making the sandwich correctly by guessing. Right: a simple boxy computer-like robot with a screen face holding a bread bag still closed, confused, with a question mark above its head, waiting for a clear instruction. Use simple icons, no text.
+Scene: Two side-by-side panels separated by a thin vertical gap. NO red X and NO green check mark anywhere.
+Left panel: the curly-haired boy from the reference (apron, striped shirt) at a table, happily making a sandwich after a friend's quick vague hand wave — he guesses all the small steps by himself: an open bread bag and the butter tub open beside him. A small soft thought bubble above him shows a tiny lightbulb (no text).
+Right panel: a simple boxy computer-like robot with a screen face (different from the Robô-guia), standing still in front of a CLOSED bread bag and a CLOSED butter tub, arms down, a big question mark above its head, waiting. In front of it, an empty instruction card with only three small blank lines (no text), showing it needs clear instructions to do anything.
 Attached images: character and object references.
-Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: a green check mark, a red X, simple arrows, a small dotted line. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: a question mark, a small lightbulb, simple arrows. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
 ```
 
 ### `sanduiche-5.png` — Nível 5: Esse passo a passo tem um nome?
@@ -59,7 +61,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## O robô e o cubo
 
-**Anexe como referência:** `img/who2.png` (o robô laranja), `img/guide.png` (Robô-guia), `img/level2.jpg` (cubo e plataforma) e as cartas `img/passos/robo-01.png` a `robo-09.png`.
+**Anexe como referência:** `img/cliente1.png` (o robô laranja), `img/guide.png` (Robô-guia), `img/level2.jpg` (cubo e plataforma) e as cartas `img/passos/robo-01.png` a `robo-09.png`.
 
 ### `robo-1.png` — Nível 1: Como um robô entende um pedido?
 
@@ -103,7 +105,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Arrumar a mochila
 
-**Anexe como referência:** `img/who3.png` (a menina), `img/guide.png` (Robô-guia) e as cartas `img/passos/mochila-01.png` a `mochila-08.png` (estojo lilás, mochila azul e amarela).
+**Anexe como referência:** `img/cliente2.png` (a menina), `img/guide.png` (Robô-guia) e as cartas `img/passos/mochila-01.png` a `mochila-08.png` (estojo lilás, mochila azul e amarela).
 
 ### `mochila-1.png` — Nível 1: Por que a ordem dos passos importa?
 
@@ -139,7 +141,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Ajudar as abelhas
 
-**Anexe como referência:** `img/who4.png` (a abelha), `img/guide.png` (Robô-guia) e `img/level4.jpg` (colmeia, girassóis e favo).
+**Anexe como referência:** `img/cliente3.png` (a abelha), `img/guide.png` (Robô-guia) e `img/level4.jpg` (colmeia, girassóis e favo).
 
 ### `abelhas-1.png` — Nível 1: Por que a ordem dos passos importa?
 
