@@ -43,3 +43,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 ## Imagens que ainda faltam
 
 As cartas mostram o quadro "ilustração do passo" enquanto a ilustração não existe. A lista completa do que falta desenhar, com o nome de cada arquivo, está em [IMAGENS.md](IMAGENS.md).
+
+## Versão dos arquivos (cache)
+
+Os `.js` e `.css` são carregados com `?v=AAAAMMDDHHMM` no `index.html` e no `editor.html`. Ao publicar uma mudança, troque esse número: assim o navegador (principalmente no celular) baixa os arquivos novos em vez de usar os guardados.
