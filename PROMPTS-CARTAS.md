@@ -1,6 +1,6 @@
 # Prompts das ilustrações das cartas
 
-37 imagens para `img/passos/` (a do presunto, `sanduiche-03.png`, já existe e é a referência de estilo). Cada prompt abaixo já traz o estilo, o tamanho e as regras: é só copiar o bloco inteiro.
+37 imagens para `img/passos/` (a do presunto, `sanduiche-03.webp`, já existe e é a referência de estilo). Cada prompt abaixo já traz o estilo, o tamanho e as regras: é só copiar o bloco inteiro.
 
 ## Antes de começar
 
@@ -26,11 +26,11 @@
 
 **Pronto:** as 13 cartas já estão no jogo.
 
-**Anexe como referência:** `img/pic1.jpg` (o sanduíche da central: pão, presunto e queijo, sem alface) e `img/passos/sanduiche-03.png` (o presunto, já pronto).
+**Anexe como referência:** `img/pic1.webp` (o sanduíche da central: pão, presunto e queijo, sem alface) e `img/passos/sanduiche-03.webp` (o presunto, já pronto).
 
 **Consistência:** Mesmo pão, mesmo queijo e mesma manteiga em todas: pão de forma branco com casca dourada, queijo amarelo quadrado, manteiga amarelo-clara. Sem alface nem tomate (o jogo não tem esses passos).
 
-### `sanduiche-01.png` — Pegue duas fatias de pão.
+### `sanduiche-01.webp` — Pegue duas fatias de pão.
 
 ```
 Subject: Two plain slices of white sandwich bread with golden crust, lying flat side by side, seen slightly from above. Nothing on them: no butter, no filling. Objects have no faces.
@@ -38,7 +38,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-02.png` — Coloque o queijo no pão. / Coloque o queijo na fatia.
+### `sanduiche-02.webp` — Coloque o queijo no pão. / Coloque o queijo na fatia.
 
 ```
 Subject: One slice of white sandwich bread lying flat, with one square slice of yellow cheese placed on top, cheese corners drooping slightly over the edges. Open-faced: no top slice. Objects have no faces.
@@ -46,7 +46,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-04.png` — Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias.
+### `sanduiche-04.webp` — Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias.
 
 ```
 Subject: A closed sandwich made of two slices of white bread stacked, seen slightly from above and the front, the top slice coming down onto the bottom one with two small motion lines. Only a thin yellow edge of filling peeks out. No lettuce, no tomato. Objects have no faces.
@@ -54,7 +54,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-05.png` — Pegue o saco de pão.
+### `sanduiche-05.webp` — Pegue o saco de pão.
 
 ```
 Subject: A closed transparent plastic bag of sliced white bread (the loaf visible through the plastic), closed with a small twist tie on top. Objects have no faces.
@@ -62,7 +62,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-06.png` — Pegue a manteiga. / Pegue o pote de manteiga.
+### `sanduiche-06.webp` — Pegue a manteiga. / Pegue o pote de manteiga.
 
 ```
 Subject: A small round tub of butter with its lid closed, pale yellow tub with a simple butter-colored label with no text. Objects have no faces.
@@ -70,7 +70,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-07.png` — Abra o saco e tire duas fatias. / Abra o saco de pão.
+### `sanduiche-07.webp` — Abra o saco e tire duas fatias. / Abra o saco de pão.
 
 ```
 Subject: The same transparent bag of sliced bread, now open: the twist tie removed and lying beside it, the opening of the bag folded back, the top slices visible at the opening. Objects have no faces.
@@ -78,7 +78,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-08.png` — Tire duas fatias do saco.
+### `sanduiche-08.webp` — Tire duas fatias do saco.
 
 ```
 Subject: Two slices of white bread sliding out of the open transparent bread bag, with a small curved motion arrow showing them coming out. Objects have no faces.
@@ -86,7 +86,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-09.png` — Passe a manteiga nas fatias. / Espalhe a manteiga nas fatias.
+### `sanduiche-09.webp` — Passe a manteiga nas fatias. / Espalhe a manteiga nas fatias.
 
 ```
 Subject: One slice of white bread lying flat with a smooth glossy layer of pale yellow butter spread on it, and a children's round-tipped butter knife with a little butter on it resting beside the slice. Objects have no faces.
@@ -94,7 +94,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-10.png` — Pegue uma fatia de queijo.
+### `sanduiche-10.webp` — Pegue uma fatia de queijo.
 
 ```
 Subject: One single square slice of yellow cheese being held up by one small cartoon child's hand (simple rounded hand, warm medium-brown skin, only the hand and wrist visible). Objects have no faces.
@@ -102,7 +102,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-11.png` — Pegue uma faca sem ponta.
+### `sanduiche-11.webp` — Pegue uma faca sem ponta.
 
 ```
 Subject: A children's butter knife with a clearly rounded blunt tip (no point at all) and a chunky pastel blue plastic handle, lying diagonally. Objects have no faces.
@@ -110,7 +110,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-12.png` — Abra o pote de manteiga.
+### `sanduiche-12.webp` — Abra o pote de manteiga.
 
 ```
 Subject: The same small round butter tub with its lid lifted off and tilted above it, showing the smooth pale yellow butter inside, with two small motion lines on the lid. Objects have no faces.
@@ -118,7 +118,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-13.png` — Guarde tudo e deixe a mesa limpa.
+### `sanduiche-13.webp` — Guarde tudo e deixe a mesa limpa.
 
 ```
 Subject: A small clean wooden tabletop, shining, with a few sparkle stars on its surface and a neatly folded light blue cleaning cloth on it. Nothing else on the table. Objects have no faces.
@@ -130,11 +130,11 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 **Pronto:** as 9 cartas já estão no jogo.
 
-**Anexe como referência:** `img/cliente1.png` (o robô laranja) e `img/level2.jpg` (o cubo cinza e a plataforma redonda com luz verde, no balão de pensamento).
+**Anexe como referência:** `img/cliente1.webp` (o robô laranja) e `img/level2.webp` (o cubo cinza e a plataforma redonda com luz verde, no balão de pensamento).
 
 **Consistência:** Sempre o MESMO robô laranja quadrado, de rodinhas e com duas garras cinza, visto de lado. Sempre o mesmo cubo cinza-claro e a mesma plataforma redonda cinza com anel de luz verde. Personagem pode ter rosto (é o robô do jogo).
 
-### `robo-01.png` — Ande até o cubo.
+### `robo-01.webp` — Ande até o cubo.
 
 ```
 Subject: The orange boxy robot from the character reference, seen from the side, rolling on its wheels toward a light grey cube on the right, with speed lines behind the wheels. Its claws are empty and closed.
@@ -142,7 +142,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-02.png` — Pegue o cubo. / Feche a garra no cubo.
+### `robo-02.webp` — Pegue o cubo. / Feche a garra no cubo.
 
 ```
 Subject: The orange boxy robot from the character reference, close to a light grey cube, its two grey claws closing around the cube and holding it, with two small squeeze motion marks.
@@ -150,7 +150,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-03.png` — Coloque o cubo na plataforma.
+### `robo-03.webp` — Coloque o cubo na plataforma.
 
 ```
 Subject: The orange boxy robot from the character reference holding a light grey cube in its claws and lowering it onto a round grey platform with a glowing green ring, a small downward motion arrow.
@@ -158,7 +158,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-04.png` — Abra a garra.
+### `robo-04.webp` — Abra a garra.
 
 ```
 Subject: Close-up of the orange boxy robot from the character reference with both grey claws opened wide and empty, two small motion marks next to the claws. No cube in the picture.
@@ -166,7 +166,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-05.png` — Vire o robô para o cubo.
+### `robo-05.webp` — Vire o robô para o cubo.
 
 ```
 Subject: The orange boxy robot from the character reference turning in place, a simple curved arrow around its base showing the turn, now facing a light grey cube on the right. Claws empty.
@@ -174,7 +174,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-06.png` — Vire o robô para a plataforma.
+### `robo-06.webp` — Vire o robô para a plataforma.
 
 ```
 Subject: The orange boxy robot from the character reference holding a light grey cube in its claws, turning in place with a simple curved arrow around its base, now facing a round grey platform with a glowing green ring on the right.
@@ -182,7 +182,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-07.png` — Ande até a plataforma.
+### `robo-07.webp` — Ande até a plataforma.
 
 ```
 Subject: The orange boxy robot from the character reference holding a light grey cube in its claws, rolling toward a round grey platform with a glowing green ring on the right, speed lines behind the wheels.
@@ -190,7 +190,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-08.png` — Abra a garra em cima da plataforma.
+### `robo-08.webp` — Abra a garra em cima da plataforma.
 
 ```
 Subject: The orange boxy robot from the character reference right above a round grey platform with a glowing green ring, its claws opening, the light grey cube dropping onto the platform with a small downward motion line.
@@ -198,7 +198,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `robo-09.png` — Aperte o botão de ligar.
+### `robo-09.webp` — Aperte o botão de ligar.
 
 ```
 Subject: The orange boxy robot from the character reference with its face screen dark (switched off), and a big round green power button on its side being pressed, with small glow lines around the button. No hand, no person.
@@ -210,11 +210,11 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 **Pronto:** as 8 cartas já estão no jogo.
 
-**Anexe como referência:** `img/pic3.jpg` (a mochila azul e amarela da central) e, só para a carta 08, `img/cliente2.png` (a menina do chamado).
+**Anexe como referência:** `img/pic3.webp` (a mochila azul e amarela da central) e, só para a carta 08, `img/cliente2.webp` (a menina do chamado).
 
 **Consistência:** Sempre a MESMA mochila azul com bolso amarelo, o mesmo estojo (de pano lilás com zíper), o mesmo lápis amarelo, a mesma borracha rosa e o mesmo caderno azul. Objetos sem rosto.
 
-### `mochila-01.png` — Guarde o lápis no estojo.
+### `mochila-01.webp` — Guarde o lápis no estojo.
 
 ```
 Subject: A yellow pencil going into an open soft lilac fabric pencil case with a zipper, a small curved motion arrow showing the pencil going in. Objects have no faces.
@@ -222,7 +222,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `mochila-02.png` — Guarde a borracha no estojo.
+### `mochila-02.webp` — Guarde a borracha no estojo.
 
 ```
 Subject: A pink eraser going into an open soft lilac fabric pencil case with a zipper, a small curved motion arrow showing the eraser going in. Objects have no faces.
@@ -230,7 +230,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `mochila-03.png` — Feche o estojo.
+### `mochila-03.webp` — Feche o estojo.
 
 ```
 Subject: A soft lilac fabric pencil case with its zipper being closed: the zipper pull halfway along, a small arrow showing the closing direction. Objects have no faces.
@@ -238,7 +238,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `mochila-04.png` — Guarde o estojo na mochila.
+### `mochila-04.webp` — Guarde o estojo na mochila.
 
 ```
 Subject: A closed soft lilac pencil case going into the open main compartment of the blue backpack with a yellow front pocket (same backpack as the reference), with a small curved motion arrow. Objects have no faces.
@@ -246,7 +246,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `mochila-05.png` — Feche o zíper da mochila.
+### `mochila-05.webp` — Feche o zíper da mochila.
 
 ```
 Subject: The blue backpack with a yellow front pocket (same backpack as the reference), its main zipper being closed: the zipper pull halfway along the top, a small arrow showing the closing direction. Objects have no faces.
@@ -254,7 +254,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `mochila-06.png` — Abra o zíper da mochila.
+### `mochila-06.webp` — Abra o zíper da mochila.
 
 ```
 Subject: The blue backpack with a yellow front pocket (same backpack as the reference), its main zipper being opened: the top opening wide, the inside empty and darker, a small arrow showing the opening direction. Objects have no faces.
@@ -262,7 +262,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `mochila-07.png` — Guarde o caderno na mochila.
+### `mochila-07.webp` — Guarde o caderno na mochila.
 
 ```
 Subject: A blue spiral notebook going into the open main compartment of the blue backpack with a yellow front pocket (same backpack as the reference), with a small curved motion arrow. Objects have no faces.
@@ -270,7 +270,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `mochila-08.png` — Coloque a mochila nas costas.
+### `mochila-08.webp` — Coloque a mochila nas costas.
 
 ```
 Subject: The girl from the character reference seen from behind, wearing the blue backpack with a yellow front pocket on both shoulders, small happy motion lines. Full body, standing.
@@ -282,11 +282,11 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 **Pronto:** as 8 cartas já estão no jogo.
 
-**Anexe como referência:** `img/cliente3.png` (a abelha) e `img/level4.jpg` (colmeia pendurada, girassóis e o favo no balão).
+**Anexe como referência:** `img/cliente3.webp` (a abelha) e `img/level4.webp` (colmeia pendurada, girassóis e o favo no balão).
 
 **Consistência:** Sempre a MESMA abelha gordinha e peluda com a cestinha, o mesmo girassol, a mesma colmeia dourada pendurada e o mesmo favo de hexágonos. A abelha tem rosto (é personagem); flores e objetos não.
 
-### `abelhas-01.png` — Voe até a flor.
+### `abelhas-01.webp` — Voe até a flor.
 
 ```
 Subject: The fluffy bumblebee from the character reference flying toward an open yellow sunflower on the right, with a dotted curved flight path behind it.
@@ -294,7 +294,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `abelhas-02.png` — Colete o néctar da flor.
+### `abelhas-02.webp` — Colete o néctar da flor.
 
 ```
 Subject: The fluffy bumblebee from the character reference sitting on the center of an open yellow sunflower, sipping nectar, with two tiny shiny golden droplets.
@@ -302,7 +302,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `abelhas-03.png` — Leve o néctar para a colmeia. / Leve tudo para a colmeia.
+### `abelhas-03.webp` — Leve o néctar para a colmeia. / Leve tudo para a colmeia.
 
 ```
 Subject: The fluffy bumblebee from the character reference flying toward a golden hanging beehive on the right, carrying its little basket with a shiny golden nectar droplet in it, dotted flight path behind.
@@ -310,7 +310,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `abelhas-04.png` — Saia da colmeia.
+### `abelhas-04.webp` — Saia da colmeia.
 
 ```
 Subject: The fluffy bumblebee from the character reference flying out of the round entrance of a golden hanging beehive, with small motion lines.
@@ -318,7 +318,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `abelhas-05.png` — Junte o pólen nas patinhas.
+### `abelhas-05.webp` — Junte o pólen nas patinhas.
 
 ```
 Subject: Close-up of the fluffy bumblebee from the character reference with two big round yellow pollen balls stuck on its back legs, tiny pollen dust sparkles around.
@@ -326,7 +326,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `abelhas-06.png` — Procure uma flor aberta.
+### `abelhas-06.webp` — Procure uma flor aberta.
 
 ```
 Subject: The fluffy bumblebee from the character reference hovering and looking around with one little hand above its eyes, between a closed green flower bud on the left and an open yellow sunflower on the right.
@@ -334,7 +334,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `abelhas-07.png` — Guarde o néctar no favo.
+### `abelhas-07.webp` — Guarde o néctar no favo.
 
 ```
 Subject: A piece of golden hexagon honeycomb, the fluffy bumblebee from the character reference pouring golden nectar from its little basket into one empty hexagon cell.
@@ -342,7 +342,7 @@ Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `abelhas-08.png` — Feche o favo com cera.
+### `abelhas-08.webp` — Feche o favo com cera.
 
 ```
 Subject: A piece of golden hexagon honeycomb full of honey, the fluffy bumblebee from the character reference pressing a pale beige wax cap over one cell to close it, small sparkles.

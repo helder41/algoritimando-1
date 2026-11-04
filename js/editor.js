@@ -97,7 +97,9 @@
 
   // arquivo aberto: descobre o cenário pelo fundo que ele traz
   function cenarioDoFundo(fundo) {
-    const c = CENARIOS.find(x => x.fundo === fundo);
+    // arquivos antigos guardam o fundo em .jpg; hoje é .webp
+    const sem = f => String(f || '').replace(/\.(webp|png|jpe?g)$/, '');
+    const c = CENARIOS.find(x => sem(x.fundo) === sem(fundo));
     return c ? c.id : '';
   }
 
