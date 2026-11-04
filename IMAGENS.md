@@ -76,6 +76,8 @@ Faltam 18 de 18.
 
 Na tela de "Parabéns! Você completou o nível!", a criança vê só a pergunta e esta imagem. O texto da lição fica atrás do botão "Para o professor: ler a lição", para ele conduzir a conversa. Enquanto a imagem não existe, aparece o quadro "ilustração da lição".
 
+Os prompts prontos para gerar cada uma estão em [PROMPTS-LICOES.md](PROMPTS-LICOES.md).
+
 Formato sugerido: PNG ou JPG em 4:3 (por exemplo 1200 × 900), mesmo estilo das outras ilustrações. A imagem precisa contar a ideia da coluna da direita sem palavras: de preferência mostrando o certo e o errado lado a lado (por exemplo, o sanduíche com o queijo para fora e o sanduíche certo).
 
 ### Fazer um sanduíche (Cozinha)
