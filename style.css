@@ -592,7 +592,7 @@ h2 {
   clip: rect(0 0 0 0);
 }
 #menu {
-  background: url(img/menu.jpg) center/cover;
+  background: url(img/menu.webp) center/cover;
 }
 #menu::before {
   display: none;
@@ -692,7 +692,7 @@ h2 {
 #final {
   background:
     linear-gradient(rgba(58, 40, 84, 0.5), rgba(58, 40, 84, 0.5)),
-    url(img/story1.jpg) center/cover;
+    url(img/story1.webp) center/cover;
 }
 .final-panel {
   align-self: start;
@@ -2695,7 +2695,7 @@ body.arrastando * {
   border-radius: 1.6cqw;
   border: 0.5cqw solid var(--brown);
   box-shadow: 0 0.6cqw 0 #5b4326;
-  background: url(img/story1.jpg) center / cover;
+  background: url(img/story1.webp) center / cover;
   overflow: hidden;
 }
 .mapa[hidden] {
