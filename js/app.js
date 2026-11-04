@@ -35,11 +35,11 @@
   window.irPara = irPara;
 
   /* Os 6 agentes: o número é o P.avatar. Cada um tem o retrato
-     (img/avN.png), a cena de promoção (img/promoN.jpg) e o corpo
+     (img/avN.webp), a cena de promoção (img/promoN.webp) e o corpo
      inteiro recortado para a tela final. */
   const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino'];
 
-  const avatarSrc = () => `img/av${P.avatar}.png`;
+  const avatarSrc = () => `img/av${P.avatar}.webp`;
 
   // topo de todas as telas: rosto + nome do agente e total de estrelas
   function atualizarTopo() {
@@ -101,7 +101,7 @@
     qi = i;
     // a arte aparece inteira; o fundo desfocado (a mesma imagem)
     // preenche a sobra, seja qual for o formato da tela
-    $('#story').style.setProperty('--arte', `url(img/story${i + 1}.jpg)`);
+    $('#story').style.setProperty('--arte', `url(img/story${i + 1}.webp)`);
     $('#sceneText').textContent = ABERTURA[i];
     $('#dots').innerHTML = ABERTURA.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
     const ultimo = i === ABERTURA.length - 1;
@@ -158,16 +158,16 @@
   const chaveDe = s => (emProgresso ? 'prof:em-progresso:' + s.id : s.id);
 
   /* ---------------- mapa da cidade ----------------
-     A central é o mapa da abertura (story1.jpg). Cada lugar é a casa
+     A central é o mapa da abertura (story1.webp). Cada lugar é a casa
      de um cliente; tocar nele abre os chamados daquele lugar (campo
      "area" da situação). Chamados novos de um cliente — escovar os
      dentes depois do sanduíche — entram no mesmo lugar. As posições
      são em % da imagem, em cima de cada construção. */
   const LUGARES = [
-    { id: 'casa',    nome: 'Casa',    rosto: 'img/who1.png', x: 31, y: 30 },
-    { id: 'escola',  nome: 'Escola',  rosto: 'img/who3.png', x: 68, y: 33 },
-    { id: 'fabrica', nome: 'Fábrica', rosto: 'img/who2.png', x: 38, y: 66 },
-    { id: 'jardim',  nome: 'Jardim',  rosto: 'img/who4.png', x: 72, y: 74 },
+    { id: 'casa',    nome: 'Casa',    rosto: 'img/who1.webp', x: 31, y: 30 },
+    { id: 'escola',  nome: 'Escola',  rosto: 'img/who3.webp', x: 68, y: 33 },
+    { id: 'fabrica', nome: 'Fábrica', rosto: 'img/who2.webp', x: 38, y: 66 },
+    { id: 'jardim',  nome: 'Jardim',  rosto: 'img/who4.webp', x: 72, y: 74 },
   ];
   const doLugar = id => SITUACOES.filter(s => s.area === id);
 
@@ -223,7 +223,7 @@
         <div><b></b><small></small></div>
         <button class="btn"></button>
       </div>`;
-    cartao.querySelector('.who img').src = s.cliente || 'img/guide.png';
+    cartao.querySelector('.who img').src = s.cliente || 'img/guide.webp';
     if (s.cena) cartao.querySelector('.pic img').src = s.cena;
     else {
       // protótipo ainda sem ilustração: o quadro tracejado do jogo
@@ -329,14 +329,14 @@
 
   function promocao() {
     atualizarTopo();
-    $('#promo').style.setProperty('--img', `url(img/promo${P.avatar}.jpg)`);
+    $('#promo').style.setProperty('--img', `url(img/promo${P.avatar}.webp)`);
     irPara('promo');
     Som.vitoria();
   }
 
   $('#bPromoNext').onclick = () => {
     $('#finName').textContent = P.nome;
-    $('#finAg').src = `img/agente-${CORPO[+P.avatar]}.png`;
+    $('#finAg').src = `img/agente-${CORPO[+P.avatar]}.webp`;
     $('#finStarsN').textContent = Progresso.total();
     irPara('final');
   };

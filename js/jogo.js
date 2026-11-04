@@ -62,9 +62,9 @@
 
   // expressões do robô-guia: tudo bem, problema na tela, dica
   const ROSTO = {
-    normal: 'img/guide.png',
-    erro:   'img/guide-triste.png',
-    dica:   'img/guide-feliz.png',
+    normal: 'img/guide.webp',
+    erro:   'img/guide-triste.webp',
+    dica:   'img/guide-feliz.webp',
   };
 
   /* A fala do robô-guia sai dos DADOS da fase (campo "mascote"),

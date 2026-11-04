@@ -143,13 +143,13 @@
   }
 
   /* ---------------- estrelas (de 0 a 3) ----------------
-     A mesma estrela do placar (img/ui/estrela.png); as que faltam
+     A mesma estrela do placar (img/ui/estrela.webp); as que faltam
      aparecem apagadas. Só desenho: quem usa diz o número no
      aria-label do botão. */
   function estrelasHTML(ganhas, total = 3) {
     let html = '';
     for (let i = 0; i < total; i++) {
-      html += `<img class="estrela${i < ganhas ? '' : ' apagada'}" src="img/ui/estrela.png" alt="">`;
+      html += `<img class="estrela${i < ganhas ? '' : ' apagada'}" src="img/ui/estrela.webp" alt="">`;
     }
     return html;
   }
