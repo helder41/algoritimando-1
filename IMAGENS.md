@@ -6,7 +6,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-Faltam 16 de 38 (sanduíche e robô estão completos).
+Faltam 8 de 38 (sanduíche, robô e mochila estão completos; faltam as abelhas).
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -48,14 +48,14 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
-| `mochila-01.png` | lápis no estojo | Guarde o lápis no estojo. | 1, 2, 3, 4 |
-| `mochila-02.png` | borracha no estojo | Guarde a borracha no estojo. | 2, 3, 4 |
-| `mochila-03.png` | estojo fechado | Feche o estojo. | 1, 2, 3, 4 |
-| `mochila-04.png` | estojo entrando na mochila | Guarde o estojo na mochila. | 1, 2, 3, 4 |
-| `mochila-05.png` | zíper da mochila fechando | Feche o zíper da mochila. | 2, 3, 4 |
-| `mochila-06.png` | zíper da mochila abrindo | Abra o zíper da mochila. | 3, 4 |
-| `mochila-07.png` | caderno na mochila | Guarde o caderno na mochila. | 4 |
-| `mochila-08.png` | mochila nas costas | Coloque a mochila nas costas. | 4 |
+| `mochila-01.png` (já existe) | lápis no estojo | Guarde o lápis no estojo. | 1, 2, 3, 4 |
+| `mochila-02.png` (já existe) | borracha no estojo | Guarde a borracha no estojo. | 2, 3, 4 |
+| `mochila-03.png` (já existe) | estojo fechado | Feche o estojo. | 1, 2, 3, 4 |
+| `mochila-04.png` (já existe) | estojo entrando na mochila | Guarde o estojo na mochila. | 1, 2, 3, 4 |
+| `mochila-05.png` (já existe) | zíper da mochila fechando | Feche o zíper da mochila. | 2, 3, 4 |
+| `mochila-06.png` (já existe) | zíper da mochila abrindo | Abra o zíper da mochila. | 3, 4 |
+| `mochila-07.png` (já existe) | caderno na mochila | Guarde o caderno na mochila. | 4 |
+| `mochila-08.png` (já existe) | mochila nas costas | Coloque a mochila nas costas. | 4 |
 
 ### Ajudar as abelhas (Jardim)
 

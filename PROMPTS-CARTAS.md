@@ -208,6 +208,8 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ## Arrumar a mochila (Escola)
 
+**Pronto:** as 8 cartas já estão no jogo.
+
 **Anexe como referência:** `img/pic3.jpg` (a mochila azul e amarela da central) e, só para a carta 08, `img/who3.png` (a menina do chamado).
 
 **Consistência:** Sempre a MESMA mochila azul com bolso amarelo, o mesmo estojo (de pano lilás com zíper), o mesmo lápis amarelo, a mesma borracha rosa e o mesmo caderno azul. Objetos sem rosto.
