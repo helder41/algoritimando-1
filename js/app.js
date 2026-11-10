@@ -154,7 +154,11 @@
 
   /* ---------------- central de chamados ---------------- */
 
-  const concluidos = () => SITUACOES.filter(s => P.concluidos[s.id]).length;
+  /* A promoção exige só os chamados originais (SITUACOES_BASE). Os
+     novos (SITUACOES_NOVAS) aparecem no mapa e somam estrelas, mas
+     não entram nessa conta: ver o fim do situacoes.js. */
+  const feitosDe = lista => lista.filter(s => P.concluidos[s.id]).length;
+  const concluidos = () => feitosDe(SITUACOES_BASE);
 
   /* emProgresso = true mostra os protótipos (em-progresso.js) no
      lugar dos chamados. O progresso deles fica numa chave "prof:",
@@ -166,8 +170,8 @@
   /* ---------------- mapa da cidade ----------------
      A central é o mapa da abertura (story1.webp). Cada lugar é a casa
      de um cliente; tocar nele abre os chamados daquele lugar (campo
-     "area" da situação). Chamados novos de um cliente — escovar os
-     dentes depois do sanduíche — entram no mesmo lugar. As posições
+     "area" da situação). Chamados novos de um cliente — lavar as
+     mãos depois do sanduíche — entram no mesmo lugar. As posições
      são em % da imagem, em cima de cada construção. */
   const LUGARES = [
     { id: 'casa',    nome: 'Casa',    rosto: 'img/who1.webp', x: 31, y: 30 },
@@ -304,13 +308,19 @@
     }
 
     desenharMapa();
-    const n = concluidos(), total = SITUACOES.length;
+    // a barra conta os chamados da promoção; os novos têm a sua linha
+    const n = concluidos(), total = SITUACOES_BASE.length;
+    const novos = feitosDe(SITUACOES_NOVAS), totalNovos = SITUACOES_NOVAS.length;
+    const faltam = total - n, faltamNovos = totalNovos - novos;
     $('#bRestart').hidden = n < total;
     $('#progTxt').textContent = `${n} de ${total}`;
     $('#progBar').style.width = (n / total) * 100 + '%';
+    $('#progNovos').hidden = !totalNovos;
+    $('#progNovos').textContent = `Chamados novos: ${novos} de ${totalNovos}`;
     $('#hubMsg').textContent = mensagem ||
-      (n === 0 ? 'Toque num lugar do mapa para ver os chamados de lá.'
-        : n < total ? `Ótimo trabalho! Ainda faltam ${total - n} chamados.`
+      (n + novos === 0 ? 'Toque num lugar do mapa para ver os chamados de lá.'
+        : faltam > 0 ? `Ótimo trabalho! ${faltam === 1 ? 'Falta 1 chamado' : `Faltam ${faltam} chamados`} para a sua promoção.`
+        : faltamNovos > 0 ? `Você já é agente! Ainda ${faltamNovos === 1 ? 'tem 1 chamado novo' : `tem ${faltamNovos} chamados novos`} no mapa.`
         : 'Todos os chamados concluídos! Você pode jogar qualquer um de novo.');
     irPara('hub');
   }
@@ -322,7 +332,7 @@
       central(`Protótipo "${s.titulo}" concluído!`, true);
     } else if (!SITUACOES.includes(s)) {
       central(`Chamado do professor "${s.titulo}" concluído!`);
-    } else if (concluidos() === SITUACOES.length && !P.promovido) {
+    } else if (SITUACOES_BASE.includes(s) && concluidos() === SITUACOES_BASE.length && !P.promovido) {
       P.promovido = true;
       Perfil.gravar();
       promocao();

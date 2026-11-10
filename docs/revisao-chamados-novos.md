@@ -33,7 +33,7 @@ Um chamado novo só se justifica se trouxer uma ideia que não está nessa lista
 **Dependências.** Duas artificiais:
 
 - `acucar` dependia de `agua` ("açúcar na jarra seca gruda no fundo"). Não é verdade: açúcar antes da água funciona igual. O jogo recusava uma ordem certa. **Ajuste:** açúcar sem dependência.
-- `misturar` ("Junte o suco na jarra e mexa") dependia de `agua`. Despejar o suco na jarra vazia e pôr a água depois também funciona; a dependência só existia por causa do "e mexa". **Ajuste:** a carta passa a dizer o que ela realmente precisa: "Misture o suco com a água da jarra" (nível 2) e "Misture o suco, a água e o açúcar na jarra" (nível 3). Agora misturar depende de verdade dos três.
+- `misturar` ("Junte o suco na jarra e mexa") dependia de `agua`. Despejar o suco na jarra vazia e pôr a água depois também funciona; a dependência só existia por causa do "e mexa". **Ajuste:** a carta passa a dizer o que ela realmente precisa: "Misture o suco com a água da jarra" (nível 2) e "Misture o suco, a água e o açúcar" (nível 3). Agora misturar depende de verdade dos três.
 
 As demais estão certas (lavar antes de cortar, cortar antes de espremer, servir depois de misturar).
 
@@ -50,7 +50,7 @@ As demais estão certas (lavar antes de cortar, cortar antes de espremer, servir
 - No nível 2, `olhar` e `sinal` eram livres entre si. O jogo aceitava "olhe para os dois lados, depois espere o boneco verde, depois atravesse". Quem olha e depois fica esperando atravessa com um olhar velho. É uma ordem insegura sendo aceita, e a própria fala do robô dizia o contrário ("mesmo com o boneco verde, olhe para os dois lados"). **Ajuste:** olhar passa a depender de esperar.
 - `sinal` dependia de `parar` ("esperar no meio do caminho?"). Parar e esperar são quase o mesmo gesto; a criança não tem como justificar a ordem. **Ajuste:** a carta "Pare na calçada" sai.
 
-**A condição não aparecia no tabuleiro.** "Espere o boneco verde do semáforo" era uma carta comum numa fila. **Ajuste:** a condição vira duas cartas, a pergunta e a decisão: "Olhe a cor do boneco do semáforo" e "Se o boneco estiver vermelho, espere o verde". A dependência entre elas é real (não dá para decidir sem saber a cor) e é exatamente o que uma condição é.
+**A condição não aparecia no tabuleiro.** "Espere o boneco verde do semáforo" era uma carta comum numa fila. **Ajuste:** a condição vira duas cartas, a pergunta e a decisão: "Olhe a cor do boneco do semáforo" e "Se estiver vermelho, espere o verde". A dependência entre elas é real (não dá para decidir sem saber a cor) e é exatamente o que uma condição é.
 
 **Falas do Robô-guia.** "Parar onde?" e "Atravessar sem olhar é perigoso! Primeiro olhe para os dois lados" diziam o que fazer. **Ajuste:** reescritas pela consequência, e uma ideia aparece três vezes de propósito: olhar cedo demais não vale, porque a rua muda.
 
@@ -117,3 +117,11 @@ Para voltar: a ideia própria da planta é repetir com hora de parar ao longo de
 Os novos não ficam bloqueados: aparecem no mapa desde o começo, depois dos originais de cada lugar. Por isso as lições deles usam "passo a passo" e só o último nível de cada um usa a palavra "algoritmo", explicando o que ela quer dizer.
 
 **Vocabulário.** "Repetição" e "condição" ganham nome na lição do nível em que a criança acabou de viver a ideia, nunca antes.
+
+## O que o teste no navegador mostrou
+
+Os 10 níveis novos foram jogados com Playwright no PC (1366 × 768, arrastando com o mouse) e no celular (iPhone 13 em pé, tocando; a limonada também deitado). Em cada nível: ordem errada, "Verificar", dica, ordem certa diferente da do arquivo, lição. Três ajustes de tela saíram daí:
+
+- **Legendas cortadas.** As cartas mostravam no máximo 2 linhas de legenda no PC, e o resto virava "...". Isso já acontecia no jogo ("Guarde tudo e deixe a mesa…" no nível 5 do sanduíche) e ficaria pior com as legendas novas. Agora cabem até 4 linhas, e as legendas novas mais longas foram encurtadas. Das 94 legendas cortadas que o teste encontrou no `main` (somando 6 tamanhos de tela), sobrou 1, no celular deitado.
+- **Painel do lugar.** Com 3 chamados, o painel da Casa passava da tela. Agora os 3 cabem no PC e, quando não cabem (celular), a lista rola por dentro do painel, com o botão "Voltar ao mapa" sempre à vista.
+- **Contagem.** O quadro "Chamados concluídos" continua contando os 4 da promoção e ganhou a linha "Chamados novos: 0 de 3".
