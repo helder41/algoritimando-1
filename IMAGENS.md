@@ -209,9 +209,11 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.webp` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.webp` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
 | Cartão dos 3 chamados novos, no painel do lugar | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo) e `img/pic7.webp` (jarra de limonada), no campo `cena` de cada chamado em `js/situacoes.js` |
-| Tela do nível e da lição dos 3 chamados novos | fundo liso, sem cenário | fundos do banheiro, da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
+| Tela do nível e da lição dos 3 chamados novos | fundo liso, sem cenário | `img/level5.webp` a `level7.webp` no campo `fundo` e `img/win5.webp` a `win7.webp` no campo `fundoConclusao` (banheiro, rua e cozinha) |
 | Cliente dos 3 chamados novos | o rosto do cliente do lugar (o menino da Casa, a menina da Escola) | nada a fazer, a não ser que se queira um cliente novo |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
+
+Os prompts das 9 imagens dos chamados novos (ilustração do chamado, fundo do nível e fundo da lição de cada um) estão em [PROMPTS-CENAS.md](PROMPTS-CENAS.md). Ao contrário das cartas e das lições, elas precisam do campo `cena`, `fundo` ou `fundoConclusao` no chamado para aparecer.
 
 ## 5. Imagens do Drive que ainda não têm onde entrar
 

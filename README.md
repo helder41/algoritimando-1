@@ -44,7 +44,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 
 ## Imagens que ainda faltam
 
-Os três chamados novos ainda não têm ilustração: as cartas mostram o quadro "ilustração do passo" enquanto ela não existe. A lista completa do que falta desenhar, com o nome de cada arquivo, está em [IMAGENS.md](IMAGENS.md), e os prompts para gerar cada uma em [PROMPTS-CARTAS.md](PROMPTS-CARTAS.md) e [PROMPTS-LICOES.md](PROMPTS-LICOES.md).
+Os três chamados novos ainda não têm ilustração: as cartas mostram o quadro "ilustração do passo" enquanto ela não existe. A lista completa do que falta desenhar, com o nome de cada arquivo, está em [IMAGENS.md](IMAGENS.md), e os prompts para gerar cada uma em [PROMPTS-CARTAS.md](PROMPTS-CARTAS.md), [PROMPTS-LICOES.md](PROMPTS-LICOES.md) e [PROMPTS-CENAS.md](PROMPTS-CENAS.md).
 
 ## Versão dos arquivos (cache)
 
