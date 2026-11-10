@@ -8,7 +8,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-Todas as 38 estão prontas.
+As 38 cartas dos quatro primeiros chamados estão prontas. **Faltam 20:** as dos três chamados novos (Lavar as mãos, Atravessar a rua e Fazer uma limonada), listadas no fim desta seção.
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -72,9 +72,48 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 | `abelhas-07.webp` (já existe) | néctar entrando no favo | Guarde o néctar no favo. | 4 |
 | `abelhas-08.webp` (já existe) | favo fechado com cera | Feche o favo com cera. | 4 |
 
+### Chamados novos (faltam todas)
+
+A numeração segue a ordem em que a carta aparece pela primeira vez no chamado.
+
+### Lavar as mãos (Banheiro)
+
+| Arquivo | O que desenhar | Legenda da carta | Níveis |
+|---|---|---|---|
+| `maos-01.webp` | mão levantando a alavanca da torneira, água começando a sair | Abra a torneira. | 3, 4 |
+| `maos-02.webp` | mãos sujas debaixo da água | Molhe as mãos na água. | 1, 2, 3, 4 |
+| `maos-03.webp` | sabonete em barra passando na mão molhada | Passe sabonete nas mãos. | 1, 2, 3, 4 |
+| `maos-04.webp` | mãos cheias de espuma, com setas em círculo | Esfregue as mãos contando até 20. | 2, 3, 4 |
+| `maos-05.webp` | água tirando a espuma das mãos | Enxágue as mãos. | 1, 2, 3, 4 |
+| `maos-06.webp` | mão fechando a torneira, última gota | Feche a torneira. | 3, 4 |
+| `maos-07.webp` | mãos limpas na toalha | Seque as mãos na toalha. | 4 |
+
+### Atravessar a rua (Caminho da escola)
+
+| Arquivo | O que desenhar | Legenda da carta | Níveis |
+|---|---|---|---|
+| `rua-01.webp` | menina na calçada indo até a faixa | Vá até a faixa de pedestres. | 1, 2, 3 |
+| `rua-02.webp` | menina parada na calçada olhando para os lados | Olhe para os dois lados. | 1, 2, 3 |
+| `rua-03.webp` | menina andando no meio da faixa | Atravesse andando pela faixa. | 1, 2, 3 |
+| `rua-04.webp` | menina olhando para o semáforo de pedestres (sem cor acesa) | Olhe a cor do boneco do semáforo. | 2, 3 |
+| `rua-05.webp` | menina parada ao lado do boneco vermelho aceso | Se estiver vermelho, espere o verde. | 2, 3 |
+| `rua-06.webp` | mão de criança segurando a mão de um adulto | Dê a mão para um adulto. | 3 |
+
+### Fazer uma limonada (Cozinha)
+
+| Arquivo | O que desenhar | Legenda da carta | Níveis |
+|---|---|---|---|
+| `limonada-01.webp` | limões inteiros debaixo da torneira | Lave os limões. | 1, 2, 3 |
+| `limonada-02.webp` | mão de adulto cortando um limão ao meio | Peça a um adulto para cortar os limões. | 1, 2, 3 |
+| `limonada-03.webp` | meio limão no espremedor | Esprema os limões. | 1, 2, 3 |
+| `limonada-04.webp` | jarra recebendo água com gelo | Coloque água gelada na jarra. | 2, 3 |
+| `limonada-05.webp` | colher de pau mexendo a jarra de limonada | Misture o suco com a água da jarra. / Misture o suco, a água e o açúcar. | 2, 3 |
+| `limonada-06.webp` | colher despejando açúcar na jarra | Coloque açúcar na jarra. | 3 |
+| `limonada-07.webp` | jarra servindo limonada no copo | Sirva a limonada no copo. | 3 |
+
 ## 2. Imagens das lições (`img/licoes/`)
 
-Todas as 18 estão prontas, em `img/licoes/` como WebP (1200 × 896).
+As 18 dos quatro primeiros chamados estão prontas, em `img/licoes/` como WebP (1200 × 896). **Faltam 10:** as dos três chamados novos, listadas no fim desta seção.
 
 Na tela de "Parabéns! Você completou o nível!", a criança vê só a pergunta e esta imagem. O texto da lição fica atrás do botão "Ler a lição", para o professor conduzir a conversa. Enquanto a imagem não existe, aparece o quadro "ilustração da lição".
 
@@ -120,6 +159,33 @@ Formato sugerido: PNG ou JPG em 4:3 (por exemplo 1200 × 900), mesmo estilo das 
 | `abelhas-3.webp` (nível 3) | Quem lembra de falar "procure a flor"? | Quando alguém conta o que a abelha faz, ninguém fala "procure uma flor aberta". Esse passo fica escondido: parece óbvio, então a gente pula. Mas sem ele a abelha voa sem rumo e não acha néctar nenhum! |
 | `abelhas-4.webp` (nível 4) | Esse passo a passo tem um nome? | Uma lista de instruções completa e na ordem certa tem nome: algoritmo! E o seu foi até o fim de verdade: guardar o néctar e fechar o favo para virar mel. Quem cria um algoritmo pensa no começo, no meio e no fim. |
 
+### Chamados novos (faltam todas)
+
+### Lavar as mãos (Banheiro)
+
+| Arquivo | Pergunta na tela | Ideia que a imagem precisa mostrar |
+|---|---|---|
+| `maos-1.webp` (nível 1) | A mesma água, duas vezes? | A água apareceu duas vezes: no começo para molhar, no fim para tirar o sabonete. O gesto é quase o mesmo, mas o trabalho é outro. O que muda é o momento em que ele acontece. Num passo a passo, não basta saber o que fazer: é preciso saber quando. |
+| `maos-2.webp` (nível 2) | Quantas vezes? | Esfregar é o mesmo gesto, feito muitas vezes. Imagine vinte cartas iguais no tabuleiro! Uma carta só resolve: ela manda repetir e diz quando parar, que é ao chegar no 20. Isso se chama repetição. Toda repetição precisa de uma hora de parar. |
+| `maos-3.webp` (nível 3) | O que você abre, você fecha? | Abrir a torneira é o passo que todo mundo esquece de contar. Fechar também! Os dois formam um par: um fica no começo, o outro no fim, e a lavagem acontece no meio. Quando um passo a passo abre, liga ou pega alguma coisa, ele precisa do passo que fecha, desliga ou guarda. |
+| `maos-4.webp` (nível 4) | Os dois jeitos dão certo. Qual é o melhor? | Fechar a torneira e secar as mãos podiam trocar de lugar: os dois jeitos deixam as mãos limpas. Mas, se você se seca primeiro, a torneira fica aberta esse tempo todo e a água vai embora à toa. Um passo a passo completo e na ordem certa se chama algoritmo. Quando mais de um funciona, dá para escolher o melhor: o que não desperdiça. |
+
+### Atravessar a rua (Caminho da escola)
+
+| Arquivo | Pergunta na tela | Ideia que a imagem precisa mostrar |
+|---|---|---|
+| `rua-1.webp` (nível 1) | Por que olhar antes? | Na rua, a ordem dos passos não serve só para dar certo: ela protege você. Olhar depois de atravessar não adianta nada. E olhar cedo demais também não: a rua muda a cada instante. A hora de olhar é logo antes de atravessar. |
+| `rua-2.webp` (nível 2) | Um passo que faz uma pergunta? | "Se estiver vermelho, espere o verde" é um passo diferente: ele começa com SE. Antes de obedecer, você precisa de uma resposta: de que cor está o boneco? Vermelho, você espera. Verde, você segue. Isso se chama condição: o mesmo passo a passo faz coisas diferentes, dependendo do que encontra. |
+| `rua-3.webp` (nível 3) | Quantas coisas precisam ser verdade? | Para atravessar, três coisas precisam ser verdade ao mesmo tempo: a mão dada, o boneco verde e os dois lados olhados. Se faltar uma só, a resposta é "ainda não". É uma condição com E: isto E isto E isto. Um passo a passo completo e na ordem certa se chama algoritmo. Com condições, ele sabe até a hora de esperar. |
+
+### Fazer uma limonada (Cozinha)
+
+| Arquivo | Pergunta na tela | Ideia que a imagem precisa mostrar |
+|---|---|---|
+| `limonada-1.webp` (nível 1) | O que muda no limão a cada passo? | O limão foi mudando: sujo, limpo, cortado, espremido. Cada passo recebe o limão do jeito que o passo anterior deixou. Por isso não dá para pular nem trocar. Num passo a passo, as coisas vão se transformando até ficarem prontas. |
+| `limonada-2.webp` (nível 2) | Dá para fazer duas coisas ao mesmo tempo? | Pôr água na jarra não depende do limão: pode ser antes, no meio ou depois de espremer. Passos assim podem ser feitos ao mesmo tempo, por duas pessoas. A limonada fica pronta mais rápido! Só a carta de misturar não tem escolha: ela espera o suco e a água. |
+| `limonada-3.webp` (nível 3) | Quem espera por quem? | Aqui havia dois caminhos: o do limão (lavar, cortar, espremer) e o da jarra (água e açúcar). Os dois andam ao mesmo tempo e se encontram na carta de misturar. Ela espera o caminho mais demorado chegar. Um passo a passo completo e na ordem certa se chama algoritmo. Nem sempre ele é uma fila só: às vezes são caminhos que se juntam. |
+
 ## 3. Peças da montagem (`img/pecas/`)
 
 A montagem é a imagem que se forma ao lado do tabuleiro conforme a criança coloca as cartas, na ordem em que elas estão (certa ou errada). No PC ela fica abaixo da bandeja; no celular é opcional, no botão "Ver a montagem".
@@ -132,9 +198,9 @@ A montagem é a imagem que se forma ao lado do tabuleiro conforme a criança col
 
 **Pronto.** As 9 imagens foram montadas a partir das ilustrações das cartas da mochila (o estojo, o lápis, a borracha, a mochila e o caderno são recortados delas e colocados sempre no mesmo lugar): `mochila-cena-fechada`, `mochila-cena-aberta`, `mochila-lapis`, `mochila-borracha`, `mochila-estojo-fechado`, `mochila-abrir`, `mochila-estojo-dentro`, `mochila-caderno` e `mochila-fechar` (WebP, 1600 × 1200, fundo transparente).
 
-### Tirinha: robô e abelhas
+### Tirinha: robô, abelhas e os três chamados novos
 
-Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela não existe, mostra a legenda do passo. Se quiserem quadrinhos próprios (a cena DEPOIS do passo: o robô já perto do cubo, a garra já fechada...), basta pôr o caminho no campo `peca` do passo, em 4:3.
+Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela não existe, mostra a legenda do passo (é o caso de Lavar as mãos, Atravessar a rua e Fazer uma limonada, que por isso não precisam de nenhuma peça). Se quiserem quadrinhos próprios (a cena DEPOIS do passo: o robô já perto do cubo, a garra já fechada...), basta pôr o caminho no campo `peca` do passo, em 4:3.
 
 ## 4. Outras partes que usam um desenho provisório
 
@@ -142,10 +208,13 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 |---|---|---|
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.webp` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.webp` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
+| Cartão dos 3 chamados novos, no painel do lugar | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo) e `img/pic7.webp` (jarra de limonada), no campo `cena` de cada chamado em `js/situacoes.js` |
+| Tela do nível e da lição dos 3 chamados novos | fundo liso, sem cenário | fundos do banheiro, da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
+| Cliente dos 3 chamados novos | o rosto do cliente do lugar (o menino da Casa, a menina da Escola) | nada a fazer, a não ser que se queira um cliente novo |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 
 ## 5. Imagens do Drive que ainda não têm onde entrar
 
 - `cracha_nivel1_estagiario.webp` e `cracha_nivel3_senior.webp`: não há tela que mostre o crachá de Estagiário nem promoção para Sênior.
 - `robo_comemorando`, `robo_confuso`, `robo_feliz`, `robo_pensativo`: o Robô-guia usa os rostos recortados que já estavam em `img/` (`guide.webp`, `guide-feliz.webp`, `guide-triste.webp`).
-- Central com 9 chamados (Figma): só existem conteúdo e arte para os 4 chamados atuais.
+- Central com 9 chamados (Figma): o jogo tem 7 (4 com arte e 3 novos ainda sem arte). Escovar os dentes e Plantar uma semente continuam como protótipos em `js/em-progresso.js`; o que falta neles está em `docs/revisao-chamados-novos.md`.

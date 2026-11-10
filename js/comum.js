@@ -70,6 +70,9 @@
     const legenda = document.createElement('p');
     legenda.className = 'carta-legenda';
     legenda.textContent = passo.texto || '(sem legenda)';
+    // legenda comprida: no celular a carta é baixa e larga, e a letra
+    // diminui um pouco para a frase caber inteira (ver style.css)
+    if (legenda.textContent.length > 34) legenda.classList.add('legenda-longa');
 
     carta.append(figura, legenda);
     return carta;

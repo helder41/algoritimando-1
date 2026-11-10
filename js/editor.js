@@ -87,7 +87,8 @@
      CENÁRIOS — os fundos dos quatro chamados do jogo
      ============================================================ */
 
-  const CENARIOS = SITUACOES.map(s => ({
+  // só os chamados que têm fundo ilustrado (os novos ainda não têm)
+  const CENARIOS = SITUACOES.filter(s => s.fundo).map(s => ({
     id: s.id, nome: `${s.local} (${s.titulo})`,
     fundo: s.fundo, fundoConclusao: s.fundoConclusao, cor: s.cor,
   }));

@@ -20,6 +20,8 @@
 - Me mande as imagens aqui no chat (pode ser em lote, com o nome do arquivo de cada uma). Eu tiro o fundo branco, deixo transparente, ajusto para **600 × 450 px**, salvo com o nome certo em `img/passos/` e subo para o GitHub.
 - Se preferir fazer sozinho: PNG com fundo transparente, 600 × 450 px, com o nome exato da tabela. A carta troca sozinha, sem mexer no código.
 
+**Chamados novos:** as 20 cartas de Lavar as mãos, Atravessar a rua e Fazer uma limonada ainda não foram geradas. Os prompts estão no fim deste arquivo.
+
 **Se a imagem sair errada**, peça a correção na mesma conversa: "remove the text", "no background, plain white", "make it simpler and bolder", "same robot as the reference", "no lettuce".
 
 ## Fazer um sanduíche (Cozinha)
@@ -346,6 +348,194 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ```
 Subject: A piece of golden hexagon honeycomb full of honey, the fluffy bumblebee from the character reference pressing a pale beige wax cap over one cell to close it, small sparkles.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+## Chamados novos
+
+**Por gerar:** 20 cartas, dos três chamados que entraram no jogo depois dos quatro primeiros. As regras e o jeito de gerar são os mesmos do começo deste arquivo. Como estes chamados ainda não têm ilustração na central, a referência de estilo é sempre `img/passos/sanduiche-03.webp`.
+
+## Lavar as mãos (Banheiro)
+
+**Por gerar:** 7 cartas.
+
+**Anexe como referência:** `img/passos/sanduiche-03.webp` (estilo) e `img/cliente0.webp` (o menino da Casa, só para o tom de pele das mãos).
+
+**Consistência:** Sempre a MESMA pia branca com a mesma torneira prateada de alavanca, o mesmo sabonete em barra verde-claro e a mesma toalha azul-clara. Aparecem só as duas mãos da criança (sem rosto, sem corpo), com o mesmo tom de pele do menino da referência. Objetos sem rosto.
+
+### `maos-01.webp` — Abra a torneira.
+
+```
+Subject: One small child's hand lifting the lever of a silver bathroom tap over a white sink, a stream of light blue water just starting to come out, a small curved arrow showing the lever going up. No soap, no towel. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `maos-02.webp` — Molhe as mãos na água.
+
+```
+Subject: Two small child's hands held together under a stream of light blue water from a silver tap, water drops splashing off the fingers. The hands are slightly dirty with a few small brown smudges. No soap, no foam. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `maos-03.webp` — Passe sabonete nas mãos.
+
+```
+Subject: Two small wet child's hands holding a pale green bar of soap between them, the bar sliding across one palm with a thin white streak of soap. Only a couple of tiny bubbles, no big foam. No tap, no water stream. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `maos-04.webp` — Esfregue as mãos contando até 20.
+
+```
+Subject: Two small child's hands rubbing together, completely covered in thick white soap foam with many bubbles floating around, two curved arrows going around the hands in a circle to show the same movement repeating. No tap, no water stream, no bar of soap. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `maos-05.webp` — Enxágue as mãos.
+
+```
+Subject: Two small child's hands under a stream of light blue water from a silver tap, white soap foam being washed off and sliding down from the fingers, the hands coming out clean with a small sparkle. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `maos-06.webp` — Feche a torneira.
+
+```
+Subject: One small clean child's hand pushing down the lever of a silver bathroom tap over a white sink, no water coming out, one last single drop hanging from the spout, a small curved arrow showing the lever going down. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `maos-07.webp` — Seque as mãos na toalha.
+
+```
+Subject: Two small clean child's hands being dried in a soft light blue towel that wraps around them, two small sparkles near the fingers. No tap, no water, no soap. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+## Atravessar a rua (Caminho da escola)
+
+**Por gerar:** 6 cartas.
+
+**Anexe como referência:** `img/passos/sanduiche-03.webp` (estilo) e `img/cliente2.webp` (a menina da Escola: é ela quem atravessa).
+
+**Consistência:** Sempre a MESMA menina da referência, com a mochila azul nas costas, a mesma faixa de pedestres (listras brancas no asfalto cinza) e o mesmo semáforo de pedestres (caixa escura em um poste, com um boneco vermelho parado em cima e um boneco verde andando embaixo). A menina tem rosto (é personagem); carros e objetos não. Nenhum carro perto da menina em carta alguma.
+
+### `rua-01.webp` — Vá até a faixa de pedestres.
+
+```
+Subject: The girl from the character reference, with a blue backpack, walking along a light grey sidewalk toward a zebra crossing (white stripes on dark grey asphalt) that starts just ahead of her, a small dotted arrow on the sidewalk pointing from her to the crossing. She is still on the sidewalk. No traffic light, no cars.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `rua-02.webp` — Olhe para os dois lados.
+
+```
+Subject: The girl from the character reference standing still on the edge of the sidewalk, seen from the front, her head turned to one side with one hand above her eyes, and two small curved arrows near her head pointing left and right. Her feet are on the sidewalk, not on the street. No traffic light, no cars.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `rua-03.webp` — Atravesse andando pela faixa.
+
+```
+Subject: The girl from the character reference walking calmly (not running) in the middle of a zebra crossing, seen from the side, on the white stripes over dark grey asphalt, a small arrow showing her direction across. No traffic light, no cars.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `rua-04.webp` — Olhe a cor do boneco do semáforo.
+
+```
+Subject: The girl from the character reference standing on the sidewalk and looking up at a pedestrian traffic light on a pole. The light box has two lamps, both drawn dim grey (neither red nor green is lit), each with a faint little figure shape, and a small dotted line goes from her eyes to the light box. No cars, no crossing stripes.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `rua-05.webp` — Se estiver vermelho, espere o verde.
+
+```
+Subject: The girl from the character reference standing still and patient on the sidewalk, both feet together, next to a pedestrian traffic light on a pole whose top lamp is lit bright red with a standing little figure, the bottom lamp dark. Three small dots in a row float beside her to show waiting. No cars, no crossing stripes.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `rua-06.webp` — Dê a mão para um adulto.
+
+```
+Subject: Close view of a small child's hand holding a bigger adult hand, seen from the front, both arms coming from the bottom corners of the image, with a small sparkle above the hands. No faces, no bodies, no street, no traffic light.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+## Fazer uma limonada (Cozinha)
+
+**Por gerar:** 7 cartas.
+
+**Anexe como referência:** `img/passos/sanduiche-03.webp` (estilo).
+
+**Consistência:** Sempre os MESMOS limões (limão-taiti, verde, casca lisa), a mesma jarra de vidro transparente com alça, a mesma colher de pau comprida, o mesmo espremedor manual de vidro e o mesmo copo liso. Objetos sem rosto. Uma coisa por carta: a carta do limão não mostra a jarra, e a carta da jarra não mostra o limão.
+
+### `limonada-01.webp` — Lave os limões.
+
+```
+Subject: Three whole green limes under a stream of light blue water from a silver tap, water drops splashing off them, held in a small white colander. The limes are whole, not cut. No jar, no knife. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `limonada-02.webp` — Peça a um adulto para cortar os limões.
+
+```
+Subject: A big adult hand holding a kitchen knife that has just cut one green lime in half on a wooden cutting board, the two halves lying open showing the pale green inside, one whole lime waiting beside them. Only the adult hand and forearm, no face, no child. No jar, no juicer. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `limonada-03.webp` — Esprema os limões.
+
+```
+Subject: A small child's hand pressing half a green lime onto a clear glass manual citrus juicer, pale yellow-green juice collecting in the juicer's dish, two small drops flying. No jar, no water, no knife. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `limonada-04.webp` — Coloque água gelada na jarra.
+
+```
+Subject: A clear glass jug with a handle being filled with light blue water poured from above, the jug about half full, three ice cubes floating in it. Only water and ice inside: no lime, no juice, no sugar, no spoon. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `limonada-05.webp` — Misture o suco com a água da jarra. / Misture o suco, a água e o açúcar.
+
+```
+Subject: A clear glass jug with a handle, full of pale yellow-green lemonade, with a long wooden spoon inside stirring it, a spiral swirl drawn in the liquid and two curved arrows around the spoon showing the stirring. No lime halves, no glass, no sugar bowl. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `limonada-06.webp` — Coloque açúcar na jarra.
+
+```
+Subject: A small spoon tipping white sugar into the open top of a clear glass jug with a handle, the sugar falling as a small stream of white grains, a small white sugar bowl beside the jug. No lime, no juicer, no glass. Objects have no faces.
+Attached images: style reference and character/object reference.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `limonada-07.webp` — Sirva a limonada no copo.
+
+```
+Subject: A clear glass jug with a handle, tilted, pouring pale yellow-green lemonade into a simple drinking glass that is half full, one ice cube and one thin green lime slice on the rim of the glass. Objects have no faces.
 Attached images: style reference and character/object reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```

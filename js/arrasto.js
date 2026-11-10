@@ -49,6 +49,8 @@
   const bandeja   = document.querySelector('.bandeja');
   const fila      = document.querySelector('.bandeja-fila');
   const leitor    = document.querySelector('.leitor-avisos');
+  // no celular quem rola é a tela inteira do nível, não o tabuleiro
+  const telaFase  = tabuleiro ? tabuleiro.closest('.screen') : null;
 
   // o clone nasce dentro do palco (#stage) para herdar as medidas e o
   // estilo das cartas, que são relativas ao palco. Onde fica o ponto
@@ -308,6 +310,25 @@
           tabuleiro.scrollTop += v;
           atualizarDestaque(); // o que está sob a carta mudou junto
         }
+      }
+    }
+
+    // celular: a tela do nível rola inteira. Com 7 ou 8 cartas, o
+    // tabuleiro e a bandeja não cabem juntos; levando a carta para
+    // perto do alto (ou do rodapé fixo), a tela rola sozinha
+    if (telaFase && telaFase.scrollHeight > telaFase.clientHeight + 2) {
+      const r = telaFase.getBoundingClientRect();
+      const rodape = telaFase.querySelector('.rodape');
+      const fixo = rodape && getComputedStyle(rodape).position === 'sticky';
+      const fundo = fixo ? rodape.getBoundingClientRect().top : r.bottom;
+      const cy = pontoDeTeste()[1];
+      let v = 0;
+      if (cy < r.top + MARGEM_ROLAGEM)      v = -velocidade(r.top + MARGEM_ROLAGEM - cy);
+      else if (cy > fundo - MARGEM_ROLAGEM) v =  velocidade(cy - (fundo - MARGEM_ROLAGEM));
+      if (v) {
+        const antes = telaFase.scrollTop;
+        telaFase.scrollTop += v;
+        if (telaFase.scrollTop !== antes) atualizarDestaque();
       }
     }
 

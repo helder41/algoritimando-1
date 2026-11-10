@@ -1,14 +1,19 @@
 /* ============================================================
-   situacoes.js — os quatro chamados que já vêm no jogo.
+   situacoes.js — os chamados que já vêm no jogo.
    Usam EXATAMENTE o mesmo formato que o editor do professor
    gera e salva em .json. Um formato só, nunca dois: nenhum
    campo daqui é especial — tudo pode ser criado no editor.
 
-   As quatro situações (cada uma é um chamado da central):
+   Os quatro chamados originais (contam para a promoção):
      SITUACAO_SANDUICHE  cotidiano doméstico (5 fases, 3→8 passos)
      SITUACAO_ROBO       mundo da máquina    (5 fases, 3→8 passos)
      SITUACAO_MOCHILA    rotina escolar      (4 fases, 3→8 passos)
      SITUACAO_ABELHAS    natureza            (4 fases, 3→8 passos)
+
+   Os chamados novos (repetição, condição e caminhos paralelos)
+   ficam depois deles, com a sua própria explicação.
+
+   O que vem abaixo vale para os quatro originais:
 
    Os campos visuais (local, cor, cliente, cena, fundo,
    fundoConclusao) são opcionais e estão descritos no motor.js.
@@ -705,7 +710,6 @@ const SITUACAO_MOCHILA = {
   ],
 };
 
-/* As três situações prontas, na ordem em que aparecem no jogo. */
 /* ============================================================
    SITUAÇÃO 4 · AJUDAR AS ABELHAS
    Natureza: a abelha segue um caminho que ela nunca pula —
@@ -909,4 +913,509 @@ const SITUACAO_ABELHAS = {
   ],
 };
 
-const SITUACOES = [SITUACAO_SANDUICHE, SITUACAO_ROBO, SITUACAO_MOCHILA, SITUACAO_ABELHAS];
+/* ============================================================
+   CHAMADOS NOVOS
+   Vieram dos protótipos (em-progresso.js) depois da revisão em
+   docs/revisao-chamados-novos.md. Cada um treina uma ideia que os
+   quatro chamados originais não têm:
+     SITUACAO_MAOS      repetição              (4 fases, 3→7 passos)
+     SITUACAO_RUA       condição               (3 fases, 3→6 passos)
+     SITUACAO_LIMONADA  caminhos paralelos     (3 fases, 3→7 passos)
+
+   Ainda não têm ilustração (cena, fundo, cartas, lições): o jogo
+   mostra o quadro tracejado no lugar. O cliente é o do lugar do
+   mapa onde o chamado fica.
+
+   Eles aparecem no mapa, mas NÃO entram na conta da promoção (ver
+   SITUACOES_BASE no fim do arquivo). Como podem ser jogados antes
+   dos originais, as lições falam em "passo a passo" e só a última
+   fase de cada um usa a palavra "algoritmo", já explicando o que
+   ela quer dizer.
+
+   As explicações de erro terminam na CONSEQUÊNCIA, sem a ordem
+   pronta ("faça isto antes"): quem conclui o que mover é a criança.
+   ============================================================ */
+
+/* ============================================================
+   SITUAÇÃO 5 · LAVAR AS MÃOS
+   Repetição: uma carta só manda repetir o mesmo gesto e diz
+   quando parar. Depois, o par abrir/fechar e a escolha do melhor
+   entre dois jeitos que funcionam.
+   ============================================================ */
+
+const SITUACAO_MAOS = {
+  formato: 'passo-a-passo/1',
+  id: 'maos',
+  titulo: 'Lavar as mãos',
+  local: 'Banheiro',
+  area: 'casa',
+  cor: '#3f9c8a',
+  cliente: 'img/who1.webp',
+  // um quadrinho por passo: lavar as mãos é uma história no tempo
+  montagem: 'tirinha',
+  fases: [
+
+    /* ---------- FASE 1 · a mesma água, dois momentos (3 passos) ---------- */
+    {
+      id: 'fase-1',
+      titulo: 'Mãos sujas? Vamos lavar!',
+      instrucao: 'Arraste as cartas para os espaços — ou toque na carta e depois no espaço.',
+      mascote: 'A água aparece em duas cartas. Qual delas vem antes do sabonete?',
+      passos: [
+        { id: 'molhar', texto: 'Molhe as mãos na água.', imagem: 'img/passos/maos-02.webp', dependeDe: [] },
+        {
+          id: 'sabonete', texto: 'Passe sabonete nas mãos.', imagem: 'img/passos/maos-03.webp', dependeDe: ['molhar'],
+          explicacao: 'Sabonete na mão seca não faz espuma: ele só escorrega e não limpa!',
+        },
+        {
+          id: 'enxaguar', texto: 'Enxágue as mãos.', imagem: 'img/passos/maos-05.webp', dependeDe: ['sabonete'],
+          explicacao: 'Enxaguar agora? Ainda não tem sabonete para tirar, e a sujeira continua nas mãos!',
+        },
+      ],
+      licao: {
+        pergunta: 'A mesma água, duas vezes?',
+        imagem: 'img/licoes/maos-1.webp',
+        texto: [
+          'A água apareceu duas vezes: no começo para molhar, no fim para tirar o sabonete.',
+          'O gesto é quase o mesmo, mas o trabalho é outro. O que muda é o momento em que ele acontece.',
+          'Num passo a passo, não basta saber o que fazer: é preciso saber quando.',
+        ],
+        reflexao: [
+          'Por que não adianta enxaguar antes de passar o sabonete?',
+          'Que outra tarefa sua usa a mesma coisa em dois momentos diferentes?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 2 · repetição: uma carta que manda repetir (4 passos) ---------- */
+    {
+      id: 'fase-2',
+      titulo: 'Esfregue bem!',
+      instrucao: 'Chegou uma carta que manda repetir o mesmo gesto. Onde ela entra?',
+      mascote: 'Esfregar uma vez só não limpa. A carta nova manda repetir. Até quando?',
+      passos: [
+        { id: 'molhar', texto: 'Molhe as mãos na água.', imagem: 'img/passos/maos-02.webp', dependeDe: [] },
+        {
+          id: 'sabonete', texto: 'Passe sabonete nas mãos.', imagem: 'img/passos/maos-03.webp', dependeDe: ['molhar'],
+          explicacao: 'Sabonete na mão seca não faz espuma: ele só escorrega e não limpa!',
+        },
+        {
+          id: 'esfregar', texto: 'Esfregue as mãos contando até 20.', imagem: 'img/passos/maos-04.webp', dependeDe: ['sabonete'],
+          explicacao: 'Esfregar sem sabonete só espalha a sujeira de uma mão para a outra!',
+        },
+        {
+          id: 'enxaguar', texto: 'Enxágue as mãos.', imagem: 'img/passos/maos-05.webp', dependeDe: ['esfregar'],
+          explicacao: 'Enxaguar agora leva o sabonete embora antes de ele ter tempo de limpar!',
+        },
+      ],
+      licao: {
+        pergunta: 'Quantas vezes?',
+        imagem: 'img/licoes/maos-2.webp',
+        texto: [
+          'Esfregar é o mesmo gesto, feito muitas vezes. Imagine vinte cartas iguais no tabuleiro!',
+          'Uma carta só resolve: ela manda repetir e diz quando parar, que é ao chegar no 20.',
+          'Isso se chama repetição. Toda repetição precisa de uma hora de parar.',
+        ],
+        reflexao: [
+          'O que aconteceria se a carta dissesse só "esfregue", sem dizer até quando?',
+          'O que mais você faz repetindo o mesmo gesto até uma hora de parar?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 3 · o par: o que abre, fecha (6 passos) ---------- */
+    {
+      id: 'fase-3',
+      titulo: 'De onde vem a água?',
+      instrucao: 'A água não aparece sozinha: alguém abre a torneira. E depois?',
+      mascote: 'O que foi aberto no começo tem um par lá no fim. Qual é?',
+      passos: [
+        { id: 'abrir', texto: 'Abra a torneira.', imagem: 'img/passos/maos-01.webp', dependeDe: [] },
+        {
+          id: 'molhar', texto: 'Molhe as mãos na água.', imagem: 'img/passos/maos-02.webp', dependeDe: ['abrir'],
+          explicacao: 'Molhar as mãos em quê? A torneira está fechada e não sai nem uma gota!',
+        },
+        {
+          id: 'sabonete', texto: 'Passe sabonete nas mãos.', imagem: 'img/passos/maos-03.webp', dependeDe: ['molhar'],
+          explicacao: 'Sabonete na mão seca não faz espuma: ele só escorrega e não limpa!',
+        },
+        {
+          id: 'esfregar', texto: 'Esfregue as mãos contando até 20.', imagem: 'img/passos/maos-04.webp', dependeDe: ['sabonete'],
+          explicacao: 'Esfregar sem sabonete só espalha a sujeira de uma mão para a outra!',
+        },
+        {
+          id: 'enxaguar', texto: 'Enxágue as mãos.', imagem: 'img/passos/maos-05.webp', dependeDe: ['esfregar'],
+          explicacao: 'Enxaguar agora leva o sabonete embora antes de ele ter tempo de limpar!',
+        },
+        {
+          id: 'fechar', texto: 'Feche a torneira.', imagem: 'img/passos/maos-06.webp', dependeDe: ['enxaguar'],
+          explicacao: 'Com a torneira fechada, não sobra água para tirar o sabonete das mãos!',
+        },
+      ],
+      licao: {
+        pergunta: 'O que você abre, você fecha?',
+        imagem: 'img/licoes/maos-3.webp',
+        texto: [
+          'Abrir a torneira é o passo que todo mundo esquece de contar. Fechar também!',
+          'Os dois formam um par: um fica no começo, o outro no fim, e a lavagem acontece no meio.',
+          'Quando um passo a passo abre, liga ou pega alguma coisa, ele precisa do passo que fecha, desliga ou guarda.',
+        ],
+        reflexao: [
+          'O que acontece se o passo de fechar a torneira não existir?',
+          'Que outros pares assim você conhece? Pense em ligar e desligar, pegar e guardar.',
+        ],
+      },
+    },
+
+    /* ---------- FASE 4 · dois jeitos dão certo: qual é o melhor? (7 passos) ---------- */
+    {
+      id: 'fase-4',
+      titulo: 'Mãos limpas e secas!',
+      instrucao: 'Falta secar as mãos. Antes ou depois de fechar a torneira?',
+      mascote: 'Duas cartas do fim podem trocar de lugar. Os dois jeitos dão certo. Será que são iguais?',
+      passos: [
+        { id: 'abrir', texto: 'Abra a torneira.', imagem: 'img/passos/maos-01.webp', dependeDe: [] },
+        {
+          id: 'molhar', texto: 'Molhe as mãos na água.', imagem: 'img/passos/maos-02.webp', dependeDe: ['abrir'],
+          explicacao: 'Molhar as mãos em quê? A torneira está fechada e não sai nem uma gota!',
+        },
+        {
+          id: 'sabonete', texto: 'Passe sabonete nas mãos.', imagem: 'img/passos/maos-03.webp', dependeDe: ['molhar'],
+          explicacao: 'Sabonete na mão seca não faz espuma: ele só escorrega e não limpa!',
+        },
+        {
+          id: 'esfregar', texto: 'Esfregue as mãos contando até 20.', imagem: 'img/passos/maos-04.webp', dependeDe: ['sabonete'],
+          explicacao: 'Esfregar sem sabonete só espalha a sujeira de uma mão para a outra!',
+        },
+        {
+          id: 'enxaguar', texto: 'Enxágue as mãos.', imagem: 'img/passos/maos-05.webp', dependeDe: ['esfregar'],
+          explicacao: 'Enxaguar agora leva o sabonete embora antes de ele ter tempo de limpar!',
+        },
+        {
+          id: 'fechar', texto: 'Feche a torneira.', imagem: 'img/passos/maos-06.webp', dependeDe: ['enxaguar'],
+          explicacao: 'Com a torneira fechada, não sobra água para tirar o sabonete das mãos!',
+        },
+        {
+          id: 'secar', texto: 'Seque as mãos na toalha.', imagem: 'img/passos/maos-07.webp', dependeDe: ['enxaguar'],
+          explicacao: 'Secar as mãos ainda com sabonete? A toalha fica ensaboada e as mãos continuam grudentas!',
+        },
+      ],
+      licao: {
+        pergunta: 'Os dois jeitos dão certo. Qual é o melhor?',
+        imagem: 'img/licoes/maos-4.webp',
+        texto: [
+          'Fechar a torneira e secar as mãos podiam trocar de lugar: os dois jeitos deixam as mãos limpas.',
+          'Mas, se você se seca primeiro, a torneira fica aberta esse tempo todo e a água vai embora à toa.',
+          'Um passo a passo completo e na ordem certa se chama algoritmo. Quando mais de um funciona, dá para escolher o melhor: o que não desperdiça.',
+        ],
+        reflexao: [
+          'Em que ordem você colocou as duas últimas cartas? A torneira ficou aberta enquanto você se secava?',
+          'Em que outro momento da lavagem a torneira poderia ficar fechada para gastar menos água?',
+        ],
+      },
+    },
+
+  ],
+};
+
+/* ============================================================
+   SITUAÇÃO 6 · ATRAVESSAR A RUA
+   Condição: uma carta faz a pergunta ("de que cor está o
+   boneco?") e outra decide ("se estiver vermelho, espere").
+   A mesma regra vale para tudo aqui: olhar cedo demais não vale,
+   porque a rua muda.
+   ============================================================ */
+
+const SITUACAO_RUA = {
+  formato: 'passo-a-passo/1',
+  id: 'rua',
+  titulo: 'Atravessar a rua',
+  local: 'Caminho da escola',
+  area: 'escola',
+  cor: '#c0663a',
+  cliente: 'img/who3.webp',
+  // um quadrinho por passo: no erro, a história trava antes da faixa
+  montagem: 'tirinha',
+  fases: [
+
+    /* ---------- FASE 1 · a ordem que protege (3 passos) ---------- */
+    {
+      id: 'fase-1',
+      titulo: 'Vamos para o outro lado!',
+      instrucao: 'Arraste as cartas para os espaços — ou toque na carta e depois no espaço.',
+      mascote: 'Na rua, um passo fora de hora pode ser perigoso. Qual vem primeiro?',
+      passos: [
+        { id: 'faixa', texto: 'Vá até a faixa de pedestres.', imagem: 'img/passos/rua-01.webp', dependeDe: [] },
+        {
+          id: 'olhar', texto: 'Olhe para os dois lados.', imagem: 'img/passos/rua-02.webp', dependeDe: ['faixa'],
+          explicacao: 'Olhar de longe não vale: até você chegar à faixa, pode aparecer um carro que não estava lá!',
+        },
+        {
+          id: 'atravessar', texto: 'Atravesse andando pela faixa.', imagem: 'img/passos/rua-03.webp', dependeDe: ['olhar'],
+          explicacao: 'Atravessar sem olhar? Pode vir um carro e você nem vai ver!',
+        },
+      ],
+      licao: {
+        pergunta: 'Por que olhar antes?',
+        imagem: 'img/licoes/rua-1.webp',
+        texto: [
+          'Na rua, a ordem dos passos não serve só para dar certo: ela protege você.',
+          'Olhar depois de atravessar não adianta nada. E olhar cedo demais também não: a rua muda a cada instante.',
+          'A hora de olhar é logo antes de atravessar.',
+        ],
+        reflexao: [
+          'O que pode acontecer se alguém atravessar sem olhar?',
+          'Onde fica o lugar mais seguro para atravessar perto da sua escola?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 2 · condição: a pergunta e a decisão (5 passos) ---------- */
+    {
+      id: 'fase-2',
+      titulo: 'Tem um semáforo na faixa!',
+      instrucao: 'Duas cartas novas falam do boneco do semáforo. Uma pergunta, a outra decide!',
+      mascote: 'Antes de decidir se espera ou se vai, você precisa descobrir uma coisa. O quê?',
+      passos: [
+        { id: 'faixa', texto: 'Vá até a faixa de pedestres.', imagem: 'img/passos/rua-01.webp', dependeDe: [] },
+        {
+          id: 'ver-boneco', texto: 'Olhe a cor do boneco do semáforo.', imagem: 'img/passos/rua-04.webp', dependeDe: ['faixa'],
+          explicacao: 'Olhar o semáforo de longe? Até você chegar à faixa, o boneco pode mudar de cor!',
+        },
+        {
+          id: 'esperar', texto: 'Se estiver vermelho, espere o verde.', imagem: 'img/passos/rua-05.webp', dependeDe: ['ver-boneco'],
+          explicacao: 'Esperar ou seguir? Sem olhar o semáforo, você não sabe de que cor o boneco está!',
+        },
+        {
+          id: 'olhar', texto: 'Olhe para os dois lados.', imagem: 'img/passos/rua-02.webp', dependeDe: ['faixa', 'esperar'],
+          explicacao: {
+            faixa:   'Olhar de longe não vale: até você chegar à faixa, pode aparecer um carro que não estava lá!',
+            esperar: 'Olhou e depois ficou esperando o boneco verde? Nesse tempo, outro carro pode chegar sem você ver!',
+          },
+        },
+        {
+          id: 'atravessar', texto: 'Atravesse andando pela faixa.', imagem: 'img/passos/rua-03.webp', dependeDe: ['esperar', 'olhar'],
+          explicacao: {
+            esperar: 'Atravessar sem saber se o boneco está verde? Com ele vermelho, a vez é dos carros!',
+            olhar:   'Mesmo com o boneco verde, um carro pode não ter parado. Sem olhar para os lados, você não vê!',
+          },
+        },
+      ],
+      licao: {
+        pergunta: 'Um passo que faz uma pergunta?',
+        imagem: 'img/licoes/rua-2.webp',
+        texto: [
+          '"Se estiver vermelho, espere o verde" é um passo diferente: ele começa com SE.',
+          'Antes de obedecer, você precisa de uma resposta: de que cor está o boneco? Vermelho, você espera. Verde, você segue.',
+          'Isso se chama condição: o mesmo passo a passo faz coisas diferentes, dependendo do que encontra.',
+        ],
+        reflexao: [
+          'Que regra da sua casa ou da sua escola começa com "se"?',
+          'O que você faz numa rua que não tem semáforo?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 3 · várias condições juntas: isto E isto E isto (6 passos) ---------- */
+    {
+      id: 'fase-3',
+      titulo: 'Atravessando junto!',
+      instrucao: 'Criança atravessa a rua de mão dada com um adulto. Onde entra esse passo?',
+      mascote: 'A mão dada cabe em vários lugares da fila. Só em um ela não pode ficar. Qual?',
+      passos: [
+        { id: 'mao', texto: 'Dê a mão para um adulto.', imagem: 'img/passos/rua-06.webp', dependeDe: [] },
+        { id: 'faixa', texto: 'Vá até a faixa de pedestres.', imagem: 'img/passos/rua-01.webp', dependeDe: [] },
+        {
+          id: 'ver-boneco', texto: 'Olhe a cor do boneco do semáforo.', imagem: 'img/passos/rua-04.webp', dependeDe: ['faixa'],
+          explicacao: 'Olhar o semáforo de longe? Até você chegar à faixa, o boneco pode mudar de cor!',
+        },
+        {
+          id: 'esperar', texto: 'Se estiver vermelho, espere o verde.', imagem: 'img/passos/rua-05.webp', dependeDe: ['ver-boneco'],
+          explicacao: 'Esperar ou seguir? Sem olhar o semáforo, você não sabe de que cor o boneco está!',
+        },
+        {
+          id: 'olhar', texto: 'Olhe para os dois lados.', imagem: 'img/passos/rua-02.webp', dependeDe: ['faixa', 'esperar'],
+          explicacao: {
+            faixa:   'Olhar de longe não vale: até você chegar à faixa, pode aparecer um carro que não estava lá!',
+            esperar: 'Olhou e depois ficou esperando o boneco verde? Nesse tempo, outro carro pode chegar sem você ver!',
+          },
+        },
+        {
+          id: 'atravessar', texto: 'Atravesse andando pela faixa.', imagem: 'img/passos/rua-03.webp', dependeDe: ['mao', 'esperar', 'olhar'],
+          explicacao: {
+            mao:     'Atravessar sem a mão dada? Se você se assustar no meio da rua, não tem ninguém segurando você!',
+            esperar: 'Atravessar sem saber se o boneco está verde? Com ele vermelho, a vez é dos carros!',
+            olhar:   'Mesmo com o boneco verde, um carro pode não ter parado. Sem olhar para os lados, você não vê!',
+          },
+        },
+      ],
+      licao: {
+        pergunta: 'Quantas coisas precisam ser verdade?',
+        imagem: 'img/licoes/rua-3.webp',
+        texto: [
+          'Para atravessar, três coisas precisam ser verdade ao mesmo tempo: a mão dada, o boneco verde e os dois lados olhados.',
+          'Se faltar uma só, a resposta é "ainda não". É uma condição com E: isto E isto E isto.',
+          'Um passo a passo completo e na ordem certa se chama algoritmo. Com condições, ele sabe até a hora de esperar.',
+        ],
+        reflexao: [
+          'Qual das três coisas você acha mais fácil de esquecer? Por quê?',
+          'Que outra tarefa sua só pode começar quando várias coisas são verdade ao mesmo tempo?',
+        ],
+      },
+    },
+
+  ],
+};
+
+/* ============================================================
+   SITUAÇÃO 7 · FAZER UMA LIMONADA
+   Caminhos paralelos: o caminho do limão e o caminho da jarra
+   não dependem um do outro e se encontram na carta de misturar.
+   É o chamado com mais ordens certas do jogo, de propósito.
+   ============================================================ */
+
+const SITUACAO_LIMONADA = {
+  formato: 'passo-a-passo/1',
+  id: 'limonada',
+  titulo: 'Fazer uma limonada',
+  local: 'Cozinha',
+  area: 'casa',
+  cor: '#b8941f',
+  cliente: 'img/who1.webp',
+  // um quadrinho por passo (uma "cena" da jarra pediria peças que
+  // ainda não existem; a tirinha funciona só com as cartas)
+  montagem: 'tirinha',
+  fases: [
+
+    /* ---------- FASE 1 · o limão muda a cada passo (3 passos) ---------- */
+    {
+      id: 'fase-1',
+      titulo: 'Que calor! Vamos fazer limonada!',
+      instrucao: 'Arraste as cartas para os espaços — ou toque na carta e depois no espaço.',
+      mascote: 'O limão passa por três passos antes de virar suco. Em que ordem?',
+      passos: [
+        { id: 'lavar', texto: 'Lave os limões.', imagem: 'img/passos/limonada-01.webp', dependeDe: [] },
+        {
+          id: 'cortar', texto: 'Peça a um adulto para cortar os limões.', imagem: 'img/passos/limonada-02.webp', dependeDe: ['lavar'],
+          explicacao: 'Cortar o limão sujo? A faca leva a sujeira da casca para dentro do suco!',
+        },
+        {
+          id: 'espremer', texto: 'Esprema os limões.', imagem: 'img/passos/limonada-03.webp', dependeDe: ['cortar'],
+          explicacao: 'Limão inteiro não solta suco: ele só rola no espremedor, de um lado para o outro!',
+        },
+      ],
+      licao: {
+        pergunta: 'O que muda no limão a cada passo?',
+        imagem: 'img/licoes/limonada-1.webp',
+        texto: [
+          'O limão foi mudando: sujo, limpo, cortado, espremido.',
+          'Cada passo recebe o limão do jeito que o passo anterior deixou. Por isso não dá para pular nem trocar.',
+          'Num passo a passo, as coisas vão se transformando até ficarem prontas.',
+        ],
+        reflexao: [
+          'Por que é um adulto quem corta o limão?',
+          'Que outra comida muda de jeito a cada passo da receita?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 2 · dois caminhos ao mesmo tempo (5 passos) ---------- */
+    {
+      id: 'fase-2',
+      titulo: 'Agora a jarra!',
+      instrucao: 'O limão e a jarra não dependem um do outro. Só uma carta espera pelos dois!',
+      mascote: 'Enquanto um amigo espreme o limão, outro pode encher a jarra. Quem precisa esperar os dois?',
+      passos: [
+        { id: 'lavar', texto: 'Lave os limões.', imagem: 'img/passos/limonada-01.webp', dependeDe: [] },
+        {
+          id: 'cortar', texto: 'Peça a um adulto para cortar os limões.', imagem: 'img/passos/limonada-02.webp', dependeDe: ['lavar'],
+          explicacao: 'Cortar o limão sujo? A faca leva a sujeira da casca para dentro do suco!',
+        },
+        {
+          id: 'espremer', texto: 'Esprema os limões.', imagem: 'img/passos/limonada-03.webp', dependeDe: ['cortar'],
+          explicacao: 'Limão inteiro não solta suco: ele só rola no espremedor, de um lado para o outro!',
+        },
+        { id: 'agua', texto: 'Coloque água gelada na jarra.', imagem: 'img/passos/limonada-04.webp', dependeDe: [] },
+        {
+          id: 'misturar', texto: 'Misture o suco com a água da jarra.', imagem: 'img/passos/limonada-05.webp', dependeDe: ['espremer', 'agua'],
+          explicacao: {
+            espremer: 'Misturar qual suco? O limão ainda não foi espremido: ia ser só água!',
+            agua:     'Misturar o suco com qual água? A jarra ainda está vazia!',
+          },
+        },
+      ],
+      licao: {
+        pergunta: 'Dá para fazer duas coisas ao mesmo tempo?',
+        imagem: 'img/licoes/limonada-2.webp',
+        texto: [
+          'Pôr água na jarra não depende do limão: pode ser antes, no meio ou depois de espremer.',
+          'Passos assim podem ser feitos ao mesmo tempo, por duas pessoas. A limonada fica pronta mais rápido!',
+          'Só a carta de misturar não tem escolha: ela espera o suco e a água.',
+        ],
+        reflexao: [
+          'Se vocês fossem dois na cozinha, como dividiriam os passos?',
+          'Em quantos lugares diferentes da fila a carta da água podia ficar?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 3 · o ponto de encontro: quem espera por quem (7 passos) ---------- */
+    {
+      id: 'fase-3',
+      titulo: 'Limonada pronta para servir!',
+      instrucao: 'Chegaram o açúcar e o copo. Quem pode ir a qualquer hora, e quem precisa esperar?',
+      mascote: 'São dois caminhos: o do limão e o da jarra. Em que carta eles se encontram?',
+      passos: [
+        { id: 'lavar', texto: 'Lave os limões.', imagem: 'img/passos/limonada-01.webp', dependeDe: [] },
+        {
+          id: 'cortar', texto: 'Peça a um adulto para cortar os limões.', imagem: 'img/passos/limonada-02.webp', dependeDe: ['lavar'],
+          explicacao: 'Cortar o limão sujo? A faca leva a sujeira da casca para dentro do suco!',
+        },
+        {
+          id: 'espremer', texto: 'Esprema os limões.', imagem: 'img/passos/limonada-03.webp', dependeDe: ['cortar'],
+          explicacao: 'Limão inteiro não solta suco: ele só rola no espremedor, de um lado para o outro!',
+        },
+        { id: 'agua', texto: 'Coloque água gelada na jarra.', imagem: 'img/passos/limonada-04.webp', dependeDe: [] },
+        { id: 'acucar', texto: 'Coloque açúcar na jarra.', imagem: 'img/passos/limonada-06.webp', dependeDe: [] },
+        {
+          id: 'misturar', texto: 'Misture o suco, a água e o açúcar.', imagem: 'img/passos/limonada-05.webp', dependeDe: ['espremer', 'agua', 'acucar'],
+          explicacao: {
+            espremer: 'Misturar qual suco? O limão ainda não foi espremido: ia ser só água doce!',
+            agua:     'Misturar o suco com qual água? Ela ainda não está na jarra!',
+            acucar:   'Misturar agora e pôr o açúcar depois? Ele afunda e fica parado no fundo da jarra!',
+          },
+        },
+        {
+          id: 'servir', texto: 'Sirva a limonada no copo.', imagem: 'img/passos/limonada-07.webp', dependeDe: ['misturar'],
+          explicacao: 'Servir antes de misturar? O copo recebe uma parte só, e a limonada sai sem gosto de limonada!',
+        },
+      ],
+      licao: {
+        pergunta: 'Quem espera por quem?',
+        imagem: 'img/licoes/limonada-3.webp',
+        texto: [
+          'Aqui havia dois caminhos: o do limão (lavar, cortar, espremer) e o da jarra (água e açúcar).',
+          'Os dois andam ao mesmo tempo e se encontram na carta de misturar. Ela espera o caminho mais demorado chegar.',
+          'Um passo a passo completo e na ordem certa se chama algoritmo. Nem sempre ele é uma fila só: às vezes são caminhos que se juntam.',
+        ],
+        reflexao: [
+          'Desenhe os dois caminhos como duas trilhas que se encontram. Onde fica o ponto de encontro?',
+          'Em que outra tarefa duas partes ficam prontas separadas e se juntam no final?',
+        ],
+      },
+    },
+
+  ],
+};
+
+/* Os chamados que contam para a promoção: os quatro originais, que
+   levam a criança da "ordem importa" até o nome "algoritmo". */
+const SITUACOES_BASE = [SITUACAO_SANDUICHE, SITUACAO_ROBO, SITUACAO_MOCHILA, SITUACAO_ABELHAS];
+
+/* Os chamados novos: aparecem no mapa, somam estrelas e dicas, mas
+   não são exigidos para a promoção. */
+const SITUACOES_NOVAS = [SITUACAO_MAOS, SITUACAO_RUA, SITUACAO_LIMONADA];
+
+/* Todos os chamados do jogo, na ordem em que aparecem em cada lugar
+   do mapa (os originais primeiro). */
+const SITUACOES = [...SITUACOES_BASE, ...SITUACOES_NOVAS];

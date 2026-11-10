@@ -464,6 +464,11 @@ h2 {
   font-size: max(2.6cqw, 9px);
   margin: 0.4cqw 0;
 }
+/* segunda linha: os chamados novos, que não contam para a promoção */
+.prog .prog-novos:not([hidden]) {
+  display: block;
+  margin-top: 0.6cqw;
+}
 .bar {
   height: 1.6cqw;
   border: 0.25cqw solid var(--ink);
@@ -1380,6 +1385,9 @@ img.badge-sm {
   background: #f3e6cf center/contain no-repeat;
   display: grid;
   place-items: center;
+  /* carta pequena com legenda longa: o quadro "ilustração do passo"
+     encolhe sem o texto dele passar por cima da legenda */
+  overflow: hidden;
 }
 .carta-legenda {
   font-weight: 800;
@@ -1389,7 +1397,9 @@ img.badge-sm {
   color: var(--ink);
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  /* a legenda nunca pode ser cortada: com 7 ou 8 cartas (ou no
+     celular deitado) ela precisa de até quatro linhas */
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
 .carta-selecionada {
@@ -2703,6 +2713,10 @@ body.arrastando * {
 }
 .lugar {
   position: absolute;
+  /* --x e --y vêm do app.js, em % da imagem do mapa; --k é quanto a
+     imagem passa da largura do quadro (1 = cabe inteira) */
+  left: calc(50% + (var(--x, 50%) - 50%) * var(--k, 1));
+  top: var(--y, 50%);
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -2764,6 +2778,12 @@ body.arrastando * {
 /* chamados de um lugar */
 .local-painel {
   width: min(64cqw, 92%);
+  /* um lugar pode ter vários chamados: o painel nunca passa da tela,
+     e a lista rola por dentro se não couber */
+  /* cqh: altura do palco (a % não vale aqui, a grade do modal é automática) */
+  max-height: 96cqh;
+  padding: 2cqw 3cqw;
+  gap: 1.2cqw;
 }
 .local-cabeca {
   display: flex;
@@ -2783,14 +2803,34 @@ body.arrastando * {
   display: flex;
   flex-direction: column;
   gap: 1.2cqw;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* folga para a borda e a sombra dos cartões não serem cortadas */
+  padding: 0.4cqw;
 }
 .local-chamados .call {
-  height: 12cqw;
+  flex: none;
+  height: 10.4cqw;
   grid-template-columns: 7cqw 1fr;
 }
 .local-chamados .call .who {
   width: 7cqw;
   height: 7cqw;
+}
+/* tela larga: o rosto ocupa a altura do cartão e o resto fica ao lado,
+   para três chamados caberem no painel sem o rosto cobrir o título */
+@media (min-aspect-ratio: 4/5) {
+  .local-chamados .call .who {
+    grid-row: 1 / 3;
+  }
+  .local-chamados .call .meta {
+    grid-column: 2;
+  }
+  .local-rosto {
+    width: 5cqw;
+    height: 5cqw;
+  }
 }
 @media (max-aspect-ratio: 4/5) {
   #stage .mapa {
@@ -2825,6 +2865,8 @@ body.arrastando * {
   }
   #stage .local-painel {
     width: 92cqw;
+    padding: 4cqw 3cqw;
+    gap: 3cqw;
   }
   #stage .local-rosto {
     width: 14cqw;
@@ -2974,4 +3016,356 @@ body.arrastando * {
 #stage textarea {
   -webkit-user-select: text;
   user-select: text;
+}
+
+/* ============================================================
+   CELULAR EM PÉ — revisão geral
+   Vale por cima de tudo o que veio antes. Quatro regras:
+   1. o que se toca tem pelo menos 44 px de altura;
+   2. o que se lê tem pelo menos 12 px;
+   3. o botão principal da tela está sempre à vista (Verificar,
+      Próximo nível, Voltar ao mapa), mesmo quando o conteúdo rola;
+   4. nada sai pela lateral.
+   ============================================================ */
+@media (max-aspect-ratio: 4/5) {
+  /* ---------- 1. alvos de toque ---------- */
+  #stage .btn,
+  #stage .btn.small,
+  #stage .chip:is(button),
+  #stage .som-liga {
+    min-height: 44px;
+  }
+  #stage .chip.home {
+    min-width: 44px;
+  }
+  #stage .chip:is(button):not(.home) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* a barra de volume é fina: a área de toque dela, não */
+  #stage .som-volume {
+    height: 40px;
+  }
+  #stage .menu-btns .btn {
+    min-width: 58cqw;
+  }
+  #stage .menu-linha .btn {
+    min-width: 0;
+    font-size: max(3.6cqw, 12px);
+    padding: 1.5cqw 4cqw;
+  }
+
+  /* ---------- 2. tamanho do texto ---------- */
+  #stage .chip {
+    font-size: max(3.5cqw, 12px);
+  }
+  #stage .verificacao {
+    font-size: max(3.4cqw, 12px);
+  }
+  #stage .lista-niveis span {
+    font-size: max(2.8cqw, 11px);
+  }
+  #stage .modal p {
+    font-size: max(3.6cqw, 13px);
+  }
+  #stage .rank {
+    font-size: max(3.4cqw, 12px);
+  }
+  #stage .conclusao-progresso {
+    font-size: max(3.4cqw, 12px);
+  }
+  #stage .conclusao-texto p,
+  #stage .conclusao-reflexao li {
+    font-size: max(3.7cqw, 13px);
+  }
+
+  /* ---------- mapa: mais alto, marcadores maiores ---------- */
+  #stage .mapa {
+    /* quadro quase quadrado: a imagem (16:9) preenche a altura e as
+       laterais ficam de fora; --k = (16/9) / (10/9) */
+    aspect-ratio: 10 / 9;
+    --k: 1.6;
+  }
+  #stage .lugar {
+    gap: 0.6cqw;
+    /* a área de toque passa um pouco do desenho */
+    padding: 1.5cqw;
+  }
+  #stage .lugar-rosto {
+    width: 15cqw;
+    height: 15cqw;
+    border-width: 0.7cqw;
+  }
+  #stage .lugar-nome {
+    font-size: max(3.8cqw, 12px);
+    padding: 0.5cqw 2.4cqw;
+  }
+  #stage .lugar-conta {
+    font-size: max(3.2cqw, 12px);
+    top: 0;
+    right: -2cqw;
+    padding: 0.3cqw 1.6cqw;
+  }
+  #stage #hub .guide p {
+    font-size: max(3.4cqw, 12px);
+    line-height: 1.3;
+  }
+  #stage #hub .guide b {
+    font-size: max(3.8cqw, 13px);
+  }
+  #stage .prog small {
+    font-size: max(3.3cqw, 12px);
+  }
+
+  /* ---------- painel do lugar: cartões que cabem ---------- */
+  #stage .local-painel {
+    max-height: 94cqh;
+  }
+  #stage .local-rosto {
+    width: 11cqw;
+    height: 11cqw;
+  }
+  #stage .local-chamados .call {
+    min-height: 0;
+    grid-template-columns: 15cqw minmax(0, 1fr) 22cqw;
+    padding: 2.4cqw;
+  }
+  #stage .local-chamados .call b {
+    font-size: max(4.4cqw, 15px);
+    line-height: 1.15;
+  }
+  #stage .local-chamados .call small {
+    font-size: max(3.3cqw, 12px);
+    line-height: 1.3;
+  }
+  /* "Chamado 5" sai; o lugar e o nível ficam cada um na sua linha */
+  #stage .local-chamados .call-num,
+  #stage .local-chamados .call-sep {
+    display: none;
+  }
+  #stage .local-chamados .call-local,
+  #stage .local-chamados .call-nivel {
+    display: block;
+  }
+  #stage .local-chamados .call .meta {
+    gap: 1.6cqw;
+  }
+  #stage .local-chamados .call .btn {
+    white-space: nowrap;
+    min-height: 0;
+    font-size: max(3.6cqw, 13px);
+    padding: 1.4cqw 4cqw;
+  }
+  #stage .call .pic.figura-vazia {
+    font-size: max(2.6cqw, 10px);
+  }
+
+  /* ---------- nível: cartas e textos legíveis ---------- */
+  #stage {
+    --carta-a: max(14cqw, 50px);
+  }
+  #stage .fase-instrucao {
+    font-size: max(3.4cqw, 12px);
+    line-height: 1.3;
+  }
+  #stage .guia p {
+    font-size: max(3.5cqw, 12.5px);
+    line-height: 1.3;
+  }
+  #stage .carta-legenda {
+    font-size: max(3.3cqw, 12px);
+    line-height: 1.12;
+  }
+  #stage .carta-figura {
+    width: 9.4cqw;
+    height: 9.4cqw;
+  }
+  #stage .carta {
+    gap: 1.6cqw;
+  }
+  /* frase comprida (classe posta pelo comum.js): letra menor, para
+     caber inteira nas três linhas da carta */
+  #stage .carta-legenda.legenda-longa {
+    font-size: max(2.95cqw, 10.6px);
+  }
+  /* carta sem ilustração: só o quadro tracejado (o texto não cabe) */
+  #stage .carta-figura.figura-vazia {
+    font-size: 0;
+  }
+  #stage .espaco-numero {
+    font-size: 6cqw;
+  }
+  #stage .dica-restantes {
+    font-size: max(3cqw, 11px);
+  }
+  #stage .quadro-figura.sem-imagem {
+    font-size: max(2.9cqw, 10.5px);
+  }
+  /* o aviso e a fala do robô não ficam atrás do topo nem do rodapé
+     quando a tela rola até eles */
+  #stage .guia,
+  #stage .verificacao {
+    scroll-margin: 3cqw 0 6cqw;
+  }
+
+  /* ---------- nível: rodapé fixo, Verificar sempre à vista ---------- */
+  #stage #fase .rodape {
+    position: sticky;
+    bottom: 0;
+    z-index: 6;
+    order: 4;
+    margin: auto 0 0;
+    padding: 2.4cqw 3cqw calc(2.6cqw + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6cqw;
+    background: #f1e3cc;
+    box-shadow: 0 -0.8cqw 2.4cqw rgba(70, 45, 20, 0.22);
+    pointer-events: auto;
+  }
+  /* espaço entre a bandeja e o rodapé fixo */
+  #stage #fase .bandeja {
+    margin-bottom: 3cqw;
+  }
+  /* primeira linha: Nível, Ver montagem, Dica; segunda: Verificar */
+  #stage #fase .rodape-direita {
+    display: contents;
+  }
+  #stage #fase #btn-niveis {
+    order: 1;
+  }
+  #stage #fase #btn-montagem {
+    order: 2;
+  }
+  #stage #fase #btn-dica {
+    order: 3;
+    margin-left: auto;
+  }
+  #stage #fase #btn-verificar {
+    order: 4;
+    flex: 1 0 100%;
+    min-height: 46px;
+    font-size: max(4.8cqw, 16px);
+  }
+  #stage #fase .rodape .chip {
+    font-size: max(3.6cqw, 12px);
+    padding: 1cqw 2.4cqw;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+  #stage #fase #btn-dica {
+    gap: 3.2cqw;
+  }
+
+  /* ---------- lição: "Próximo nível" sempre à vista ---------- */
+  #stage .licao-arte {
+    /* a cena de comemoração cede altura para a lição */
+    flex: 1 1 30cqw;
+    min-height: 24cqw;
+  }
+  #stage .conclusao-painel {
+    flex: 0 1 auto;
+    padding-bottom: 0;
+  }
+  #stage .conclusao-rodape {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    margin: 0 -4cqw;
+    padding: 2.4cqw 4cqw 3.4cqw;
+    gap: 2cqw;
+    background: var(--cream);
+    border-radius: 0 0 4cqw 4cqw;
+  }
+  #stage .rewards img {
+    height: 7cqw;
+  }
+  #stage .rewards b {
+    font-size: max(3.8cqw, 13px);
+  }
+  #stage .conclusao-continuar {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   CELULAR DEITADO
+   Tela deitada e baixa (celular): o jogo usa o desenho do PC em
+   miniatura. Um aviso sugere virar o aparelho; ele some sozinho em
+   pé e pode ser dispensado. As medidas daqui são em px de propósito:
+   o aviso precisa ser legível justamente quando o resto está miúdo.
+   ============================================================ */
+.girar {
+  display: none;
+}
+@media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
+  #stage:not(.deitado-ok) .girar {
+    position: absolute;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    background: rgba(29, 24, 36, 0.86);
+  }
+  .girar-caixa {
+    max-width: 420px;
+    padding: 16px 20px;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    text-align: center;
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    box-shadow: 0 5px 0 var(--ink);
+  }
+  /* um celular em pé, desenhado em CSS */
+  .girar-figura {
+    width: 30px;
+    height: 50px;
+    border: 4px solid var(--ink);
+    border-radius: 8px;
+    background: var(--p);
+    box-shadow: inset 0 -8px 0 var(--ink);
+  }
+  #stage .girar h2 {
+    font-family: Fredoka;
+    font-size: 20px;
+  }
+  .girar p {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  #stage .girar .btn {
+    font-size: 15px;
+    padding: 8px 20px;
+    min-height: 44px;
+    border-width: 3px;
+    box-shadow: 0 4px 0 var(--ink);
+  }
+}
+/* deitado e baixo: o cartão do chamado não tem altura para a
+   ilustração; sem ela, o título e o botão param de se sobrepor */
+@media (min-aspect-ratio: 4/5) and (max-height: 480px) {
+  .local-chamados .call {
+    height: auto;
+    grid-template-rows: auto;
+    align-items: center;
+  }
+  .local-chamados .call .pic {
+    display: none;
+  }
+  .local-chamados .call .who {
+    grid-row: 1;
+    width: 5.6cqw;
+    height: 5.6cqw;
+  }
+  .local-chamados .call .btn {
+    white-space: nowrap;
+  }
 }
