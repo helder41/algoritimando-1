@@ -15,6 +15,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 - Os quatro primeiros chamados levam a criança da "ordem importa" até o nome "algoritmo", e são eles que contam para a **promoção**. Os três chamados novos trazem uma ideia a mais cada um: **repetição** (Lavar as mãos), **condição** (Atravessar a rua) e **caminhos paralelos** (Fazer uma limonada). Eles aparecem no mapa desde o começo, somam estrelas e dicas, mas não são exigidos para a promoção. O porquê de cada decisão está em [docs/revisao-chamados-novos.md](docs/revisao-chamados-novos.md).
 - Estrelas por nível: 3 sem erro, 2 com um erro, 1 com mais (usar dica conta como erro). Cada nível concluído dá +1 dica, e a dica coloca a carta certa no lugar.
 - O arrasto usa Pointer Events (mouse, dedo e teclado).
+- No celular em pé, a tela do nível rola e o rodapé fica fixo: Verificar, Dica, Ver montagem e Nível estão sempre à vista. Arrastando uma carta para perto do alto ou do rodapé, a tela rola sozinha. Tudo o que se toca tem pelo menos 44 px de altura. Com o celular deitado, um aviso sugere virar o aparelho (dá para dispensar).
 - Os chamados ficam em dados (`js/situacoes.js`), no mesmo formato do `.json` que a Área do professor gera.
 
 ## Área do professor

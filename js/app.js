@@ -62,6 +62,17 @@
     if (ev.target instanceof HTMLImageElement) ev.preventDefault();
   });
 
+  /* ---------------- celular deitado ----------------
+     O aviso "vire o celular em pé" aparece por CSS (style.css) só em
+     tela deitada e baixa. Dispensado, não volta até fechar a aba. */
+  const CHAVE_GIRAR = 'algoritimando-deitado';
+  const palco = $('#stage');
+  try { if (sessionStorage.getItem(CHAVE_GIRAR) === '1') palco.classList.add('deitado-ok'); } catch { /* sem memória */ }
+  $('#bGirarSeguir').onclick = () => {
+    palco.classList.add('deitado-ok');
+    try { sessionStorage.setItem(CHAVE_GIRAR, '1'); } catch { /* sem memória */ }
+  };
+
   /* ---------------- menu ---------------- */
 
   function irParaMenu() {
@@ -191,8 +202,10 @@
       const botao = document.createElement('button');
       botao.type = 'button';
       botao.className = 'lugar' + (feitos === lista.length ? ' feito' : '');
-      botao.style.left = lugar.x + '%';
-      botao.style.top = lugar.y + '%';
+      // a posição vai em variáveis: no celular o mapa é mais alto e
+      // corta as laterais da imagem, e o CSS refaz a conta do "left"
+      botao.style.setProperty('--x', lugar.x + '%');
+      botao.style.setProperty('--y', lugar.y + '%');
       botao.setAttribute('aria-label',
         `${lugar.nome}: ${feitos} de ${lista.length} ${lista.length === 1 ? 'chamado concluído' : 'chamados concluídos'}`);
       botao.innerHTML = `<span class="lugar-rosto"><img alt=""></span>
@@ -244,8 +257,24 @@
     cartao.querySelector('b').textContent = s.titulo;
 
     const nivel = emAndamento ? prog.fase + 1 : feito ? s.fases.length : 1;
-    cartao.querySelector('small').textContent =
-      `${emProgresso ? 'Protótipo' : 'Chamado'} ${i + 1}${s.local ? ' · ' + s.local : ''} · Nível ${nivel} de ${s.fases.length}`;
+    // "Chamado 5 · Banheiro · Nível 1 de 4": cada parte no seu <span>,
+    // para o celular mostrar o lugar e o nível em linhas separadas
+    const partes = [[`${emProgresso ? 'Protótipo' : 'Chamado'} ${i + 1}`, 'call-num']];
+    if (s.local) partes.push([s.local, 'call-local']);
+    partes.push([`Nível ${nivel} de ${s.fases.length}`, 'call-nivel']);
+    const linha = cartao.querySelector('small');
+    partes.forEach(([texto, classe], k) => {
+      if (k) {
+        const ponto = document.createElement('span');
+        ponto.className = 'call-sep';
+        ponto.textContent = ' · ';
+        linha.append(ponto);
+      }
+      const parte = document.createElement('span');
+      parte.className = classe;
+      parte.textContent = texto;
+      linha.append(parte);
+    });
 
     const botao = cartao.querySelector('.btn');
     if (feito && !emAndamento) {

@@ -167,6 +167,10 @@
     erros = 0;
     faseConcluida = false;
     limparReacao();
+    // o "Tudo certo!" do nível anterior não pode ficar no tabuleiro novo
+    mostrarAviso('');
+    // no celular a tela do nível rola: cada nível começa do alto
+    tela.scrollTop = 0;
     atualizarVerificar();
     atualizarEstrelas();
     Montagem.preparar(situacao, f);
@@ -296,6 +300,7 @@
     rosto.src = ROSTO.dica;
     balao.textContent =
       `Passo ${lugar.indice + 1}: "${lugar.passo.texto}" Dá para fazer o resto!`;
+    trazerParaATela(guia);
     anunciar(balao.textContent);
   });
 
@@ -336,6 +341,7 @@
       Montagem.atualizar(sequencia, resultado.erro, true);
       const texto = 'Ainda não está na ordem certa. Confira os passos ou peça uma dica ao Robô-guia.';
       mostrarAviso(texto, 'erro');
+      trazerParaATela(avisoVerificacao);
       anunciar(texto);
       return;
     }
@@ -480,8 +486,18 @@
     balao.textContent = erro.mensagem;
     guia.classList.add('atencao');
     rosto.src = ROSTO.erro;
+    trazerParaATela(guia);
 
     anunciar(erro.mensagem);
+  }
+
+  /* No celular a tela do nível rola, e o aviso do tabuleiro ou a fala
+     do robô podem estar fora da vista quando aparecem: a tela rola
+     até eles. No PC nada rola, e isto não faz nada. */
+  function trazerParaATela(el) {
+    if (!el || tela.scrollHeight <= tela.clientHeight + 2) return;
+    const suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ block: 'nearest', behavior: suave ? 'smooth' : 'auto' });
   }
 
   // a explicação fica na tela até a criança mexer de novo —
