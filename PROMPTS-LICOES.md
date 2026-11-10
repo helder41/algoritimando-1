@@ -11,6 +11,8 @@
 - **Mesmos personagens e objetos do jogo:** o cliente do chamado, o Robô-guia e os objetos das cartas.
 - Ao salvar, use o nome indicado em cada bloco (ex.: `sanduiche-1.webp`). A imagem aparece sozinha no jogo, sem mexer no código; o recorte e o ajuste de tamanho são feitos como nas cartas.
 
+**Chamados novos:** as 10 lições de Lavar as mãos, Atravessar a rua e Fazer uma limonada ainda não foram geradas. Os prompts estão no fim deste arquivo.
+
 **Se a imagem sair errada**, peça a correção na mesma conversa: "remove all text", "simpler, fewer objects", "same bee as the reference", "make the left and right panels clearer".
 
 ## Fazer um sanduíche
@@ -173,4 +175,102 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 Scene: A friendly path of round stepping stones from left to right, each with a small icon in order: bee leaving the hive, bee looking for a flower, flying to a sunflower, nectar drop, pollen balls, flying back home, nectar going into a honeycomb cell, a honeycomb cell sealed with wax. At the end, a golden honeycomb full of honey, the bee proud and the small round white Robô-guia robot with a black face screen and green eyes (from the reference) cheering.
 Attached images: character and object references.
 Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: a green check mark, a red X, simple arrows, a small dotted line. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+## Chamados novos
+
+**Por gerar:** 10 imagens, dos três chamados que entraram no jogo depois dos quatro primeiros. As regras são as mesmas do começo deste arquivo. Gere primeiro as cartas de cada chamado (em `PROMPTS-CARTAS.md`): elas são a referência dos objetos aqui.
+
+## Lavar as mãos
+
+**Anexe como referência:** `img/cliente0.webp` (o menino da Casa), `img/guide.webp` (Robô-guia) e as cartas `img/passos/maos-01.webp` a `maos-07.webp` (pia, torneira, sabonete verde-claro, toalha azul-clara), quando existirem.
+
+### `maos-1.webp` — Nível 1: A mesma água, duas vezes?
+
+```
+Scene: Two side-by-side panels separated by a thin vertical gap, joined by one arrow going from the left panel to the right panel. NO red X and NO green check mark anywhere. Left panel: the curly-haired boy from the reference at a white bathroom sink, wetting his dirty hands (small brown smudges) under a stream of light blue water. Right panel: the same boy at the same sink, the same stream of water now washing white soap foam off his hands, which come out clean with a sparkle. The tap and the water look exactly the same in both panels; only the hands are different.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: simple arrows, a small sparkle. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+### `maos-2.webp` — Nível 2: Quantas vezes?
+
+```
+Scene: Two side-by-side panels separated by a thin vertical gap: left panel with a small red X in its top corner, right panel with a small green check mark in its top corner. Left: a long, messy row of many identical small blank cards, each showing the same tiny icon of two hands rubbing with foam, running off the edge of the panel, and the small round white Robô-guia robot with a black face screen and green eyes (from the reference) looking overwhelmed at them. Right: one single card with the same icon of two foamy hands, with a big circular loop arrow going around the card, and the same robot looking relieved and happy. No numbers anywhere.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: a green check mark, a red X, simple arrows, a small dotted line. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+### `maos-3.webp` — Nível 3: O que você abre, você fecha?
+
+```
+Scene: One wide scene with a white bathroom sink drawn twice, at the far left and at the far right, joined by a big curved bracket-like arch that goes over the whole image from one to the other, like a rainbow. Far left: a hand lifting the tap lever, water starting to run. Far right: a hand pushing the tap lever down, water stopped, one last drop. Under the arch, in the middle, the curly-haired boy from the reference washes his hands with white foam. The two tap moments mirror each other, showing they are a pair.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: simple arrows, one big curved arch line. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+### `maos-4.webp` — Nível 4: Os dois jeitos dão certo. Qual é o melhor?
+
+```
+Scene: Two side-by-side panels separated by a thin vertical gap. NO red X anywhere: both panels show a way that works. Left panel: the curly-haired boy from the reference drying his clean hands on a light blue towel while, behind him, the tap is still open and water keeps running down the drain, with several water drops and a small worried look on his face. Right panel: the same boy drying his clean hands on the same towel, the tap behind him already closed, no water running, one small green leaf and a single saved water drop with a sparkle above the sink, and a small green check mark in the top corner of this panel only.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: one green check mark (right panel only), water drops, a small sparkle. Do NOT draw any red X. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+## Atravessar a rua
+
+**Anexe como referência:** `img/cliente2.webp` (a menina da Escola), `img/guide.webp` (Robô-guia) e as cartas `img/passos/rua-01.webp` a `rua-06.webp` (faixa, semáforo de pedestres), quando existirem.
+
+**Cuidado com o tom:** nada de acidente, susto forte ou carro encostando na criança. O perigo aparece só como um carro vindo ao longe e a menina ainda na calçada.
+
+### `rua-1.webp` — Nível 1: Por que olhar antes?
+
+```
+Scene: Two side-by-side panels separated by a thin vertical gap: left panel with a small red X in its top corner, right panel with a small green check mark in its top corner. Left: the girl from the reference on the sidewalk about to step onto a zebra crossing while looking straight ahead, not to the sides, and a small car far away down the street that she has not noticed, with a small exclamation mark above the car. She is still safely on the sidewalk. Right: the same girl standing on the sidewalk at the zebra crossing with her head turned and a hand above her eyes, two small curved arrows pointing left and right, the street empty and calm.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: a green check mark, a red X, simple arrows, one small exclamation mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+### `rua-2.webp` — Nível 2: Um passo que faz uma pergunta?
+
+```
+Scene: One scene with a path that splits in two, like a fork in a road, seen from above at a slight angle. At the start of the path, the girl from the reference stands on the sidewalk looking up at a pedestrian traffic light, with a big question mark above her head. The path then forks: the upper branch is marked by a red lamp with a standing little figure and shows the same girl waiting still on the sidewalk; the lower branch is marked by a green lamp with a walking little figure and shows the same girl walking on a zebra crossing. The small round white robô-guia robot with a black face screen and green eyes (from the reference) floats next to the fork, pointing at the two branches.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: a question mark, simple arrows, a red lamp and a green lamp. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+### `rua-3.webp` — Nível 3: Quantas coisas precisam ser verdade?
+
+```
+Scene: Three round bubbles in a row across the top of the image, each with one small picture and a small green check mark beside it: a child's hand holding an adult's hand; a pedestrian traffic light with the green walking figure lit; the girl's face turned sideways with a hand above her eyes. Three arrows go down from the three bubbles and meet at one single point below, where the girl from the reference walks on a zebra crossing holding the hand of a friendly adult (seen from behind, no detailed face), both calm and smiling.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: three green check marks, simple arrows. Do NOT draw any red X. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+## Fazer uma limonada
+
+**Anexe como referência:** `img/cliente0.webp` (o menino da Casa), `img/guide.webp` (Robô-guia) e as cartas `img/passos/limonada-01.webp` a `limonada-07.webp` (limões verdes, jarra de vidro, espremedor, copo), quando existirem.
+
+### `limonada-1.webp` — Nível 1: O que muda no limão a cada passo?
+
+```
+Scene: One row of four stages of the same green lime, from left to right, joined by three arrows: a whole lime with small brown dirt smudges; the same whole lime clean and shiny with water drops; the lime cut in two open halves; a squeezed, flattened lime half next to a small dish of pale yellow-green juice. The curly-haired boy from the reference stands at the end of the row, happily pointing at the juice.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: simple arrows, a small sparkle. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+### `limonada-2.webp` — Nível 2: Dá para fazer duas coisas ao mesmo tempo?
+
+```
+Scene: One kitchen counter seen from the front with two children working side by side at the same time. On the left, the curly-haired boy from the reference squeezes half a green lime on a glass juicer. On the right, a second child (a girl with a ponytail and an apron) pours light blue water with ice cubes into a clear glass jug. A small identical clock icon with no numbers floats above each child, showing both things happen at the same moment. In the middle, between them, a long wooden spoon lies on the counter waiting, with a small dotted line from each child to the spoon.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: simple arrows, small dotted lines, two small clock faces without numbers. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+### `limonada-3.webp` — Nível 3: Quem espera por quem?
+
+```
+Scene: Two trails of round stepping stones that start far apart on the left and join into one trail on the right, like two rivers meeting. The upper trail has three stones with small icons in order: a green lime under water, a lime cut in halves, a lime half on a juicer. The lower trail has two stones: a glass jug with water and ice, a spoon of sugar over the jug. At the point where the two trails meet, one bigger stone shows the jug being stirred with a wooden spoon. After it, one last stone shows a glass of lemonade. The curly-haired boy from the reference and the small round white Robô-guia robot with a black face screen and green eyes (from the reference) stand at the end, the boy holding the glass.
+Attached images: character and object references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: simple arrows, a small dotted line. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
 ```
