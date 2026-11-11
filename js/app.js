@@ -105,6 +105,23 @@
     location.reload();
   };
   Som.abrirMenuBotao($('#bSound'));
+  // atalho de som no topo de todas as telas, ao lado do crachá
+  const ICONE_SOM = '<svg class="icone" viewBox="0 0 24 24" aria-hidden="true">' +
+    '<path d="M4 9v6h4l5 4V5L8 9H4Z"/>' +
+    '<path class="onda" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    '<path class="risco" d="M16 9l6 6M22 9l-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    '</svg>';
+  $$('.top').forEach(topo => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip som-atalho';
+    b.title = 'Sons';
+    b.setAttribute('aria-label', 'Ajustar os sons');
+    b.innerHTML = ICONE_SOM;
+    const depois = topo.querySelector('.chip.who') || topo.querySelector('.chip.home');
+    if (depois) depois.after(b); else topo.prepend(b);
+    Som.abrirMenuBotao(b, true);
+  });
   $('#bSonsFechar').onclick = () => $('#sons').classList.remove('on');
   $('#bHow').onclick = () => $('#how').classList.add('on');
   $('#bHowClose').onclick = () => $('#how').classList.remove('on');

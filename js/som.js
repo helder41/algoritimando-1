@@ -187,7 +187,12 @@
   const botoes = [];
 
   function atualizarBotoes() {
-    for (const { botao, comTexto } of botoes) {
+    for (const { botao, comTexto, icone } of botoes) {
+      if (icone) {
+        // atalho de qualquer tela: abre o painel; riscado se tudo mudo
+        botao.classList.toggle('mudo', !(ligado || ajustes.musica));
+        continue;
+      }
       botao.classList.toggle('mudo', !ligado);
       botao.setAttribute('aria-pressed', String(ligado));
       const rotulo = ligado ? 'Desligar o som' : 'Ligar o som';
@@ -214,9 +219,10 @@
   }
 
   /* O botão "Sons" do menu abre o painel de ajustes. */
-  function abrirMenuBotao(botao) {
+  // icone = true: o botão mostra só o alto-falante (o atalho do topo)
+  function abrirMenuBotao(botao, icone = false) {
     if (!botao) return;
-    botoes.push({ botao, comTexto: true });
+    botoes.push({ botao, comTexto: !icone, icone });
     botao.addEventListener('click', () => document.querySelector('#sons').classList.add('on'));
     atualizarBotoes();
   }
