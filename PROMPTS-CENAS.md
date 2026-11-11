@@ -1,6 +1,6 @@
 # Prompts das cenas dos chamados
 
-13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Já existem:** todas, menos a `pic5` (Lavar as mãos). Os retratos `who5` e `who6` também. **Falta 1:** `pic5`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo há também versões novas das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena.
+13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Prontas:** todas as imagens dos chamados novos, e os retratos `who5` e `who6`. Os prompts ficam como registro. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo há também versões novas das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena.
 
 | Imagem | Onde aparece | Modelo que já existe | Campo em `js/situacoes.js` |
 |---|---|---|---|
@@ -43,7 +43,7 @@ Se preferir, mande as imagens no chat com o nome de cada uma: a conversão para 
 
 ## Lavar as mãos (Banheiro)
 
-**Arquivos:** `pic5.webp`, `level5.webp`, `win5.webp`. **Prontos:** `level5` e `win5`. **Falta:** `pic5`.
+**Arquivos:** `pic5.webp`, `level5.webp`, `win5.webp`. **Prontos:** os três.
 
 **Anexe como referência:** `img/pic3.webp` (estilo da ilustração do chamado), `img/level3.webp` e `img/win3.webp` (composição dos fundos), `img/cliente0.webp` (o menino), `img/guide.webp` (Robô-guia) e, quando existirem, as cartas `img/passos/maos-01.webp` a `maos-07.webp`.
 

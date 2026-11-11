@@ -208,7 +208,7 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 |---|---|---|
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.webp` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.webp` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
-| Cartão de Lavar as mãos, no painel do lugar (os outros três já têm) | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo), `img/pic7.webp` (jarra de limonada) e `img/pic8.webp` (escova, copo e pasta), no campo `cena` de cada chamado em `js/situacoes.js` (prompts em `PROMPTS-CENAS.md`) |
+| Cartão dos chamados novos, no painel do lugar | pronto: os quatro têm a mini-cena | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo), `img/pic7.webp` (jarra de limonada) e `img/pic8.webp` (escova, copo e pasta), no campo `cena` de cada chamado em `js/situacoes.js` (prompts em `PROMPTS-CENAS.md`) |
 | Tela do nível e da lição dos chamados novos | pronto: todos têm os dois fundos | nada a fazer (campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
 | Clientes dos chamados novos | Lavar as mãos: o menino da Casa (`who1`). Atravessar a rua e Fazer uma limonada: o menino de moletom amarelo (`who5`, recortado do `level6`). Escovar os dentes: a menina de pijama coral (`who6`, recortada do `level8`) | nada a fazer |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
