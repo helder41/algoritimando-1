@@ -480,31 +480,31 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 **Por gerar:** 7 cartas.
 
-**Anexe como referência:** `img/passos/sanduiche-03.webp` (estilo).
+**Anexe como referência:** `img/level6.webp` (o menino de moletom amarelo e cabelo cacheado, o mesmo de Atravessar a rua) e `img/passos/sanduiche-03.webp` (estilo das cartas).
 
-**Consistência:** Sempre os MESMOS limões (limão-taiti, verde, casca lisa), a mesma jarra de vidro transparente com alça, a mesma colher de pau comprida, o mesmo espremedor manual de vidro e o mesmo copo liso. Objetos sem rosto. Uma coisa por carta: a carta do limão não mostra a jarra, e a carta da jarra não mostra o limão.
+**Consistência:** Sempre os MESMOS limões (limão-taiti, verde, casca lisa), a mesma jarra de vidro transparente com alça, a mesma colher de pau comprida, o mesmo espremedor manual de vidro e o mesmo copo liso. Quando aparece uma criança, é sempre o MESMO menino do `level6.webp` (pele morena, cabelo cacheado castanho-escuro, moletom amarelo, bermuda azul-marinho), sem a mochila, porque está em casa. Nas cartas aparecem só as mãos dele (com a manga amarela do moletom), sem rosto. Objetos sem rosto. Uma coisa por carta: a carta do limão não mostra a jarra, e a carta da jarra não mostra o limão.
 
 ### `limonada-01.webp` — Lave os limões.
 
 ```
-Subject: Three whole green limes under a stream of light blue water from a silver tap, water drops splashing off them, held in a small white colander. The limes are whole, not cut. No jar, no knife. Objects have no faces.
-Attached images: style reference and character/object reference.
+Subject: Three whole green limes in a small white colander under a stream of light blue water from a silver tap, water drops splashing off them, held and rubbed by the two small brown-skinned hands of the boy from the attached level background, with the yellow hoodie sleeves visible (only hands and forearms, no face). The limes are whole, not cut. No jar, no knife. Objects have no faces.
+Attached images: level background (the boy, for his hands and sleeve) and card style reference. Only hands and forearms of the boy, never his face or body; no kitchen scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
 ### `limonada-02.webp` — Peça a um adulto para cortar os limões.
 
 ```
-Subject: A big adult hand holding a kitchen knife that has just cut one green lime in half on a wooden cutting board, the two halves lying open showing the pale green inside, one whole lime waiting beside them. Only the adult hand and forearm, no face, no child. No jar, no juicer. Objects have no faces.
-Attached images: style reference and character/object reference.
+Subject: A big adult hand holding a kitchen knife that has just cut one green lime in half on a wooden cutting board, the two halves lying open showing the pale green inside, one whole lime waiting beside them. Only the adult hand and forearm, no face. Beside the board, the small brown-skinned hand of the boy from the attached level background (yellow hoodie sleeve visible) points at the limes, asking for help; the boy's hand does not touch the knife. No jar, no juicer. Objects have no faces.
+Attached images: level background (the boy, for his hands and sleeve) and card style reference. Only hands and forearms of the boy, never his face or body; no kitchen scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
 ### `limonada-03.webp` — Esprema os limões.
 
 ```
-Subject: A small child's hand pressing half a green lime onto a clear glass manual citrus juicer, pale yellow-green juice collecting in the juicer's dish, two small drops flying. No jar, no water, no knife. Objects have no faces.
-Attached images: style reference and character/object reference.
+Subject: The small brown-skinned hand of the boy from the attached level background, with the yellow hoodie sleeve visible, pressing half a green lime onto a clear glass manual citrus juicer, pale yellow-green juice collecting in the juicer's dish, two small drops flying. No jar, no water, no knife. Objects have no faces.
+Attached images: level background (the boy, for his hands and sleeve) and card style reference. Only hands and forearms of the boy, never his face or body; no kitchen scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
@@ -512,30 +512,30 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ```
 Subject: A clear glass jug with a handle being filled with light blue water poured from above, the jug about half full, three ice cubes floating in it. Only water and ice inside: no lime, no juice, no sugar, no spoon. Objects have no faces.
-Attached images: style reference and character/object reference.
+Attached images: card style reference. No people, no hands; no kitchen scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
 ### `limonada-05.webp` — Misture o suco com a água da jarra. / Misture o suco, a água e o açúcar.
 
 ```
-Subject: A clear glass jug with a handle, full of pale yellow-green lemonade, with a long wooden spoon inside stirring it, a spiral swirl drawn in the liquid and two curved arrows around the spoon showing the stirring. No lime halves, no glass, no sugar bowl. Objects have no faces.
-Attached images: style reference and character/object reference.
+Subject: A clear glass jug with a handle, full of pale yellow-green lemonade, with a long wooden spoon inside, held by the small brown-skinned hand of the boy from the attached level background (yellow hoodie sleeve visible), stirring it, a spiral swirl drawn in the liquid and two curved arrows around the spoon showing the stirring. No lime halves, no glass, no sugar bowl. Objects have no faces.
+Attached images: level background (the boy, for his hands and sleeve) and card style reference. Only hands and forearms of the boy, never his face or body; no kitchen scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
 ### `limonada-06.webp` — Coloque açúcar na jarra.
 
 ```
-Subject: A small spoon tipping white sugar into the open top of a clear glass jug with a handle, the sugar falling as a small stream of white grains, a small white sugar bowl beside the jug. No lime, no juicer, no glass. Objects have no faces.
-Attached images: style reference and character/object reference.
+Subject: The small brown-skinned hand of the boy from the attached level background, with the yellow hoodie sleeve visible, holding a small spoon tipping white sugar into the open top of a clear glass jug with a handle, the sugar falling as a small stream of white grains, a small white sugar bowl beside the jug. No lime, no juicer, no glass. Objects have no faces.
+Attached images: level background (the boy, for his hands and sleeve) and card style reference. Only hands and forearms of the boy, never his face or body; no kitchen scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
 ### `limonada-07.webp` — Sirva a limonada no copo.
 
 ```
-Subject: A clear glass jug with a handle, tilted, pouring pale yellow-green lemonade into a simple drinking glass that is half full, one ice cube and one thin green lime slice on the rim of the glass. Objects have no faces.
-Attached images: style reference and character/object reference.
+Subject: The two small brown-skinned hands of the boy from the attached level background, with the yellow hoodie sleeves visible, holding a clear glass jug with a handle, tilted, pouring pale yellow-green lemonade into a simple drinking glass that is half full, one ice cube and one thin green lime slice on the rim of the glass. Objects have no faces.
+Attached images: level background (the boy, for his hands and sleeve) and card style reference. Only hands and forearms of the boy, never his face or body; no kitchen scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
