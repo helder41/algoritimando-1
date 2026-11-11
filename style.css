@@ -3369,3 +3369,81 @@ body.arrastando * {
     white-space: nowrap;
   }
 }
+
+/* ===== atalho de som no topo de todas as telas ===== */
+.som-atalho {
+  display: grid;
+  place-items: center;
+  font-size: max(2cqw, 9px);
+  padding: 0.5cqw 1cqw;
+}
+.som-atalho .risco {
+  display: none;
+}
+.som-atalho.mudo .onda {
+  display: none;
+}
+.som-atalho.mudo .risco {
+  display: inline;
+}
+
+/* ===== painel de sons: linhas que cabem em qualquer tela ===== */
+#sons .panel {
+  width: min(56cqw, 92%);
+  gap: 2cqw;
+}
+#sons h2 {
+  font-size: max(3cqw, 20px);
+}
+#sons .som-linha {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 9cqw 14cqw minmax(0, 1fr);
+  align-items: center;
+  gap: 2cqw;
+  background: #fbf3e4;
+  border: 0.2cqw solid #e2cfae;
+  border-radius: 1.4cqw;
+  padding: 1.2cqw 1.6cqw;
+}
+#sons .som-nome {
+  font-size: max(1.8cqw, 14px);
+}
+#sons .som-liga {
+  width: 100%;
+  font-size: max(1.5cqw, 13px);
+  padding: 0.7cqw 0;
+  white-space: nowrap;
+}
+#sons .som-volume {
+  height: max(2.4cqw, 24px);
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage #sons .panel {
+    width: 90cqw;
+    gap: 4cqw;
+  }
+  #stage #sons h2 {
+    font-size: 7cqw;
+  }
+  #stage #sons .som-linha {
+    grid-template-columns: 1fr 34cqw;
+    gap: 3cqw;
+    padding: 3cqw 4cqw;
+    border-radius: 3.4cqw;
+  }
+  #stage #sons .som-nome {
+    font-size: 5cqw;
+  }
+  #stage #sons .som-liga {
+    font-size: 4.2cqw;
+    padding: 2cqw 0;
+  }
+  #stage #sons .som-volume {
+    grid-column: 1 / -1;
+  }
+  #stage .som-atalho {
+    font-size: 5cqw;
+    padding: 1.2cqw 2.6cqw;
+  }
+}
