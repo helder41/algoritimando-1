@@ -49,7 +49,7 @@ Cole este arquivo (ou peça para a sessão nova lê-lo em `docs/CONTEXTO-PROJETO
 | Jardim (`jardim`) | Ajudar as abelhas (4) | tirinha | completas |
 | Casa azul (`casa-azul`) | Lavar as mãos (4) | tirinha | completas (+ fundos `level5`/`win5`) |
 | Faixa (`faixa`) | Atravessar a rua (3) | tirinha | só o fundo da fase (`level6`); prompts adaptados ao menino de moletom amarelo |
-| Limonada (`limonada`) | Fazer uma limonada (3) | tirinha | cartas e lições prontas pelo Fable; conferir `IMAGENS.md` |
+| Limonada (`limonada`) | Fazer uma limonada (3) | tirinha | faltam cartas, lições e fundos (prompts prontos) |
 
 Mapa: `img/story1.webp` (2000×1116, mapa novo com os 7 lugares). Marcadores são alfinetes pequenos posicionados em `LUGARES` (`js/app.js`), em % da imagem.
 
@@ -73,6 +73,7 @@ Mapa: `img/story1.webp` (2000×1116, mapa novo com os 7 lugares). Marcadores sã
 
 - **PR #20** (marcadores pequenos do mapa + imagem do chamado sem esticar no painel do lugar): aguardando merge.
 - **Atravessar a rua:** gerar 6 cartas e 3 lições com os prompts adaptados; fundo da tela de vitória.
+- **Fazer uma limonada:** gerar 7 cartas, 3 lições e os fundos da fase e da vitória.
 - **Retratos** próprios para Casa azul, Faixa e Limonada (hoje repetem o menino da Casa e a menina da Escola).
 - Abertura: o quadro 1 usa o mapa novo; os outros quadros são os antigos (alguns sanduíches ainda têm alface, como o balão do nível do sanduíche).
 - Ideias levantadas e não feitas: testes automáticos no repositório (Playwright + GitHub Actions), modo offline/instalável, painel de desempenho para o professor.
