@@ -254,3 +254,43 @@ Scene: The same town map as the attached image, seen from above in the same thre
 Attached images: the map with the pins (mapa-com-alfinetes: copy the town and the pins, but remove every button, panel, title, name tag and number), the town map (story1) and the robot (guide).
 Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached town map and character references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Composition: the whole image is shown; keep the robot, the faces, the badge and the pins well inside the frame, with a little margin from the edges. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1376x768 px.
 ```
+
+## Sanduíche sem alface (correções)
+
+O chamado do sanduíche usa só pão, manteiga, queijo e presunto, mas quatro imagens antigas mostram alface. São **edições**: anexe a própria imagem e peça só a troca do sanduíche. Salve com o mesmo nome. Se o gerador mudar mais coisas, peça de novo com "change only the sandwich".
+
+### `level1.webp` — fundo do nível (o balão de pensamento)
+
+**Anexe:** `img/level1.webp` (a imagem a corrigir) e as cartas `img/passos/sanduiche-01.webp`, `-02.webp` e `-03.webp` (o pão, o queijo e o presunto do jogo).
+
+```
+Edit the attached image: in the thought bubble above the boy, replace the sandwich with a sandwich of two slices of white bread with a pink slice of ham and a yellow slice of cheese between them, and NOTHING green: no lettuce, no leaves. The new sandwich has the same size, angle and place as the old one.
+Keep everything else in the image exactly the same: same characters, same poses, same colors, same background, same composition, same size and aspect ratio. Only change the sandwich. Same flat cartoon style with thick dark brown outlines (#3B2A2A). Never add text, letters or numbers.
+```
+
+### `win1.webp` — fundo da vitória (o prato do menino)
+
+**Anexe:** `img/win1.webp` (a imagem a corrigir) e as cartas `img/passos/sanduiche-01.webp`, `-02.webp` e `-03.webp` (o pão, o queijo e o presunto do jogo).
+
+```
+Edit the attached image: on the plate the boy is holding up, replace the sandwich with a sandwich of two slices of white bread with a pink slice of ham and a yellow slice of cheese between them, and NOTHING green: no lettuce, no leaves.
+Keep everything else in the image exactly the same: same characters, same poses, same colors, same background, same composition, same size and aspect ratio. Only change the sandwich. Same flat cartoon style with thick dark brown outlines (#3B2A2A). Never add text, letters or numbers.
+```
+
+### `sanduiche-4.webp` — lição do nível 4 (o menino montando o sanduíche)
+
+**Anexe:** `img/licoes/sanduiche-4.webp` (a imagem a corrigir) e as cartas `img/passos/sanduiche-01.webp`, `-02.webp` e `-03.webp` (o pão, o queijo e o presunto do jogo).
+
+```
+Edit the attached image: remove the green lettuce from the sandwich the boy is making; it must be a sandwich of two slices of white bread with a pink slice of ham and a yellow slice of cheese between them, and NOTHING green: no lettuce, no leaves.
+Keep everything else in the image exactly the same: same characters, same poses, same colors, same background, same composition, same size and aspect ratio. Only change the sandwich. Same flat cartoon style with thick dark brown outlines (#3B2A2A). Never add text, letters or numbers.
+```
+
+### `sanduiche-5.webp` — lição do nível 5 (a última pedra da trilha)
+
+**Anexe:** `img/licoes/sanduiche-5.webp` (a imagem a corrigir) e as cartas `img/passos/sanduiche-01.webp`, `-02.webp` e `-03.webp` (o pão, o queijo e o presunto do jogo).
+
+```
+Edit the attached image: on the last stepping stone, replace the sandwich with a sandwich of two slices of white bread with a pink slice of ham and a yellow slice of cheese between them, and NOTHING green: no lettuce, no leaves.
+Keep everything else in the image exactly the same: same characters, same poses, same colors, same background, same composition, same size and aspect ratio. Only change the sandwich. Same flat cartoon style with thick dark brown outlines (#3B2A2A). Never add text, letters or numbers.
+```
