@@ -160,6 +160,8 @@
 
     // um espaço numerado por passo, todos vazios; até 4 por linha
     tela.style.setProperty('--colunas', Math.min(f.passos.length, 4));
+    // celular deitado: duas cartas por fileira (ver style.css)
+    tela.style.setProperty('--fileiras', Math.ceil(f.passos.length / 2));
     grade.textContent = '';
     f.passos.forEach((_, i) => {
       const li = document.createElement('li');

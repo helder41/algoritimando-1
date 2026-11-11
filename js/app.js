@@ -63,16 +63,7 @@
     if (ev.target instanceof HTMLImageElement) ev.preventDefault();
   });
 
-  /* ---------------- celular deitado ----------------
-     O aviso "vire o celular em pé" aparece por CSS (style.css) só em
-     tela deitada e baixa. Dispensado, não volta até fechar a aba. */
-  const CHAVE_GIRAR = 'algoritimando-deitado';
   const palco = $('#stage');
-  try { if (sessionStorage.getItem(CHAVE_GIRAR) === '1') palco.classList.add('deitado-ok'); } catch { /* sem memória */ }
-  $('#bGirarSeguir').onclick = () => {
-    palco.classList.add('deitado-ok');
-    try { sessionStorage.setItem(CHAVE_GIRAR, '1'); } catch { /* sem memória */ }
-  };
 
   /* ---------------- Esc fecha a janela aberta ----------------
      Vale para todas as janelas (.modal): fecha a que está por cima e

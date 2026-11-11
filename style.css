@@ -3430,64 +3430,6 @@ body.arrastando * {
   }
 }
 
-/* ============================================================
-   CELULAR DEITADO
-   Tela deitada e baixa (celular): o jogo usa o desenho do PC em
-   miniatura. Um aviso sugere virar o aparelho; ele some sozinho em
-   pé e pode ser dispensado. As medidas daqui são em px de propósito:
-   o aviso precisa ser legível justamente quando o resto está miúdo.
-   ============================================================ */
-.girar {
-  display: none;
-}
-@media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
-  #stage:not(.deitado-ok) .girar {
-    position: absolute;
-    inset: 0;
-    z-index: 60;
-    display: grid;
-    place-items: center;
-    padding: 12px;
-    background: rgba(29, 24, 36, 0.86);
-  }
-  .girar-caixa {
-    max-width: 420px;
-    padding: 16px 20px;
-    display: grid;
-    justify-items: center;
-    gap: 10px;
-    text-align: center;
-    background: var(--cream);
-    border: 3px solid var(--ink);
-    border-radius: 18px;
-    box-shadow: 0 5px 0 var(--ink);
-  }
-  /* um celular em pé, desenhado em CSS */
-  .girar-figura {
-    width: 30px;
-    height: 50px;
-    border: 4px solid var(--ink);
-    border-radius: 8px;
-    background: var(--p);
-    box-shadow: inset 0 -8px 0 var(--ink);
-  }
-  #stage .girar h2 {
-    font-family: Fredoka;
-    font-size: 20px;
-  }
-  .girar p {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.35;
-  }
-  #stage .girar .btn {
-    font-size: 15px;
-    padding: 8px 20px;
-    min-height: 44px;
-    border-width: 3px;
-    box-shadow: 0 4px 0 var(--ink);
-  }
-}
 /* deitado e baixo: o cartão do chamado não tem altura para a
    ilustração; sem ela, o título e o botão param de se sobrepor */
 @media (min-aspect-ratio: 4/5) and (max-height: 480px) {
@@ -4216,3 +4158,439 @@ body.arrastando * {
   display: none;
 }
 
+/* ============================================================
+   CELULAR DEITADO — desenho próprio
+   Tela deitada e baixa (até 500 px de altura). Antes o jogo usava
+   aqui o desenho do PC em miniatura: botões de 20 px e letra de 9.
+   O palco continua 16:9, mas com menos coisas na tela e tudo maior:
+   - nível: sem a cena; tabuleiro à esquerda e bandeja à direita,
+     com cartas deitadas (figura + legenda), como no celular em pé;
+     o Robô-guia vira uma faixa e os botões ficam numa linha embaixo;
+   - demais telas: botões e textos maiores, janelas mais largas.
+   As medidas mínimas em px valem para o menor celular (640 x 360).
+   ============================================================ */
+@media (min-aspect-ratio: 4/5) and (max-height: 500px) {
+  /* ---------- botões, chips e janelas ---------- */
+  #stage .btn {
+    font-size: max(2.3cqw, 14px);
+    padding: 0.9cqw 3cqw;
+    min-height: max(6.2cqw, 38px);
+  }
+  #stage .btn.small {
+    font-size: max(2cqw, 12.5px);
+    padding: 0.7cqw 2.2cqw;
+    min-height: max(5.6cqw, 34px);
+  }
+  #stage .chip {
+    font-size: max(2cqw, 12.5px);
+    padding: 0.6cqw 1.6cqw;
+  }
+  #stage .chip:is(button) {
+    min-height: max(5.8cqw, 36px);
+    min-width: max(5.8cqw, 36px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #stage .top {
+    inset: 1.2cqw 1.5cqw auto;
+    gap: 1cqw;
+    align-items: center;
+  }
+  #stage .top .ci {
+    width: 3.6cqw;
+    height: 3.6cqw;
+  }
+  #stage .title-box {
+    font-size: max(2.4cqw, 14px);
+  }
+  #stage .modal .panel {
+    width: min(74cqw, 96%);
+    max-height: 96cqh;
+    overflow-y: auto;
+    padding: 2.4cqw 3cqw;
+    gap: 1.6cqw;
+  }
+  #stage .modal p {
+    font-size: max(2cqw, 12.5px);
+    line-height: 1.45;
+  }
+  #stage h2 {
+    font-size: max(3cqw, 18px);
+  }
+
+  /* ---------- menu ---------- */
+  #stage .menu-btns {
+    gap: 1.4cqw;
+  }
+  #stage .menu-btns .btn {
+    min-width: 30cqw;
+  }
+  #stage .menu-linha .btn {
+    min-width: 0;
+  }
+
+  /* ---------- história ---------- */
+  #stage #story {
+    --faixa: 17cqw;
+  }
+  #stage #story .caption {
+    width: 58cqw;
+    bottom: 5.6cqw;
+    font-size: max(2.1cqw, 13px);
+    padding: 1cqw 2cqw;
+  }
+  #stage #story .skip {
+    bottom: 5.4cqw;
+  }
+  #stage #story .next {
+    bottom: 5.2cqw;
+  }
+  #stage #story .dots {
+    bottom: 1.4cqw;
+  }
+
+  /* ---------- crachá ---------- */
+  #stage #nameIn {
+    font-size: max(2.2cqw, 16px);
+    padding: 1cqw 1.6cqw;
+    min-height: max(6.2cqw, 38px);
+  }
+  #stage .char-form h2 {
+    font-size: max(2.8cqw, 17px);
+  }
+
+  /* ---------- mapa ---------- */
+  /* os marcadores ficam do tamanho do PC: maiores, o da Casa entraria
+     por baixo dos botões do topo */
+  #stage #hub .top .chip:is(button) {
+    min-height: max(5cqw, 32px);
+    min-width: max(5cqw, 32px);
+  }
+  #stage #hub:not(.em-progresso) .lugar-nome {
+    font-size: max(2cqw, 12.5px);
+    padding: 0.2cqw 1.4cqw;
+  }
+  #stage .lugar-conta {
+    font-size: max(1.7cqw, 11px);
+  }
+  #stage #hub:not(.em-progresso) .side > .guide:not(.prog) {
+    width: 44cqw;
+    grid-template-columns: 6.4cqw minmax(0, 1fr);
+  }
+  #stage #hub .guide b {
+    font-size: max(2cqw, 12.5px);
+  }
+  #stage #hub .guide p {
+    font-size: max(1.9cqw, 12px);
+    line-height: 1.3;
+  }
+  #stage #hub:not(.em-progresso) .prog {
+    width: 26cqw;
+  }
+  #stage .prog small {
+    font-size: max(1.8cqw, 11.5px);
+  }
+  #stage .prog strong {
+    font-size: max(2.8cqw, 17px);
+  }
+  #stage .prog #bIdeias,
+  #stage .prog .btn {
+    font-size: max(1.9cqw, 12px);
+    min-height: max(5.2cqw, 32px);
+    margin-top: 0.8cqw;
+  }
+
+  /* ---------- painel do lugar, ideias e níveis ---------- */
+  #stage .local-painel,
+  #stage .modal .ideias-painel {
+    width: min(84cqw, 96%);
+    padding: 1.6cqw 2.4cqw;
+    gap: 1.2cqw;
+  }
+  #stage .local-chamados .call {
+    grid-template-columns: 7cqw 1fr;
+    padding: 1cqw 1.6cqw;
+  }
+  #stage .local-chamados .call .who {
+    width: 7cqw;
+    height: 7cqw;
+  }
+  #stage .local-chamados .call b {
+    font-size: max(2.5cqw, 15px);
+  }
+  #stage .local-chamados .call small {
+    font-size: max(1.9cqw, 12px);
+  }
+  #stage .local-chamados .call .btn {
+    font-size: max(2cqw, 12.5px);
+    min-height: 0;
+    padding: 0.7cqw 2cqw;
+  }
+  #stage .ideia b {
+    font-size: max(2.3cqw, 14px);
+  }
+  #stage .modal .ideia p {
+    font-size: max(1.9cqw, 12px);
+  }
+  #stage .ideia .selo {
+    --d: 7cqw;
+  }
+  #stage .nivel-btn b {
+    font-size: max(2.2cqw, 14px);
+  }
+  #stage .nivel-btn span {
+    font-size: max(1.8cqw, 11.5px);
+  }
+
+  /* ---------- nível: tabuleiro e bandeja lado a lado ---------- */
+  #stage {
+    --carta-l: auto;
+    /* a altura da carta vem das fileiras (2 cartas por fileira): com
+       poucas cartas elas crescem até um teto; com 8, ainda dá 44 px */
+    --carta-a: clamp(6.8cqw, calc((27.6cqw - (var(--fileiras, 4) - 1) * 0.9cqw) / var(--fileiras, 4)), 10.5cqw);
+  }
+  #stage #fase .fase-faixa {
+    max-width: 46cqw;
+    padding: 0.5cqw 1.8cqw;
+  }
+  #stage #fase .fase-titulo {
+    font-size: max(2.2cqw, 14px);
+  }
+  /* a frase de instrução sai: o Robô-guia, logo abaixo, já dá a deixa */
+  #stage #fase .fase-instrucao {
+    display: none;
+  }
+  /* Robô-guia: uma faixa entre o topo e as cartas */
+  #stage #fase .guia {
+    left: 1.5cqw;
+    right: 1.5cqw;
+    top: 8.4cqw;
+    width: auto;
+    height: 7.4cqw;
+    padding: 0.5cqw 1.6cqw;
+    display: grid;
+    grid-template-columns: 5.6cqw minmax(0, 1fr);
+    gap: 1.4cqw;
+    align-items: center;
+    text-align: left;
+  }
+  #stage #fase .guia .face {
+    width: 5.6cqw;
+    height: 5.6cqw;
+    margin: 0;
+  }
+  #stage #fase .guia b {
+    display: none;
+  }
+  #stage #fase .guia p {
+    font-size: max(1.95cqw, 12.5px);
+    line-height: 1.25;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  #stage #fase .area-jogo {
+    left: 1.5cqw;
+    right: 1.5cqw;
+    top: 16.8cqw;
+    bottom: 8.4cqw;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 1.5cqw;
+  }
+  #stage #fase .tabuleiro,
+  #stage #fase .bandeja {
+    padding: 1cqw;
+    min-height: 0;
+    border-radius: 1.6cqw;
+  }
+  #stage #fase .tabuleiro-grade,
+  #stage #fase .bandeja-fila {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+    align-content: start;
+    gap: 0.9cqw;
+  }
+  #stage #fase .espaco {
+    width: auto;
+  }
+  #stage #fase .espaco-numero {
+    font-size: 4cqw;
+  }
+  #stage #fase .espaco.preenchido .espaco-numero {
+    left: -0.8cqw;
+    top: -0.8cqw;
+    width: 3.2cqw;
+    height: 3.2cqw;
+    font-size: max(1.8cqw, 11px);
+  }
+  #stage #fase .carta {
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 1cqw;
+    padding: 0.5cqw 0.9cqw;
+  }
+  #stage #fase .carta-figura {
+    flex: none;
+    width: 5.4cqw;
+    height: 5.4cqw;
+    max-height: 100%;
+  }
+  #stage #fase .carta-figura.figura-vazia {
+    font-size: 0;
+  }
+  #stage #fase .carta-legenda {
+    font-size: max(1.8cqw, 11.5px);
+    line-height: 1.12;
+    text-align: left;
+    -webkit-line-clamp: 3;
+  }
+  #stage #fase .carta-legenda.legenda-longa {
+    font-size: max(1.6cqw, 10.4px);
+  }
+  /* o aviso do Verificar vai para o pé da coluna da direita: nessa
+     hora a bandeja está vazia (todas as cartas estão no tabuleiro) */
+  #stage #fase .tabuleiro {
+    position: static;
+  }
+  #stage #fase .verificacao {
+    position: absolute;
+    left: calc(50% + 1.75cqw);
+    right: 1cqw;
+    bottom: 1cqw;
+    z-index: 5;
+    margin: 0;
+    padding: 0.8cqw 1.4cqw;
+    border-radius: 1.2cqw;
+    background: var(--cream);
+    border: 0.3cqw solid #e0574f;
+    font-size: max(1.9cqw, 12px);
+    line-height: 1.25;
+  }
+  #stage #fase .verificacao[data-tipo="certo"] {
+    border-color: #2f7a46;
+  }
+  #stage #fase .verificacao[hidden] {
+    display: none;
+  }
+  /* a montagem troca de lugar com a bandeja */
+  #stage #fase .montagem {
+    display: none;
+  }
+  #stage #fase.tem-montagem.ver-montagem .montagem:not([hidden]) {
+    display: block;
+    /* "relative": o desenho de dentro se mede pela caixa */
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+    visibility: visible;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  #stage #fase.tem-montagem.ver-montagem .bandeja {
+    display: none;
+  }
+  #stage #fase #btn-montagem:not([hidden]) {
+    display: inline-flex;
+  }
+  /* linha de baixo: Nível e Tela cheia à esquerda; os três botões à direita */
+  #stage #fase .rodape {
+    left: 1.5cqw;
+    right: 1.5cqw;
+    bottom: 1.2cqw;
+    align-items: center;
+  }
+  #stage #fase .rodape-direita {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    gap: 1cqw;
+  }
+  #stage #fase #btn-verificar {
+    order: 3;
+    font-size: max(2.3cqw, 14px);
+    padding: 0.6cqw 3cqw;
+  }
+  #stage .cena-cheia-btn {
+    left: 18.5cqw;
+    bottom: 1.2cqw;
+  }
+  /* "Dica" no lugar de "Pedir dica": a linha de baixo tem cinco botões */
+  #stage #fase .dica-pedir {
+    display: none;
+  }
+  #stage #fase .dica-curta {
+    display: inline;
+  }
+  #stage #fase #btn-dica {
+    gap: 1.6cqw;
+  }
+  #stage #fase.sem-fundo .cena-cheia-btn {
+    display: none;
+  }
+  #stage .dica-restantes {
+    font-size: max(1.5cqw, 10px);
+  }
+
+  /* ---------- lição ---------- */
+  #stage .conclusao-painel {
+    padding: 1.4cqw 2cqw;
+    gap: 1cqw;
+  }
+  #stage .conclusao-progresso {
+    font-size: max(1.7cqw, 11px);
+  }
+  #stage .conclusao-pergunta {
+    font-size: max(2.2cqw, 14px);
+  }
+  #stage .conclusao-texto p,
+  #stage .conclusao-reflexao li {
+    font-size: max(1.9cqw, 12px);
+    line-height: 1.35;
+  }
+  #stage .conclusao-reflexao h3 {
+    font-size: max(2cqw, 13px);
+  }
+  #stage .rewards b {
+    font-size: max(1.9cqw, 12px);
+  }
+  #stage .licao-selo small {
+    font-size: max(1.5cqw, 10px);
+  }
+  #stage .licao-selo b {
+    font-size: max(2.1cqw, 13px);
+  }
+  #stage .licao-selo-frase {
+    font-size: max(1.8cqw, 11.5px);
+  }
+
+  /* ---------- promoção e final ---------- */
+  #stage .promo-card {
+    width: 34cqw;
+    top: 8cqw;
+    gap: 0.8cqw;
+  }
+  #stage .rank {
+    font-size: max(1.8cqw, 11.5px);
+  }
+  #stage .promo-card b {
+    font-size: max(2.4cqw, 15px);
+  }
+  #stage img.badge-sm {
+    height: 14cqw;
+  }
+  #stage .final-panel p {
+    font-size: max(2cqw, 12.5px);
+  }
+  #stage .final-stars {
+    font-size: max(3cqw, 18px);
+  }
+}

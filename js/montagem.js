@@ -64,7 +64,8 @@
      cima da cena, e começa LIGADA — é nos níveis difíceis que ver a
      consequência mais ajuda. */
 
-  const celular = window.matchMedia('(max-aspect-ratio: 4/5)');
+  // em pé ou deitado: nos dois a montagem troca de lugar por botão
+  const celular = window.matchMedia('(max-aspect-ratio: 4/5), (max-height: 500px)');
 
   function lerPreferencia() {
     try {
