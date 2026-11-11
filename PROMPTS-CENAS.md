@@ -85,7 +85,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ### `pic6.webp` — ilustração do chamado
 
-A versão atual (só o semáforo e a faixa) é a única que não segue o padrão de mini-cena dos outros cartões. Este prompt é a versão nova, com o menino e o Robô-guia. Salve com o mesmo nome.
+**Pronta:** a mini-cena com o menino e o Robô-guia já está no jogo.
 
 ```
 Subject: The moment the call arrives: a street-corner diorama (a tile of light grey tiled sidewalk with a curb, and in front of it a piece of dark grey asphalt with a white zebra crossing). On the corner stands the pedestrian traffic light from the reference (dark grey box on a grey pole, three round lamps), with only the TOP lamp lit bright red with a standing figure. The boy from the reference (brown skin, curly dark brown hair, yellow hoodie, blue backpack, navy shorts, blue sneakers) stands still on the sidewalk right at the edge of the crossing, both feet together, looking up at the red light with a thoughtful face and one finger on his chin. The small round white Robô-guia robot with a black face screen, green eyes and a small green antenna light (from the reference) floats beside him, pointing up at the traffic light. No cars anywhere.
