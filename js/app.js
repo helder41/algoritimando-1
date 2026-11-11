@@ -3,7 +3,7 @@
 
    menu → abertura (4 quadros) → crachá do agente → central de
    chamados → fase (jogo.js) → lição (conclusao.js) → … → central
-   → promoção a Agente (os 4 chamados originais) → central →
+   → promoção a Agente (metade dos chamados, quaisquer) → central →
    promoção a Agente Sênior (os 8 chamados) → tela final.
 
    Cada tela é uma <section class="screen"> do index.html; só uma
@@ -219,16 +219,27 @@
   const feitosDe = lista => lista.filter(s => P.concluidos[s.id]).length;
   const faltamDe = lista => lista.length - feitosDe(lista);
 
-  /* Os chamados que contam para a PRÓXIMA promoção: os originais
-     enquanto a criança é Estagiária, todos depois disso. */
-  const daProximaPromocao = () => (cargo() === 0 ? SITUACOES_BASE : cargo() === 1 ? SITUACOES : []);
+  /* As promoções contam QUALQUER chamado concluído, sem separar os
+     originais dos novos: Agente com metade dos chamados, Agente
+     Sênior com todos. */
+  const META_AGENTE = () => Math.ceil(SITUACOES.length / 2);
+  const faltamParaProxima = () => (cargo() === 0 ? Math.max(0, META_AGENTE() - feitosDe(SITUACOES))
+    : cargo() === 1 ? faltamDe(SITUACOES) : 0);
 
   /* A promoção que já foi conquistada e ainda não foi mostrada. */
   function promocaoPendente() {
-    if (!P.promovido && faltamDe(SITUACOES_BASE) === 0) return 'agente';
+    if (!P.promovido && feitosDe(SITUACOES) >= META_AGENTE()) return 'agente';
     if (P.promovido && !P.senior && faltamDe(SITUACOES) === 0) return 'senior';
     return null;
   }
+
+  /* O começo do jogo: o sanduíche vem primeiro, para dar um início e
+     uma direção. Até ele ser concluído, o mapa fica na sombra e só a
+     Casa pode ser tocada (e, nela, só o sanduíche). Quem já tinha
+     concluído outro chamado antes desta regra não é trancado. */
+  const PRIMEIRO = 'sanduiche';
+  const cidadeLiberada = () => !!P.concluidos[PRIMEIRO] || feitosDe(SITUACOES) > 0;
+  const lugarDoPrimeiro = () => (SITUACOES.find(s => s.id === PRIMEIRO) || {}).area;
 
   /* Para onde ir depois de um chamado: a promoção, se houver uma
      esperando; senão, a central. */
@@ -279,22 +290,40 @@
     const mapa = document.createElement('div');
     mapa.className = 'mapa-miolo';
     quadro.append(mapa);
+    const liberada = cidadeLiberada();
+    quadro.classList.toggle('trancado', !liberada);
+    if (!liberada) {
+      // a sombra: um círculo de luz sobre a Casa e o resto escuro
+      const foco = document.createElement('span');
+      foco.className = 'mapa-foco';
+      foco.setAttribute('aria-hidden', 'true');
+      foco.style.setProperty('--x', FOCO_PRIMEIRO.x + '%');
+      foco.style.setProperty('--y', FOCO_PRIMEIRO.y + '%');
+      mapa.append(foco);
+    }
     for (const lugar of LUGARES) {
       const lista = doLugar(lugar.id);
       if (!lista.length) continue;
       const feitos = lista.filter(s => P.concluidos[s.id]).length;
       const botao = document.createElement('button');
       botao.type = 'button';
-      // brilha o lugar que ainda tem chamado da próxima promoção
-      const alvo = lista.some(s => !P.concluidos[s.id] && daProximaPromocao().includes(s));
-      botao.className = 'lugar' + (feitos === lista.length ? ' feito' : '') + (alvo ? ' alvo' : '');
+      const trancado = !liberada && lugar.id !== lugarDoPrimeiro();
+      // brilha o lugar que ainda tem chamado por fazer (todos contam
+      // para a promoção); antes do sanduíche, só a Casa brilha
+      const alvo = !trancado && cargo() < 2 && lista.some(s => !P.concluidos[s.id]);
+      botao.className = 'lugar' + (feitos === lista.length ? ' feito' : '') + (alvo ? ' alvo' : '') +
+        (trancado ? ' trancado' : '') + (!liberada && !trancado ? ' primeiro' : '');
+      if (trancado) {
+        botao.disabled = true;
+        botao.tabIndex = -1;
+      }
       // a posição vai em variáveis: no celular o mapa é mais alto e
       // corta as laterais da imagem, e o CSS refaz a conta do "left"
       botao.style.setProperty('--x', lugar.x + '%');
       botao.style.setProperty('--y', lugar.y + '%');
-      botao.setAttribute('aria-label',
-        `${lugar.nome}: ${feitos} de ${lista.length} ${lista.length === 1 ? 'chamado concluído' : 'chamados concluídos'}` +
-        (alvo ? '. Conta para a sua promoção' : ''));
+      botao.setAttribute('aria-label', trancado
+        ? `${lugar.nome}: abre depois do sanduíche`
+        : `${lugar.nome}: ${feitos} de ${lista.length} ${lista.length === 1 ? 'chamado concluído' : 'chamados concluídos'}`);
       botao.innerHTML = `<span class="lugar-rosto"><img alt=""></span>
         <span class="lugar-nome"></span><span class="lugar-conta"></span>`;
       rosto(botao.querySelector('img'), lugar.rosto);
@@ -303,11 +332,37 @@
       botao.onclick = () => abrirLugar(lugar);
       mapa.append(botao);
     }
-    // começa centrado (no PC não rola, então não muda nada)
+    // indicador de arrastar: só aparece quando o mapa é maior que a
+    // tela (celular) e some quando a criança arrasta pela primeira vez
+    const arraste = document.createElement('div');
+    arraste.className = 'mapa-arraste';
+    arraste.setAttribute('aria-hidden', 'true');
+    arraste.innerHTML = `<span class="mapa-arraste-dica">
+        <svg viewBox="0 0 48 24"><path d="M4 12h40M4 12l6-6M4 12l6 6M44 12l-6-6M44 12l-6 6"/></svg>
+        Arraste para ver a cidade</span>`;
+    quadro.prepend(arraste);
+    // começa centrado (no PC não rola, então não muda nada); antes do
+    // sanduíche, começa na Casa, que fica na beira esquerda
     requestAnimationFrame(() => {
-      quadro.scrollLeft = (quadro.scrollWidth - quadro.clientWidth) / 2;
+      quadro.scrollLeft = liberada ? (quadro.scrollWidth - quadro.clientWidth) / 2 : 0;
+      const rola = quadro.scrollWidth > quadro.clientWidth + 4;
+      arraste.hidden = !rola || !liberada || jaArrastou;
+      const esconder = () => {
+        jaArrastou = true;
+        arraste.hidden = true;
+      };
+      // o scrollLeft acima também dispara "scroll": só vale o da criança
+      setTimeout(() => {
+        quadro.addEventListener('scroll', esconder, { once: true, passive: true });
+      }, 300);
+      quadro.addEventListener('pointerdown', esconder, { once: true, passive: true });
     });
   }
+  let jaArrastou = false;
+
+  /* centro da luz sobre a Casa, em % da imagem do mapa (a casa e o
+     alfinete dela cabem no círculo) */
+  const FOCO_PRIMEIRO = { x: 12, y: 18 };
 
   function abrirLugar(lugar) {
     const modal = $('#local');
@@ -317,6 +372,12 @@
     lista.textContent = '';
     doLugar(lugar.id).forEach(s => lista.append(cartaoDeChamado(s, SITUACOES.indexOf(s))));
     modal.classList.add('on');
+    if (!emProgresso && !cidadeLiberada()) {
+      const aviso = document.createElement('p');
+      aviso.className = 'local-aviso';
+      aviso.textContent = 'Comece pelo sanduíche. Depois, a cidade toda se abre!';
+      lista.prepend(aviso);
+    }
   }
   $('#local .local-fechar').onclick = () => $('#local').classList.remove('on');
 
@@ -326,6 +387,7 @@
     const prog = Progresso.ler(chave);
     const feito = emProgresso ? prog.fase >= s.fases.length : !!P.concluidos[s.id];
     const emAndamento = prog.fase > 0 && prog.fase < s.fases.length;
+    const espera = !emProgresso && !cidadeLiberada() && s.id !== PRIMEIRO;
 
     const cartao = document.createElement('div');
     cartao.className = 'call' + (feito ? ' done' : '');
@@ -385,8 +447,19 @@
       botao.classList.add('rejogar');
       botao.textContent = 'Jogar de novo ›';
       botao.title = 'Escolher um nível para jogar de novo';
+    } else if (espera) {
+      botao.textContent = 'Depois do sanduíche';
     } else {
       botao.textContent = emAndamento ? 'Continuar ›' : 'Atender ›';
+    }
+    if (espera) {
+      // trancado até o sanduíche: aparece, mas não abre
+      cartao.classList.add('call-espera');
+      cartao.setAttribute('aria-disabled', 'true');
+      cartao.setAttribute('aria-label', `${s.titulo}: abre depois do sanduíche`);
+      botao.tabIndex = -1;
+      botao.setAttribute('aria-hidden', 'true');
+      return cartao;
     }
     // o cartão inteiro abre o chamado; o botão fica só como sinal
     // visual do que vai acontecer (e não recebe foco separado)
@@ -430,7 +503,7 @@
     desenharMapa();
     // uma barra só, com todos os chamados; embaixo, o próximo objetivo
     const n = feitosDe(SITUACOES), total = SITUACOES.length;
-    const faltam = faltamDe(daProximaPromocao());
+    const faltam = faltamParaProxima();
     const proximo = CARGOS[cargo() + 1];
     $('#bRestart').hidden = n < total;
     $('#progTxt').textContent = `${n} de ${total}`;
@@ -440,8 +513,9 @@
       : 'Você é Agente Sênior!';
     $('#bIdeias').hidden = !SITUACOES.some(s => s.selo);
     $('#hubMsg').textContent = mensagem ||
-      (n === 0 ? 'Toque num lugar do mapa para ver os chamados de lá. Os lugares que brilham contam para a sua promoção.'
-        : proximo ? `Ótimo trabalho! ${plural(faltam, 'Falta 1 chamado', 'Faltam # chamados')} para você virar ${proximo}. São os lugares que brilham no mapa.`
+      (!cidadeLiberada() ? 'Seu primeiro chamado é na Casa: ajude a fazer um sanduíche. Depois, a cidade toda se abre!'
+        : n === 0 ? 'Toque num lugar do mapa para ver os chamados de lá. Todo chamado concluído conta para a sua promoção.'
+        : proximo ? `Ótimo trabalho! ${plural(faltam, 'Falta 1 chamado', 'Faltam # chamados')} para você virar ${proximo}. Pode ser qualquer um do mapa.`
         : 'Todos os chamados concluídos! Você pode jogar qualquer um de novo.');
     irPara('hub');
   }
@@ -453,6 +527,8 @@
       central(`Protótipo "${s.titulo}" concluído!`, true);
     } else if (!SITUACOES.includes(s)) {
       central(`Chamado do professor "${s.titulo}" concluído!`);
+    } else if (s.id === PRIMEIRO && feitosDe(SITUACOES) === 1) {
+      seguir('Você liberou a cidade! Agora escolha qualquer lugar do mapa.');
     } else {
       seguir(s.selo
         ? `Chamado "${s.titulo}" concluído! O selo "${s.selo.nome}" está no seu crachá.`
@@ -525,9 +601,9 @@
     Som.vitoria();
   }
 
-  /* Depois da promoção: se a outra já está esperando (quem jogou os
-     novos antes dos originais vira Agente e Sênior de uma vez), ela
-     vem em seguida. A "Missão cumprida" é só de quem concluiu tudo;
+  /* Depois da promoção: se a outra já está esperando (perfil antigo
+     que já tinha tudo concluído vira Agente e Sênior de uma vez),
+     ela vem em seguida. A "Missão cumprida" é só de quem concluiu tudo;
      quem virou Agente volta ao mapa, que ainda tem chamados. */
   $('#bPromoNext').onclick = () => {
     const pendente = promocaoPendente();

@@ -4002,3 +4002,162 @@ body.arrastando * {
       0 0 0 3cqw rgba(255, 211, 77, 0.15);
   }
 }
+
+/* ===== começo do jogo: só a Casa, até o sanduíche =====
+   Um círculo de luz sobre a Casa; o resto do mapa fica na sombra
+   (a sombra é a borda enorme do próprio círculo). */
+.mapa-foco {
+  position: absolute;
+  left: calc(50% + (var(--x, 50%) - 50%) * var(--k, 1));
+  top: var(--y, 50%);
+  width: 26%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 4cqw 2cqw rgba(20, 14, 30, 0.72) inset,
+    0 0 0 300vmax rgba(20, 14, 30, 0.72);
+  pointer-events: none;
+  z-index: 2;
+}
+#hub .lugar.trancado {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.25;
+  filter: grayscale(1);
+}
+#hub .lugar.primeiro {
+  z-index: 3;
+}
+.local-aviso {
+  flex: none;
+  font-weight: 800;
+  text-align: center;
+  color: var(--brown);
+  font-size: max(1.1cqw, 12px);
+  line-height: 1.3;
+}
+.call.call-espera {
+  opacity: 0.55;
+  filter: grayscale(0.6);
+  cursor: default;
+}
+.call.call-espera .btn {
+  background: #d9cbb6;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ===== indicador de arrastar o mapa (celular) =====
+   Fica "grudado" na janela do mapa enquanto o miolo rola embaixo. */
+.mapa-arraste {
+  position: sticky;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.mapa-arraste[hidden] {
+  display: none;
+}
+.mapa-arraste-dica {
+  position: absolute;
+  left: 50%;
+  top: 4cqw;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  padding: 1.6cqw 3.6cqw;
+  border-radius: 99px;
+  background: rgba(43, 34, 49, 0.82);
+  color: #fff;
+  font: 800 max(3.4cqw, 12px) Nunito, sans-serif;
+  white-space: nowrap;
+  animation: arraste 1.6s ease-in-out infinite;
+}
+.mapa-arraste-dica svg {
+  width: 9cqw;
+  height: 4.5cqw;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@keyframes arraste {
+  0%, 100% { transform: translateX(-56%); }
+  50% { transform: translateX(-44%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mapa-arraste-dica { animation: none; }
+}
+
+/* ===== a cena do chamado em tela cheia ===== */
+/* PC: a cena é o fundo da tela; o quadro .fase-arte não tem caixa
+   própria e o botão fica no canto da cena, acima do "Nível" */
+.fase-arte {
+  display: contents;
+}
+.cena-cheia-btn {
+  position: absolute;
+  left: 2cqw;
+  bottom: 7.4cqw;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.6cqw;
+}
+.cena-cheia-btn[hidden] {
+  display: none;
+}
+.cena-cheia-btn .icone {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.modal.cena-cheia {
+  background: rgba(20, 15, 30, 0.92);
+  cursor: zoom-out;
+}
+.cena-cheia-imagem {
+  position: absolute;
+  inset: 3cqw 3cqw 9cqw;
+  background: center / contain no-repeat;
+}
+.cena-cheia-fechar {
+  position: absolute;
+  bottom: 2.4cqw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* celular: o botão fica dentro do quadro da cena, só com o ícone */
+@media (max-aspect-ratio: 4/5) {
+  #stage .fase-arte {
+    position: relative;
+  }
+  #stage .cena-cheia-btn {
+    left: auto;
+    right: 2cqw;
+    top: 2cqw;
+    bottom: auto;
+    padding: 1.6cqw;
+  }
+  #stage .cena-cheia-btn .icone {
+    width: 5.4cqw;
+    height: 5.4cqw;
+  }
+  #stage .cena-cheia-texto {
+    display: none;
+  }
+  #stage .cena-cheia-imagem {
+    inset: 4cqw 4cqw 20cqw;
+  }
+  #stage .cena-cheia-fechar {
+    bottom: 6cqw;
+  }
+}

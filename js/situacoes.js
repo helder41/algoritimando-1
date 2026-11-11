@@ -4,7 +4,7 @@
    gera e salva em .json. Um formato só, nunca dois: nenhum
    campo daqui é especial — tudo pode ser criado no editor.
 
-   Os quatro chamados originais (contam para a promoção):
+   Os quatro chamados originais:
      SITUACAO_SANDUICHE  cotidiano doméstico (5 fases, 3→8 passos)
      SITUACAO_ROBO       mundo da máquina    (5 fases, 3→8 passos)
      SITUACAO_MOCHILA    rotina escolar      (4 fases, 3→8 passos)
@@ -927,8 +927,9 @@ const SITUACAO_ABELHAS = {
    mostra o quadro tracejado no lugar. O cliente é o do lugar do
    mapa onde o chamado fica.
 
-   Eles aparecem no mapa desde o começo. Os quatro originais levam à
-   promoção a Agente; os oito juntos, a Agente Sênior (ver app.js).
+   Eles aparecem no mapa depois do sanduíche, como os outros. As
+   promoções contam quaisquer chamados: metade leva a Agente, todos
+   a Agente Sênior (ver app.js).
    Cada chamado novo entrega o SELO da sua ideia (campo "selo") na
    lição do último nível. Como podem ser jogados antes
    dos originais, as lições falam em "passo a passo" e só a última
@@ -1649,12 +1650,12 @@ const SITUACAO_DENTES = {
   ],
 };
 
-/* Os chamados que contam para a promoção: os quatro originais, que
-   levam a criança da "ordem importa" até o nome "algoritmo". */
+/* Os quatro originais, que levam a criança da "ordem importa" até o
+   nome "algoritmo". As promoções contam QUALQUER chamado (app.js). */
 const SITUACOES_BASE = [SITUACAO_SANDUICHE, SITUACAO_ROBO, SITUACAO_MOCHILA, SITUACAO_ABELHAS];
 
-/* Os chamados novos: aparecem no mapa, somam estrelas e dicas e dão
-   cada um o selo da sua ideia. Com os originais, levam a Agente Sênior. */
+/* Os chamados novos: cada um dá o selo da sua ideia. Contam para as
+   promoções como os originais. */
 const SITUACOES_NOVAS = [SITUACAO_MAOS, SITUACAO_RUA, SITUACAO_LIMONADA, SITUACAO_DENTES];
 
 /* Todos os chamados do jogo, na ordem em que aparecem em cada lugar
