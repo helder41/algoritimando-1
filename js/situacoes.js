@@ -1137,7 +1137,9 @@ const SITUACAO_RUA = {
   area: 'faixa',
   cor: '#c0663a',
   cliente: 'img/who5.webp',
+  cena: 'img/pic6.webp',
   fundo: 'img/level6.webp',
+  fundoConclusao: 'img/win6.webp',
   // um quadrinho por passo: no erro, a história trava antes da faixa
   montagem: 'tirinha',
   fases: [

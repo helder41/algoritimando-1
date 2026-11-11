@@ -20,7 +20,7 @@
 - Me mande as imagens aqui no chat (pode ser em lote, com o nome do arquivo de cada uma). Eu tiro o fundo branco, deixo transparente, ajusto para **600 × 450 px**, salvo com o nome certo em `img/passos/` e subo para o GitHub.
 - Se preferir fazer sozinho: PNG com fundo transparente, 600 × 450 px, com o nome exato da tabela. A carta troca sozinha, sem mexer no código.
 
-**Chamados novos:** as 28 cartas de Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes ainda não foram geradas. Os prompts estão no fim deste arquivo.
+**Chamados novos:** Atravessar a rua já tem as 6 cartas. Faltam as 15 de Fazer uma limonada e Escovar os dentes. Os prompts estão no fim deste arquivo.
 
 **Se a imagem sair errada**, peça a correção na mesma conversa: "remove the text", "no background, plain white", "make it simpler and bolder", "same robot as the reference", "no lettuce".
 
@@ -422,7 +422,7 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ## Atravessar a rua (Caminho da escola)
 
-**Por gerar:** 6 cartas.
+**Pronto:** as 6 cartas já estão no jogo. Os prompts ficam como registro.
 
 **Anexe como referência:** a imagem de fundo da fase (`img/level6.webp`: o menino de moletom amarelo, o semáforo e a faixa) e `img/passos/sanduiche-03.webp` (estilo das cartas).
 
