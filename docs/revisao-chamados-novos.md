@@ -125,3 +125,14 @@ Os 10 níveis novos foram jogados com Playwright no PC (1366 × 768, arrastando 
 - **Legendas cortadas.** As cartas mostravam no máximo 2 linhas de legenda no PC, e o resto virava "...". Isso já acontecia no jogo ("Guarde tudo e deixe a mesa…" no nível 5 do sanduíche) e ficaria pior com as legendas novas. Agora cabem até 4 linhas, e as legendas novas mais longas foram encurtadas. Das 94 legendas cortadas que o teste encontrou no `main` (somando 6 tamanhos de tela), sobrou 1, no celular deitado.
 - **Painel do lugar.** Com 3 chamados, o painel da Casa passava da tela. Agora os 3 cabem no PC e, quando não cabem (celular), a lista rola por dentro do painel, com o botão "Voltar ao mapa" sempre à vista.
 - **Contagem.** O quadro "Chamados concluídos" continua contando os 4 da promoção e ganhou a linha "Chamados novos: 0 de 3".
+
+## Atualização: Escovar os dentes entra no jogo
+
+Decisão do dono do projeto: os dois chamados de banheiro convivem. Lavar as mãos foi para a **Casa** (junto com o sanduíche) e a **Casa azul** ficou com Escovar os dentes, com uma cliente nova (a menina de pijama, `img/who6.webp`).
+
+O protótipo foi refeito seguindo a sugestão acima:
+
+- **3, 4, 6 e 8 passos**, e as cartas só ficam mais detalhadas: pegar a escova, abrir a pasta, pôr a pasta, escovar; depois enxaguar a boca e lavar a escova; por fim fechar a pasta e guardar a escova. Saíram "Pegue o tubo de pasta", "Cuspa a espuma" (e a dependência discutível de enxaguar depois de cuspir) e as cartas com duas ações.
+- **Lições próprias**, sem repetir as dos quatro originais: (1) o passo principal e os passos que preparam ele; (2) chegar no objetivo e mesmo assim deixar coisas para trás; (3) terminar deixando tudo pronto para a próxima vez, porque a tarefa se repete todo dia; (4) tudo volta ao lugar: o que abre fecha, o que pega guarda. Só a última usa a palavra "algoritmo".
+- Ordens certas por nível: 1, 2, 4 e 30. Toda regra tem a sua explicação, terminando na consequência.
+

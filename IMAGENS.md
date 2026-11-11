@@ -208,13 +208,13 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 |---|---|---|
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.webp` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.webp` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
-| Cartão dos 3 chamados novos, no painel do lugar | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo) e `img/pic7.webp` (jarra de limonada), no campo `cena` de cada chamado em `js/situacoes.js` |
+| Cartão dos 4 chamados novos, no painel do lugar | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo), `img/pic7.webp` (jarra de limonada) e `img/pic8.webp` (escova, copo e pasta), no campo `cena` de cada chamado em `js/situacoes.js` (prompts em `PROMPTS-CENAS.md`) |
 | Tela do nível e da lição de Atravessar a rua e Fazer uma limonada (Lavar as mãos já tem: `level5` e `win5`; Atravessar a rua já tem o fundo da fase, `level6`) | fundo liso, sem cenário | fundos da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
-| Cliente dos 3 chamados novos | o rosto do cliente do lugar (o menino da Casa, a menina da Escola) | nada a fazer, a não ser que se queira um cliente novo |
+| Clientes dos chamados novos | Lavar as mãos e Fazer uma limonada: o menino da Casa (`who1`). Atravessar a rua: o menino de moletom amarelo (`who5`, recortado do `level6`). Escovar os dentes: o Robô-guia, até chegar o retrato da menina | `img/who6.webp`, a menina de pijama (prompt em `PROMPTS-CENAS.md`). Entra sozinha, sem mexer no código |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 
 ## 5. Imagens do Drive que ainda não têm onde entrar
 
 - `cracha_nivel1_estagiario.webp` e `cracha_nivel3_senior.webp`: não há tela que mostre o crachá de Estagiário nem promoção para Sênior.
 - `robo_comemorando`, `robo_confuso`, `robo_feliz`, `robo_pensativo`: o Robô-guia usa os rostos recortados que já estavam em `img/` (`guide.webp`, `guide-feliz.webp`, `guide-triste.webp`).
-- Central com 9 chamados (Figma): o jogo tem 7 (4 com arte e 3 novos ainda sem arte). Escovar os dentes e Plantar uma semente continuam como protótipos em `js/em-progresso.js`; o que falta neles está em `docs/revisao-chamados-novos.md`.
+- Central com 9 chamados (Figma): o jogo tem 8 (4 com arte e 4 novos ainda sem arte). Plantar uma semente continua como protótipo em `js/em-progresso.js`; o que falta nele está em `docs/revisao-chamados-novos.md`.

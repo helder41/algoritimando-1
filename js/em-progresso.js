@@ -15,195 +15,15 @@
    não soma estrelas, não conta como chamado concluído e não
    leva à promoção.
 
-   Três protótipos já viraram chamados do jogo (lavar as mãos,
-   atravessar a rua e fazer uma limonada: ver situacoes.js). Os
-   dois daqui ficaram para ajuste; o que falta em cada um está em
-   docs/revisao-chamados-novos.md:
-     dentes    — começo, meio e fim (repete lições que já existem;
-                 a fase 4 troca cartas detalhadas por resumidas)
+   Quatro protótipos já viraram chamados do jogo (lavar as mãos,
+   atravessar a rua, fazer uma limonada e escovar os dentes: ver
+   situacoes.js). O que ficou aqui espera ajuste; o que falta está
+   em docs/revisao-chamados-novos.md:
      planta    — passos escondidos (ideia repetida; a lição de
                  "esperar" não tem carta)
    ============================================================ */
 
 'use strict';
-
-/* ================= ESCOVAR OS DENTES ================= */
-
-const PROTO_DENTES = {
-  formato: 'passo-a-passo/1',
-  id: 'dentes',
-  titulo: 'Escovar os dentes',
-  local: 'Banheiro',
-  area: 'casa',
-  cor: '#3f8fb5',
-  montagem: 'tirinha',
-  fases: [
-    {
-      id: 'fase-1',
-      titulo: 'Hora de escovar os dentes!',
-      instrucao: 'Arraste as cartas para os espaços — ou toque na carta e depois no espaço.',
-      mascote: 'Três passos. Qual precisa vir primeiro?',
-      passos: [
-        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
-        {
-          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['pegar-escova'],
-          explicacao: 'Pasta em qual escova? Ela ainda está no copo! Pegue a escova primeiro.',
-        },
-        {
-          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-05.webp', dependeDe: ['por-pasta'],
-          explicacao: 'Escovar sem pasta não deixa os dentes limpinhos. Coloque a pasta antes!',
-        },
-      ],
-      licao: {
-        pergunta: 'Por que um passo vem antes do outro?',
-        imagem: 'img/licoes/dentes-1.webp',
-        texto: [
-          'Cada passo prepara o próximo: sem a escova na mão, não dá para pôr a pasta.',
-          'E sem a pasta, a escovação não limpa direito. A ordem faz o trabalho dar certo.',
-        ],
-        reflexao: [
-          'O que aconteceria se você tentasse escovar antes de pegar a escova?',
-          'Que outra tarefa sua tem um passo que prepara o outro?',
-        ],
-      },
-    },
-    {
-      id: 'fase-2',
-      titulo: 'A pasta também precisa ser aberta!',
-      instrucao: 'Alguns passos podem trocar de lugar entre si. Outros não. Fique de olho!',
-      mascote: 'Pegar a escova e pegar a pasta: tanto faz qual vem antes!',
-      passos: [
-        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
-        { id: 'pegar-pasta', texto: 'Pegue o tubo de pasta.', imagem: 'img/passos/dentes-02.webp', dependeDe: [] },
-        {
-          id: 'abrir-pasta', texto: 'Abra a tampa da pasta.', imagem: 'img/passos/dentes-03.webp', dependeDe: ['pegar-pasta'],
-          explicacao: 'Abrir o quê? O tubo ainda está na pia. Pegue a pasta primeiro!',
-        },
-        {
-          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['pegar-escova', 'abrir-pasta'],
-          explicacao: {
-            'pegar-escova': 'A pasta vai cair na pia! Pegue a escova antes.',
-            'abrir-pasta': 'Com a tampa fechada, a pasta não sai. Abra o tubo antes!',
-          },
-        },
-        {
-          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-05.webp', dependeDe: ['por-pasta'],
-          explicacao: 'Escovar sem pasta não deixa os dentes limpinhos. Coloque a pasta antes!',
-        },
-      ],
-      licao: {
-        pergunta: 'Precisa ser sempre nessa ordem?',
-        imagem: 'img/licoes/dentes-2.webp',
-        texto: [
-          'Pegar a escova e pegar a pasta podiam vir em qualquer ordem: um não depende do outro.',
-          'Mas colocar a pasta precisa esperar os dois: a escova na mão e o tubo aberto.',
-        ],
-        reflexao: [
-          'Quais passos daqui você poderia trocar de lugar?',
-          'E quais nunca podem trocar? Por quê?',
-        ],
-      },
-    },
-    {
-      id: 'fase-3',
-      titulo: 'Escovar não termina na escova!',
-      instrucao: 'Depois de escovar ainda tem passos. Não esqueça nenhum!',
-      mascote: 'Quando a escova sai da boca, ainda falta coisa. Pense no fim!',
-      passos: [
-        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
-        { id: 'pegar-pasta', texto: 'Pegue o tubo de pasta.', imagem: 'img/passos/dentes-02.webp', dependeDe: [] },
-        {
-          id: 'abrir-pasta', texto: 'Abra a tampa da pasta.', imagem: 'img/passos/dentes-03.webp', dependeDe: ['pegar-pasta'],
-          explicacao: 'Abrir o quê? O tubo ainda está na pia. Pegue a pasta primeiro!',
-        },
-        {
-          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['pegar-escova', 'abrir-pasta'],
-          explicacao: {
-            'pegar-escova': 'A pasta vai cair na pia! Pegue a escova antes.',
-            'abrir-pasta': 'Com a tampa fechada, a pasta não sai. Abra o tubo antes!',
-          },
-        },
-        {
-          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-05.webp', dependeDe: ['por-pasta'],
-          explicacao: 'Escovar sem pasta não deixa os dentes limpinhos. Coloque a pasta antes!',
-        },
-        {
-          id: 'cuspir', texto: 'Cuspa a espuma na pia.', imagem: 'img/passos/dentes-06.webp', dependeDe: ['escovar'],
-          explicacao: 'Cuspir agora? Ainda nem tem espuma na boca! Escove primeiro.',
-        },
-        {
-          id: 'enxaguar', texto: 'Enxágue a boca com água.', imagem: 'img/passos/dentes-07.webp', dependeDe: ['cuspir'],
-          explicacao: 'Água na boca cheia de espuma? Vira uma bagunça! Cuspa a espuma antes.',
-        },
-        {
-          id: 'lavar-escova', texto: 'Lave a escova na água.', imagem: 'img/passos/dentes-08.webp', dependeDe: ['escovar'],
-          explicacao: 'Lavar a escova agora? Você ainda vai usá-la! Lave depois de escovar.',
-        },
-      ],
-      licao: {
-        pergunta: 'Quando um algoritmo termina?',
-        imagem: 'img/licoes/dentes-3.webp',
-        texto: [
-          'Escovar os dentes não acaba quando a escova sai da boca.',
-          'Cuspir, enxaguar e lavar a escova também fazem parte. Um algoritmo completo pensa no fim, não só no meio.',
-        ],
-        reflexao: [
-          'Qual passo do fim você costuma esquecer?',
-          'O que acontece com a escova se ninguém lavar?',
-        ],
-      },
-    },
-    {
-      id: 'fase-4',
-      titulo: 'Deixe a pia arrumada!',
-      instrucao: 'Tudo que foi aberto precisa ser fechado. Tudo que foi pego, guardado!',
-      mascote: 'Fechar a pasta pode ser antes ou depois de escovar. Mas quando ela já pode ser fechada?',
-      passos: [
-        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
-        { id: 'pegar-pasta', texto: 'Pegue o tubo de pasta.', imagem: 'img/passos/dentes-02.webp', dependeDe: [] },
-        {
-          id: 'abrir-pasta', texto: 'Abra a tampa da pasta.', imagem: 'img/passos/dentes-03.webp', dependeDe: ['pegar-pasta'],
-          explicacao: 'Abrir o quê? O tubo ainda está na pia. Pegue a pasta primeiro!',
-        },
-        {
-          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['pegar-escova', 'abrir-pasta'],
-          explicacao: {
-            'pegar-escova': 'A pasta vai cair na pia! Pegue a escova antes.',
-            'abrir-pasta': 'Com a tampa fechada, a pasta não sai. Abra o tubo antes!',
-          },
-        },
-        {
-          id: 'fechar-pasta', texto: 'Feche a tampa da pasta.', imagem: 'img/passos/dentes-09.webp', dependeDe: ['por-pasta'],
-          explicacao: 'Fechar agora? A pasta ainda não foi para a escova!',
-        },
-        {
-          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-05.webp', dependeDe: ['por-pasta'],
-          explicacao: 'Escovar sem pasta não deixa os dentes limpinhos. Coloque a pasta antes!',
-        },
-        {
-          id: 'enxaguar', texto: 'Cuspa e enxágue a boca.', imagem: 'img/passos/dentes-07.webp', dependeDe: ['escovar'],
-          explicacao: 'Enxaguar antes de escovar? A espuma ainda nem apareceu!',
-        },
-        {
-          id: 'guardar', texto: 'Lave e guarde a escova no copo.', imagem: 'img/passos/dentes-10.webp', dependeDe: ['escovar'],
-          explicacao: 'Guardar a escova antes de escovar? Ela nem foi usada!',
-        },
-      ],
-      licao: {
-        pergunta: 'Começo, meio e fim',
-        imagem: 'img/licoes/dentes-4.webp',
-        texto: [
-          'Agora o seu algoritmo vai do começo ao fim: preparar, escovar e arrumar.',
-          'Fechar a pasta podia ser antes ou depois de escovar — mas só depois de usar a pasta.',
-        ],
-        reflexao: [
-          'Por que é bom deixar a pia arrumada no fim?',
-          'Conte para um colega o seu algoritmo de escovar os dentes, sem pular nenhum passo.',
-        ],
-      },
-    },
-  ],
-};
 
 /* ================= PLANTAR UMA SEMENTE ================= */
 
@@ -330,4 +150,4 @@ const PROTO_PLANTA = {
   ],
 };
 
-const SITUACOES_EM_PROGRESSO = [PROTO_DENTES, PROTO_PLANTA];
+const SITUACOES_EM_PROGRESSO = [PROTO_PLANTA];
