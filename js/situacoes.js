@@ -951,6 +951,8 @@ const SITUACAO_MAOS = {
   area: 'casa',
   cor: '#3f9c8a',
   cliente: 'img/who1.webp',
+  fundo: 'img/level5.webp',
+  fundoConclusao: 'img/win5.webp',
   // um quadrinho por passo: lavar as mãos é uma história no tempo
   montagem: 'tirinha',
   fases: [
@@ -1134,6 +1136,7 @@ const SITUACAO_RUA = {
   area: 'escola',
   cor: '#c0663a',
   cliente: 'img/who3.webp',
+  fundo: 'img/level6.webp',
   // um quadrinho por passo: no erro, a história trava antes da faixa
   montagem: 'tirinha',
   fases: [
