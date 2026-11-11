@@ -8,7 +8,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-As 38 cartas dos quatro primeiros chamados estão prontas. **Faltam 13:** as de Atravessar a rua e Fazer uma limonada (Lavar as mãos já está pronto), listadas no fim desta seção.
+As 38 cartas dos quatro primeiros chamados estão prontas. Dos chamados novos, Lavar as mãos e Atravessar a rua estão prontos. **Faltam 15:** as de Fazer uma limonada e Escovar os dentes (prompts em `PROMPTS-CARTAS.md`).
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -92,11 +92,11 @@ A numeração segue a ordem em que a carta aparece pela primeira vez no chamado.
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
-| `rua-01.webp` | menina na calçada indo até a faixa | Vá até a faixa de pedestres. | 1, 2, 3 |
-| `rua-02.webp` | menina parada na calçada olhando para os lados | Olhe para os dois lados. | 1, 2, 3 |
-| `rua-03.webp` | menina andando no meio da faixa | Atravesse andando pela faixa. | 1, 2, 3 |
-| `rua-04.webp` | menina olhando para o semáforo de pedestres (sem cor acesa) | Olhe a cor do boneco do semáforo. | 2, 3 |
-| `rua-05.webp` | menina parada ao lado do boneco vermelho aceso | Se estiver vermelho, espere o verde. | 2, 3 |
+| `rua-01.webp` | menino de moletom amarelo na calçada indo até a faixa | Vá até a faixa de pedestres. | 1, 2, 3 |
+| `rua-02.webp` | menino parado na calçada olhando para os lados | Olhe para os dois lados. | 1, 2, 3 |
+| `rua-03.webp` | menino andando no meio da faixa | Atravesse andando pela faixa. | 1, 2, 3 |
+| `rua-04.webp` | menino olhando para o semáforo de pedestres (sem cor acesa) | Olhe a cor do boneco do semáforo. | 2, 3 |
+| `rua-05.webp` | menino parado ao lado do boneco vermelho aceso | Se estiver vermelho, espere o verde. | 2, 3 |
 | `rua-06.webp` | mão de criança segurando a mão de um adulto | Dê a mão para um adulto. | 3 |
 
 ### Fazer uma limonada (Cozinha)
@@ -209,7 +209,7 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.webp` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.webp` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
 | Cartão dos 4 chamados novos, no painel do lugar | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo), `img/pic7.webp` (jarra de limonada) e `img/pic8.webp` (escova, copo e pasta), no campo `cena` de cada chamado em `js/situacoes.js` (prompts em `PROMPTS-CENAS.md`) |
-| Tela do nível e da lição de Atravessar a rua e Fazer uma limonada (Lavar as mãos já tem: `level5` e `win5`; Atravessar a rua já tem o fundo da fase, `level6`) | fundo liso, sem cenário | fundos da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
+| Tela do nível e da lição de Fazer uma limonada e Escovar os dentes (Lavar as mãos e Atravessar a rua já têm os dois fundos) | fundo liso, sem cenário | fundos da cozinha e do banheiro azul (`level7`/`win7`, `level8`/`win8`), nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
 | Clientes dos chamados novos | Lavar as mãos e Fazer uma limonada: o menino da Casa (`who1`). Atravessar a rua: o menino de moletom amarelo (`who5`, recortado do `level6`). Escovar os dentes: o Robô-guia, até chegar o retrato da menina | `img/who6.webp`, a menina de pijama (prompt em `PROMPTS-CENAS.md`). Entra sozinha, sem mexer no código |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 

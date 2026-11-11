@@ -1,6 +1,6 @@
 # Prompts das cenas dos chamados novos
 
-13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Já existem:** `level5`, `win5`, `level6` e o retrato do menino da rua (`who5`). **Faltam 10:** `pic5`, `pic6`, `win6`, `pic7`, `level7`, `win7`, `who6`, `pic8`, `level8` e `win8`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição.
+13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Já existem:** `level5`, `win5`, `pic6`, `level6`, `win6` e o retrato do menino da rua (`who5`). **Faltam 8:** `pic5`, `pic7`, `level7`, `win7`, `who6`, `pic8`, `level8` e `win8`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição.
 
 | Imagem | Onde aparece | Modelo que já existe | Campo em `js/situacoes.js` |
 |---|---|---|---|
@@ -15,6 +15,14 @@
 - **Nos dois fundos, o lado direito fica vazio e desfocado de propósito.** No PC o tabuleiro e o painel da lição são desenhados por cima dele. Se o gerador puser personagem ou objeto forte à direita, peça de novo.
 - **Nada de texto** em nenhuma das imagens.
 - **Personagens:** Lavar as mãos é do menino de avental (`img/cliente0.webp`), na Casa, e os fundos dele já estão prontos. Escovar os dentes é da menina de pijama da Casa azul (`img/who6.webp`, a gerar primeiro). **Atravessar a rua e Fazer uma limonada são do menino de moletom amarelo** do `img/level6.webp` (pele morena, cabelo cacheado castanho-escuro, moletom amarelo, bermuda azul-marinho, tênis azul). Na rua ele usa a mochila azul; na cozinha, não.
+
+**A ilustração do chamado (`picN`)** é a imagem do cartão, no painel do lugar. Para ela sair tão boa quanto a do sanduíche:
+
+- **Anexe sempre** `img/pic1.webp` (sanduíche) e `img/pic3.webp` (mochila). São o modelo de enquadramento, de contorno e de cor.
+- **Um objeto só, grande**, visto de cima e de lado (três quartos), ocupando quase a imagem inteira. Sem cenário, sem sombra no chão, sem pessoas e sem mãos.
+- **Fundo creme liso** (#FDF3E6), igual ao do cartão: assim a imagem não parece um quadrado colado.
+- Gere **três ou quatro versões** e escolha a de silhueta mais clara. Teste olhando a imagem bem pequena: se ainda der para saber o que é, está boa.
+- Se sair errado: "make the object bigger, filling the frame like the sandwich", "remove the shadow and the floor", "thicker outlines", "flat cream background, no gradient", "fewer small details", "no hands, no people".
 
 **Se sair errado:** "keep the right side empty and blurred", "move the characters to the left", "remove all text", "same boy as the level6 reference", "simpler, fewer objects".
 
@@ -42,9 +50,9 @@ Se preferir, mande as imagens no chat com o nome de cada uma: a conversão para 
 ### `pic5.webp` — ilustração do chamado
 
 ```
-Subject: A small white bathroom sink seen slightly from above and the front, with a silver lever tap, a pale green bar of soap resting on the edge of the sink and three or four soap bubbles floating above it. No water running. Objects have no faces.
-Attached images: style reference (the backpack).
-Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes. Composition: one single subject, centered, filling about 80% of the frame, nothing touching the edges. Background: plain soft cream (#FDF5E8), no scenery, no floor line, no frame, no border. Never include: text, letters, numbers, logos, watermarks, people, faces on objects, photorealism, 3D render, heavy gradients. Must stay readable when shown small (about 150 px wide): bold simple silhouette, few details. Aspect ratio 16:10, landscape, 1240x784 px.
+Subject: A chunky oval bar of pale mint-green soap resting on a small round white ceramic soap dish, the top of the soap covered with a soft, puffy cloud of thick white foam, and a small cluster of five round soap bubbles of different sizes rising from the foam toward the top right, each bubble with a tiny white highlight, all of them touching or very close to the foam so the whole group reads as one object. Three small clear water droplets on the rim of the dish. The soap is the same pale green as in the attached hand-washing card.
+Attached images: style references (the sandwich pic1 and the backpack pic3) and the hand-washing card maos-03 (the soap).
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the two attached references (the sandwich and the backpack) exactly: very thick, smooth, even dark brown outlines (#3B2A2A) around every shape, soft warm pastel colors, flat fills with only one slightly darker tone on the shaded side and one or two small soft white highlights, rounded, chunky, friendly shapes, no texture, no grain, no gradients. Composition: ONE hero object, or one tight group of objects that touch each other, seen in a three-quarter view from slightly above, large and centered, filling about 90% of the image width and 85% of the height, with only a thin even margin around it, exactly like the references. Background: flat solid cream (#FDF3E6) from edge to edge, no shadow under the object, no floor line, no table, no scenery, no frame, no border, no vignette. Never include: text, letters, numbers, logos, watermarks, people, hands, faces on objects, photorealism, 3D render, glow. Must stay readable when shown at 150 px wide: bold simple silhouette, a few large shapes, very few small details. Aspect ratio 16:10, landscape, 1240x784 px.
 ```
 
 ### `level5.webp` — fundo do nível
@@ -65,7 +73,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Atravessar a rua (Caminho da escola)
 
-**Arquivos:** `pic6.webp`, `level6.webp`, `win6.webp`. **Pronto:** `level6` (o menino de moletom amarelo). **Faltam:** `pic6` e `win6`.
+**Arquivos:** `pic6.webp`, `level6.webp`, `win6.webp`. **Prontos:** `pic6`, `level6` e `win6`. Os prompts abaixo ficam só como registro.
 
 **Anexe como referência:** `img/pic3.webp` (estilo da ilustração do chamado), `img/level3.webp` e `img/win3.webp` (composição dos fundos), `img/level6.webp` (o menino de moletom amarelo, a rua, o semáforo e a faixa), `img/guide.webp` (Robô-guia), `img/story1.webp` (as ruas e casas da cidade) e, quando existirem, as cartas `img/passos/rua-01.webp` a `rua-06.webp`.
 
@@ -104,9 +112,9 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 ### `pic7.webp` — ilustração do chamado
 
 ```
-Subject: A clear glass jug with a handle, full of pale yellow-green lemonade with three ice cubes and one thin green lime slice floating in it, and beside it one whole green lime and one lime cut in half showing the pale green inside. Objects have no faces.
-Attached images: style reference (the backpack).
-Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes. Composition: one single subject, centered, filling about 80% of the frame, nothing touching the edges. Background: plain soft cream (#FDF5E8), no scenery, no floor line, no frame, no border. Never include: text, letters, numbers, logos, watermarks, people, faces on objects, photorealism, 3D render, heavy gradients. Must stay readable when shown small (about 150 px wide): bold simple silhouette, few details. Aspect ratio 16:10, landscape, 1240x784 px.
+Subject: A big clear glass pitcher with a round belly and a handle on the right, almost full of pale yellow-green lemonade, with three square ice cubes and two thin round lime slices floating inside and a few tiny bubbles near the top. Leaning against the front left of the pitcher, one whole shiny green lime and one lime cut in half showing its pale green inside with simple segments. The glass is drawn flat: a light blue-white tint on the rim and the handle and one long white highlight on the belly, not realistic transparency.
+Attached images: style references (the sandwich pic1 and the backpack pic3) and, if they exist, the lemonade cards limonada-04 and limonada-07 (the pitcher and the limes).
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the two attached references (the sandwich and the backpack) exactly: very thick, smooth, even dark brown outlines (#3B2A2A) around every shape, soft warm pastel colors, flat fills with only one slightly darker tone on the shaded side and one or two small soft white highlights, rounded, chunky, friendly shapes, no texture, no grain, no gradients. Composition: ONE hero object, or one tight group of objects that touch each other, seen in a three-quarter view from slightly above, large and centered, filling about 90% of the image width and 85% of the height, with only a thin even margin around it, exactly like the references. Background: flat solid cream (#FDF3E6) from edge to edge, no shadow under the object, no floor line, no table, no scenery, no frame, no border, no vignette. Never include: text, letters, numbers, logos, watermarks, people, hands, faces on objects, photorealism, 3D render, glow. Must stay readable when shown at 150 px wide: bold simple silhouette, a few large shapes, very few small details. Aspect ratio 16:10, landscape, 1240x784 px.
 ```
 
 ### `level7.webp` — fundo do nível
@@ -148,9 +156,9 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 ### `pic8.webp` — ilustração do chamado
 
 ```
-Subject: A white toothbrush with a light blue handle and a little wave of toothpaste on its bristles, standing next to a pale yellow plastic cup and a small white toothpaste tube with a light blue cap, three or four soap bubbles floating above them. Objects have no faces.
-Attached images: style reference (the backpack) and the cards, if they exist.
-Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes. Composition: one single subject, centered, filling about 80% of the frame, nothing touching the edges. Background: plain soft cream (#FDF5E8), no scenery, no floor line, no frame, no border. Never include: text, letters, numbers, logos, watermarks, people, faces on objects, photorealism, 3D render, heavy gradients. Must stay readable when shown small (about 150 px wide): bold simple silhouette, few details. Aspect ratio 16:10, landscape, 1240x784 px.
+Subject: A pale yellow plastic cup standing upright, holding a white toothbrush with a light blue handle, bristles up, with a neat wavy swirl of white and light blue striped toothpaste on the bristles. Leaning against the right side of the cup, a small white toothpaste tube with a light blue screw cap, closed. Two or three small round bubbles just above the bristles, each with a tiny white highlight.
+Attached images: style references (the sandwich pic1 and the backpack pic3) and, if they exist, the cards dentes-01 and dentes-03 (the toothbrush, the cup and the tube).
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the two attached references (the sandwich and the backpack) exactly: very thick, smooth, even dark brown outlines (#3B2A2A) around every shape, soft warm pastel colors, flat fills with only one slightly darker tone on the shaded side and one or two small soft white highlights, rounded, chunky, friendly shapes, no texture, no grain, no gradients. Composition: ONE hero object, or one tight group of objects that touch each other, seen in a three-quarter view from slightly above, large and centered, filling about 90% of the image width and 85% of the height, with only a thin even margin around it, exactly like the references. Background: flat solid cream (#FDF3E6) from edge to edge, no shadow under the object, no floor line, no table, no scenery, no frame, no border, no vignette. Never include: text, letters, numbers, logos, watermarks, people, hands, faces on objects, photorealism, 3D render, glow. Must stay readable when shown at 150 px wide: bold simple silhouette, a few large shapes, very few small details. Aspect ratio 16:10, landscape, 1240x784 px.
 ```
 
 ### `level8.webp` — fundo do nível
