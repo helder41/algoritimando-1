@@ -209,7 +209,7 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.webp` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.webp` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
 | Cartão dos 3 chamados novos, no painel do lugar | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo) e `img/pic7.webp` (jarra de limonada), no campo `cena` de cada chamado em `js/situacoes.js` |
-| Tela do nível e da lição de Atravessar a rua e Fazer uma limonada (Lavar as mãos já tem: `level5` e `win5`) | fundo liso, sem cenário | fundos da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
+| Tela do nível e da lição de Atravessar a rua e Fazer uma limonada (Lavar as mãos já tem: `level5` e `win5`; Atravessar a rua já tem o fundo da fase, `level6`) | fundo liso, sem cenário | fundos da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
 | Cliente dos 3 chamados novos | o rosto do cliente do lugar (o menino da Casa, a menina da Escola) | nada a fazer, a não ser que se queira um cliente novo |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 

@@ -1136,6 +1136,7 @@ const SITUACAO_RUA = {
   area: 'escola',
   cor: '#c0663a',
   cliente: 'img/who3.webp',
+  fundo: 'img/level6.webp',
   // um quadrinho por passo: no erro, a história trava antes da faixa
   montagem: 'tirinha',
   fases: [
