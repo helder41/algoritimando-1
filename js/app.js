@@ -23,7 +23,7 @@
     'Na cidade de Algoritimando, os chamados de ajuda não param de chegar.',
     'Este é o Robô-guia. Ele sabe onde cada pessoa precisa de ajuda.',
     'Você vai ser o novo estagiário. Aqui está o seu crachá!',
-    'Cada ponto laranja é um chamado. Ensine o robô, passo a passo.',
+    'No mapa, cada alfinete com um rosto é um chamado. Ensine o robô, passo a passo.',
   ];
 
   /* ---------------- navegação ---------------- */
@@ -136,7 +136,7 @@
     // a arte aparece inteira; o fundo desfocado (a mesma imagem)
     // preenche a sobra, seja qual for o formato da tela
     // ?v= faz o navegador buscar a imagem nova quando ela muda
-    $('#story').style.setProperty('--arte', `url(img/story${i + 1}.webp?v=202611110352)`);
+    $('#story').style.setProperty('--arte', `url(img/story${i + 1}.webp?v=202611110727)`);
     $('#sceneText').textContent = ABERTURA[i];
     $('#dots').innerHTML = ABERTURA.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
     const ultimo = i === ABERTURA.length - 1;
