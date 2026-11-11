@@ -8,7 +8,7 @@ Há três tipos principais: as cartas dos passos (seção 1), as imagens das li�
 
 ## 1. Ilustrações das cartas (`img/passos/`)
 
-As 38 cartas dos quatro primeiros chamados estão prontas. **Faltam 20:** as dos três chamados novos (Lavar as mãos, Atravessar a rua e Fazer uma limonada), listadas no fim desta seção.
+As 38 cartas dos quatro primeiros chamados estão prontas. **Faltam 13:** as de Atravessar a rua e Fazer uma limonada (Lavar as mãos já está pronto), listadas no fim desta seção.
 
 Formato sugerido: PNG com fundo transparente, quadrado ou 4:3 (por exemplo 600 × 450), mesmo estilo das ilustrações do Figma. A mesma imagem é usada em todos os níveis em que o passo aparece.
 
@@ -80,13 +80,13 @@ A numeração segue a ordem em que a carta aparece pela primeira vez no chamado.
 
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
-| `maos-01.webp` | mão levantando a alavanca da torneira, água começando a sair | Abra a torneira. | 3, 4 |
-| `maos-02.webp` | mãos sujas debaixo da água | Molhe as mãos na água. | 1, 2, 3, 4 |
-| `maos-03.webp` | sabonete em barra passando na mão molhada | Passe sabonete nas mãos. | 1, 2, 3, 4 |
-| `maos-04.webp` | mãos cheias de espuma, com setas em círculo | Esfregue as mãos contando até 20. | 2, 3, 4 |
-| `maos-05.webp` | água tirando a espuma das mãos | Enxágue as mãos. | 1, 2, 3, 4 |
-| `maos-06.webp` | mão fechando a torneira, última gota | Feche a torneira. | 3, 4 |
-| `maos-07.webp` | mãos limpas na toalha | Seque as mãos na toalha. | 4 |
+| `maos-01.webp` (já existe) | mão levantando a alavanca da torneira, água começando a sair | Abra a torneira. | 3, 4 |
+| `maos-02.webp` (já existe) | mãos sujas debaixo da água | Molhe as mãos na água. | 1, 2, 3, 4 |
+| `maos-03.webp` (já existe) | sabonete em barra passando na mão molhada | Passe sabonete nas mãos. | 1, 2, 3, 4 |
+| `maos-04.webp` (já existe) | mãos cheias de espuma, com setas em círculo | Esfregue as mãos contando até 20. | 2, 3, 4 |
+| `maos-05.webp` (já existe) | água tirando a espuma das mãos | Enxágue as mãos. | 1, 2, 3, 4 |
+| `maos-06.webp` (já existe) | mão fechando a torneira, última gota | Feche a torneira. | 3, 4 |
+| `maos-07.webp` (já existe) | mãos limpas na toalha | Seque as mãos na toalha. | 4 |
 
 ### Atravessar a rua (Caminho da escola)
 
@@ -165,10 +165,10 @@ Formato sugerido: PNG ou JPG em 4:3 (por exemplo 1200 × 900), mesmo estilo das 
 
 | Arquivo | Pergunta na tela | Ideia que a imagem precisa mostrar |
 |---|---|---|
-| `maos-1.webp` (nível 1) | A mesma água, duas vezes? | A água apareceu duas vezes: no começo para molhar, no fim para tirar o sabonete. O gesto é quase o mesmo, mas o trabalho é outro. O que muda é o momento em que ele acontece. Num passo a passo, não basta saber o que fazer: é preciso saber quando. |
-| `maos-2.webp` (nível 2) | Quantas vezes? | Esfregar é o mesmo gesto, feito muitas vezes. Imagine vinte cartas iguais no tabuleiro! Uma carta só resolve: ela manda repetir e diz quando parar, que é ao chegar no 20. Isso se chama repetição. Toda repetição precisa de uma hora de parar. |
-| `maos-3.webp` (nível 3) | O que você abre, você fecha? | Abrir a torneira é o passo que todo mundo esquece de contar. Fechar também! Os dois formam um par: um fica no começo, o outro no fim, e a lavagem acontece no meio. Quando um passo a passo abre, liga ou pega alguma coisa, ele precisa do passo que fecha, desliga ou guarda. |
-| `maos-4.webp` (nível 4) | Os dois jeitos dão certo. Qual é o melhor? | Fechar a torneira e secar as mãos podiam trocar de lugar: os dois jeitos deixam as mãos limpas. Mas, se você se seca primeiro, a torneira fica aberta esse tempo todo e a água vai embora à toa. Um passo a passo completo e na ordem certa se chama algoritmo. Quando mais de um funciona, dá para escolher o melhor: o que não desperdiça. |
+| `maos-1.webp` (já existe) (nível 1) | A mesma água, duas vezes? | A água apareceu duas vezes: no começo para molhar, no fim para tirar o sabonete. O gesto é quase o mesmo, mas o trabalho é outro. O que muda é o momento em que ele acontece. Num passo a passo, não basta saber o que fazer: é preciso saber quando. |
+| `maos-2.webp` (já existe) (nível 2) | Quantas vezes? | Esfregar é o mesmo gesto, feito muitas vezes. Imagine vinte cartas iguais no tabuleiro! Uma carta só resolve: ela manda repetir e diz quando parar, que é ao chegar no 20. Isso se chama repetição. Toda repetição precisa de uma hora de parar. |
+| `maos-3.webp` (já existe) (nível 3) | O que você abre, você fecha? | Abrir a torneira é o passo que todo mundo esquece de contar. Fechar também! Os dois formam um par: um fica no começo, o outro no fim, e a lavagem acontece no meio. Quando um passo a passo abre, liga ou pega alguma coisa, ele precisa do passo que fecha, desliga ou guarda. |
+| `maos-4.webp` (já existe) (nível 4) | Os dois jeitos dão certo. Qual é o melhor? | Fechar a torneira e secar as mãos podiam trocar de lugar: os dois jeitos deixam as mãos limpas. Mas, se você se seca primeiro, a torneira fica aberta esse tempo todo e a água vai embora à toa. Um passo a passo completo e na ordem certa se chama algoritmo. Quando mais de um funciona, dá para escolher o melhor: o que não desperdiça. |
 
 ### Atravessar a rua (Caminho da escola)
 
@@ -209,7 +209,7 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 | Botão de casa (topo de todas as telas) | ícone de casa desenhado em código (SVG) | ícone de casa do Figma, em `img/ui/casa.webp` |
 | Crachá da tela "Quem é você, agente?" | moldura feita no CSS e cinco estrelas em texto | `cracha_perfil.webp` (já está no Drive, pasta `files/algoritimando_recortes/png/interface`) |
 | Cartão dos 3 chamados novos, no painel do lugar | quadro tracejado "ilustração do chamado" | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo) e `img/pic7.webp` (jarra de limonada), no campo `cena` de cada chamado em `js/situacoes.js` |
-| Tela do nível e da lição dos 3 chamados novos | fundo liso, sem cenário | fundos do banheiro, da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
+| Tela do nível e da lição de Atravessar a rua e Fazer uma limonada (Lavar as mãos já tem: `level5` e `win5`) | fundo liso, sem cenário | fundos da rua e da cozinha, nos campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
 | Cliente dos 3 chamados novos | o rosto do cliente do lugar (o menino da Casa, a menina da Escola) | nada a fazer, a não ser que se queira um cliente novo |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 
