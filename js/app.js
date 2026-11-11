@@ -153,14 +153,33 @@
     $('#nameIn').focus();
   }
 
+  /* O crachá da tela "Quem é você, agente?": foto, nome, cargo
+     (Estagiário até a promoção, depois Agente), as estrelas do cargo
+     e um código do agente que sai do nome e do rosto escolhidos. */
+  function atualizarCracha(nome, balancar) {
+    nome = nome || 'Agente';
+    $('#badgeName').textContent = nome;
+    $('#badgeFace').src = avatarSrc();
+    $('#badgeCargo').textContent = P.promovido ? 'Agente' : 'Estagiário';
+    $$('#badgeEstrelas img').forEach((e, k) => e.classList.toggle('on', k < (P.promovido ? 2 : 1)));
+    let n = 7 + Number(P.avatar);
+    for (const ch of nome) n = (n * 31 + ch.charCodeAt(0)) % 10000;
+    $('#badgeCodigo').textContent = 'AG-' + String(n).padStart(4, '0');
+    if (balancar) {
+      const c = $('#cracha');
+      c.classList.remove('balanca');
+      void c.offsetWidth;   // reinicia a animação
+      c.classList.add('balanca');
+    }
+  }
+
   // o crachá do topo (rosto + nome) volta para esta tela: dá para
   // trocar de agente ou de nome sem perder o progresso
   $$('.chip.who').forEach(b => {
     b.onclick = () => {
       $('#nameIn').value = P.nome;
-      $('#badgeName').textContent = P.nome;
       $$('.avatar').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
-      $('#badgeFace').src = avatarSrc();
+      atualizarCracha(P.nome);
       irParaCracha();
     };
   });
@@ -169,11 +188,11 @@
       $$('.avatar').forEach(x => x.classList.remove('sel'));
       b.classList.add('sel');
       P.avatar = b.dataset.a;
-      $('#badgeFace').src = avatarSrc();
+      atualizarCracha($('#nameIn').value.trim(), true);
       Som.clique();
     };
   });
-  $('#nameIn').oninput = e => { $('#badgeName').textContent = e.target.value.trim() || 'Agente'; };
+  $('#nameIn').oninput = e => atualizarCracha(e.target.value.trim());
   $('#bConfirm').onclick = () => {
     P.comecou = true;
     P.nome = $('#nameIn').value.trim().slice(0, 14) || 'Agente';
@@ -525,9 +544,8 @@
   /* ---------------- partida ---------------- */
 
   $('#nameIn').value = P.comecou ? P.nome : '';
-  $('#badgeName').textContent = P.nome;
   $$('.avatar').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
-  $('#badgeFace').src = avatarSrc();
+  atualizarCracha(P.comecou ? P.nome : '');
   atualizarTopo();
   $('#bPlay').textContent = P.comecou ? 'Continuar' : 'Jogar';
   $('#bReiniciar').hidden = !P.comecou;

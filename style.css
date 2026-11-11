@@ -248,39 +248,181 @@ input:focus-visible {
   width: 84cqw;
   align-items: center;
 }
-.badge-big {
-  width: 25cqw;
-  height: 36cqw;
-  background: #3a3340;
-  border: 0.5cqw solid var(--p);
-  border-radius: 2cqw;
+/* ===== crachá do agente (tela "Quem é você, agente?") =====
+   Mesmo desenho do crachá da promoção (img/ui/cracha-agente.webp):
+   presilha, moldura cinza e cartão creme com faixa lilás. */
+.cracha {
+  --t: 1cqw;              /* unidade do crachá: no celular ela cresce */
+  position: relative;
+  flex: none;
+  width: calc(26 * var(--t));
+  padding-top: calc(4.2 * var(--t));
+  transform-origin: 50% 0;
+  filter: drop-shadow(0 calc(0.6 * var(--t)) 0 rgba(43, 34, 49, 0.25));
+}
+/* balança um pouco quando o agente ou o nome mudam */
+.cracha.balanca {
+  animation: cracha-balanca 0.7s ease-out;
+}
+@keyframes cracha-balanca {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(-4deg); }
+  50% { transform: rotate(3deg); }
+  75% { transform: rotate(-1.5deg); }
+  100% { transform: rotate(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cracha.balanca { animation: none; }
+}
+/* presilha: a peça de metal com o furo, presa no alto da moldura */
+.cracha-presilha {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: calc(4.4 * var(--t));
+  height: calc(6 * var(--t));
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #b9b6bf, #e4e2e8 45%, #a9a5b0);
+  border: calc(0.35 * var(--t)) solid var(--ink);
+  border-radius: calc(1 * var(--t)) calc(1 * var(--t)) calc(0.6 * var(--t)) calc(0.6 * var(--t));
+  z-index: 2;
+}
+.cracha-presilha::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(0.9 * var(--t));
+  width: calc(1.8 * var(--t));
+  height: calc(1.8 * var(--t));
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #6f6977;
+  border: calc(0.3 * var(--t)) solid var(--ink);
+}
+.cracha-moldura {
+  background: #5b5563;
+  border: calc(0.4 * var(--t)) solid var(--ink);
+  border-radius: calc(2.6 * var(--t));
+  padding: calc(1.2 * var(--t));
+  box-shadow: inset 0 calc(0.4 * var(--t)) 0 rgba(255, 255, 255, 0.18);
+}
+.cracha-cartao {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 1.5cqw;
-  color: var(--tan);
+  gap: calc(1 * var(--t));
+  padding: 0 calc(1.6 * var(--t)) calc(1.6 * var(--t));
+  border: calc(0.3 * var(--t)) solid var(--ink);
+  border-radius: calc(1.6 * var(--t));
+  /* faixa lilás em diagonal, como no crachá da promoção */
+  background:
+    linear-gradient(150deg, transparent 38%, rgba(138, 99, 199, 0.42) 38%,
+      rgba(138, 99, 199, 0.42) 56%, transparent 56%),
+    var(--cream);
 }
-.badge-big span {
-  font-size: max(9cqw, 9px);
-  background: #e9c9a0;
-  border-radius: 2cqw;
-  padding: 2cqw;
-}
-.badge-big b {
-  background: var(--cream);
-  color: var(--ink);
-  padding: 0.6cqw 2cqw;
-  border-radius: 1cqw;
-  font-size: max(1.5cqw, 9px);
-  min-width: 17cqw;
+.cracha-topo {
+  align-self: stretch;
+  margin: 0 calc(-1.6 * var(--t));
+  padding: calc(0.9 * var(--t)) calc(1 * var(--t)) calc(0.8 * var(--t));
+  background: var(--p);
+  border-bottom: calc(0.3 * var(--t)) solid var(--ink);
+  color: #fff;
   text-align: center;
+  line-height: 1.05;
 }
-.badge-big i {
-  font-style: normal;
-  letter-spacing: 0.3cqw;
-  font-size: max(1.8cqw, 9px);
+.cracha-topo b {
+  display: block;
+  font: 700 calc(1.75 * var(--t)) Fredoka, sans-serif;
+  letter-spacing: 0.03em;
 }
+.cracha-topo small {
+  display: block;
+  font: 800 calc(0.95 * var(--t)) Nunito, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.cracha-foto {
+  margin-top: calc(0.6 * var(--t));
+  width: calc(13 * var(--t));
+  height: calc(13 * var(--t));
+  border-radius: calc(1.8 * var(--t));
+  border: calc(0.4 * var(--t)) solid var(--ink);
+  background: var(--tan);
+  overflow: hidden;
+  box-shadow: 0 0 0 calc(0.5 * var(--t)) #fff;
+}
+.cracha-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cracha-nome {
+  max-width: 100%;
+  padding: calc(0.5 * var(--t)) calc(1.6 * var(--t));
+  background: #fff;
+  border: calc(0.3 * var(--t)) solid var(--ink);
+  border-radius: calc(1 * var(--t));
+  font: 800 calc(1.7 * var(--t)) Nunito, sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cracha-cargo {
+  padding: calc(0.3 * var(--t)) calc(1.4 * var(--t));
+  border-radius: 99px;
+  background: var(--ink);
+  color: var(--tan);
+  font: 700 calc(1.15 * var(--t)) Fredoka, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cracha-estrelas {
+  display: flex;
+  gap: calc(0.5 * var(--t));
+}
+.cracha-estrelas img {
+  width: calc(2.6 * var(--t));
+  height: calc(2.6 * var(--t));
+  /* estrela apagada: a mesma imagem, sem cor */
+  filter: grayscale(1) opacity(0.35);
+}
+.cracha-estrelas img.on {
+  filter: none;
+}
+.cracha-rodape {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(1 * var(--t));
+  margin-top: calc(0.4 * var(--t));
+}
+.cracha-rodape img {
+  height: calc(3.2 * var(--t));
+  width: auto;
+}
+/* código do agente com um "código de barras" desenhado em CSS */
+.cracha-codigo {
+  flex: 1;
+  padding-top: calc(1.9 * var(--t));
+  background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px,
+      var(--ink) 4px 5px, transparent 5px 8px) top / 100% calc(1.6 * var(--t)) no-repeat;
+  font: 800 calc(0.95 * var(--t)) Nunito, monospace;
+  letter-spacing: 0.15em;
+  text-align: right;
+  color: var(--brown);
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .cracha {
+    --t: 2cqw;
+  }
+}
+
 .char-form {
   flex: 1;
   display: flex;
@@ -634,14 +776,6 @@ h2 {
   font-size: 0;
   padding: 0;
 }
-.badge-big img {
-  width: 13cqw;
-  height: 13cqw;
-  border-radius: 2cqw;
-  background: #e9c9a0;
-  object-fit: cover;
-  padding: 0;
-}
 .ci {
   width: 2.6cqw;
   height: 2.6cqw;
@@ -940,28 +1074,6 @@ body {
     gap: 5cqw;
     max-height: 96cqh;
     overflow: auto;
-  }
-  #stage .badge-big {
-    width: 44cqw;
-    height: 46cqw;
-    border-width: 1cqw;
-    border-radius: 4cqw;
-    gap: 2.4cqw;
-    flex: none;
-  }
-  #stage .badge-big img {
-    width: 22cqw;
-    height: 22cqw;
-    border-radius: 4cqw;
-  }
-  #stage .badge-big b {
-    font-size: 3.6cqw;
-    min-width: 30cqw;
-    padding: 1.2cqw 3cqw;
-    border-radius: 2cqw;
-  }
-  #stage .badge-big i {
-    font-size: 4.4cqw;
   }
   #stage .char-form {
     align-items: center;

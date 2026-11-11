@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=202611110728" />
+    <link rel="stylesheet" href="style.css?v=202611110739" />
   </head>
   <body>
     <div id="stage">
@@ -53,10 +53,35 @@
 
       <section class="screen bg-sand" id="char">
         <div class="panel char-panel">
-          <div class="badge-big">
-            <img id="badgeFace" src="img/av0.webp" alt="" /><b id="badgeName"
-              >Agente</b
-            ><i>★★★★★</i>
+          <!-- crachá do agente: no mesmo desenho do crachá da promoção
+               (img/ui/cracha-agente.webp), com a foto e o nome de verdade -->
+          <div class="cracha" id="cracha">
+            <span class="cracha-presilha" aria-hidden="true"></span>
+            <div class="cracha-moldura">
+              <div class="cracha-cartao">
+                <p class="cracha-topo">
+                  <b>Algoritimando</b><small>Agência de Ajuda</small>
+                </p>
+                <div class="cracha-foto">
+                  <img id="badgeFace" src="img/av0.webp" alt="" />
+                </div>
+                <b class="cracha-nome" id="badgeName">Agente</b>
+                <span class="cracha-cargo" id="badgeCargo">Estagiário</span>
+                <span class="cracha-estrelas" id="badgeEstrelas" aria-hidden="true"
+                  ><img src="img/ui/estrela.webp" alt="" /><img
+                    src="img/ui/estrela.webp"
+                    alt=""
+                  /><img src="img/ui/estrela.webp" alt=""
+                /></span>
+                <span class="cracha-rodape">
+                  <img src="img/ui/cracha-icone.webp" alt="" /><span
+                    class="cracha-codigo"
+                    id="badgeCodigo"
+                    >AG-0000</span
+                  >
+                </span>
+              </div>
+            </div>
           </div>
           <div class="char-form">
             <h2>Quem é você, agente?</h2>
@@ -572,17 +597,17 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611110728"></script>
-    <script src="js/comum.js?v=202611110728"></script>
-    <script src="js/situacoes.js?v=202611110728"></script>
-    <script src="js/em-progresso.js?v=202611110728"></script>
-    <script src="js/som.js?v=202611110728"></script>
-    <script src="js/progresso.js?v=202611110728"></script>
-    <script src="js/perfil.js?v=202611110728"></script>
-    <script src="js/arrasto.js?v=202611110728"></script>
-    <script src="js/conclusao.js?v=202611110728"></script>
-    <script src="js/montagem.js?v=202611110728"></script>
-    <script src="js/jogo.js?v=202611110728"></script>
-    <script src="js/app.js?v=202611110728"></script>
+    <script src="js/motor.js?v=202611110739"></script>
+    <script src="js/comum.js?v=202611110739"></script>
+    <script src="js/situacoes.js?v=202611110739"></script>
+    <script src="js/em-progresso.js?v=202611110739"></script>
+    <script src="js/som.js?v=202611110739"></script>
+    <script src="js/progresso.js?v=202611110739"></script>
+    <script src="js/perfil.js?v=202611110739"></script>
+    <script src="js/arrasto.js?v=202611110739"></script>
+    <script src="js/conclusao.js?v=202611110739"></script>
+    <script src="js/montagem.js?v=202611110739"></script>
+    <script src="js/jogo.js?v=202611110739"></script>
+    <script src="js/app.js?v=202611110739"></script>
   </body>
 </html>
