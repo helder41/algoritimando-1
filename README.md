@@ -1,5 +1,5 @@
 # algoritimando
-Algoritimando é um jogo web educativo, feito com HTML, CSS e JavaScript puros e baseado em um protótipo do Figma. O jogador vira um agente da Central de chamados e ajuda um Robô-guia a atender 7 pedidos (Sanduíche, Robô e o cubo, Mochila, Abelhas, Lavar as mãos, Atravessar a rua e Limonada), arrastando os passos para a ordem correta. Assim, aprende de forma lúdica a pensar em sequência, como um algoritmo. O jogo tem escolha de agente, sistema de estrelas e dicas, sons e uma tela de promoção ao final.
+Algoritimando é um jogo web educativo, feito com HTML, CSS e JavaScript puros e baseado em um protótipo do Figma. O jogador vira um agente da Central de chamados e ajuda um Robô-guia a atender 8 pedidos (Sanduíche, Robô e o cubo, Mochila, Abelhas, Lavar as mãos, Atravessar a rua, Limonada e Escovar os dentes), arrastando os passos para a ordem correta. Assim, aprende de forma lúdica a pensar em sequência, como um algoritmo. O jogo tem escolha de agente, sistema de estrelas e dicas, sons e uma tela de promoção ao final.
 
 Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalação).
 
@@ -12,7 +12,10 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 - A criança monta a sequência inteira e toca em **Verificar**. Se algo estiver fora de ordem, o tabuleiro avisa (sem dizer qual passo) e a montagem mostra a consequência. O Robô-guia só explica o problema quando a criança pede uma **dica** — e explica só o primeiro. A carta nunca é bloqueada: a criança move de novo.
 - A central é um **mapa da cidade**: cada lugar (Casa, Escola, Fábrica, Jardim) é a casa de um cliente, e tocar nele mostra os chamados de lá (campo `area` de cada chamado).
 - Depois de cada nível aparece a lição, que liga a atividade ao conceito de algoritmo.
-- Os quatro primeiros chamados levam a criança da "ordem importa" até o nome "algoritmo", e são eles que contam para a **promoção**. Os três chamados novos trazem uma ideia a mais cada um: **repetição** (Lavar as mãos), **condição** (Atravessar a rua) e **caminhos paralelos** (Fazer uma limonada). Eles aparecem no mapa desde o começo, somam estrelas e dicas, mas não são exigidos para a promoção. O porquê de cada decisão está em [docs/revisao-chamados-novos.md](docs/revisao-chamados-novos.md).
+- Os quatro primeiros chamados levam a criança da "ordem importa" até o nome "algoritmo". Os chamados novos trazem uma ideia a mais cada um: **repetição** (Lavar as mãos), **condição** (Atravessar a rua), **caminhos paralelos** (Fazer uma limonada) e **o que abre, fecha** (Escovar os dentes). Todos aparecem no mapa desde o começo e podem ser jogados em qualquer ordem.
+- **Duas promoções.** Os 4 chamados originais levam de Estagiário a **Agente**; os 8, a **Agente Sênior**. Como o Sênior exige todos, ninguém vira Sênior sem ser Agente: quem joga os novos primeiro recebe as duas promoções em seguida ao fechar o último original. A central mostra uma barra só ("X de 8") e a frase do próximo objetivo, e os lugares que contam para ele brilham no mapa.
+- **Selos.** Cada chamado novo entrega, na lição do último nível, o selo da sua ideia. Os selos ficam no crachá e em "Minhas ideias" (na central), com a frase da ideia, uma carta do chamado como exemplo e uma pergunta para conversar.
+- **Tela final.** "Missão cumprida" só aparece depois dos 8 chamados, com os personagens de todos, os selos e as estrelas.
 - Estrelas por nível: 3 sem erro, 2 com um erro, 1 com mais (usar dica conta como erro). Cada nível concluído dá +1 dica, e a dica coloca a carta certa no lugar.
 - O arrasto usa Pointer Events (mouse, dedo e teclado).
 - No celular em pé, a tela do nível rola e o rodapé fica fixo: Verificar, Dica, Ver montagem e Nível estão sempre à vista. Arrastando uma carta para perto do alto ou do rodapé, a tela rola sozinha. Tudo o que se toca tem pelo menos 44 px de altura. Com o celular deitado, um aviso sugere virar o aparelho (dá para dispensar).
@@ -37,7 +40,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 | `js/jogo.js` | a partida: tabuleiro, erros, estrelas e dicas |
 | `js/montagem.js` | a montagem (pilha, cena ou tirinha) ao lado do tabuleiro |
 | `js/conclusao.js` | a tela de lição |
-| `js/app.js` | menu, abertura, crachá, central, promoção, final e abrir o chamado do professor |
+| `js/app.js` | menu, abertura, crachá, central, as duas promoções, os selos ("Minhas ideias"), final e abrir o chamado do professor |
 | `editor.html`, `editor.css`, `js/editor.js` | a Área do professor |
 | `js/som.js`, `audio/musica-tema.mp3` | música ("Agentes de Algoritimando", em loop) e efeitos, com o menu "Sons" (liga/desliga e volume de cada um) |
 | `js/comum.js`, `js/progresso.js`, `js/perfil.js` | cartas e memória do jogo |
