@@ -1,6 +1,6 @@
 # Prompts das cenas dos chamados
 
-13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Já existem:** `level5`, `win5`, `pic6`, `level6`, `win6`, `level8` e os retratos `who5` e `who6`. **Faltam 6:** `pic5`, `pic7`, `level7`, `win7`, `pic8` e `win8`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo há também versões novas das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena.
+13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Prontas:** todas as imagens dos chamados novos, e os retratos `who5` e `who6`. Os prompts ficam como registro. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo estão os prompts das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena (já aplicadas).
 
 | Imagem | Onde aparece | Modelo que já existe | Campo em `js/situacoes.js` |
 |---|---|---|---|
@@ -43,7 +43,7 @@ Se preferir, mande as imagens no chat com o nome de cada uma: a conversão para 
 
 ## Lavar as mãos (Banheiro)
 
-**Arquivos:** `pic5.webp`, `level5.webp`, `win5.webp`. **Prontos:** `level5` e `win5`. **Falta:** `pic5`.
+**Arquivos:** `pic5.webp`, `level5.webp`, `win5.webp`. **Prontos:** os três.
 
 **Anexe como referência:** `img/pic3.webp` (estilo da ilustração do chamado), `img/level3.webp` e `img/win3.webp` (composição dos fundos), `img/cliente0.webp` (o menino), `img/guide.webp` (Robô-guia) e, quando existirem, as cartas `img/passos/maos-01.webp` a `maos-07.webp`.
 
@@ -107,7 +107,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Fazer uma limonada (Cozinha)
 
-**Arquivos:** `pic7.webp`, `level7.webp`, `win7.webp`.
+**Arquivos:** `pic7.webp`, `level7.webp`, `win7.webp`. **Prontos:** os três.
 
 **Anexe como referência:** `img/pic3.webp` (estilo da ilustração do chamado), `img/level1.webp` e `img/win1.webp` (a mesma cozinha do sanduíche, e a composição dos fundos), `img/level6.webp` (o menino de moletom amarelo; só o menino, a rua não entra), `img/guide.webp` (Robô-guia) e, quando existirem, as cartas `img/passos/limonada-01.webp` a `limonada-07.webp`.
 
@@ -141,7 +141,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 **Arquivos:** `who6.webp` (retrato da menina), `pic8.webp`, `level8.webp`, `win8.webp`.
 
-**Prontos:** `level8` (o fundo do nível, com a menina e o Robô-guia) e `who6` (o retrato, recortado do `level8`). **Faltam:** `pic8` e `win8`.
+**Prontos:** `who6`, `pic8`, `level8` e `win8`. Os prompts ficam como registro.
 
 **Anexe como referência:** `img/level8.webp` (a menina, o banheiro, a escova e a pasta), `img/guide.webp` (Robô-guia), `img/win5.webp` (composição do fundo da lição) e, quando existirem, as cartas `img/passos/dentes-01.webp` a `dentes-08.webp`.
 
@@ -160,7 +160,7 @@ Recortado do `level8`. Não precisa gerar.
 ### `pic8.webp` — ilustração do chamado
 
 ```
-Subject: The moment the call arrives: a bathroom diorama made from the bathroom from the attached level background (lavender-blue walls, light blue tiles on the lower half of the wall, a wooden vanity with a white sink and a silver tap, a small window, a wooden shelf with a green plant, a light blue towel with a white tooth emblem on a rail, pale peach floor tiles, a blue bath mat) (a tile of pale peach floor with a low piece of lavender-blue wall with light blue tiles behind, and the wooden vanity with the white sink and the silver tap on it). On the vanity: the light blue plastic cup holding the blue toothbrush (blue handle, white bristles) and the blue toothpaste tube with a white tooth emblem and a light grey cap, closed. The girl from the attached reference (about 7 years old, light skin with rosy cheeks, shoulder-length wavy brown hair with bangs and a messy bun on top tied with a pink scrunchie, coral-pink short-sleeved pajama top with a round collar and a small white bunny on the chest, coral-pink pajama shorts, white socks, coral-pink shoes with white soles) stands in front of the vanity, just after breakfast, with a tiny crumb on her cheek, pointing at her big open smile with one finger and holding the light blue towel in the other hand, with a cheerful 'my turn!' face. The small round white Robô-guia robot with a black face screen, green eyes and a small green antenna light (from the reference) floats beside her, holding the toothbrush out to her. Two or three soap bubbles float near the sink.
+Subject: The moment the call arrives: a diorama of the bathroom from the attached level background: a tile of pale peach floor, a low piece of lavender-blue wall with light blue tiles behind it, and on the tile the wooden vanity with the white sink and the silver tap. On the vanity: the light blue plastic cup holding the blue toothbrush (blue handle, white bristles) and the blue toothpaste tube with a white tooth emblem and a light grey cap, closed. The girl from the attached reference (about 7 years old, light skin with rosy cheeks, shoulder-length wavy brown hair with bangs and a messy bun on top tied with a pink scrunchie, coral-pink short-sleeved pajama top with a round collar and a small white bunny on the chest, coral-pink pajama shorts, white socks, coral-pink shoes with white soles) stands in front of the vanity, just after breakfast, with a tiny crumb on her cheek, pointing at her big open smile with one finger and holding the light blue towel in the other hand, with a cheerful 'my turn!' face. The small round white Robô-guia robot with a black face screen, green eyes and a small green antenna light (from the reference) floats beside her, holding the toothbrush out to her. Two or three soap bubbles float near the sink.
 Attached images: the level background level8 (the girl, the bathroom, the toothbrush and the toothpaste), the robot (guide), the cards dentes-01 to dentes-03 if they exist and the style references (the street cards rua-01 and rua-05).
 Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached character and card references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Composition (very important): a small floating diorama, like a thick square tile of floor cut out of the place and seen in a three-quarter view from slightly above, with only one low wall piece at the back where needed. Everything sits on this tile: one or two characters and three or four big, clear objects. The diorama is centered and fills about 90% of the image width, with a thin even margin. The main character is big (about half the height of the image) and is clearly doing something. A soft grey oval shadow under the tile. Background around the diorama: flat solid cream (#FDF3E6) from edge to edge, no sky, no scenery outside the tile, no frame, no border. Readability: it must be understandable at 190 px wide: big shapes, strong silhouettes, one clear action, no tiny details. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:10, landscape, 1240x784 px.
 ```
@@ -175,7 +175,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Ilustrações dos quatro chamados originais (versão nova)
 
-As imagens de hoje (`pic1` a `pic4`) são um objeto sozinho (sanduíche, caixa, mochila, favo). Estas versões seguem o padrão das mini-cenas dos chamados novos, para todos os cartões ficarem iguais. Salve com o **mesmo nome**: a imagem troca sozinha, sem mexer no código.
+**Prontas:** as quatro já estão no jogo, no padrão das mini-cenas dos chamados novos. Os prompts ficam como registro.
 
 **Dica:** gere as quatro na mesma conversa, uma depois da outra, e anexe a primeira que ficar boa nas seguintes. Assim a ilha de chão sai do mesmo tamanho e do mesmo ângulo em todas.
 

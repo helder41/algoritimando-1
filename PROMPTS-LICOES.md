@@ -11,7 +11,7 @@
 - **Mesmos personagens e objetos do jogo:** o cliente do chamado, o Robô-guia e os objetos das cartas.
 - Ao salvar, use o nome indicado em cada bloco (ex.: `sanduiche-1.webp`). A imagem aparece sozinha no jogo, sem mexer no código; o recorte e o ajuste de tamanho são feitos como nas cartas.
 
-**Chamados novos:** Atravessar a rua já tem as 3 lições. Faltam as 7 de Fazer uma limonada e Escovar os dentes. Os prompts estão no fim deste arquivo.
+**Chamados novos:** todas as lições estão prontas. Os prompts ficam como registro. Os prompts estão no fim deste arquivo.
 
 **Se a imagem sair errada**, peça a correção na mesma conversa: "remove all text", "simpler, fewer objects", "same bee as the reference", "make the left and right panels clearer".
 
@@ -179,7 +179,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Chamados novos
 
-**Por gerar:** 7 imagens (Fazer uma limonada e Escovar os dentes). Lavar as mãos e Atravessar a rua já estão prontos. As regras são as mesmas do começo deste arquivo. Gere primeiro as cartas de cada chamado (em `PROMPTS-CARTAS.md`): elas são a referência dos objetos aqui.
+**Pronto:** as lições dos quatro chamados novos já estão no jogo. As regras são as mesmas do começo deste arquivo. Gere primeiro as cartas de cada chamado (em `PROMPTS-CARTAS.md`): elas são a referência dos objetos aqui.
 
 ## Lavar as mãos
 

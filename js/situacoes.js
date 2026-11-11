@@ -952,6 +952,7 @@ const SITUACAO_MAOS = {
   area: 'casa',
   cor: '#3f9c8a',
   cliente: 'img/who1.webp',
+  cena: 'img/pic5.webp',
   fundo: 'img/level5.webp',
   fundoConclusao: 'img/win5.webp',
   // um quadrinho por passo: lavar as mãos é uma história no tempo
@@ -1287,7 +1288,10 @@ const SITUACAO_LIMONADA = {
   local: 'Cozinha',
   area: 'limonada',
   cor: '#b8941f',
-  cliente: 'img/who1.webp',
+  cliente: 'img/who5.webp',
+  cena: 'img/pic7.webp',
+  fundo: 'img/level7.webp',
+  fundoConclusao: 'img/win7.webp',
   // um quadrinho por passo (uma "cena" da jarra pediria peças que
   // ainda não existem; a tirinha funciona só com as cartas)
   montagem: 'tirinha',
@@ -1433,7 +1437,9 @@ const SITUACAO_DENTES = {
   area: 'casa-azul',
   cor: '#3f8fb5',
   cliente: 'img/who6.webp',
+  cena: 'img/pic8.webp',
   fundo: 'img/level8.webp',
+  fundoConclusao: 'img/win8.webp',
   // um quadrinho por passo: escovar os dentes é uma história no tempo
   montagem: 'tirinha',
   fases: [
