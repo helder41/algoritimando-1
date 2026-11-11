@@ -1,6 +1,6 @@
 # Prompts das cenas dos chamados
 
-13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Prontas:** todas as imagens dos chamados novos, e os retratos `who5` e `who6`. Os prompts ficam como registro. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo há também versões novas das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena.
+13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Prontas:** todas as imagens dos chamados novos, e os retratos `who5` e `who6`. Os prompts ficam como registro. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo estão os prompts das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena (já aplicadas).
 
 | Imagem | Onde aparece | Modelo que já existe | Campo em `js/situacoes.js` |
 |---|---|---|---|
@@ -175,7 +175,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Ilustrações dos quatro chamados originais (versão nova)
 
-As imagens de hoje (`pic1` a `pic4`) são um objeto sozinho (sanduíche, caixa, mochila, favo). Estas versões seguem o padrão das mini-cenas dos chamados novos, para todos os cartões ficarem iguais. Salve com o **mesmo nome**: a imagem troca sozinha, sem mexer no código.
+**Prontas:** as quatro já estão no jogo, no padrão das mini-cenas dos chamados novos. Os prompts ficam como registro.
 
 **Dica:** gere as quatro na mesma conversa, uma depois da outra, e anexe a primeira que ficar boa nas seguintes. Assim a ilha de chão sai do mesmo tamanho e do mesmo ângulo em todas.
 
