@@ -1,6 +1,6 @@
 # Prompts das cenas dos chamados novos
 
-9 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua e Fazer uma limonada). **Já existem:** `level5`, `win5` e `level6`. **Faltam 6:** `pic5`, `pic6`, `win6`, `pic7`, `level7` e `win7`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição.
+13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Já existem:** `level5`, `win5`, `level6` e o retrato do menino da rua (`who5`). **Faltam 10:** `pic5`, `pic6`, `win6`, `pic7`, `level7`, `win7`, `who6`, `pic8`, `level8` e `win8`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição.
 
 | Imagem | Onde aparece | Modelo que já existe | Campo em `js/situacoes.js` |
 |---|---|---|---|
@@ -14,7 +14,7 @@
 - **A ilustração do chamado vem primeiro.** Quando ela ficar boa, anexe-a ao gerar o fundo do nível: é ela que aparece dentro do balão de pensamento.
 - **Nos dois fundos, o lado direito fica vazio e desfocado de propósito.** No PC o tabuleiro e o painel da lição são desenhados por cima dele. Se o gerador puser personagem ou objeto forte à direita, peça de novo.
 - **Nada de texto** em nenhuma das imagens.
-- **Personagens:** Lavar as mãos é do menino de avental (`img/cliente0.webp`), e os fundos dele já estão prontos. **Atravessar a rua e Fazer uma limonada são do menino de moletom amarelo** do `img/level6.webp` (pele morena, cabelo cacheado castanho-escuro, moletom amarelo, bermuda azul-marinho, tênis azul). Na rua ele usa a mochila azul; na cozinha, não.
+- **Personagens:** Lavar as mãos é do menino de avental (`img/cliente0.webp`), na Casa, e os fundos dele já estão prontos. Escovar os dentes é da menina de pijama da Casa azul (`img/who6.webp`, a gerar primeiro). **Atravessar a rua e Fazer uma limonada são do menino de moletom amarelo** do `img/level6.webp` (pele morena, cabelo cacheado castanho-escuro, moletom amarelo, bermuda azul-marinho, tênis azul). Na rua ele usa a mochila azul; na cozinha, não.
 
 **Se sair errado:** "keep the right side empty and blurred", "move the characters to the left", "remove all text", "same boy as the level6 reference", "simpler, fewer objects".
 
@@ -122,5 +122,49 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 ```
 Scene: The same warm home kitchen as in the kitchen reference. On the left, the boy from the attached level background (brown skin, curly dark brown hair, yellow hoodie, navy shorts, blue sneakers; no backpack, he is at home) happily raises a glass of pale yellow-green lemonade with an ice cube and a lime slice on the rim, smiling with his mouth open. Next to him the small round white Robô-guia robot with a black face screen, green eyes and a small green antenna light (from the reference) cheers with its arms up and happy curved eyes. Above them, a round green badge with a white check mark and a shiny gold star with small sparkles and a few pieces of pastel confetti. On the counter behind them, the glass jug of lemonade, half full. The rest of the kitchen continues to the right, soft and blurred.
 Attached images: the kitchen and composition reference (win1), the level background (only for the boy's look; do not copy the street), the robot.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached references exactly: thick dark brown outlines (#3B2A2A) on the characters and on the objects near them, soft warm pastel colors, simple flat shading, rounded friendly shapes. Layout (very important): the characters, the green check, the star and every sharp detail stay inside the LEFT 55% of the image, in its upper two thirds. The RIGHT 45% is the same place continuing, but soft, pale and heavily blurred, with no characters and no strong shapes: the game draws the lesson panel on top of that area. Mood: happy, a small celebration. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1600x893 px.
+```
+
+## Escovar os dentes (Banheiro da Casa azul)
+
+**Arquivos:** `who6.webp` (retrato da menina), `pic8.webp`, `level8.webp`, `win8.webp`.
+
+**Ordem:** primeiro o retrato (ele vira a referência de tudo), depois as cartas (`PROMPTS-CARTAS.md`), depois as três imagens daqui.
+
+**Anexe como referência:** `img/who1.webp` (enquadramento e estilo do retrato), `img/pic3.webp` (estilo da ilustração do chamado), `img/level5.webp` e `img/win5.webp` (composição dos fundos de banheiro), `img/guide.webp` (Robô-guia) e, quando existirem, `img/who6.webp` e as cartas `img/passos/dentes-01.webp` a `dentes-08.webp`.
+
+**Personagem:** uma menina nova, diferente dos outros clientes: uns 8 anos, pele clara com sardinhas, cabelo castanho-avermelhado ondulado em duas marias-chiquinhas baixas com elásticos azul-claros, pijama azul-claro com estrelinhas amarelas e chinelos brancos. É hora de dormir: a luz é de abajur, quentinha.
+
+**Consistência:** a mesma escova branca de cabo azul-claro, o mesmo tubo de pasta de tampa azul-clara e o mesmo copo amarelo-claro das cartas. O banheiro tem azulejos azul-claros, para não se confundir com o banheiro de Lavar as mãos.
+
+### `who6.webp` — retrato da menina (cliente da Casa azul)
+
+```
+Subject: Head-and-shoulders portrait of a new girl character (about 8 years old, light skin with a few freckles, wavy reddish-brown hair in two low pigtails tied with light blue hair ties, light blue pajamas with small yellow stars, white slippers), facing forward with a friendly closed-mouth smile and rosy cheeks, framed exactly like the attached portrait reference (the face fills the frame, the top of the hair almost touches the top edge, the shoulders cut at the bottom).
+Attached images: portrait reference (who1) for framing and style.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached portrait exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading, big friendly eyes. Background: a soft blurred light blue tiled bathroom wall. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render. Aspect ratio 1:1, square, 1024x1024 px.
+```
+
+### `pic8.webp` — ilustração do chamado
+
+```
+Subject: A white toothbrush with a light blue handle and a little wave of toothpaste on its bristles, standing next to a pale yellow plastic cup and a small white toothpaste tube with a light blue cap, three or four soap bubbles floating above them. Objects have no faces.
+Attached images: style reference (the backpack) and the cards, if they exist.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes. Composition: one single subject, centered, filling about 80% of the frame, nothing touching the edges. Background: plain soft cream (#FDF5E8), no scenery, no floor line, no frame, no border. Never include: text, letters, numbers, logos, watermarks, people, faces on objects, photorealism, 3D render, heavy gradients. Must stay readable when shown small (about 150 px wide): bold simple silhouette, few details. Aspect ratio 16:10, landscape, 1240x784 px.
+```
+
+### `level8.webp` — fundo do nível
+
+```
+Scene: A cozy home bathroom at bedtime, with light blue tiles and a small window showing a dark blue night sky with a moon. On the left, the girl from the attached portrait (about 8 years old, light skin with a few freckles, wavy reddish-brown hair in two low pigtails tied with light blue hair ties, light blue pajamas with small yellow stars, white slippers) stands in front of a white sink holding the white toothbrush with a light blue handle, looking at it with a sleepy, curious smile. On the sink: the pale yellow cup and the white toothpaste tube with its light blue cap closed. Next to her floats the small round white Robô-guia robot with a black face screen, green eyes and a green antenna (from the reference). Above the girl, a soft cream thought bubble contains the toothbrush, cup and tube from the attached illustration. The rest of the bathroom (tiles, a towel rail, a bathtub) continues to the right, soft and blurred.
+Attached images: the chamado illustration (pic8), composition reference (level5), the girl's portrait, the robot.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached references exactly: thick dark brown outlines (#3B2A2A) on the characters and on the objects near them, soft warm pastel colors, simple flat shading, rounded friendly shapes. Layout (very important): the characters, the thought bubble and every sharp detail stay inside the LEFT 40% of the image. The RIGHT 60% is the same room continuing, but soft, pale and heavily blurred, with no characters, no strong shapes and no strong colors: the game draws its board and cards on top of that area. Lighting: warm soft evening lamp light coming from the left. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1376x768 px.
+```
+
+### `win8.webp` — fundo da lição
+
+```
+Scene: The same cozy bedtime bathroom with light blue tiles. On the left, the girl from the attached portrait (about 8 years old, light skin with a few freckles, wavy reddish-brown hair in two low pigtails tied with light blue hair ties, light blue pajamas with small yellow stars, white slippers) gives a big smile showing clean shiny teeth with small sparkles, holding a small teddy bear, ready for bed. Behind her, the sink is tidy: the clean toothbrush standing in the pale yellow cup and the toothpaste tube closed. Next to her the small round white Robô-guia robot with a black face screen, green eyes and a green antenna (from the reference) cheers with its arms up and happy curved eyes. Above them, a round green badge with a white check mark and a shiny gold star with small sparkles and a few pieces of pastel confetti. The rest of the bathroom continues to the right, soft and blurred.
+Attached images: composition reference (win5), the girl's portrait, the robot.
 Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached references exactly: thick dark brown outlines (#3B2A2A) on the characters and on the objects near them, soft warm pastel colors, simple flat shading, rounded friendly shapes. Layout (very important): the characters, the green check, the star and every sharp detail stay inside the LEFT 55% of the image, in its upper two thirds. The RIGHT 45% is the same place continuing, but soft, pale and heavily blurred, with no characters and no strong shapes: the game draws the lesson panel on top of that area. Mood: happy, a small celebration. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1600x893 px.
 ```

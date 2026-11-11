@@ -11,7 +11,7 @@
 - **Mesmos personagens e objetos do jogo:** o cliente do chamado, o Robô-guia e os objetos das cartas.
 - Ao salvar, use o nome indicado em cada bloco (ex.: `sanduiche-1.webp`). A imagem aparece sozinha no jogo, sem mexer no código; o recorte e o ajuste de tamanho são feitos como nas cartas.
 
-**Chamados novos:** as 10 lições de Lavar as mãos, Atravessar a rua e Fazer uma limonada ainda não foram geradas. Os prompts estão no fim deste arquivo.
+**Chamados novos:** as 14 lições de Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes ainda não foram geradas. Os prompts estão no fim deste arquivo.
 
 **Se a imagem sair errada**, peça a correção na mesma conversa: "remove all text", "simpler, fewer objects", "same bee as the reference", "make the left and right panels clearer".
 
@@ -179,7 +179,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Chamados novos
 
-**Por gerar:** 10 imagens, dos três chamados que entraram no jogo depois dos quatro primeiros. As regras são as mesmas do começo deste arquivo. Gere primeiro as cartas de cada chamado (em `PROMPTS-CARTAS.md`): elas são a referência dos objetos aqui.
+**Por gerar:** 14 imagens, dos quatro chamados que entraram no jogo depois dos quatro primeiros. As regras são as mesmas do começo deste arquivo. Gere primeiro as cartas de cada chamado (em `PROMPTS-CARTAS.md`): elas são a referência dos objetos aqui.
 
 ## Lavar as mãos
 
@@ -277,4 +277,42 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 Scene: Two trails of round stepping stones that start far apart on the left and join into one trail on the right, like two rivers meeting. The upper trail has three stones with small icons in order: a green lime under water, a lime cut in halves, a lime half on a juicer. The lower trail has two stones: a glass jug with water and ice, a spoon of sugar over the jug. At the point where the two trails meet, one bigger stone shows the jug being stirred with a wooden spoon. After it, one last stone shows a glass of lemonade. The boy from the attached level background (brown skin, curly dark brown hair, yellow hoodie, navy shorts, blue sneakers, no backpack) and the small round white Robô-guia robot with a black face screen and green eyes (from the reference) stand at the end, the boy holding the glass.
 Attached images: level background (only for the boy's look; do not copy the street) and character and object references.
 Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of floor or table, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Allowed symbols: simple arrows, a small dotted line. Do NOT draw any X or check mark. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
+```
+
+## Escovar os dentes
+
+**Anexe como referência:** `img/who6.webp` (a menina de pijama), `img/guide.webp` (Robô-guia) e as cartas `img/passos/dentes-01.webp` a `dentes-08.webp` (escova branca de cabo azul-claro, pasta de tampa azul-clara, copo amarelo-claro), quando existirem.
+
+**Personagem:** sempre a MESMA menina do retrato (pele clara com sardinhas, cabelo castanho-avermelhado ondulado em duas marias-chiquinhas com elásticos azul-claros, pijama azul-claro com estrelinhas amarelas, chinelos brancos).
+
+### `dentes-1.webp` — Nível 1: Qual é o passo mais importante?
+
+```
+Scene: In the center, big and bright, the girl from the attached portrait (about 8 years old, light skin with a few freckles, wavy reddish-brown hair in two low pigtails tied with light blue hair ties, light blue pajamas with small yellow stars, white slippers) brushing her teeth with white foam, smiling, with a soft glow or a few sparkles around her: this is the main step. To the left, smaller and a bit faded, two little pictures in a row: a hand taking the white toothbrush with a light blue handle out of the pale yellow cup, and toothpaste going onto the brush. Two arrows go from the small pictures into the big central one, like helpers bringing something to it. The small round white Robô-guia robot with a black face screen, green eyes and a green antenna (from the reference), floating at the right, points at the central picture.
+Attached images: the girl's portrait, the robot and the card references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of a bathroom wall or sink counter, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px. Allowed symbols: simple arrows, small sparkles. Do NOT draw any X or check mark.
+```
+
+### `dentes-2.webp` — Nível 2: Os dentes ficaram limpos. E a pia?
+
+```
+Scene: The girl from the attached portrait (about 8 years old, light skin with a few freckles, wavy reddish-brown hair in two low pigtails tied with light blue hair ties, light blue pajamas with small yellow stars, white slippers) stands at a white bathroom sink smiling with clean shiny teeth and a sparkle near her smile. But on the sink counter in front of her: the white toothpaste tube lying with its light blue cap off beside it and a little toothpaste squeezed out, and the white toothbrush with a light blue handle lying on the counter, dirty with foam, outside the empty pale yellow cup. Three small soft circles highlight the open tube, the dirty brush and the empty cup. The small round white Robô-guia robot with a black face screen, green eyes and a green antenna (from the reference) floats beside the sink looking at the mess with a curious tilted head.
+Attached images: the girl's portrait, the robot and the card references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of a bathroom wall or sink counter, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px. Allowed symbols: three soft highlight circles, one small question mark above the robot. Do NOT draw any X or check mark.
+```
+
+### `dentes-3.webp` — Nível 3: Por que lavar a escova se os dentes já estão limpos?
+
+```
+Scene: Two side-by-side panels joined by one arrow from left to right. Left panel, at night (dark blue window with a small moon): the girl from the attached portrait (about 8 years old, light skin with a few freckles, wavy reddish-brown hair in two low pigtails tied with light blue hair ties, light blue pajamas with small yellow stars, white slippers) rinsing the white toothbrush with a light blue handle under the silver tap, the foam washing away. Right panel, the next morning (bright window with a small sun): the same girl, same pajamas, happily taking the same clean, shiny toothbrush from the pale yellow cup, ready to brush again. The small round white Robô-guia robot with a black face screen, green eyes and a green antenna (from the reference) floats in the right panel, smiling.
+Attached images: the girl's portrait, the robot and the card references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of a bathroom wall or sink counter, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px. Allowed symbols: one simple arrow, a small moon, a small sun, small sparkles. Do NOT draw any X or check mark.
+```
+
+### `dentes-4.webp` — Nível 4: Tudo voltou para o lugar?
+
+```
+Scene: Two side-by-side panels showing the SAME white bathroom sink counter, drawn exactly the same: in both, the white toothbrush with a light blue handle stands clean in the pale yellow cup and the white toothpaste tube lies closed with its light blue cap on. Left panel has a small moon-and-stars bedtime clock icon with no numbers (the start), right panel the same icon (the end), showing nothing changed. Between the panels, in the middle, the girl from the attached portrait (about 8 years old, light skin with a few freckles, wavy reddish-brown hair in two low pigtails tied with light blue hair ties, light blue pajamas with small yellow stars, white slippers) smiles with clean teeth, and two curved arcs go over her head from left to right: one arc from the tube to the tube (opened, then closed) and one from the cup to the cup (taken, then put back). The small round white Robô-guia robot with a black face screen, green eyes and a green antenna (from the reference) gives a happy wave.
+Attached images: the girl's portrait, the robot and the card references.
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached style references exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, soft grey shadows. Background: soft plain cream (#FFFAF0) with at most a hint of a bathroom wall or sink counter, no detailed scenery. Composition: clear and uncluttered, large shapes, readable at small size (about 400 px wide), the main idea understandable in 3 seconds without words. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px. Allowed symbols: two curved arcs, simple arrows, small sparkles, one small green check mark in the top corner of the right panel. Do NOT draw any red X.
 ```

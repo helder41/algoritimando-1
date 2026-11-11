@@ -207,12 +207,19 @@
     { id: 'casa',      nome: 'Casa',      rosto: 'img/who1.webp', x: 7,  y: 27 },
     { id: 'escola',    nome: 'Escola',    rosto: 'img/who3.webp', x: 70, y: 26 },
     { id: 'fabrica',   nome: 'Fábrica',   rosto: 'img/who2.webp', x: 28, y: 42 },
-    { id: 'faixa',     nome: 'Faixa',     rosto: 'img/who3.webp', x: 39, y: 47 },
-    { id: 'casa-azul', nome: 'Casa azul', rosto: 'img/who1.webp', x: 62, y: 37 },
+    { id: 'faixa',     nome: 'Faixa',     rosto: 'img/who5.webp', x: 39, y: 47 },
+    { id: 'casa-azul', nome: 'Casa azul', rosto: 'img/who6.webp', x: 62, y: 37 },
     { id: 'limonada',  nome: 'Limonada',  rosto: 'img/who1.webp', x: 51, y: 76 },
     { id: 'jardim',    nome: 'Jardim',    rosto: 'img/who4.webp', x: 89, y: 44 },
   ];
   const doLugar = id => SITUACOES.filter(s => s.area === id);
+
+  /* rosto de cliente: se o arquivo ainda não existe (a menina da
+     Casa azul, por exemplo), mostra o Robô-guia no lugar */
+  function rosto(img, src) {
+    img.onerror = () => { img.onerror = null; img.src = 'img/guide.webp'; };
+    img.src = src;
+  }
 
   function desenharMapa() {
     // a imagem e os marcadores ficam num miolo: no celular ele é mais
@@ -237,7 +244,7 @@
         `${lugar.nome}: ${feitos} de ${lista.length} ${lista.length === 1 ? 'chamado concluído' : 'chamados concluídos'}`);
       botao.innerHTML = `<span class="lugar-rosto"><img alt=""></span>
         <span class="lugar-nome"></span><span class="lugar-conta"></span>`;
-      botao.querySelector('img').src = lugar.rosto;
+      rosto(botao.querySelector('img'), lugar.rosto);
       botao.querySelector('.lugar-nome').textContent = lugar.nome;
       botao.querySelector('.lugar-conta').textContent = `${feitos}/${lista.length}`;
       botao.onclick = () => abrirLugar(lugar);
@@ -252,7 +259,7 @@
   function abrirLugar(lugar) {
     const modal = $('#local');
     modal.querySelector('.local-nome').textContent = lugar.nome;
-    modal.querySelector('.local-rosto').src = lugar.rosto;
+    rosto(modal.querySelector('.local-rosto'), lugar.rosto);
     const lista = modal.querySelector('.local-chamados');
     lista.textContent = '';
     doLugar(lugar.id).forEach(s => lista.append(cartaoDeChamado(s, SITUACOES.indexOf(s))));
@@ -277,7 +284,7 @@
         <div><b></b><small></small></div>
         <button class="btn"></button>
       </div>`;
-    cartao.querySelector('.who img').src = s.cliente || 'img/guide.webp';
+    rosto(cartao.querySelector('.who img'), s.cliente || 'img/guide.webp');
     if (s.cena) cartao.querySelector('.pic img').src = s.cena;
     else {
       // protótipo ainda sem ilustração: o quadro tracejado do jogo

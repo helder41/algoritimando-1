@@ -20,7 +20,7 @@
 - Me mande as imagens aqui no chat (pode ser em lote, com o nome do arquivo de cada uma). Eu tiro o fundo branco, deixo transparente, ajusto para **600 × 450 px**, salvo com o nome certo em `img/passos/` e subo para o GitHub.
 - Se preferir fazer sozinho: PNG com fundo transparente, 600 × 450 px, com o nome exato da tabela. A carta troca sozinha, sem mexer no código.
 
-**Chamados novos:** as 20 cartas de Lavar as mãos, Atravessar a rua e Fazer uma limonada ainda não foram geradas. Os prompts estão no fim deste arquivo.
+**Chamados novos:** as 28 cartas de Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes ainda não foram geradas. Os prompts estão no fim deste arquivo.
 
 **Se a imagem sair errada**, peça a correção na mesma conversa: "remove the text", "no background, plain white", "make it simpler and bolder", "same robot as the reference", "no lettuce".
 
@@ -537,5 +537,79 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 ```
 Subject: The two small brown-skinned hands of the boy from the attached level background, with the yellow hoodie sleeves visible, holding a clear glass jug with a handle, tilted, pouring pale yellow-green lemonade into a simple drinking glass that is half full, one ice cube and one thin green lime slice on the rim of the glass. Objects have no faces.
 Attached images: level background (the boy, for his hands and sleeve) and card style reference. Only hands and forearms of the boy, never his face or body; no kitchen scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+## Escovar os dentes (Banheiro da Casa azul)
+
+**Por gerar:** 8 cartas.
+
+**Antes das cartas:** gere o retrato da menina (`img/who6.webp`, prompt em `PROMPTS-CENAS.md`, seção "Escovar os dentes"). Ele é a referência das mãos e do pijama.
+
+**Anexe como referência:** `img/who6.webp` (a menina de pijama) e `img/passos/sanduiche-03.webp` (estilo das cartas).
+
+**Consistência:** Sempre a MESMA escova branca de cabo azul-claro, o mesmo tubo de pasta branco de tampa azul-clara e o mesmo copo de plástico amarelo-claro. Quando aparece a menina, são só as mãos dela (pele clara, manga do pijama azul-claro com estrelinhas amarelas), sem rosto; nas cartas 04 e 05 aparece também a boca, sem o resto do rosto. Objetos sem rosto. Uma coisa por carta: a carta da pasta não mostra o copo, a carta do copo não mostra a pasta.
+
+### `dentes-01.webp` — Pegue a escova de dentes.
+
+```
+Subject: The small light-skinned hands of the girl from the attached portrait, with the light blue star-print pajama sleeves visible (only hands and forearms, no face), lifting a white toothbrush with a light blue handle out of a pale yellow plastic cup, a small curved arrow going up from the cup. The brush has no toothpaste on it. No toothpaste tube, no sink, no water. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `dentes-02.webp` — Abra a tampa da pasta.
+
+```
+Subject: The small light-skinned hands of the girl from the attached portrait, with the light blue star-print pajama sleeves visible (only hands and forearms, no face), holding a small white toothpaste tube and twisting off its light blue cap, the open cap lifted just above the tube with a small curved arrow showing the turn. No toothbrush, no cup, no water. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `dentes-03.webp` — Coloque pasta na escova.
+
+```
+Subject: The small light-skinned hands of the girl from the attached portrait, with the light blue star-print pajama sleeves visible (only hands and forearms, no face), squeezing a small white toothpaste tube (light blue cap off) over a white toothbrush with a light blue handle, a little wavy line of white-and-light-blue toothpaste landing on the bristles. No cup, no sink, no water. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `dentes-04.webp` — Escove os dentes.
+
+```
+Subject: Close view of a big happy open smile with clean white teeth (no face above the nose, only the mouth area and the chin, light skin), a white toothbrush with a light blue handle brushing the teeth, white foam bubbles around it and two small curved motion lines. Her small light-skinned hand, with the light blue star-print pajama sleeve visible, holds the brush. No cup, no tube, no sink. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `dentes-05.webp` — Enxágue a boca com água.
+
+```
+Subject: The pale yellow plastic cup full of light blue water being lifted toward a smiling mouth (only the mouth area and the chin, light skin), held by the small light-skinned hands of the girl from the attached portrait, with the light blue star-print pajama sleeves visible, two small water drops and a small sparkle. No toothbrush, no tube, no foam. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `dentes-06.webp` — Lave a escova na água.
+
+```
+Subject: The small light-skinned hands of the girl from the attached portrait, with the light blue star-print pajama sleeves visible (only hands and forearms, no face), holding a white toothbrush with a light blue handle under a stream of light blue water from a silver tap, white foam rinsing off the bristles, small water drops splashing. No cup, no tube, no face. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `dentes-07.webp` — Feche a tampa da pasta.
+
+```
+Subject: The small light-skinned hands of the girl from the attached portrait, with the light blue star-print pajama sleeves visible (only hands and forearms, no face), screwing the light blue cap back onto a small white toothpaste tube, the cap touching the tube, a small curved arrow showing the turn. No toothbrush, no cup, no water. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
+Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
+```
+
+### `dentes-08.webp` — Guarde a escova no copo.
+
+```
+Subject: The small light-skinned hands of the girl from the attached portrait, with the light blue star-print pajama sleeves visible (only hands and forearms, no face), placing a clean, shiny white toothbrush with a light blue handle back into a pale yellow plastic cup, bristles up, a small curved arrow going down into the cup and one small sparkle on the bristles. No toothpaste tube, no sink, no water. Objects have no faces.
+Attached images: the girl's portrait (for her hands and sleeves) and card style reference. Only hands and forearms of the girl (and, only where the subject says so, her mouth and chin), never her eyes or her whole face; no bathroom scenery.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```

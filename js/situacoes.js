@@ -921,6 +921,7 @@ const SITUACAO_ABELHAS = {
      SITUACAO_MAOS      repetição              (4 fases, 3→7 passos)
      SITUACAO_RUA       condição               (3 fases, 3→6 passos)
      SITUACAO_LIMONADA  caminhos paralelos     (3 fases, 3→7 passos)
+     SITUACAO_DENTES    deixar tudo pronto     (4 fases, 3→8 passos)
 
    Ainda não têm ilustração (cena, fundo, cartas, lições): o jogo
    mostra o quadro tracejado no lugar. O cliente é o do lugar do
@@ -948,7 +949,7 @@ const SITUACAO_MAOS = {
   id: 'maos',
   titulo: 'Lavar as mãos',
   local: 'Banheiro',
-  area: 'casa-azul',
+  area: 'casa',
   cor: '#3f9c8a',
   cliente: 'img/who1.webp',
   fundo: 'img/level5.webp',
@@ -1135,7 +1136,7 @@ const SITUACAO_RUA = {
   local: 'Caminho da escola',
   area: 'faixa',
   cor: '#c0663a',
-  cliente: 'img/who3.webp',
+  cliente: 'img/who5.webp',
   fundo: 'img/level6.webp',
   // um quadrinho por passo: no erro, a história trava antes da faixa
   montagem: 'tirinha',
@@ -1411,13 +1412,203 @@ const SITUACAO_LIMONADA = {
   ],
 };
 
+/* ============================================================
+   SITUAÇÃO 8 · ESCOVAR OS DENTES
+   Veio do protótipo de em-progresso.js, refeito como pediu a
+   revisão (docs/revisao-chamados-novos.md): 3, 4, 6 e 8 passos,
+   as cartas só ficam mais detalhadas, e as lições são próprias:
+   o passo principal e a preparação → chegar no objetivo e deixar
+   coisas para trás → terminar pronto para a próxima vez → o que
+   foi aberto fecha, o que foi pego guarda (tudo volta ao lugar).
+   A cliente é a menina de pijama da Casa azul.
+   ============================================================ */
+
+const SITUACAO_DENTES = {
+  formato: 'passo-a-passo/1',
+  id: 'dentes',
+  titulo: 'Escovar os dentes',
+  local: 'Banheiro',
+  area: 'casa-azul',
+  cor: '#3f8fb5',
+  cliente: 'img/who6.webp',
+  // um quadrinho por passo: escovar os dentes é uma história no tempo
+  montagem: 'tirinha',
+  fases: [
+
+    /* ---------- FASE 1 · o passo principal e a preparação (3 passos) ---------- */
+    {
+      id: 'fase-1',
+      titulo: 'Hora de escovar os dentes!',
+      instrucao: 'Arraste as cartas para os espaços — ou toque na carta e depois no espaço.',
+      mascote: 'Um destes passos é o mais importante. Os outros ajudam ele a dar certo.',
+      passos: [
+        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
+        {
+          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-03.webp', dependeDe: ['pegar-escova'],
+          explicacao: 'Pasta em qual escova? Ela ainda está no copo, e a pasta cai direto na pia!',
+        },
+        {
+          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['por-pasta'],
+          explicacao: 'Escovar sem pasta? A escova passa nos dentes, mas eles não ficam limpinhos!',
+        },
+      ],
+      licao: {
+        pergunta: 'Qual é o passo mais importante?',
+        imagem: 'img/licoes/dentes-1.webp',
+        texto: [
+          'Escovar é o passo que deixa os dentes limpos: é por causa dele que a tarefa existe.',
+          'Pegar a escova e pôr a pasta vêm antes para preparar. Sem eles, o passo mais importante não dá certo.',
+          'Num passo a passo, muitos passos existem para preparar o principal.',
+        ],
+        reflexao: [
+          'Se você pulasse a pasta, o que ia acontecer com a escovação?',
+          'Numa tarefa sua, qual é o passo mais importante? E quais preparam ele?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 2 · o objetivo chegou, mas ficou coisa para trás (4 passos) ---------- */
+    {
+      id: 'fase-2',
+      titulo: 'A pasta tem tampa!',
+      instrucao: 'Chegou uma carta nova. Onde ela entra?',
+      mascote: 'Os dentes vão ficar limpos. Mas repare: o que fica fora do lugar no fim?',
+      passos: [
+        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
+        { id: 'abrir-pasta', texto: 'Abra a tampa da pasta.', imagem: 'img/passos/dentes-02.webp', dependeDe: [] },
+        {
+          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-03.webp', dependeDe: ['pegar-escova', 'abrir-pasta'],
+          explicacao: {
+            'pegar-escova': 'A pasta sai do tubo e não tem escova para receber: cai direto na pia!',
+            'abrir-pasta': 'Com a tampa fechada, a pasta não sai do tubo, por mais que você aperte!',
+          },
+        },
+        {
+          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['por-pasta'],
+          explicacao: 'Escovar sem pasta? A escova passa nos dentes, mas eles não ficam limpinhos!',
+        },
+      ],
+      licao: {
+        pergunta: 'Os dentes ficaram limpos. E a pia?',
+        imagem: 'img/licoes/dentes-2.webp',
+        texto: [
+          'Deu certo: os dentes estão limpos!',
+          'Mas olhe a pia: a pasta ficou aberta e a escova ficou suja de pasta, fora do copo.',
+          'Um passo a passo pode chegar no objetivo e mesmo assim deixar coisas para trás. Pensar nos passos também é pensar nisso.',
+        ],
+        reflexao: [
+          'O que acontece com uma pasta que fica aberta até amanhã?',
+          'Em que outra tarefa você termina e deixa alguma coisa fora do lugar?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 3 · terminar pronto para a próxima vez (6 passos) ---------- */
+    {
+      id: 'fase-3',
+      titulo: 'Amanhã tem mais escovação!',
+      instrucao: 'Depois de escovar ainda tem passos. Onde eles entram?',
+      mascote: 'Duas cartas novas cuidam do que vem depois. Elas precisam esperar quem?',
+      passos: [
+        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
+        { id: 'abrir-pasta', texto: 'Abra a tampa da pasta.', imagem: 'img/passos/dentes-02.webp', dependeDe: [] },
+        {
+          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-03.webp', dependeDe: ['pegar-escova', 'abrir-pasta'],
+          explicacao: {
+            'pegar-escova': 'A pasta sai do tubo e não tem escova para receber: cai direto na pia!',
+            'abrir-pasta': 'Com a tampa fechada, a pasta não sai do tubo, por mais que você aperte!',
+          },
+        },
+        {
+          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['por-pasta'],
+          explicacao: 'Escovar sem pasta? A escova passa nos dentes, mas eles não ficam limpinhos!',
+        },
+        {
+          id: 'enxaguar', texto: 'Enxágue a boca com água.', imagem: 'img/passos/dentes-05.webp', dependeDe: ['escovar'],
+          explicacao: 'Enxaguar agora? Ainda não tem espuma nenhuma para tirar da boca!',
+        },
+        {
+          id: 'lavar-escova', texto: 'Lave a escova na água.', imagem: 'img/passos/dentes-06.webp', dependeDe: ['escovar'],
+          explicacao: 'Lavar a escova antes de usar? Ela suja de pasta de novo logo em seguida!',
+        },
+      ],
+      licao: {
+        pergunta: 'Por que lavar a escova se os dentes já estão limpos?',
+        imagem: 'img/licoes/dentes-3.webp',
+        texto: [
+          'Os dentes já estavam limpos, mas a escova ainda tinha pasta e sujeira.',
+          'Amanhã você escova de novo, com a mesma escova. Lavar agora deixa ela pronta para a próxima vez.',
+          'Um passo a passo que se repete todo dia precisa terminar deixando tudo pronto para recomeçar.',
+        ],
+        reflexao: [
+          'O que aconteceria com a escova se ninguém lavasse por uma semana?',
+          'Que outra tarefa sua se repete todo dia? O que você deixa pronto para a próxima vez?',
+        ],
+      },
+    },
+
+    /* ---------- FASE 4 · o que abre fecha, o que pega guarda (8 passos) ---------- */
+    {
+      id: 'fase-4',
+      titulo: 'Deixe a pia arrumada!',
+      instrucao: 'Duas cartas novas fecham a história. Onde elas entram?',
+      mascote: 'Fechar a pasta pode acontecer bem cedo. Mas nunca antes de um certo passo. Qual?',
+      passos: [
+        { id: 'pegar-escova', texto: 'Pegue a escova de dentes.', imagem: 'img/passos/dentes-01.webp', dependeDe: [] },
+        { id: 'abrir-pasta', texto: 'Abra a tampa da pasta.', imagem: 'img/passos/dentes-02.webp', dependeDe: [] },
+        {
+          id: 'por-pasta', texto: 'Coloque pasta na escova.', imagem: 'img/passos/dentes-03.webp', dependeDe: ['pegar-escova', 'abrir-pasta'],
+          explicacao: {
+            'pegar-escova': 'A pasta sai do tubo e não tem escova para receber: cai direto na pia!',
+            'abrir-pasta': 'Com a tampa fechada, a pasta não sai do tubo, por mais que você aperte!',
+          },
+        },
+        {
+          id: 'fechar-pasta', texto: 'Feche a tampa da pasta.', imagem: 'img/passos/dentes-07.webp', dependeDe: ['por-pasta'],
+          explicacao: 'Fechar agora? A pasta fica presa no tubo e não chega na escova!',
+        },
+        {
+          id: 'escovar', texto: 'Escove os dentes.', imagem: 'img/passos/dentes-04.webp', dependeDe: ['por-pasta'],
+          explicacao: 'Escovar sem pasta? A escova passa nos dentes, mas eles não ficam limpinhos!',
+        },
+        {
+          id: 'enxaguar', texto: 'Enxágue a boca com água.', imagem: 'img/passos/dentes-05.webp', dependeDe: ['escovar'],
+          explicacao: 'Enxaguar agora? Ainda não tem espuma nenhuma para tirar da boca!',
+        },
+        {
+          id: 'lavar-escova', texto: 'Lave a escova na água.', imagem: 'img/passos/dentes-06.webp', dependeDe: ['escovar'],
+          explicacao: 'Lavar a escova antes de usar? Ela suja de pasta de novo logo em seguida!',
+        },
+        {
+          id: 'guardar-escova', texto: 'Guarde a escova no copo.', imagem: 'img/passos/dentes-08.webp', dependeDe: ['lavar-escova'],
+          explicacao: 'Guardar a escova assim? A pasta e a sujeira ficam no copo até amanhã!',
+        },
+      ],
+      licao: {
+        pergunta: 'Tudo voltou para o lugar?',
+        imagem: 'img/licoes/dentes-4.webp',
+        texto: [
+          'No começo, a escova estava no copo e a pasta estava fechada. No fim, tudo voltou igualzinho.',
+          'Cada passo de pegar ou de abrir ganhou o seu par: guardar e fechar. E o par só vem depois de usar.',
+          'Um passo a passo completo e na ordem certa se chama algoritmo. Um bom algoritmo termina deixando tudo pronto para a próxima vez.',
+        ],
+        reflexao: [
+          'Encontre os pares: o que foi aberto e fechado? O que foi pego e guardado?',
+          'Que bagunça ficaria na pia se faltasse um dos pares?',
+        ],
+      },
+    },
+
+  ],
+};
+
 /* Os chamados que contam para a promoção: os quatro originais, que
    levam a criança da "ordem importa" até o nome "algoritmo". */
 const SITUACOES_BASE = [SITUACAO_SANDUICHE, SITUACAO_ROBO, SITUACAO_MOCHILA, SITUACAO_ABELHAS];
 
 /* Os chamados novos: aparecem no mapa, somam estrelas e dicas, mas
    não são exigidos para a promoção. */
-const SITUACOES_NOVAS = [SITUACAO_MAOS, SITUACAO_RUA, SITUACAO_LIMONADA];
+const SITUACOES_NOVAS = [SITUACAO_MAOS, SITUACAO_RUA, SITUACAO_LIMONADA, SITUACAO_DENTES];
 
 /* Todos os chamados do jogo, na ordem em que aparecem em cada lugar
    do mapa (os originais primeiro). */
