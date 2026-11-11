@@ -697,7 +697,7 @@ h2 {
 #final {
   background:
     linear-gradient(rgba(58, 40, 84, 0.5), rgba(58, 40, 84, 0.5)),
-    url(img/story1.webp) center/cover;
+    url(img/story1.webp?v=202611110352) center/cover;
 }
 .final-panel {
   align-self: start;
@@ -2705,7 +2705,7 @@ body.arrastando * {
   border-radius: 1.6cqw;
   border: 0.5cqw solid var(--brown);
   box-shadow: 0 0.6cqw 0 #5b4326;
-  background: url(img/story1.webp) center / cover;
+  background: url(img/story1.webp?v=202611110352) center / cover;
   overflow: hidden;
 }
 .mapa[hidden] {
@@ -3452,7 +3452,7 @@ body.arrastando * {
 .mapa-miolo {
   position: absolute;
   inset: 0;
-  background: url(img/story1.webp) center / cover;
+  background: url(img/story1.webp?v=202611110352) center / cover;
 }
 /* celular: o mapa novo tem lugares até as bordas, então o miolo fica
    mais largo que a tela (imagem inteira) e o mapa rola para os lados */
