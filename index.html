@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=202611110745" />
+    <link rel="stylesheet" href="style.css?v=202611111900" />
   </head>
   <body>
     <div id="stage">
@@ -105,6 +105,8 @@
                 <img src="img/av5.webp" alt="" />
               </button>
             </div>
+            <!-- os selos das ideias já conquistadas (app.js) -->
+            <div class="cracha-selos" id="badgeSelos" aria-label="Selos"></div>
             <input id="nameIn" maxlength="14" placeholder="Digite seu nome" />
             <button class="btn" id="bConfirm">Confirmar</button>
           </div>
@@ -150,9 +152,13 @@
           </div>
           <div class="guide prog">
             <small>Chamados concluídos</small
-            ><strong id="progTxt">0 de 4</strong>
+            ><strong id="progTxt">0 de 8</strong>
             <div class="bar"><i id="progBar"></i></div>
-            <small class="prog-novos" id="progNovos" hidden></small>
+            <!-- o próximo objetivo: Agente, Agente Sênior ou nenhum -->
+            <small class="prog-meta" id="progMeta"></small>
+            <button class="btn ghost small" id="bIdeias" type="button">
+              Minhas ideias
+            </button>
             <button class="btn small" id="bRestart" hidden>
               ↺ Jogar tudo de novo
             </button>
@@ -325,6 +331,15 @@
             </button>
           </div>
           <footer class="conclusao-rodape">
+            <!-- o selo da ideia: só na lição que fecha um chamado com selo -->
+            <div class="licao-selo" hidden>
+              <span class="licao-selo-disco"></span>
+              <p>
+                <small>Selo conquistado</small>
+                <b class="licao-selo-nome"></b>
+                <span class="licao-selo-frase"></span>
+              </p>
+            </div>
             <div class="rewards">
               <div>
                 <img src="img/ui/estrela.webp" alt="" /><b
@@ -371,36 +386,29 @@
           <h3 class="title-box">Promoção!</h3>
           <img
             class="badge-sm"
+            id="promoCracha"
             src="img/ui/cracha-agente.webp"
             alt="Crachá de Agente"
           />
           <p class="rank">
-            <span>Estagiário</span> → <span class="on">Agente</span>
+            <span id="promoDe">Estagiário</span> →
+            <span class="on" id="promoPara">Agente</span>
           </p>
-          <b>Agora você é Agente!</b>
+          <b id="promoFrase">Agora você é Agente!</b>
           <button class="btn small" id="bPromoNext">Continuar ›</button>
         </aside>
       </section>
 
       <section class="screen bg-sand" id="final">
-        <div class="cast" id="cast">
-          <img class="c" src="img/cliente0.webp" alt="" /><img
-            class="c"
-            src="img/cliente1.webp"
-            alt=""
-          /><img class="ag" id="finAg" src="img/agente-menina.webp" alt="" /><img
-            class="rb"
-            src="img/robo-feliz.webp"
-            alt=""
-          /><img class="c" src="img/cliente2.webp" alt="" /><img
-            class="bee"
-            src="img/cliente3.webp"
-            alt=""
-          />
-        </div>
+        <!-- os personagens dos chamados concluídos (montado pelo app.js) -->
+        <div class="cast" id="cast"></div>
         <div class="panel final-panel">
           <h2>Missão cumprida, <span id="finName"></span>!</h2>
-          <p>Você ensinou o robô a pensar em passos. Isso é um algoritmo!</p>
+          <p id="finTexto">
+            Você ensinou o robô a seguir passos, repetir, decidir e fazer duas
+            coisas ao mesmo tempo. Tudo isso é algoritmo!
+          </p>
+          <div class="final-selos" id="finSelos"></div>
           <p class="final-stars">
             <img src="img/ui/estrela.webp" alt="" />
             <b id="finStarsN">0</b> estrelas
@@ -411,6 +419,17 @@
           </div>
         </div>
       </section>
+
+      <!-- Minhas ideias: os selos, com a frase e uma carta de exemplo -->
+      <div class="modal" id="ideias">
+        <div class="panel ideias-painel">
+          <h2>Minhas ideias</h2>
+          <ul class="ideias-lista"></ul>
+          <button class="btn ghost" id="bIdeiasFechar" type="button">
+            Voltar ao mapa
+          </button>
+        </div>
+      </div>
 
       <div class="modal" id="local">
         <div class="panel local-painel">
@@ -597,17 +616,17 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611110745"></script>
-    <script src="js/comum.js?v=202611110745"></script>
-    <script src="js/situacoes.js?v=202611110745"></script>
-    <script src="js/em-progresso.js?v=202611110745"></script>
-    <script src="js/som.js?v=202611110745"></script>
-    <script src="js/progresso.js?v=202611110745"></script>
-    <script src="js/perfil.js?v=202611110745"></script>
-    <script src="js/arrasto.js?v=202611110745"></script>
-    <script src="js/conclusao.js?v=202611110745"></script>
-    <script src="js/montagem.js?v=202611110745"></script>
-    <script src="js/jogo.js?v=202611110745"></script>
-    <script src="js/app.js?v=202611110745"></script>
+    <script src="js/motor.js?v=202611111900"></script>
+    <script src="js/comum.js?v=202611111900"></script>
+    <script src="js/situacoes.js?v=202611111900"></script>
+    <script src="js/em-progresso.js?v=202611111900"></script>
+    <script src="js/som.js?v=202611111900"></script>
+    <script src="js/progresso.js?v=202611111900"></script>
+    <script src="js/perfil.js?v=202611111900"></script>
+    <script src="js/arrasto.js?v=202611111900"></script>
+    <script src="js/conclusao.js?v=202611111900"></script>
+    <script src="js/montagem.js?v=202611111900"></script>
+    <script src="js/jogo.js?v=202611111900"></script>
+    <script src="js/app.js?v=202611111900"></script>
   </body>
 </html>

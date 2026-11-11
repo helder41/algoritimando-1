@@ -927,8 +927,10 @@ const SITUACAO_ABELHAS = {
    mostra o quadro tracejado no lugar. O cliente é o do lugar do
    mapa onde o chamado fica.
 
-   Eles aparecem no mapa, mas NÃO entram na conta da promoção (ver
-   SITUACOES_BASE no fim do arquivo). Como podem ser jogados antes
+   Eles aparecem no mapa desde o começo. Os quatro originais levam à
+   promoção a Agente; os oito juntos, a Agente Sênior (ver app.js).
+   Cada chamado novo entrega o SELO da sua ideia (campo "selo") na
+   lição do último nível. Como podem ser jogados antes
    dos originais, as lições falam em "passo a passo" e só a última
    fase de cada um usa a palavra "algoritmo", já explicando o que
    ela quer dizer.
@@ -957,6 +959,15 @@ const SITUACAO_MAOS = {
   fundoConclusao: 'img/win5.webp',
   // um quadrinho por passo: lavar as mãos é uma história no tempo
   montagem: 'tirinha',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Repetição',
+    icone: 'repetir',
+    imagem: 'img/selos/repeticao.webp',
+    frase: 'Um passo pode mandar repetir o mesmo gesto, e diz quando parar.',
+    exemplo: 'Esfregue as mãos contando até 20.',
+    pergunta: 'Onde mais você repete a mesma coisa até uma hora de parar?',
+  },
   fases: [
 
     /* ---------- FASE 1 · a mesma água, dois momentos (3 passos) ---------- */
@@ -1143,6 +1154,15 @@ const SITUACAO_RUA = {
   fundoConclusao: 'img/win6.webp',
   // um quadrinho por passo: no erro, a história trava antes da faixa
   montagem: 'tirinha',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Condição',
+    icone: 'decidir',
+    imagem: 'img/selos/condicao.webp',
+    frase: 'Um passo pode fazer uma pergunta e decidir pelo que encontra.',
+    exemplo: 'Se estiver vermelho, espere o verde.',
+    pergunta: 'Que regra da sua casa ou da sua escola começa com "se"?',
+  },
   fases: [
 
     /* ---------- FASE 1 · a ordem que protege (3 passos) ---------- */
@@ -1295,6 +1315,15 @@ const SITUACAO_LIMONADA = {
   // um quadrinho por passo (uma "cena" da jarra pediria peças que
   // ainda não existem; a tirinha funciona só com as cartas)
   montagem: 'tirinha',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Ao mesmo tempo',
+    icone: 'juntar',
+    imagem: 'img/selos/ao-mesmo-tempo.webp',
+    frase: 'Passos que não dependem um do outro podem andar juntos e se encontrar depois.',
+    exemplo: 'Coloque água gelada na jarra.',
+    pergunta: 'Que tarefa fica mais rápida quando duas pessoas fazem partes diferentes?',
+  },
   fases: [
 
     /* ---------- FASE 1 · o limão muda a cada passo (3 passos) ---------- */
@@ -1442,6 +1471,15 @@ const SITUACAO_DENTES = {
   fundoConclusao: 'img/win8.webp',
   // um quadrinho por passo: escovar os dentes é uma história no tempo
   montagem: 'tirinha',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Abre e fecha',
+    icone: 'par',
+    imagem: 'img/selos/abre-e-fecha.webp',
+    frase: 'O que foi aberto, fecha. O que foi pego, guarda. Tudo fica pronto para a próxima vez.',
+    exemplo: 'Feche a tampa da pasta.',
+    pergunta: 'Que pares assim você conhece? Pense em ligar e desligar.',
+  },
   fases: [
 
     /* ---------- FASE 1 · o passo principal e a preparação (3 passos) ---------- */
@@ -1615,8 +1653,8 @@ const SITUACAO_DENTES = {
    levam a criança da "ordem importa" até o nome "algoritmo". */
 const SITUACOES_BASE = [SITUACAO_SANDUICHE, SITUACAO_ROBO, SITUACAO_MOCHILA, SITUACAO_ABELHAS];
 
-/* Os chamados novos: aparecem no mapa, somam estrelas e dicas, mas
-   não são exigidos para a promoção. */
+/* Os chamados novos: aparecem no mapa, somam estrelas e dicas e dão
+   cada um o selo da sua ideia. Com os originais, levam a Agente Sênior. */
 const SITUACOES_NOVAS = [SITUACAO_MAOS, SITUACAO_RUA, SITUACAO_LIMONADA, SITUACAO_DENTES];
 
 /* Todos os chamados do jogo, na ordem em que aparecem em cada lugar

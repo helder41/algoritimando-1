@@ -45,6 +45,7 @@
   const arte           = raiz.querySelector('.licao-arte');
   const premioEstrelas = raiz.querySelector('.premio-estrelas');
   const premioDicas    = raiz.querySelector('.premio-dicas');
+  const caixaSelo      = raiz.querySelector('.licao-selo');
 
   // para o evento de continuar
   let contexto = null;
@@ -119,6 +120,15 @@
     premioDicas.textContent = `+${premio.dicas} ${premio.dicas === 1 ? 'dica' : 'dicas'}`;
     const ultima = indiceFase + 1 >= situacao.fases.length;
     botaoTexto.textContent = ultima ? 'Voltar à central' : 'Próximo nível';
+
+    // o selo da ideia, na lição que fecha o chamado (campo "selo")
+    const selo = ultima ? situacao.selo : null;
+    caixaSelo.hidden = !selo;
+    if (selo) {
+      caixaSelo.querySelector('.licao-selo-disco').replaceChildren(Comum.criarSelo(selo));
+      caixaSelo.querySelector('.licao-selo-nome').textContent = selo.nome;
+      caixaSelo.querySelector('.licao-selo-frase').textContent = selo.frase || '';
+    }
     arte.style.backgroundImage = situacao.fundoConclusao ? `url("${situacao.fundoConclusao}")` : '';
     raiz.classList.toggle('sem-arte', !situacao.fundoConclusao);
 

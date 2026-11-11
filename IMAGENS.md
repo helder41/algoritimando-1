@@ -211,10 +211,13 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 | Cartão dos chamados novos, no painel do lugar | pronto: os quatro têm a mini-cena | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo), `img/pic7.webp` (jarra de limonada) e `img/pic8.webp` (escova, copo e pasta), no campo `cena` de cada chamado em `js/situacoes.js` (prompts em `PROMPTS-CENAS.md`) |
 | Tela do nível e da lição dos chamados novos | pronto: todos têm os dois fundos | nada a fazer (campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
 | Clientes dos chamados novos | Lavar as mãos: o menino da Casa (`who1`). Atravessar a rua e Fazer uma limonada: o menino de moletom amarelo (`who5`, recortado do `level6`). Escovar os dentes: a menina de pijama coral (`who6`, recortada do `level8`) | nada a fazer |
+| Selos das ideias (lição final dos chamados novos, crachá, "Minhas ideias" e tela final) | desenho em linhas feito em código | `img/selos/repeticao.webp`, `condicao.webp`, `ao-mesmo-tempo.webp` e `abre-e-fecha.webp` (prompts em `PROMPTS-FIM-DO-JOGO.md`) |
+| Promoção a Agente Sênior | o crachá de Agente | `img/ui/cracha-senior.webp` (prompt em `PROMPTS-FIM-DO-JOGO.md`; o `cracha_nivel3_senior` do Drive serve, se estiver no mesmo desenho) |
+| Tela final: o menino de moletom amarelo e a menina de pijama coral | não aparecem (só existem os retratos `who5` e `who6`) | `img/cliente4.webp` e `img/cliente5.webp`, de corpo inteiro (prompts em `PROMPTS-FIM-DO-JOGO.md`) |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 
 ## 5. Imagens do Drive que ainda não têm onde entrar
 
-- `cracha_nivel1_estagiario.webp` e `cracha_nivel3_senior.webp`: não há tela que mostre o crachá de Estagiário nem promoção para Sênior.
+- `cracha_nivel1_estagiario.webp`: não há tela que mostre o crachá de Estagiário. O `cracha_nivel3_senior.webp` agora tem onde entrar: a promoção a Agente Sênior (seção 4).
 - `robo_comemorando`, `robo_confuso`, `robo_feliz`, `robo_pensativo`: o Robô-guia usa os rostos recortados que já estavam em `img/` (`guide.webp`, `guide-feliz.webp`, `guide-triste.webp`).
 - Central com 9 chamados (Figma): o jogo tem 8 (4 com arte e 4 novos ainda sem arte). Plantar uma semente continua como protótipo em `js/em-progresso.js`; o que falta nele está em `docs/revisao-chamados-novos.md`.

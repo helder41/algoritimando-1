@@ -32,7 +32,7 @@
 
   function padrao() {
     return { nome: 'Agente', avatar: '0', comecou: false, dicas: DICAS_INICIAIS,
-             concluidos: {}, promovido: false };
+             concluidos: {}, promovido: false, senior: false };
   }
 
   function ler() {
@@ -46,6 +46,8 @@
         if (Number.isInteger(salvo.dicas) && salvo.dicas >= 0) p.dicas = salvo.dicas;
         if (salvo.concluidos && typeof salvo.concluidos === 'object') p.concluidos = salvo.concluidos;
         p.promovido = salvo.promovido === true;
+        // Agente Sênior: só vale para quem já é Agente
+        p.senior = p.promovido && salvo.senior === true;
       }
     } catch { /* segue com o padrão */ }
     return p;
@@ -63,6 +65,7 @@
     dados.dicas = p.dicas;
     dados.concluidos = {};
     dados.promovido = false;
+    dados.senior = false;
     gravar();
   }
 

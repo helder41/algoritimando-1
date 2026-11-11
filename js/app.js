@@ -3,7 +3,8 @@
 
    menu → abertura (4 quadros) → crachá do agente → central de
    chamados → fase (jogo.js) → lição (conclusao.js) → … → central
-   → promoção (todos os chamados concluídos) → tela final.
+   → promoção a Agente (os 4 chamados originais) → central →
+   promoção a Agente Sênior (os 8 chamados) → tela final.
 
    Cada tela é uma <section class="screen"> do index.html; só uma
    fica com a classe "on" por vez (irPara). Quem joga a fase é o
@@ -83,7 +84,9 @@
   }
 
   $('#bPlay').onclick = () => {
-    if (P.comecou) central();
+    // "seguir" e não "central": quem já tinha concluído tudo antes de
+    // existir a segunda promoção a recebe aqui
+    if (P.comecou) seguir();
     else { revendo = false; quadro(0); irPara('story'); }
   };
 
@@ -153,15 +156,26 @@
     $('#nameIn').focus();
   }
 
+  /* Os três cargos. Agente: os 4 chamados originais. Agente Sênior:
+     os 8 — por isso ninguém vira Sênior sem ser Agente, seja qual for
+     a ordem em que jogou. */
+  const CARGOS = ['Estagiário', 'Agente', 'Agente Sênior'];
+  const cargo = () => (P.senior ? 2 : P.promovido ? 1 : 0);
+
   /* O crachá da tela "Quem é você, agente?": foto, nome, cargo
-     (Estagiário até a promoção, depois Agente), as estrelas do cargo
+     (Estagiário, Agente ou Agente Sênior), as estrelas do cargo
      e um código do agente que sai do nome e do rosto escolhidos. */
   function atualizarCracha(nome, balancar) {
     nome = nome || 'Agente';
     $('#badgeName').textContent = nome;
     $('#badgeFace').src = avatarSrc();
-    $('#badgeCargo').textContent = P.promovido ? 'Agente' : 'Estagiário';
-    $$('#badgeEstrelas img').forEach((e, k) => e.classList.toggle('on', k < (P.promovido ? 2 : 1)));
+    $('#badgeCargo').textContent = CARGOS[cargo()];
+    $$('#badgeEstrelas img').forEach((e, k) => e.classList.toggle('on', k <= cargo()));
+    // os selos das ideias: os conquistados acesos, os outros apagados
+    const selos = $('#badgeSelos');
+    selos.textContent = '';
+    SITUACOES.filter(s => s.selo).forEach(s => selos.append(Comum.criarSelo(s.selo, !!P.concluidos[s.id])));
+    selos.hidden = !selos.children.length;
     let n = 7 + Number(P.avatar);
     for (const ch of nome) n = (n * 31 + ch.charCodeAt(0)) % 10000;
     $('#badgeCodigo').textContent = 'AG-' + String(n).padStart(4, '0');
@@ -202,11 +216,28 @@
 
   /* ---------------- central de chamados ---------------- */
 
-  /* A promoção exige só os chamados originais (SITUACOES_BASE). Os
-     novos (SITUACOES_NOVAS) aparecem no mapa e somam estrelas, mas
-     não entram nessa conta: ver o fim do situacoes.js. */
   const feitosDe = lista => lista.filter(s => P.concluidos[s.id]).length;
-  const concluidos = () => feitosDe(SITUACOES_BASE);
+  const faltamDe = lista => lista.length - feitosDe(lista);
+
+  /* Os chamados que contam para a PRÓXIMA promoção: os originais
+     enquanto a criança é Estagiária, todos depois disso. */
+  const daProximaPromocao = () => (cargo() === 0 ? SITUACOES_BASE : cargo() === 1 ? SITUACOES : []);
+
+  /* A promoção que já foi conquistada e ainda não foi mostrada. */
+  function promocaoPendente() {
+    if (!P.promovido && faltamDe(SITUACOES_BASE) === 0) return 'agente';
+    if (P.promovido && !P.senior && faltamDe(SITUACOES) === 0) return 'senior';
+    return null;
+  }
+
+  /* Para onde ir depois de um chamado: a promoção, se houver uma
+     esperando; senão, a central. */
+  function seguir(mensagem) {
+    const p = promocaoPendente();
+    if (p) promocao(p); else central(mensagem);
+  }
+
+  const plural = (n, um, varios) => (n === 1 ? um : varios.replace('#', n));
 
   /* emProgresso = true mostra os protótipos (em-progresso.js) no
      lugar dos chamados. O progresso deles fica numa chave "prof:",
@@ -254,13 +285,16 @@
       const feitos = lista.filter(s => P.concluidos[s.id]).length;
       const botao = document.createElement('button');
       botao.type = 'button';
-      botao.className = 'lugar' + (feitos === lista.length ? ' feito' : '');
+      // brilha o lugar que ainda tem chamado da próxima promoção
+      const alvo = lista.some(s => !P.concluidos[s.id] && daProximaPromocao().includes(s));
+      botao.className = 'lugar' + (feitos === lista.length ? ' feito' : '') + (alvo ? ' alvo' : '');
       // a posição vai em variáveis: no celular o mapa é mais alto e
       // corta as laterais da imagem, e o CSS refaz a conta do "left"
       botao.style.setProperty('--x', lugar.x + '%');
       botao.style.setProperty('--y', lugar.y + '%');
       botao.setAttribute('aria-label',
-        `${lugar.nome}: ${feitos} de ${lista.length} ${lista.length === 1 ? 'chamado concluído' : 'chamados concluídos'}`);
+        `${lugar.nome}: ${feitos} de ${lista.length} ${lista.length === 1 ? 'chamado concluído' : 'chamados concluídos'}` +
+        (alvo ? '. Conta para a sua promoção' : ''));
       botao.innerHTML = `<span class="lugar-rosto"><img alt=""></span>
         <span class="lugar-nome"></span><span class="lugar-conta"></span>`;
       rosto(botao.querySelector('img'), lugar.rosto);
@@ -394,19 +428,20 @@
     }
 
     desenharMapa();
-    // a barra conta os chamados da promoção; os novos têm a sua linha
-    const n = concluidos(), total = SITUACOES_BASE.length;
-    const novos = feitosDe(SITUACOES_NOVAS), totalNovos = SITUACOES_NOVAS.length;
-    const faltam = total - n, faltamNovos = totalNovos - novos;
+    // uma barra só, com todos os chamados; embaixo, o próximo objetivo
+    const n = feitosDe(SITUACOES), total = SITUACOES.length;
+    const faltam = faltamDe(daProximaPromocao());
+    const proximo = CARGOS[cargo() + 1];
     $('#bRestart').hidden = n < total;
     $('#progTxt').textContent = `${n} de ${total}`;
     $('#progBar').style.width = (n / total) * 100 + '%';
-    $('#progNovos').hidden = !totalNovos;
-    $('#progNovos').textContent = `Chamados novos: ${novos} de ${totalNovos}`;
+    $('#progMeta').textContent = proximo
+      ? `${plural(faltam, 'Falta 1', 'Faltam #')} para virar ${proximo}`
+      : 'Você é Agente Sênior!';
+    $('#bIdeias').hidden = !SITUACOES.some(s => s.selo);
     $('#hubMsg').textContent = mensagem ||
-      (n + novos === 0 ? 'Toque num lugar do mapa para ver os chamados de lá.'
-        : faltam > 0 ? `Ótimo trabalho! ${faltam === 1 ? 'Falta 1 chamado' : `Faltam ${faltam} chamados`} para a sua promoção.`
-        : faltamNovos > 0 ? `Você já é agente! Ainda ${faltamNovos === 1 ? 'tem 1 chamado novo' : `tem ${faltamNovos} chamados novos`} no mapa.`
+      (n === 0 ? 'Toque num lugar do mapa para ver os chamados de lá. Os lugares que brilham contam para a sua promoção.'
+        : proximo ? `Ótimo trabalho! ${plural(faltam, 'Falta 1 chamado', 'Faltam # chamados')} para você virar ${proximo}. São os lugares que brilham no mapa.`
         : 'Todos os chamados concluídos! Você pode jogar qualquer um de novo.');
     irPara('hub');
   }
@@ -418,30 +453,132 @@
       central(`Protótipo "${s.titulo}" concluído!`, true);
     } else if (!SITUACOES.includes(s)) {
       central(`Chamado do professor "${s.titulo}" concluído!`);
-    } else if (SITUACOES_BASE.includes(s) && concluidos() === SITUACOES_BASE.length && !P.promovido) {
-      P.promovido = true;
-      Perfil.gravar();
-      promocao();
     } else {
-      central(`Chamado "${s.titulo}" concluído! Escolha o próximo.`);
+      seguir(s.selo
+        ? `Chamado "${s.titulo}" concluído! O selo "${s.selo.nome}" está no seu crachá.`
+        : `Chamado "${s.titulo}" concluído! Escolha o próximo.`);
     }
   });
 
+  /* ---------------- minhas ideias (os selos) ----------------
+     Cada selo com a frase da ideia, uma carta do próprio chamado como
+     exemplo e uma pergunta para conversar. O que ainda não foi
+     conquistado mostra só de qual chamado vem. */
+  function abrirIdeias() {
+    const lista = $('#ideias .ideias-lista');
+    lista.textContent = '';
+    SITUACOES.filter(s => s.selo).forEach(s => {
+      const ganho = !!P.concluidos[s.id];
+      const li = document.createElement('li');
+      li.className = 'ideia' + (ganho ? '' : ' apagada');
+      if (s.cor) li.style.setProperty('--c', s.cor);
+      const texto = document.createElement('div');
+      const nome = document.createElement('b');
+      nome.textContent = s.selo.nome;
+      texto.append(nome);
+      const linha = (classe, conteudo) => {
+        const p = document.createElement('p');
+        p.className = classe;
+        p.textContent = conteudo;
+        texto.append(p);
+      };
+      if (ganho) {
+        linha('ideia-frase', s.selo.frase);
+        if (s.selo.exemplo) linha('ideia-exemplo', `Exemplo: "${s.selo.exemplo}"`);
+        if (s.selo.pergunta) linha('ideia-pergunta', s.selo.pergunta);
+      } else {
+        linha('ideia-frase', `Conclua "${s.titulo}" para ganhar este selo.`);
+      }
+      li.append(Comum.criarSelo(s.selo, ganho), texto);
+      lista.append(li);
+    });
+    $('#ideias').classList.add('on');
+  }
+  $('#bIdeias').onclick = abrirIdeias;
+  $('#bIdeiasFechar').onclick = () => $('#ideias').classList.remove('on');
+
   /* ---------------- promoção e final ---------------- */
 
-  function promocao() {
+  /* A cena de promoção serve às duas: mudam o crachá e os textos. O
+     crachá de Sênior, enquanto não existir, usa o de Agente. */
+  const PROMOCOES = {
+    agente: { de: 0, para: 1, cracha: 'img/ui/cracha-agente.webp' },
+    senior: { de: 1, para: 2, cracha: 'img/ui/cracha-senior.webp' },
+  };
+  let ultimaPromocao = null;
+
+  function promocao(tipo) {
+    const p = PROMOCOES[tipo];
+    ultimaPromocao = tipo;
+    if (tipo === 'senior') P.senior = true; else P.promovido = true;
+    Perfil.gravar();
     atualizarTopo();
     $('#promo').style.setProperty('--img', `url(img/promo${P.avatar}.webp)`);
+    const cracha = $('#promoCracha');
+    cracha.onerror = () => { cracha.onerror = null; cracha.src = PROMOCOES.agente.cracha; };
+    cracha.src = p.cracha;
+    cracha.alt = `Crachá de ${CARGOS[p.para]}`;
+    $('#promoDe').textContent = CARGOS[p.de];
+    $('#promoPara').textContent = CARGOS[p.para];
+    $('#promoFrase').textContent = `Agora você é ${CARGOS[p.para]}!`;
     irPara('promo');
     Som.vitoria();
   }
 
+  /* Depois da promoção: se a outra já está esperando (quem jogou os
+     novos antes dos originais vira Agente e Sênior de uma vez), ela
+     vem em seguida. A "Missão cumprida" é só de quem concluiu tudo;
+     quem virou Agente volta ao mapa, que ainda tem chamados. */
   $('#bPromoNext').onclick = () => {
+    const pendente = promocaoPendente();
+    if (pendente) { promocao(pendente); return; }
+    if (ultimaPromocao === 'senior') { telaFinal(); return; }
+    const faltam = faltamDe(SITUACOES);
+    central(`Você agora é Agente! ${plural(faltam, 'A cidade ainda tem 1 chamado', 'A cidade ainda tem # chamados')} para você virar Agente Sênior.`);
+  };
+
+  /* Quem aparece na tela final: os clientes dos chamados concluídos,
+     o agente e o Robô-guia. Um cliente de dois chamados aparece uma
+     vez só; figura que ainda não existe some sozinha. */
+  const NO_FINAL = {
+    sanduiche: 'img/cliente0.webp', maos: 'img/cliente0.webp',
+    robo: 'img/cliente1.webp',
+    mochila: 'img/cliente2.webp',
+    abelhas: 'img/cliente3.webp',
+    rua: 'img/cliente4.webp', limonada: 'img/cliente4.webp',
+    dentes: 'img/cliente5.webp',
+  };
+
+  function telaFinal() {
+    const clientes = [...new Set(SITUACOES.filter(s => P.concluidos[s.id]).map(s => NO_FINAL[s.id]).filter(Boolean))];
+    const figura = (src, classe) => {
+      const img = document.createElement('img');
+      img.className = classe;
+      img.alt = '';
+      img.onerror = () => img.remove();
+      img.src = src;
+      return img;
+    };
+    // metade dos clientes de cada lado do agente e do robô
+    const meio = Math.ceil(clientes.length / 2);
+    const classeDe = src => (src === NO_FINAL.abelhas ? 'bee' : 'c');
+    const elenco = $('#cast');
+    elenco.textContent = '';
+    elenco.classList.toggle('cheio', clientes.length > 4);
+    elenco.append(
+      ...clientes.slice(0, meio).map(src => figura(src, classeDe(src))),
+      figura(`img/agente-${CORPO[+P.avatar]}.webp`, 'ag'),
+      figura('img/robo-feliz.webp', 'rb'),
+      ...clientes.slice(meio).map(src => figura(src, classeDe(src))),
+    );
+    const selos = $('#finSelos');
+    selos.textContent = '';
+    SITUACOES.filter(s => s.selo && P.concluidos[s.id]).forEach(s => selos.append(Comum.criarSelo(s.selo)));
+    selos.hidden = !selos.children.length;
     $('#finName').textContent = P.nome;
-    $('#finAg').src = `img/agente-${CORPO[+P.avatar]}.webp`;
     $('#finStarsN').textContent = Progresso.total();
     irPara('final');
-  };
+  }
   $('#bToHub').onclick = () => central();
 
   function recomecar() {
