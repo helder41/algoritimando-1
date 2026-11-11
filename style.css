@@ -4161,3 +4161,58 @@ body.arrastando * {
     bottom: 6cqw;
   }
 }
+
+/* ============================================================
+   PC: MONTAGEM AO LADO E BOTÕES FORA DA BANDEJA
+   - Com 7 ou 8 cartas não sobra altura embaixo da bandeja e a
+     montagem sumia. Agora o botão "Ver montagem" aparece nesses
+     níveis e ela abre ao lado, por cima da cena (montagem.js põe a
+     classe "montagem-sem-espaco" na tela).
+   - "Verificar" ficava por cima da última carta da bandeja. Os
+     botões da direita passam a ficar empilhados na coluna do
+     Robô-guia, fora da área das cartas.
+   ============================================================ */
+@media not (max-aspect-ratio: 4/5) {
+  .rodape-direita {
+    flex-direction: column;
+    align-items: stretch;
+    width: 13.5cqw;
+    gap: 0.9cqw;
+  }
+  .rodape-direita .chip,
+  .rodape-direita .btn {
+    justify-content: center;
+    text-align: center;
+  }
+  #fase.tem-montagem.montagem-sem-espaco #btn-montagem:not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+  }
+  #btn-montagem[aria-pressed="true"] {
+    background: var(--p);
+    color: #fff;
+  }
+  /* "Ver cena": a montagem some de vez (senão voltaria para baixo da
+     bandeja quando as cartas saem dela) */
+  #fase.tem-montagem.montagem-sem-espaco:not(.ver-montagem) .montagem {
+    display: none;
+  }
+  /* a área de jogo começa em 41cqw: a caixa volta 39cqw para a
+     esquerda e ocupa o lugar da cena */
+  #fase.tem-montagem.montagem-sem-espaco.ver-montagem .montagem:not([hidden]) {
+    position: absolute;
+    left: -39cqw;
+    top: 0;
+    width: 37cqw;
+    height: 33cqw;
+    flex: none;
+    visibility: visible;
+    z-index: 4;
+  }
+}
+
+/* prêmio escondido (nível rejogado não dá dica) */
+.rewards div[hidden] {
+  display: none;
+}
+

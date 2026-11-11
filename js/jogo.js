@@ -201,19 +201,23 @@
   /* Fase completa sem erro: grava o avanço e mostra a lição. */
   function aoConcluirFase() {
     const ganhas = erros === 0 ? 3 : erros === 1 ? 2 : 1;
+    // a dica de prêmio é só da primeira vez: rejogar um nível já
+    // concluído não pode virar fonte de dicas sem fim
+    const primeiraVez = !(progresso.niveis[indiceFase] > 0);
     progresso.niveis[indiceFase] = Math.max(progresso.niveis[indiceFase] || 0, ganhas);
     // rejogar um nível antigo nunca faz o chamado voltar atrás
     progresso.fase = Math.max(progresso.fase, indiceFase + 1);
     Progresso.gravar(chave, progresso);
     atualizarEstrelas();
 
-    Perfil.dados.dicas += 1;
+    const dicasGanhas = primeiraVez ? 1 : 0;
+    Perfil.dados.dicas += dicasGanhas;
     const ultima = indiceFase + 1 >= situacao.fases.length;
     // chamado do professor não entra na conta da promoção
     if (ultima && !chave.startsWith('prof:')) Perfil.dados.concluidos[situacao.id] = true;
     Perfil.gravar();
 
-    const premio = { estrelas: ganhas, dicas: 1 };
+    const premio = { estrelas: ganhas, dicas: dicasGanhas };
     document.querySelectorAll('#licao .gStars').forEach(e => { e.textContent = contadorNum.textContent; });
     rosto.src = ROSTO.dica;
     // a espera deixa a criança ver a última carta assentar; o som de

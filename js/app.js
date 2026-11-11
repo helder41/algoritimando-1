@@ -74,6 +74,28 @@
     try { sessionStorage.setItem(CHAVE_GIRAR, '1'); } catch { /* sem memória */ }
   };
 
+  /* ---------------- Esc fecha a janela aberta ----------------
+     Vale para todas as janelas (.modal): fecha a que está por cima e
+     devolve o foco ao botão que a abriu. A lição e a cena em tela
+     cheia já tratam o Esc por conta própria. */
+  let antesDaJanela = null;
+  new MutationObserver(mudancas => {
+    for (const m of mudancas) {
+      if (!m.target.classList.contains('modal')) continue;
+      const abriu = m.target.classList.contains('on') && !(m.oldValue || '').split(' ').includes('on');
+      if (abriu && !m.target.contains(document.activeElement)) antesDaJanela = document.activeElement;
+    }
+  }).observe(palco, { subtree: true, attributes: true, attributeFilter: ['class'], attributeOldValue: true });
+  document.addEventListener('keydown', ev => {
+    if (ev.key !== 'Escape') return;
+    const abertas = $$('.modal.on:not(.cena-cheia)');
+    if (!abertas.length) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    abertas[abertas.length - 1].classList.remove('on');
+    if (antesDaJanela && document.contains(antesDaJanela)) antesDaJanela.focus({ preventScroll: true });
+  }, true);
+
   /* ---------------- menu ---------------- */
 
   function irParaMenu() {
