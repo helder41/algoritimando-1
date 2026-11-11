@@ -198,20 +198,27 @@
   /* ---------------- mapa da cidade ----------------
      A central é o mapa da abertura (story1.webp). Cada lugar é a casa
      de um cliente; tocar nele abre os chamados daquele lugar (campo
-     "area" da situação). Chamados novos de um cliente — lavar as
-     mãos depois do sanduíche — entram no mesmo lugar. As posições
-     são em % da imagem, em cima de cada construção. */
+     "area" da situação); um lugar pode juntar vários chamados. As
+     posições são em % da imagem, em cima de cada construção. */
   const LUGARES = [
-    { id: 'casa',    nome: 'Casa',    rosto: 'img/who1.webp', x: 31, y: 30 },
-    { id: 'escola',  nome: 'Escola',  rosto: 'img/who3.webp', x: 68, y: 33 },
-    { id: 'fabrica', nome: 'Fábrica', rosto: 'img/who2.webp', x: 38, y: 66 },
-    { id: 'jardim',  nome: 'Jardim',  rosto: 'img/who4.webp', x: 72, y: 74 },
+    { id: 'casa',      nome: 'Casa',      rosto: 'img/who1.webp', x: 17, y: 27 },
+    { id: 'escola',    nome: 'Escola',    rosto: 'img/who3.webp', x: 84, y: 26 },
+    { id: 'fabrica',   nome: 'Fábrica',   rosto: 'img/who2.webp', x: 19, y: 46 },
+    { id: 'faixa',     nome: 'Faixa',     rosto: 'img/who3.webp', x: 46, y: 51 },
+    { id: 'casa-azul', nome: 'Casa azul', rosto: 'img/who1.webp', x: 67, y: 42 },
+    { id: 'limonada',  nome: 'Limonada',  rosto: 'img/who1.webp', x: 52, y: 79 },
+    { id: 'jardim',    nome: 'Jardim',    rosto: 'img/who4.webp', x: 85, y: 62 },
   ];
   const doLugar = id => SITUACOES.filter(s => s.area === id);
 
   function desenharMapa() {
-    const mapa = $('#mapa');
-    mapa.textContent = '';
+    // a imagem e os marcadores ficam num miolo: no celular ele é mais
+    // largo que a tela e o mapa rola para os lados
+    const quadro = $('#mapa');
+    quadro.textContent = '';
+    const mapa = document.createElement('div');
+    mapa.className = 'mapa-miolo';
+    quadro.append(mapa);
     for (const lugar of LUGARES) {
       const lista = doLugar(lugar.id);
       if (!lista.length) continue;
@@ -233,6 +240,10 @@
       botao.onclick = () => abrirLugar(lugar);
       mapa.append(botao);
     }
+    // começa centrado (no PC não rola, então não muda nada)
+    requestAnimationFrame(() => {
+      quadro.scrollLeft = (quadro.scrollWidth - quadro.clientWidth) / 2;
+    });
   }
 
   function abrirLugar(lugar) {

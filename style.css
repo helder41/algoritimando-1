@@ -3447,3 +3447,27 @@ body.arrastando * {
     padding: 1.2cqw 2.6cqw;
   }
 }
+
+/* o miolo do mapa: a imagem e os marcadores */
+.mapa-miolo {
+  position: absolute;
+  inset: 0;
+  background: url(img/story1.webp) center / cover;
+}
+/* celular: o mapa novo tem lugares até as bordas, então o miolo fica
+   mais largo que a tela (imagem inteira) e o mapa rola para os lados */
+@media (max-aspect-ratio: 4/5) {
+  #stage #hub .mapa {
+    aspect-ratio: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    background: none;
+    --k: 1;
+  }
+  #stage #hub .mapa-miolo {
+    position: relative;
+    width: 175%;
+    aspect-ratio: 2000 / 1116;
+  }
+}
