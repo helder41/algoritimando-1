@@ -257,7 +257,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Sanduíche sem alface (correções)
 
-O chamado do sanduíche usa só pão, manteiga, queijo e presunto, mas quatro imagens antigas mostravam alface. **Já corrigidas:** `win1` e `sanduiche-4`. **Faltam:** `level1` e `sanduiche-5`. São **edições**: anexe a própria imagem e peça só a troca do sanduíche. Salve com o mesmo nome. Se o gerador mudar mais coisas, peça de novo com "change only the sandwich".
+O chamado do sanduíche usa só pão, manteiga, queijo e presunto, mas quatro imagens antigas mostravam alface. **Já corrigidas:** as quatro. Os prompts ficam como registro. São **edições**: anexe a própria imagem e peça só a troca do sanduíche. Salve com o mesmo nome. Se o gerador mudar mais coisas, peça de novo com "change only the sandwich".
 
 ### `level1.webp` — fundo do nível (o balão de pensamento)
 
