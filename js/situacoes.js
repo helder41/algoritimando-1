@@ -1422,7 +1422,7 @@ const SITUACAO_LIMONADA = {
    o passo principal e a preparação → chegar no objetivo e deixar
    coisas para trás → terminar pronto para a próxima vez → o que
    foi aberto fecha, o que foi pego guarda (tudo volta ao lugar).
-   A cliente é a menina de pijama da Casa azul.
+   A cliente é a menina de pijama coral da Casa azul.
    ============================================================ */
 
 const SITUACAO_DENTES = {
@@ -1433,6 +1433,7 @@ const SITUACAO_DENTES = {
   area: 'casa-azul',
   cor: '#3f8fb5',
   cliente: 'img/who6.webp',
+  fundo: 'img/level8.webp',
   // um quadrinho por passo: escovar os dentes é uma história no tempo
   montagem: 'tirinha',
   fases: [
