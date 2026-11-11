@@ -1683,6 +1683,9 @@ body.arrastando * {
   flex: 1;
   min-height: 0;
   overflow: auto;
+  /* folga para a sombra do botão "Ler a lição": a rolagem cortava
+     a parte de baixo dele */
+  padding-bottom: 0.9cqw;
 }
 .conclusao-painel:focus {
   outline: none;
