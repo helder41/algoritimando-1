@@ -47,7 +47,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 
 ## Imagens que ainda faltam
 
-Os três chamados novos ainda não têm ilustração: as cartas mostram o quadro "ilustração do passo" enquanto ela não existe. A lista completa do que falta desenhar, com o nome de cada arquivo, está em [IMAGENS.md](IMAGENS.md), e os prompts para gerar cada uma em [PROMPTS-CARTAS.md](PROMPTS-CARTAS.md) e [PROMPTS-LICOES.md](PROMPTS-LICOES.md).
+As imagens dos chamados já estão no jogo. Faltam só as do fim do jogo, todas opcionais (o jogo tem um substituto para cada uma): os 4 selos das ideias, o crachá de Agente Sênior e os 2 personagens de corpo inteiro da tela final. Os prompts estão em [PROMPTS-FIM-DO-JOGO.md](PROMPTS-FIM-DO-JOGO.md). A lista geral, com o nome de cada arquivo, está em [IMAGENS.md](IMAGENS.md); os prompts das imagens já prontas, em [PROMPTS-CARTAS.md](PROMPTS-CARTAS.md), [PROMPTS-LICOES.md](PROMPTS-LICOES.md) e [PROMPTS-CENAS.md](PROMPTS-CENAS.md).
 
 ## Versão dos arquivos (cache)
 
