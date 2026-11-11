@@ -3471,3 +3471,61 @@ body.arrastando * {
     aspect-ratio: 2000 / 1116;
   }
 }
+
+/* ===== marcadores do mapa: pequenos, como alfinetes ao lado da
+   construção (a ponta fica em x/y e o marcador sobe a partir dela) ===== */
+#hub .lugar {
+  transform: translate(-50%, -100%);
+  gap: 0.2cqw;
+  padding-bottom: 0.9cqw;
+}
+#hub .lugar:hover,
+#hub .lugar:focus-visible {
+  transform: translate(-50%, -100%) scale(1.08);
+}
+#hub .lugar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 0.55cqw solid transparent;
+  border-top: 0.75cqw solid var(--brown);
+  border-bottom: 0;
+}
+#hub:not(.em-progresso) .lugar-rosto {
+  width: 4cqw;
+  height: 4cqw;
+  border-width: 0.25cqw;
+  box-shadow:
+    0 0 0 0.2cqw var(--brown),
+    0 0.4cqw 0.8cqw rgba(0, 0, 0, 0.3);
+}
+#hub:not(.em-progresso) .lugar-nome {
+  font-size: max(1cqw, 10px);
+  padding: 0.1cqw 0.8cqw;
+  box-shadow: 0 0.2cqw 0 #5b4326;
+}
+#hub .lugar-conta {
+  font-size: max(0.8cqw, 8px);
+  top: -0.5cqw;
+  right: -1.2cqw;
+  padding: 0 0.5cqw;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage #hub .lugar {
+    padding: 0 0 1.6cqw;
+  }
+  #stage #hub .lugar::after {
+    border-width: 1cqw;
+    border-top-width: 1.4cqw;
+    border-bottom: 0;
+  }
+  #stage #hub .lugar-rosto {
+    width: 8cqw;
+    height: 8cqw;
+  }
+  #stage #hub .lugar-nome {
+    font-size: max(2.4cqw, 9px);
+  }
+}
