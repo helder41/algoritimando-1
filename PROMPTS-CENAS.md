@@ -218,3 +218,39 @@ Subject: The moment the call arrives: a garden diorama (a tile of green grass wi
 Attached images: the bee (cliente3), the robot (guide), the garden background (level4: hive, sunflowers, honeycomb) and the style references (the street cards rua-01 and rua-05).
 Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached character and card references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Composition (very important): a small floating diorama, like a thick square tile of floor cut out of the place and seen in a three-quarter view from slightly above, with only one low wall piece at the back where needed. Everything sits on this tile: one or two characters and three or four big, clear objects. The diorama is centered and fills about 90% of the image width, with a thin even margin. The main character is big (about half the height of the image) and is clearly doing something. A soft grey oval shadow under the tile. Background around the diorama: flat solid cream (#FDF3E6) from edge to edge, no sky, no scenery outside the tile, no frame, no border. Readability: it must be understandable at 190 px wide: big shapes, strong silhouettes, one clear action, no tiny details. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:10, landscape, 1240x784 px.
 ```
+
+## Abertura (quadros 2, 3 e 4)
+
+Os quadros 2 a 4 da abertura ainda mostram a central antiga (um telão com pontos laranja). Estas versões usam a cidade e os alfinetes do mapa novo. O quadro 1 (`story1`, o mapa) já está certo.
+
+**Salve com o mesmo nome** (`story2.webp`, `story3.webp`, `story4.webp`). Formato 16:9. A legenda aparece numa faixa abaixo da imagem, sem cobrir nada.
+
+### `story2.webp` — Quadro 2 — "Este é o Robô-guia. Ele sabe onde cada pessoa precisa de ajuda."
+
+**Anexe:** `img/story1.webp` (a cidade), `img/guide.webp` (Robô-guia) e `docs/referencias/mapa-com-alfinetes.webp` (os rostos dos clientes).
+
+```
+Scene: A sunny street of the friendly cartoon town from the attached map, seen from the sidewalk at child height: the blue house with the orange roof, some trees and, far behind, the school with purple roofs, all a little soft. The small round white Robô-guia robot from the reference (egg-shaped white body, black face screen with green eyes and a small smile, two small round white arms, a thin antenna with a small green light on top) floats big in the center, waving hello with one hand and smiling, a soft glow around its antenna light. Around its head, in a gentle arc, six small round bubbles, each with the face of one of the town's clients from the attached map: the curly-haired boy with the striped shirt (Casa), the worker with a yellow hard hat (Fábrica), the girl with black hair (Escola), the boy with curly hair and a yellow hoodie (Faixa and Limonada), the girl with a brown bun and a pink scrunchie (Casa azul) and the fluffy bee (Jardim). Each bubble has a small orange pointer at the bottom, like a map pin, and a thin dotted line goes from each bubble to a different place in the town behind. The robot looks friendly and wise, like it knows where everyone is.
+Attached images: the town map (story1), the robot (guide) and the map with the pins (mapa-com-alfinetes, for the faces only; do not copy the buttons or the panels).
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached town map and character references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Composition: the whole image is shown; keep the robot, the faces, the badge and the pins well inside the frame, with a little margin from the edges. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1376x768 px.
+```
+
+### `story3.webp` — Quadro 3 — "Você vai ser o novo estagiário. Aqui está o seu crachá!"
+
+**Anexe:** `img/story1.webp`, `img/guide.webp` e um print da tela do crachá do jogo ("Quem é você, agente?"), se quiser que o crachá saia parecido.
+
+```
+Scene: First-person view, as if the viewer is the new trainee: the small round white Robô-guia robot from the reference (egg-shaped white body, black face screen with green eyes and a small smile, two small round white arms, a thin antenna with a small green light on top) floats close in front of the viewer, in the same sunny town street, smiling warmly with happy curved eyes and holding out, with both hands, toward the viewer an agent badge on a light blue lanyard. The badge is a rounded rectangle card in light cream with a thick soft brown border, an empty round photo frame on the left and a row of five small gold stars on the right, with no letters at all. A few small sparkles around the badge. Behind the robot, the town street, a few houses and trees, soft and blurred, warm morning light.
+Attached images: the town map (story1, for the town look) and the robot (guide).
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached town map and character references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Composition: the whole image is shown; keep the robot, the faces, the badge and the pins well inside the frame, with a little margin from the edges. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1376x768 px.
+```
+
+### `story4.webp` — Quadro 4 — "No mapa, cada alfinete com um rosto é um chamado. Ensine o robô, passo a passo."
+
+**Anexe:** `docs/referencias/mapa-com-alfinetes.webp` (o mapa com os alfinetes, como aparece no jogo), `img/story1.webp` e `img/guide.webp`.
+
+```
+Scene: The same town map as the attached image, seen from above in the same three-quarter view, with the same places: the house with the dark roof and the vegetable garden, the factory, the crossing with the traffic lights, the blue house with the orange roof, the school with purple roofs, the garden with sunflowers and the beehive, and the lemonade stand. Above these places stand the same small round pins as in the attached map: a circle with a client's face inside, a white border and a small point at the bottom, but with NO name tags and NO numbers. The small round white Robô-guia robot from the reference (egg-shaped white body, black face screen with green eyes and a small smile, two small round white arms, a thin antenna with a small green light on top) floats big in the lower left part of the image, in front of the map, pointing with one arm at the pin above the blue house, which has a soft glow and a few sparkles. The robot looks excited and invites the viewer to start.
+Attached images: the map with the pins (mapa-com-alfinetes: copy the town and the pins, but remove every button, panel, title, name tag and number), the town map (story1) and the robot (guide).
+Style: cute flat cartoon illustration for a children's educational game (ages 8 to 10), matching the attached town map and character references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Composition: the whole image is shown; keep the robot, the faces, the badge and the pins well inside the frame, with a little margin from the edges. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1376x768 px.
+```
