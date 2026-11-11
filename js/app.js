@@ -201,14 +201,16 @@
      de um cliente; tocar nele abre os chamados daquele lugar (campo
      "area" da situação); um lugar pode juntar vários chamados. As
      posições são em % da imagem, em cima de cada construção. */
+  /* x e y: a ponta do marcador, em % da imagem — logo acima ou ao
+     lado da construção, para o marcador não cobrir o desenho */
   const LUGARES = [
-    { id: 'casa',      nome: 'Casa',      rosto: 'img/who1.webp', x: 17, y: 27 },
-    { id: 'escola',    nome: 'Escola',    rosto: 'img/who3.webp', x: 84, y: 26 },
-    { id: 'fabrica',   nome: 'Fábrica',   rosto: 'img/who2.webp', x: 19, y: 46 },
-    { id: 'faixa',     nome: 'Faixa',     rosto: 'img/who3.webp', x: 46, y: 51 },
-    { id: 'casa-azul', nome: 'Casa azul', rosto: 'img/who1.webp', x: 67, y: 42 },
-    { id: 'limonada',  nome: 'Limonada',  rosto: 'img/who1.webp', x: 52, y: 79 },
-    { id: 'jardim',    nome: 'Jardim',    rosto: 'img/who4.webp', x: 85, y: 62 },
+    { id: 'casa',      nome: 'Casa',      rosto: 'img/who1.webp', x: 7,  y: 27 },
+    { id: 'escola',    nome: 'Escola',    rosto: 'img/who3.webp', x: 70, y: 26 },
+    { id: 'fabrica',   nome: 'Fábrica',   rosto: 'img/who2.webp', x: 28, y: 42 },
+    { id: 'faixa',     nome: 'Faixa',     rosto: 'img/who3.webp', x: 39, y: 47 },
+    { id: 'casa-azul', nome: 'Casa azul', rosto: 'img/who1.webp', x: 62, y: 37 },
+    { id: 'limonada',  nome: 'Limonada',  rosto: 'img/who1.webp', x: 51, y: 76 },
+    { id: 'jardim',    nome: 'Jardim',    rosto: 'img/who4.webp', x: 89, y: 44 },
   ];
   const doLugar = id => SITUACOES.filter(s => s.area === id);
 
