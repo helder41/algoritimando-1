@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=202611111239" />
+    <link rel="stylesheet" href="style.css?v=202611111415" />
   </head>
   <body>
     <div id="stage">
@@ -204,7 +204,21 @@
             <b class="contador-estrelas-num">0</b></span
           >
         </header>
-        <div class="fase-arte" aria-hidden="true"></div>
+        <div class="fase-arte">
+          <!-- ver a cena do chamado em tela cheia (jogo.js) -->
+          <button
+            class="chip cena-cheia-btn"
+            id="btn-cena-cheia"
+            type="button"
+            title="Ver a cena em tela cheia"
+            aria-label="Ver a cena em tela cheia"
+          >
+            <svg class="icone" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" />
+            </svg>
+            <span class="cena-cheia-texto">Tela cheia</span>
+          </button>
+        </div>
         <main class="area-jogo">
           <!-- Tabuleiro: um espaço numerado por passo (montado pelo jogo.js) -->
           <section
@@ -431,6 +445,20 @@
         </div>
       </div>
 
+      <!-- a cena do chamado em tela cheia: toque em qualquer lugar fecha -->
+      <div
+        class="modal cena-cheia"
+        id="cena-cheia"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Cena do chamado"
+      >
+        <div class="cena-cheia-imagem" role="img" aria-label="Cena do chamado"></div>
+        <button class="btn ghost small cena-cheia-fechar" id="btn-cena-fechar" type="button">
+          Fechar
+        </button>
+      </div>
+
       <div class="modal" id="local">
         <div class="panel local-painel">
           <div class="local-cabeca">
@@ -616,17 +644,17 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611111239"></script>
-    <script src="js/comum.js?v=202611111239"></script>
-    <script src="js/situacoes.js?v=202611111239"></script>
-    <script src="js/em-progresso.js?v=202611111239"></script>
-    <script src="js/som.js?v=202611111239"></script>
-    <script src="js/progresso.js?v=202611111239"></script>
-    <script src="js/perfil.js?v=202611111239"></script>
-    <script src="js/arrasto.js?v=202611111239"></script>
-    <script src="js/conclusao.js?v=202611111239"></script>
-    <script src="js/montagem.js?v=202611111239"></script>
-    <script src="js/jogo.js?v=202611111239"></script>
-    <script src="js/app.js?v=202611111239"></script>
+    <script src="js/motor.js?v=202611111415"></script>
+    <script src="js/comum.js?v=202611111415"></script>
+    <script src="js/situacoes.js?v=202611111415"></script>
+    <script src="js/em-progresso.js?v=202611111415"></script>
+    <script src="js/som.js?v=202611111415"></script>
+    <script src="js/progresso.js?v=202611111415"></script>
+    <script src="js/perfil.js?v=202611111415"></script>
+    <script src="js/arrasto.js?v=202611111415"></script>
+    <script src="js/conclusao.js?v=202611111415"></script>
+    <script src="js/montagem.js?v=202611111415"></script>
+    <script src="js/jogo.js?v=202611111415"></script>
+    <script src="js/app.js?v=202611111415"></script>
   </body>
 </html>

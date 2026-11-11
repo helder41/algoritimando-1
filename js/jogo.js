@@ -109,11 +109,33 @@
     tela.style.setProperty('--img', situacao.fundo ? `url("${situacao.fundo}")` : 'none');
     tela.style.setProperty('--cor', situacao.cor || '#8c6d4a');
     tela.classList.toggle('sem-fundo', !situacao.fundo);
+    document.getElementById('btn-cena-cheia').hidden = !situacao.fundo;
 
     montarFase();
     irPara('fase');
     focarPrimeiraCarta();
   }
+
+  /* ---------------- a cena em tela cheia ----------------
+     A imagem de fundo do chamado (a criança, o robô e o balão com o
+     pedido) inteira, sem o tabuleiro por cima. Fecha tocando em
+     qualquer lugar, no botão ou com Esc. */
+  const cenaCheia = document.getElementById('cena-cheia');
+  const btnCenaCheia = document.getElementById('btn-cena-cheia');
+  function abrirCenaCheia() {
+    if (!situacao || !situacao.fundo) return;
+    cenaCheia.querySelector('.cena-cheia-imagem').style.backgroundImage = `url("${situacao.fundo}")`;
+    cenaCheia.classList.add('on');
+    document.getElementById('btn-cena-fechar').focus({ preventScroll: true });
+  }
+  function fecharCenaCheia() {
+    if (!cenaCheia.classList.contains('on')) return;
+    cenaCheia.classList.remove('on');
+    btnCenaCheia.focus({ preventScroll: true });
+  }
+  btnCenaCheia.addEventListener('click', abrirCenaCheia);
+  cenaCheia.addEventListener('click', fecharCenaCheia);
+  document.addEventListener('keydown', ev => { if (ev.key === 'Escape') fecharCenaCheia(); });
 
   function focarPrimeiraCarta() {
     const primeira = fila.querySelector('.carta');
