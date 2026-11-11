@@ -48,4 +48,4 @@ Os três chamados novos ainda não têm ilustração: as cartas mostram o quadro
 
 ## Versão dos arquivos (cache)
 
-Os `.js` e `.css` são carregados com `?v=AAAAMMDDHHMM` no `index.html` e no `editor.html`. Ao publicar uma mudança, troque esse número: assim o navegador (principalmente no celular) baixa os arquivos novos em vez de usar os guardados.
+Os `.js` e `.css` (e as imagens que trocam de conteúdo sem mudar de nome, como o mapa `img/story1.webp`) são carregados com `?v=AAAAMMDDHHMM` no `index.html` e no `editor.html`. Ao publicar uma mudança, troque esse número: assim o navegador (principalmente no celular) baixa os arquivos novos em vez de usar os guardados.
