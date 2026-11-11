@@ -73,6 +73,12 @@
                              história em quadrinhos; no primeiro
                              erro a história "trava" ali.
                  Sem o campo, não há montagem.
+     selo        o selo da ideia que o chamado ensina, entregue na
+                 lição da última fase e guardado no crachá:
+                 { nome, frase, exemplo (a legenda de uma carta do
+                   chamado), pergunta (para conversar), icone
+                   ("repetir", "decidir", "juntar" ou "par": o
+                   desenho usado enquanto não há imagem) e imagem }
      montagemBase  (só na "cena") imagem que fica no fundo antes de
                  qualquer peça. A fase pode ter a sua própria, que
                  vale no lugar desta.

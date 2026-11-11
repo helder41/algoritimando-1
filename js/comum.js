@@ -157,6 +157,39 @@
     return html;
   }
 
-  window.Comum = { criarCarta, embaralhar, validarArquivoSituacao, estrelasHTML };
+  /* ---------------- selo de uma ideia ----------------
+     Um disco com o desenho da ideia. Enquanto a imagem do selo não
+     existe (ou não carrega), fica o desenho em linhas daqui; quando
+     existe, ela cobre o disco. "ganho = false" mostra o selo apagado. */
+  const TRACO = 'fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"';
+  const ICONES_SELO = {
+    // uma seta que dá a volta: repetir
+    repetir: `<path ${TRACO} d="M18.5 8.5A7.5 7.5 0 1 0 19.5 13"/><path ${TRACO} d="M19.5 4.5v4.5H15"/>`,
+    // um caminho que se divide em dois: decidir
+    decidir: `<path ${TRACO} d="M12 21v-7"/><path ${TRACO} d="M12 14 6 7.5M12 14l6-6.5"/><path ${TRACO} d="M3.5 8.5 6 5l3.5 2M14.5 7 18 5l2.5 3.5"/>`,
+    // dois caminhos que se juntam num só: ao mesmo tempo
+    juntar: `<path ${TRACO} d="M6 3.5v4.5c0 3.5 6 3.5 6 7M18 3.5v4.5c0 3.5-6 3.5-6 7v5.5"/><path ${TRACO} d="M9 18l3 3 3-3"/>`,
+    // um par que abre e fecha
+    par: `<path ${TRACO} d="M9 4.5H5.5v15H9M15 4.5h3.5v15H15"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/>`,
+  };
+
+  function criarSelo(selo, ganho = true) {
+    const disco = document.createElement('span');
+    disco.className = 'selo' + (ganho ? '' : ' apagado');
+    disco.setAttribute('role', 'img');
+    disco.setAttribute('aria-label', `Selo ${selo.nome}${ganho ? '' : ' (ainda não conquistado)'}`);
+    disco.innerHTML = `<svg class="selo-desenho" viewBox="0 0 24 24" aria-hidden="true">${ICONES_SELO[selo.icone] || ICONES_SELO.repetir}</svg>`;
+    if (selo.imagem) {
+      const img = document.createElement('img');
+      img.className = 'selo-imagem';
+      img.alt = '';
+      img.onerror = () => img.remove();
+      img.src = selo.imagem;
+      disco.append(img);
+    }
+    return disco;
+  }
+
+  window.Comum = { criarCarta, embaralhar, validarArquivoSituacao, estrelasHTML, criarSelo };
 
 })();
