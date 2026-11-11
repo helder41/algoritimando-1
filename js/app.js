@@ -136,7 +136,7 @@
     // a arte aparece inteira; o fundo desfocado (a mesma imagem)
     // preenche a sobra, seja qual for o formato da tela
     // ?v= faz o navegador buscar a imagem nova quando ela muda
-    $('#story').style.setProperty('--arte', `url(img/story${i + 1}.webp?v=202611110352)`);
+    $('#story').style.setProperty('--arte', `url(img/story${i + 1}.webp?v=202611110727)`);
     $('#sceneText').textContent = ABERTURA[i];
     $('#dots').innerHTML = ABERTURA.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
     const ultimo = i === ABERTURA.length - 1;

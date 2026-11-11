@@ -211,8 +211,7 @@ Cada quadrinho usa hoje a **ilustração da carta** (seção 1); enquanto ela n�
 | Cartão dos chamados novos, no painel do lugar | pronto: os quatro têm a mini-cena | `img/pic5.webp` (pia com sabonete), `img/pic6.webp` (faixa e semáforo), `img/pic7.webp` (jarra de limonada) e `img/pic8.webp` (escova, copo e pasta), no campo `cena` de cada chamado em `js/situacoes.js` (prompts em `PROMPTS-CENAS.md`) |
 | Tela do nível e da lição dos chamados novos | pronto: todos têm os dois fundos | nada a fazer (campos `fundo` e `fundoConclusao` (como `img/level1.webp` e `img/win1.webp`) |
 | Clientes dos chamados novos | Lavar as mãos: o menino da Casa (`who1`). Atravessar a rua e Fazer uma limonada: o menino de moletom amarelo (`who5`, recortado do `level6`). Escovar os dentes: a menina de pijama coral (`who6`, recortada do `level8`) | nada a fazer |
-| Sanduíche: `level1`, `win1` e as lições `sanduiche-4` e `sanduiche-5` | o sanduíche aparece com alface, que o chamado não usa | as mesmas imagens sem alface (prompts de edição em `PROMPTS-CENAS.md`) |
-| Abertura, quadros 2 a 4 | a central antiga (telão com pontos laranja) | `img/story2.webp` a `story4.webp` com a cidade e os alfinetes do mapa novo (prompts em `PROMPTS-CENAS.md`, seção "Abertura") |
+| Sanduíche: `level1` e a lição `sanduiche-5` (`win1` e `sanduiche-4` já corrigidas) | o sanduíche aparece com alface, que o chamado não usa | as mesmas imagens sem alface (prompts de edição em `PROMPTS-CENAS.md`) |
 | Carta e lição sem imagem no chamado do professor | quadros "ilustração do passo" e "ilustração da lição" | a imagem que o professor escolher na Área do professor |
 
 ## 5. Imagens do Drive que ainda não têm onde entrar

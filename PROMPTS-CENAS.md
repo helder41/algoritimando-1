@@ -221,7 +221,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Abertura (quadros 2, 3 e 4)
 
-Os quadros 2 a 4 da abertura ainda mostram a central antiga (um telão com pontos laranja). Estas versões usam a cidade e os alfinetes do mapa novo. O quadro 1 (`story1`, o mapa) já está certo.
+**Prontos:** os quatro quadros já usam a cidade e os alfinetes do mapa novo. Os prompts ficam como registro.
 
 **Salve com o mesmo nome** (`story2.webp`, `story3.webp`, `story4.webp`). Formato 16:9. A legenda aparece numa faixa abaixo da imagem, sem cobrir nada.
 
@@ -257,7 +257,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Sanduíche sem alface (correções)
 
-O chamado do sanduíche usa só pão, manteiga, queijo e presunto, mas quatro imagens antigas mostram alface. São **edições**: anexe a própria imagem e peça só a troca do sanduíche. Salve com o mesmo nome. Se o gerador mudar mais coisas, peça de novo com "change only the sandwich".
+O chamado do sanduíche usa só pão, manteiga, queijo e presunto, mas quatro imagens antigas mostravam alface. **Já corrigidas:** `win1` e `sanduiche-4`. **Faltam:** `level1` e `sanduiche-5`. São **edições**: anexe a própria imagem e peça só a troca do sanduíche. Salve com o mesmo nome. Se o gerador mudar mais coisas, peça de novo com "change only the sandwich".
 
 ### `level1.webp` — fundo do nível (o balão de pensamento)
 
