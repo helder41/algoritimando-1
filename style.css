@@ -3529,3 +3529,42 @@ body.arrastando * {
     font-size: max(2.4cqw, 9px);
   }
 }
+
+/* painel do lugar (PC): a imagem do chamado vai para a direita, no
+   formato dela, em vez de uma faixa larga e baixa */
+@media (min-aspect-ratio: 4/5) {
+  .local-chamados .call {
+    grid-template-columns: 7cqw minmax(0, 1fr) 14cqw;
+    grid-template-rows: 1fr;
+    align-items: center;
+  }
+  .local-chamados .call .who {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .local-chamados .call .meta {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .local-chamados .call .pic {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 620 / 392;
+  }
+  .local-chamados .call .pic img {
+    object-fit: cover;
+  }
+  #local .local-painel {
+    width: min(64cqw, 92%);
+  }
+  .local-chamados .call {
+    height: auto;
+    min-height: 10cqw;
+  }
+  .local-chamados .call .btn {
+    white-space: nowrap;
+  }
+}
