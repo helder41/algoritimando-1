@@ -209,7 +209,7 @@
     { id: 'fabrica',   nome: 'Fábrica',   rosto: 'img/who2.webp', x: 28, y: 42 },
     { id: 'faixa',     nome: 'Faixa',     rosto: 'img/who5.webp', x: 39, y: 47 },
     { id: 'casa-azul', nome: 'Casa azul', rosto: 'img/who6.webp', x: 62, y: 37 },
-    { id: 'limonada',  nome: 'Limonada',  rosto: 'img/who1.webp', x: 51, y: 76 },
+    { id: 'limonada',  nome: 'Limonada',  rosto: 'img/who5.webp', x: 51, y: 76 },
     { id: 'jardim',    nome: 'Jardim',    rosto: 'img/who4.webp', x: 89, y: 44 },
   ];
   const doLugar = id => SITUACOES.filter(s => s.area === id);

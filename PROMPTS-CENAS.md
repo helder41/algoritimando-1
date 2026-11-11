@@ -1,6 +1,6 @@
 # Prompts das cenas dos chamados
 
-13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Já existem:** `level5`, `win5`, `pic6`, `level6`, `win6`, `level8` e os retratos `who5` e `who6`. **Faltam 6:** `pic5`, `pic7`, `level7`, `win7`, `pic8` e `win8`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo há também versões novas das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena.
+13 imagens para `img/`: três para cada chamado novo (Lavar as mãos, Atravessar a rua, Fazer uma limonada e Escovar os dentes) e o retrato da menina de Escovar os dentes. **Já existem:** todas, menos a `pic5` (Lavar as mãos). Os retratos `who5` e `who6` também. **Falta 1:** `pic5`. Sem elas o jogo funciona, mas mostra um quadro tracejado no cartão do chamado e um fundo liso nas telas do nível e da lição. No fim do arquivo há também versões novas das ilustrações dos quatro chamados originais (`pic1` a `pic4`), no mesmo padrão de mini-cena.
 
 | Imagem | Onde aparece | Modelo que já existe | Campo em `js/situacoes.js` |
 |---|---|---|---|
@@ -107,7 +107,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 ## Fazer uma limonada (Cozinha)
 
-**Arquivos:** `pic7.webp`, `level7.webp`, `win7.webp`.
+**Arquivos:** `pic7.webp`, `level7.webp`, `win7.webp`. **Prontos:** os três.
 
 **Anexe como referência:** `img/pic3.webp` (estilo da ilustração do chamado), `img/level1.webp` e `img/win1.webp` (a mesma cozinha do sanduíche, e a composição dos fundos), `img/level6.webp` (o menino de moletom amarelo; só o menino, a rua não entra), `img/guide.webp` (Robô-guia) e, quando existirem, as cartas `img/passos/limonada-01.webp` a `limonada-07.webp`.
 
@@ -141,7 +141,7 @@ Style: cute flat cartoon illustration for a children's educational game (ages 8 
 
 **Arquivos:** `who6.webp` (retrato da menina), `pic8.webp`, `level8.webp`, `win8.webp`.
 
-**Prontos:** `level8` (o fundo do nível, com a menina e o Robô-guia) e `who6` (o retrato, recortado do `level8`). **Faltam:** `pic8` e `win8`.
+**Prontos:** `who6`, `pic8`, `level8` e `win8`. Os prompts ficam como registro.
 
 **Anexe como referência:** `img/level8.webp` (a menina, o banheiro, a escova e a pasta), `img/guide.webp` (Robô-guia), `img/win5.webp` (composição do fundo da lição) e, quando existirem, as cartas `img/passos/dentes-01.webp` a `dentes-08.webp`.
 

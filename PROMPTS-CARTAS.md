@@ -20,7 +20,7 @@
 - Me mande as imagens aqui no chat (pode ser em lote, com o nome do arquivo de cada uma). Eu tiro o fundo branco, deixo transparente, ajusto para **600 × 450 px**, salvo com o nome certo em `img/passos/` e subo para o GitHub.
 - Se preferir fazer sozinho: PNG com fundo transparente, 600 × 450 px, com o nome exato da tabela. A carta troca sozinha, sem mexer no código.
 
-**Chamados novos:** Atravessar a rua já tem as 6 cartas. Faltam as 15 de Fazer uma limonada e Escovar os dentes. Os prompts estão no fim deste arquivo.
+**Chamados novos:** todas as cartas estão prontas. Os prompts ficam como registro. Os prompts estão no fim deste arquivo.
 
 **Se a imagem sair errada**, peça a correção na mesma conversa: "remove the text", "no background, plain white", "make it simpler and bolder", "same robot as the reference", "no lettuce".
 
@@ -478,7 +478,7 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ## Fazer uma limonada (Cozinha)
 
-**Por gerar:** 7 cartas.
+**Pronto:** as cartas já estão no jogo. Os prompts ficam como registro.
 
 **Anexe como referência:** `img/level6.webp` (o menino de moletom amarelo e cabelo cacheado, o mesmo de Atravessar a rua) e `img/passos/sanduiche-03.webp` (estilo das cartas).
 
@@ -542,7 +542,7 @@ Style: cute flat cartoon sticker illustration for a children's educational game 
 
 ## Escovar os dentes (Banheiro da Casa azul)
 
-**Por gerar:** 8 cartas.
+**Pronto:** as cartas já estão no jogo. Os prompts ficam como registro.
 
 **Anexe como referência:** `img/level8.webp` (o fundo do nível: a menina, a escova e a pasta) e `img/passos/sanduiche-03.webp` (estilo das cartas).
 
