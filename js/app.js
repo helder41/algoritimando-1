@@ -35,10 +35,10 @@
   }
   window.irPara = irPara;
 
-  /* Os 6 agentes: o número é o P.avatar. Cada um tem o retrato
+  /* Os agentes: o número é o P.avatar. Cada um tem o retrato
      (img/avN.webp), a cena de promoção (img/promoN.webp) e o corpo
-     inteiro recortado para a tela final. */
-  const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino'];
+     inteiro recortado para a tela final. O 6 é o agente secreto. */
+  const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino', 'secreto'];
 
   const avatarSrc = () => `img/av${P.avatar}.webp`;
 
@@ -210,6 +210,7 @@
     $('#badgeName').textContent = nome;
     $('#badgeFace').src = avatarSrc();
     $('#badgeCargo').textContent = CARGOS[cargo()];
+    $('#cracha').classList.toggle('secreto', P.avatar === '6');
     $$('#badgeEstrelas img').forEach((e, k) => e.classList.toggle('on', k <= cargo()));
     // os selos das ideias: os conquistados acesos, os outros apagados
     const selos = $('#badgeSelos');
@@ -247,6 +248,48 @@
     };
   });
   $('#nameIn').oninput = e => atualizarCracha(e.target.value.trim());
+
+  /* Agente secreto: 10 toques na terceira estrela do crachá revelam
+     o 7º agente na escolha. O segredo fica guardado neste aparelho
+     (não some ao reiniciar o jogo). */
+  const CHAVE_SEGREDO = 'algoritimando-segredo';
+  const TOQUES_SEGREDO = 10;
+  let toquesSegredo = 0;
+  function segredoAberto() {
+    try { return localStorage.getItem(CHAVE_SEGREDO) === '1'; } catch { return false; }
+  }
+  function mostrarSecreto(animar) {
+    const b = $('.avatar-secreto');
+    b.hidden = false;
+    $('.avatars').classList.add('com-secreto');
+    if (animar) {
+      b.classList.add('revela');
+      b.addEventListener('animationend', () => b.classList.remove('revela'), { once: true });
+    }
+  }
+  if (segredoAberto() || P.avatar === '6') mostrarSecreto(false);
+  // a cada toque a estrela brilha um pouco mais (dica de que há algo ali)
+  const estrelaSegredo = $$('#badgeEstrelas img')[2];
+  estrelaSegredo.addEventListener('click', () => {
+    if (!$('.avatar-secreto').hidden) return;
+    toquesSegredo++;
+    estrelaSegredo.style.setProperty('--brilho', toquesSegredo / TOQUES_SEGREDO);
+    estrelaSegredo.classList.remove('pisca');
+    void estrelaSegredo.offsetWidth;
+    estrelaSegredo.classList.add('pisca');
+    if (toquesSegredo < TOQUES_SEGREDO) return;
+    try { localStorage.setItem(CHAVE_SEGREDO, '1'); } catch { /* fica só nesta visita */ }
+    estrelaSegredo.style.removeProperty('--brilho');
+    // o momento especial: a cena dourada com o som de mistério
+    $('#segredo').classList.add('on');
+    Som.segredo();
+    $('#bSegredoOk').focus({ preventScroll: true });
+  });
+  $('#bSegredoOk').onclick = () => {
+    $('#segredo').classList.remove('on');
+    mostrarSecreto(true);
+    $('.avatar-secreto').click();
+  };
   $('#bConfirm').onclick = () => {
     P.comecou = true;
     P.nome = $('#nameIn').value.trim().slice(0, 14) || 'Agente';
