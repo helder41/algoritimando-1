@@ -4614,9 +4614,9 @@ body.arrastando * {
 }
 
 /* ===== agente secreto ===== */
-/* a terceira estrela do crachá é o botão escondido */
+/* a terceira estrela do crachá esconde o segredo, mas não pode se
+   entregar: só evita o zoom do toque duplo no celular */
 #badgeEstrelas img:nth-child(3) {
-  cursor: pointer;
   touch-action: manipulation;
 }
 .avatar[hidden] {
@@ -4673,20 +4673,6 @@ body.arrastando * {
 .cracha.secreto .cracha-topo {
   background: linear-gradient(90deg, #b8800f, #f2c24b 50%, #b8800f);
   color: var(--ink);
-}
-/* a estrela do segredo brilha mais a cada toque */
-#badgeEstrelas img:nth-child(3) {
-  filter: grayscale(calc(1 - var(--brilho, 0))) opacity(calc(0.35 + 0.65 * var(--brilho, 0)))
-    drop-shadow(0 0 calc(var(--brilho, 0) * 0.8cqw) rgba(255, 196, 64, 0.9));
-}
-#badgeEstrelas img:nth-child(3).on {
-  filter: drop-shadow(0 0 calc(var(--brilho, 0) * 0.8cqw) rgba(255, 196, 64, 0.9));
-}
-#badgeEstrelas img.pisca {
-  animation: estrela-pisca 0.35s ease-out;
-}
-@keyframes estrela-pisca {
-  50% { transform: scale(1.35); }
 }
 
 /* a cena: fundo escuro, raios dourados girando e o retrato emoldurado */
@@ -4754,8 +4740,7 @@ body.arrastando * {
 }
 @media (prefers-reduced-motion: reduce) {
   .segredo-raios,
-  .segredo-conteudo,
-  #badgeEstrelas img.pisca {
+  .segredo-conteudo {
     animation: none;
   }
 }
