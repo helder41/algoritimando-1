@@ -110,12 +110,13 @@
     irPara('story');
   };
 
-  /* Reiniciar apaga o progresso, o perfil e os protótipos jogados;
-     os ajustes de som ficam. Pede confirmação, porque não tem volta. */
+  /* Reiniciar apaga o progresso, o perfil, os protótipos jogados e o
+     agente secreto; os ajustes de som ficam. Pede confirmação, porque
+     não tem volta. */
   $('#bReiniciar').onclick = () => $('#reiniciar').classList.add('on');
   $('#bReiniciarNao').onclick = () => $('#reiniciar').classList.remove('on');
   $('#bReiniciarSim').onclick = () => {
-    ['algoritimando-progresso', 'algoritimando-perfil', 'algoritimando-montagem'].forEach(k => {
+    ['algoritimando-progresso', 'algoritimando-perfil', 'algoritimando-montagem', CHAVE_SEGREDO].forEach(k => {
       try { localStorage.removeItem(k); } catch { /* sem memória: nada a apagar */ }
     });
     location.reload();
@@ -254,7 +255,7 @@
      estrela não reage a nada (nem brilho, nem cursor de clique), e
      uma pausa maior que INTERVALO_SEGREDO entre dois toques zera a
      contagem: ninguém chega lá sem querer. O segredo fica guardado
-     neste aparelho (não some ao reiniciar o jogo). */
+     neste aparelho até o progresso ser reiniciado (esquecerSegredo). */
   const CHAVE_SEGREDO = 'algoritimando-segredo';
   const TOQUES_SEGREDO = 10;
   const INTERVALO_SEGREDO = 600;   // ms entre um toque e o próximo
@@ -273,6 +274,21 @@
     }
   }
   if (segredoAberto() || P.avatar === '6') mostrarSecreto(false);
+
+  /* Recomeçar o jogo também fecha o segredo: o agente secreto some da
+     escolha e, se era o escolhido, volta o primeiro agente. */
+  function esquecerSegredo() {
+    try { localStorage.removeItem(CHAVE_SEGREDO); } catch { /* nada a apagar */ }
+    $('.avatar-secreto').hidden = true;
+    $('.avatars').classList.remove('com-secreto');
+    if (P.avatar === '6') {
+      P.avatar = '0';
+      Perfil.gravar();
+      $$('.avatar').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
+      atualizarCracha(P.nome);
+      atualizarTopo();
+    }
+  }
   const estrelaSegredo = $$('#badgeEstrelas img')[2];
   estrelaSegredo.addEventListener('click', () => {
     if (!$('.avatar-secreto').hidden) return;
@@ -745,6 +761,7 @@
   function recomecar() {
     SITUACOES.forEach(s => Progresso.apagar(s.id));
     Perfil.recomecar();
+    esquecerSegredo();
     central(`Novos chamados chegando! Boa sorte, ${P.nome}!`);
   }
   $('#bAgain').onclick = recomecar;
