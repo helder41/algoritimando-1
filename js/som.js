@@ -17,7 +17,7 @@
      segredo  um mistério que se desvenda — o agente secreto apareceu
      clique   uma nota curta — troca de tela
 
-   O MENU "Sons" liga e desliga a música e os efeitos separados, e
+   O painel de CONFIGURAÇÕES liga e desliga a música e os efeitos separados, e
    tem um volume para cada um. Desligar é de verdade (sala com
    trinta crianças, professor explicando): música desligada não é
    nem carregada, efeito desligado não cria oscilador. A escolha
@@ -182,7 +182,7 @@
     else tocarMusica();
   });
 
-  /* ---------------- menu "Sons" ----------------
+  /* ---------------- painel de configurações (#sons) ----------------
      Os controles estão no index.html (#sons); se a página não os
      tiver (o editor), nada aqui é ligado. */
 
@@ -235,8 +235,8 @@
 
   /* Recebe um <button> e cuida dele por inteiro: rótulo, estado e
      clique. Pode haver mais de um (o do menu e o da fase): todos
-     mudam juntos. Com comTexto, o botão também mostra o estado
-     escrito ("Sons: ligado"). */
+     mudam juntos. Com comTexto, é o botão "Configurações" do menu:
+     ele só abre o painel e o texto fica fixo. */
   const botoes = [];
 
   function atualizarBotoes() {
@@ -250,8 +250,8 @@
       botao.setAttribute('aria-pressed', String(ligado));
       const rotulo = ligado ? 'Desligar o som' : 'Ligar o som';
       if (comTexto) {
-        const algum = ligado || ajustes.musica;
-        botao.textContent = 'Sons: ' + (algum ? 'ligado' : 'desligado');
+        botao.removeAttribute('aria-pressed');
+        botao.textContent = 'Configurações';
       } else {
         botao.setAttribute('aria-label', rotulo);
         botao.title = rotulo;
@@ -271,7 +271,8 @@
     atualizarBotoes();
   }
 
-  /* O botão "Sons" do menu abre o painel de ajustes. */
+  /* O botão "Configurações" do menu abre o painel de ajustes (sons e
+     tela cheia). */
   // icone = true: o botão mostra só o alto-falante (o atalho do topo)
   function abrirMenuBotao(botao, icone = false) {
     if (!botao) return;

@@ -13,7 +13,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 - A central é um **mapa da cidade**: cada lugar é a casa de um cliente, e tocar nele mostra os chamados de lá (campo `area` de cada chamado). No celular o mapa rola para os lados, e um aviso "Arraste para ver a cidade" aparece até a criança arrastar a primeira vez.
 - **O começo é o sanduíche.** Até ele ser concluído, o mapa fica na sombra e só a Casa pode ser tocada (e, nela, só o sanduíche). Ao concluí-lo, o Robô-guia avisa que a cidade foi liberada. Perfis que já tinham outro chamado concluído não são trancados.
 - **Agente secreto.** Na tela "Quem é você, agente?", 10 toques seguidos e rápidos (no máximo 0,6 s entre eles) na terceira estrela do crachá abrem uma cena dourada com som de mistério e revelam um 7º agente, com moldura dourada (no crachá também). O segredo fica guardado no aparelho (chave `algoritimando-segredo`) até o progresso ser reiniciado ("Reiniciar o jogo" no menu ou "Jogar tudo de novo" na central): aí ele some e, se o agente secreto estava escolhido, volta o primeiro agente. Imagens: `img/av6.webp`, `img/agente-secreto.webp` e `img/promo6.webp` (a cena de promoção, montada a partir da `promo1`).
-- **Configurações.** O painel de sons (botão "Sons" do menu e ícone de som no topo de todas as telas) também tem o botão **Tela cheia**, que coloca o jogo inteiro em tela cheia. Onde o navegador não deixa (iPhone), a opção não aparece.
+- **Configurações.** O painel de configurações (botão "Configurações" do menu e ícone de som no topo de todas as telas) também tem o botão **Tela cheia**, que coloca o jogo inteiro em tela cheia. Onde o navegador não deixa (iPhone), a opção não aparece.
 - **Tela cheia.** No nível, o botão "Tela cheia" (no celular, o ícone no canto da cena) mostra a cena do chamado inteira, sem o tabuleiro por cima.
 - Depois de cada nível aparece a lição, que liga a atividade ao conceito de algoritmo.
 - Os quatro primeiros chamados levam a criança da "ordem importa" até o nome "algoritmo". Os chamados novos trazem uma ideia a mais cada um: **repetição** (Lavar as mãos), **condição** (Atravessar a rua), **caminhos paralelos** (Fazer uma limonada) e **o que abre, fecha** (Escovar os dentes). Depois do sanduíche, todos podem ser jogados em qualquer ordem.
@@ -49,7 +49,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 | `js/conclusao.js` | a tela de lição |
 | `js/app.js` | menu, abertura, crachá, central, as duas promoções, os selos ("Minhas ideias"), final e abrir o chamado do professor |
 | `editor.html`, `editor.css`, `js/editor.js` | a Área do professor |
-| `js/som.js`, `audio/musica-tema.mp3` | música ("Agentes de Algoritimando", em loop) e efeitos, com o menu "Sons" (liga/desliga e volume de cada um) |
+| `js/som.js`, `audio/musica-tema.mp3` | música ("Agentes de Algoritimando", em loop) e efeitos, com o painel de configurações (liga/desliga e volume de cada um, e a tela cheia no app.js) |
 | `js/comum.js`, `js/progresso.js`, `js/perfil.js` | cartas e memória do jogo |
 
 ## Imagens que ainda faltam
