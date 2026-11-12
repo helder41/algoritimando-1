@@ -249,12 +249,17 @@
   });
   $('#nameIn').oninput = e => atualizarCracha(e.target.value.trim());
 
-  /* Agente secreto: 10 toques na terceira estrela do crachá revelam
-     o 7º agente na escolha. O segredo fica guardado neste aparelho
-     (não some ao reiniciar o jogo). */
+  /* Agente secreto (só para quem sabe): 10 toques SEGUIDOS na
+     terceira estrela do crachá revelam o 7º agente na escolha. A
+     estrela não reage a nada (nem brilho, nem cursor de clique), e
+     uma pausa maior que INTERVALO_SEGREDO entre dois toques zera a
+     contagem: ninguém chega lá sem querer. O segredo fica guardado
+     neste aparelho (não some ao reiniciar o jogo). */
   const CHAVE_SEGREDO = 'algoritimando-segredo';
   const TOQUES_SEGREDO = 10;
+  const INTERVALO_SEGREDO = 600;   // ms entre um toque e o próximo
   let toquesSegredo = 0;
+  let ultimoToque = 0;
   function segredoAberto() {
     try { return localStorage.getItem(CHAVE_SEGREDO) === '1'; } catch { return false; }
   }
@@ -268,18 +273,15 @@
     }
   }
   if (segredoAberto() || P.avatar === '6') mostrarSecreto(false);
-  // a cada toque a estrela brilha um pouco mais (dica de que há algo ali)
   const estrelaSegredo = $$('#badgeEstrelas img')[2];
   estrelaSegredo.addEventListener('click', () => {
     if (!$('.avatar-secreto').hidden) return;
-    toquesSegredo++;
-    estrelaSegredo.style.setProperty('--brilho', toquesSegredo / TOQUES_SEGREDO);
-    estrelaSegredo.classList.remove('pisca');
-    void estrelaSegredo.offsetWidth;
-    estrelaSegredo.classList.add('pisca');
+    const agora = Date.now();
+    toquesSegredo = agora - ultimoToque <= INTERVALO_SEGREDO ? toquesSegredo + 1 : 1;
+    ultimoToque = agora;
     if (toquesSegredo < TOQUES_SEGREDO) return;
+    toquesSegredo = 0;
     try { localStorage.setItem(CHAVE_SEGREDO, '1'); } catch { /* fica só nesta visita */ }
-    estrelaSegredo.style.removeProperty('--brilho');
     // o momento especial: a cena dourada com o som de mistério
     $('#segredo').classList.add('on');
     Som.segredo();
