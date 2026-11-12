@@ -4594,3 +4594,21 @@ body.arrastando * {
     font-size: max(3cqw, 18px);
   }
 }
+
+/* ===== configurações: a linha da tela cheia ===== */
+#sons .tela-linha[hidden] {
+  display: none;
+}
+.tela-dica {
+  font-size: max(1.2cqw, 12px);
+  font-weight: 600;
+  color: #6a5238;
+  text-align: left;
+  line-height: 1.3;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .tela-dica {
+    grid-column: 1 / -1;
+    font-size: 3.2cqw;
+  }
+}

@@ -131,14 +131,41 @@
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'chip som-atalho';
-    b.title = 'Sons';
-    b.setAttribute('aria-label', 'Ajustar os sons');
+    b.title = 'Configurações';
+    b.setAttribute('aria-label', 'Configurações: sons e tela cheia');
     b.innerHTML = ICONE_SOM;
     const depois = topo.querySelector('.chip.who') || topo.querySelector('.chip.home');
     if (depois) depois.after(b); else topo.prepend(b);
     Som.abrirMenuBotao(b, true);
   });
   $('#bSonsFechar').onclick = () => $('#sons').classList.remove('on');
+
+  /* Tela cheia (no painel de configurações): usa a Fullscreen API do
+     navegador. Onde ela não existe (iPhone), a linha não aparece. O
+     botão acompanha o estado real: sair com Esc também atualiza. */
+  const raiz = document.documentElement;
+  const emTelaCheia = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
+  const podeTelaCheia = !!(raiz.requestFullscreen || raiz.webkitRequestFullscreen);
+  function mostrarTelaCheia() {
+    const sim = emTelaCheia();
+    const b = $('#bTelaCheia');
+    b.textContent = sim ? 'Ligada' : 'Desligada';
+    b.setAttribute('aria-pressed', String(sim));
+    b.classList.toggle('mudo', !sim);
+  }
+  $('#linhaTelaCheia').hidden = !podeTelaCheia;
+  $('#bTelaCheia').onclick = () => {
+    try {
+      if (emTelaCheia()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else {
+        const pedido = (raiz.requestFullscreen || raiz.webkitRequestFullscreen).call(raiz);
+        if (pedido && pedido.catch) pedido.catch(() => {});
+      }
+    } catch { /* o navegador recusou: o jogo segue como está */ }
+  };
+  document.addEventListener('fullscreenchange', mostrarTelaCheia);
+  document.addEventListener('webkitfullscreenchange', mostrarTelaCheia);
+  mostrarTelaCheia();
   $('#bHow').onclick = () => $('#how').classList.add('on');
   $('#bHowClose').onclick = () => $('#how').classList.remove('on');
   $$('[data-home]').forEach(b => { b.onclick = irParaMenu; });
