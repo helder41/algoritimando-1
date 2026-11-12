@@ -8,8 +8,8 @@
     />
     <title>Algoritimando</title>
     <!-- fontes guardadas no projeto: o jogo funciona sem internet -->
-    <link rel="stylesheet" href="fontes/fontes.css?v=202611112200" />
-    <link rel="stylesheet" href="style.css?v=202611112200" />
+    <link rel="stylesheet" href="fontes/fontes.css?v=202611120158" />
+    <link rel="stylesheet" href="style.css?v=202611120158" />
   </head>
   <body>
     <div id="stage">
@@ -101,6 +101,16 @@
               </button>
               <button class="avatar" data-a="5" aria-label="Agente 6">
                 <img src="img/av5.webp" alt="" />
+              </button>
+              <!-- agente secreto: aparece depois de 10 toques na terceira
+                   estrela do crachá (app.js) -->
+              <button
+                class="avatar avatar-secreto"
+                data-a="6"
+                aria-label="Agente secreto"
+                hidden
+              >
+                <img src="img/av6.webp" alt="" />
               </button>
             </div>
             <!-- os selos das ideias já conquistadas (app.js) -->
@@ -564,9 +574,23 @@
           />
         </div>
       </div>
+      <!-- o momento do agente secreto: aparece uma vez, quando o
+           segredo da terceira estrela é descoberto (app.js) -->
+      <div class="modal segredo" id="segredo" role="dialog" aria-modal="true" aria-labelledby="segredoTitulo">
+        <div class="segredo-raios" aria-hidden="true"></div>
+        <div class="segredo-conteudo">
+          <p class="segredo-chamada">Você descobriu um segredo!</p>
+          <div class="segredo-retrato moldura-dourada">
+            <img src="img/av6.webp" alt="" />
+          </div>
+          <h2 id="segredoTitulo">Agente secreto desbloqueado</h2>
+          <button class="btn segredo-ok" id="bSegredoOk" type="button">Usar este agente</button>
+        </div>
+      </div>
+
       <div class="modal" id="sons">
         <div class="panel">
-          <h2>Sons</h2>
+          <h2>Configurações</h2>
           <div class="som-linha">
             <span class="som-nome">Música</span>
             <button
@@ -607,6 +631,19 @@
               aria-label="Volume dos efeitos"
             />
           </div>
+          <!-- tela cheia: some onde o navegador não deixa (ex.: iPhone) -->
+          <div class="som-linha tela-linha" id="linhaTelaCheia">
+            <span class="som-nome">Tela cheia</span>
+            <button
+              class="btn small som-liga mudo"
+              id="bTelaCheia"
+              type="button"
+              aria-pressed="false"
+            >
+              Desligada
+            </button>
+            <span class="tela-dica">O jogo ocupa a tela toda, sem a barra do navegador.</span>
+          </div>
           <button class="btn" id="bSonsFechar" type="button">Pronto</button>
         </div>
       </div>
@@ -629,17 +666,17 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611112200"></script>
-    <script src="js/comum.js?v=202611112200"></script>
-    <script src="js/situacoes.js?v=202611112200"></script>
-    <script src="js/em-progresso.js?v=202611112200"></script>
-    <script src="js/som.js?v=202611112200"></script>
-    <script src="js/progresso.js?v=202611112200"></script>
-    <script src="js/perfil.js?v=202611112200"></script>
-    <script src="js/arrasto.js?v=202611112200"></script>
-    <script src="js/conclusao.js?v=202611112200"></script>
-    <script src="js/montagem.js?v=202611112200"></script>
-    <script src="js/jogo.js?v=202611112200"></script>
-    <script src="js/app.js?v=202611112200"></script>
+    <script src="js/motor.js?v=202611120158"></script>
+    <script src="js/comum.js?v=202611120158"></script>
+    <script src="js/situacoes.js?v=202611120158"></script>
+    <script src="js/em-progresso.js?v=202611120158"></script>
+    <script src="js/som.js?v=202611120158"></script>
+    <script src="js/progresso.js?v=202611120158"></script>
+    <script src="js/perfil.js?v=202611120158"></script>
+    <script src="js/arrasto.js?v=202611120158"></script>
+    <script src="js/conclusao.js?v=202611120158"></script>
+    <script src="js/montagem.js?v=202611120158"></script>
+    <script src="js/jogo.js?v=202611120158"></script>
+    <script src="js/app.js?v=202611120158"></script>
   </body>
 </html>

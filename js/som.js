@@ -14,6 +14,7 @@
               sem "buzina de errado": o erro aqui é parte de
               aprender, não uma punição
      vitoria  quatro notas subindo — a fase acabou
+     segredo  um mistério que se desvenda — o agente secreto apareceu
      clique   uma nota curta — troca de tela
 
    O MENU "Sons" liga e desliga a música e os efeitos separados, e
@@ -95,6 +96,58 @@
   const erro    = () => tocar([[233, 0.14], [196, 0.20]], 0.07);
   const clique  = () => tocar([[440, 0.07]], 0.06);
   const vitoria = () => tocar([[523, 0.13], [659, 0.13], [784, 0.13], [1047, 0.32]], 0.11);
+
+  /* O som do agente secreto: um zumbido grave de mistério, uma escada
+     de tons inteiros subindo (soa "estranho", como um enigma) e, no
+     fim, um acorde brilhante com sininhos agudos — o segredo abriu.
+     eventos: [frequência, início (s), duração (s), forma, volume] */
+  function tocarCamadas(eventos) {
+    if (!ligado) return;
+    try {
+      const Contexto = window.AudioContext || window.webkitAudioContext;
+      if (!Contexto) return;
+      contexto = contexto || new Contexto();
+      if (contexto.state === 'suspended') contexto.resume();
+      const t0 = contexto.currentTime + 0.02;
+      for (const [frequencia, inicio, duracao, forma, volume] of eventos) {
+        const oscilador = contexto.createOscillator();
+        const ganho = contexto.createGain();
+        oscilador.type = forma;
+        oscilador.frequency.value = frequencia;
+        const t = t0 + inicio;
+        const v = Math.max(0.0001, volume * ajustes.volumeEfeitos);
+        // entra suave e sai suave (sem estalos)
+        ganho.gain.setValueAtTime(0.0001, t);
+        ganho.gain.exponentialRampToValueAtTime(v, t + Math.min(0.08, duracao / 3));
+        ganho.gain.exponentialRampToValueAtTime(0.0001, t + duracao);
+        oscilador.connect(ganho).connect(contexto.destination);
+        oscilador.start(t);
+        oscilador.stop(t + duracao + 0.02);
+      }
+    } catch { /* sem áudio o jogo funciona igual */ }
+  }
+  const segredo = () => tocarCamadas([
+    // zumbido grave de mistério
+    [110, 0, 1.9, 'triangle', 0.09],
+    [116.5, 0, 1.9, 'sine', 0.05],
+    // escada de tons inteiros subindo
+    [220, 0.10, 0.34, 'triangle', 0.08],
+    [246.9, 0.32, 0.34, 'triangle', 0.08],
+    [277.2, 0.54, 0.34, 'triangle', 0.08],
+    [311.1, 0.76, 0.34, 'triangle', 0.08],
+    [349.2, 0.98, 0.34, 'triangle', 0.08],
+    [392.0, 1.20, 0.40, 'triangle', 0.08],
+    // o segredo abre: acorde brilhante
+    [440, 1.55, 1.6, 'sine', 0.07],
+    [554.4, 1.55, 1.6, 'sine', 0.06],
+    [659.3, 1.55, 1.6, 'sine', 0.06],
+    [830.6, 1.60, 1.5, 'sine', 0.05],
+    // sininhos
+    [1760, 1.62, 0.5, 'sine', 0.04],
+    [2217, 1.78, 0.5, 'sine', 0.035],
+    [2637, 1.94, 0.6, 'sine', 0.03],
+    [3520, 2.10, 0.7, 'sine', 0.025],
+  ]);
 
   /* ---------------- música ---------------- */
 
@@ -229,6 +282,6 @@
 
   ligarMenu();
 
-  window.Som = { acerto, erro, vitoria, clique, ligarBotao, abrirMenuBotao };
+  window.Som = { acerto, erro, vitoria, clique, segredo, ligarBotao, abrirMenuBotao };
 
 })();
