@@ -5290,7 +5290,7 @@ body.arrastando * {
   text-align: center;
   color: var(--ink);
 }
-#certificado .certificado-folha .certificado-jogo {
+:is(#certificado, #impressao) .certificado-folha .certificado-jogo {
   font-family: Fredoka;
   font-weight: 600;
   font-size: 2cqi;
@@ -5304,13 +5304,13 @@ body.arrastando * {
   margin: 0.4cqi 0 1.2cqi;
   color: #6b4a18;
 }
-#certificado .certificado-folha .certificado-frase,
-#certificado .certificado-folha .certificado-texto {
+:is(#certificado, #impressao) .certificado-folha .certificado-frase,
+:is(#certificado, #impressao) .certificado-folha .certificado-texto {
   font-weight: 700;
   font-size: 1.8cqi;
   line-height: 1.4;
 }
-#certificado .certificado-folha .certificado-nome {
+:is(#certificado, #impressao) .certificado-folha .certificado-nome {
   font-family: Fredoka;
   font-weight: 600;
   font-size: 5cqi;
@@ -5319,7 +5319,7 @@ body.arrastando * {
   border-bottom: 0.25cqi solid #c9a24a;
   color: var(--p);
 }
-#certificado .certificado-folha .certificado-texto {
+:is(#certificado, #impressao) .certificado-folha .certificado-texto {
   max-width: 70cqi;
   margin-top: 0.8cqi;
 }
@@ -5393,47 +5393,48 @@ body.arrastando * {
   }
 }
 
-/* na impressão, só o certificado */
+/* na impressão, só o certificado: o final.js põe uma cópia dele em
+   #impressao, direto no body, fora do jogo. Assim nenhum pedaço do
+   jogo (que ocupa a tela toda e esconde o que passa dela) corta a
+   folha, e ela se ajusta à largura do papel, em pé ou deitado. */
+#impressao {
+  display: none;
+}
 @media print {
   @page {
     size: A4 landscape;
-    margin: 0;
+    margin: 8mm;
   }
   html,
   body {
     background: #fff !important;
     height: auto !important;
+    min-height: 0 !important;
     overflow: visible !important;
-  }
-  body * {
-    visibility: hidden;
-  }
-  #certificado,
-  #certificado * {
-    visibility: visible;
-  }
-  #certificado {
-    position: fixed !important;
-    inset: 0 !important;
+    /* o body do jogo é uma grade centralizada: na impressão, um bloco comum */
     display: block !important;
-    background: none !important;
+    place-items: normal !important;
+    width: auto !important;
     padding: 0 !important;
   }
-  .certificado-caixa {
-    width: 100% !important;
+  body > *:not(#impressao) {
+    display: none !important;
   }
-  .certificado-folha {
-    width: 297mm;
-    height: 210mm;
-    aspect-ratio: auto;
+  #impressao {
+    display: block;
+    width: 100%;
+  }
+  #impressao .certificado-folha {
+    /* cabe na largura e na altura do papel, em pé ou deitado */
+    width: min(100%, 138vh);
+    margin: 0 auto;
+    aspect-ratio: 297 / 210;
     border-radius: 0;
     box-shadow: none;
-    padding: 6mm;
+    padding: 2.2%;
+    break-inside: avoid;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
-  }
-  .certificado-botoes {
-    display: none !important;
   }
 }
 
@@ -5642,4 +5643,15 @@ body.arrastando * {
 @media (prefers-reduced-motion: reduce) {
   .estado-figura.nova,
   .estado-opa { animation: none; }
+}
+.certificado-dica {
+  font-weight: 700;
+  font-size: max(1.2cqw, 12px);
+  color: #fff;
+  text-align: center;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .certificado-dica {
+    font-size: 3.4cqw;
+  }
 }
