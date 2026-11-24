@@ -59,7 +59,7 @@ Cole este arquivo no começo de uma sessão nova, ou peça para a sessão ler `d
 | `editor.html`, `js/editor.js` | Área do professor: **desativada**, fora do menu |
 | `fontes/` | Fredoka e Nunito em WOFF2, com as licenças OFL |
 | `IMAGENS.md` | o que existe de imagem e onde aparece |
-| `PROMPTS-*.md` | prompts das imagens, todos já gerados, ficam como registro. Os mais recentes: `PROMPTS-REVISAO.md` (lições e semáforo), `PROMPTS-FINAL.md` (animação final) e `PROMPTS-MONTAGEM.md` (peças das bancadas) |
+| `PROMPTS-*.md` | prompts das imagens, ficam como registro (o `PROMPTS-TEASER.md` ainda não foi gerado). Os mais recentes: `PROMPTS-REVISAO.md` (lições e semáforo), `PROMPTS-FINAL.md` (animação final) e `PROMPTS-MONTAGEM.md` (peças das bancadas) |
 | `docs/revisao-chamados-novos.md` | revisão pedagógica dos chamados novos |
 | `docs/referencias/mapa-com-alfinetes.webp` | print do mapa, usado como referência para gerar imagens |
 
@@ -236,8 +236,9 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 **Para a BTX (5 a 7/12)**
 5. **Refazer o vídeo e as capturas:** foram feitos antes da revisão, então não mostram o álbum, as montagens novas, a animação final, o certificado nem as lições novas.
 6. **Ainda possível:** texto para banner, roteiro de apresentação de 1 minuto e vídeo vertical para redes.
+7. **Teaser de 1 minuto** (horizontal e vertical, só texto e música, sem pessoas reais e sem logos): roteiro e prompts das 4 poses da agente com o tablet em `PROMPTS-TEASER.md`. O vídeo ainda não foi gerado; ele espera as imagens e a conversa com o dono.
 
 **Ideias não feitas**
-7. **Montagem para Abelhas e Atravessar a rua:** hoje elas não têm montagem.
-8. **Testes automáticos no repositório:** Playwright com GitHub Actions, rodando a cada PR.
-9. **Painel de desempenho para o professor:** precisa decidir onde guardar os dados, porque hoje tudo fica só no navegador de cada aluno.
+8. **Montagem para Abelhas e Atravessar a rua:** hoje elas não têm montagem.
+9. **Testes automáticos no repositório:** Playwright com GitHub Actions, rodando a cada PR.
+10. **Painel de desempenho para o professor:** precisa decidir onde guardar os dados, porque hoje tudo fica só no navegador de cada aluno.
