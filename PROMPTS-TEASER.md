@@ -24,9 +24,26 @@ O vídeo ainda **não foi gerado**: falta combinar outros pontos com o dono. Est
 | 24–32 s | A montagem em três chamados: o sanduíche empilha, o robô anda na grade e a limonada muda na bancada | "A montagem mostra o que acontece com a ordem que você escolheu" |
 | 32–39 s | Verificar com erro, depois a dica do Robô-guia (com a agente pensando, pose C) | "Algo fora de ordem? O Robô-guia explica o porquê, sem dar a resposta" |
 | 39–45 s | Os selos e "Meus aprendizados" | "8 chamados, 8 ideias: ordem, repetição, condição, ao mesmo tempo..." |
-| 45–51 s | A lição e a figurinha colando no álbum | "Cada nível vira uma figurinha no álbum" |
-| 51–56 s | Promoção a Agente Sênior e o certificado (agente comemorando, pose D) | "De estagiário a Agente Sênior, com certificado" |
-| 56–60 s | Cartão final | **Algoritimando**. "Grátis, no navegador: celular ou PC, até sem internet". Endereço do site e QR code |
+| 45–49 s | A lição e a figurinha colando no álbum | "Cada nível vira uma figurinha no álbum" |
+| 49–52 s | Promoção a Agente Sênior e o certificado (agente comemorando, pose D) | "De estagiário a Agente Sênior, com certificado" |
+| 52–55 s | Cartão final | **Algoritimando**. "Grátis, no navegador: celular ou PC, até sem internet". Endereço do site e QR code |
+| 55–60 s | **Créditos** (ver abaixo) | A equipe, o orientador e a universidade |
+
+## Tela de créditos do teaser
+
+É uma tela própria do vídeo, não a captura da janela do jogo, mas com o mesmo visual:
+- **Fundo:** a cidade (`story1`) borrada e escurecida.
+- **Cartão:** cartão creme do jogo, com o título "Créditos". Os nomes entram um de cada vez, com um pequeno deslize, e ficam parados no fim para dar tempo de ler.
+- **Vertical:** a mesma tela, com os nomes um embaixo do outro.
+
+**Conteúdo** (o mesmo da janela "Créditos" do jogo):
+
+- **Paulo Helder de Santana Souza**: Idealizador e gestor do projeto Algoritimando
+- **Murilo do Vale Moreira Santana**: Designer
+- **Maria Eduarda Nascimento Silva**: Programadora
+- **Gustavo Santos Souza**: Programador
+- **Professor orientador:** Peterson Lobato
+- Universidade do Estado da Bahia (UNEB), só em texto, sem logo
 
 O **vertical** usa as mesmas cenas, na mesma ordem, com as gravações no tamanho de celular, textos maiores e a agente centralizada.
 
@@ -84,6 +101,5 @@ Style: cute flat cartoon illustration for an educational game (ages 8 to 10), ex
 
 - As 4 poses da agente, em `.zip`, como as outras imagens.
 - O arquivo do QR code (ou a confirmação de que um novo pode ser gerado).
-- **Créditos:** se aparece algum nome e qual.
 - Uma frase de efeito própria, se houver (se não, entram as do roteiro).
 - Os outros pontos que o dono quer conversar antes.

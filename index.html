@@ -18,13 +18,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Algoritimando" />
     <!-- fontes guardadas no projeto: o jogo funciona sem internet -->
-    <link rel="stylesheet" href="fontes/fontes.css?v=202611241859" />
-    <link rel="stylesheet" href="style.css?v=202611241859" />
+    <link rel="stylesheet" href="fontes/fontes.css?v=202611241913" />
+    <link rel="stylesheet" href="style.css?v=202611241913" />
   </head>
   <body>
     <div id="stage">
       <section class="screen bg-city" id="menu">
         <h1 class="logo">Algoritimando</h1>
+        <!-- créditos da equipe, no canto do menu (app.js) -->
+        <button class="chip menu-creditos" id="bCreditos" type="button">Créditos</button>
         <img class="menu-robo" src="img/robo-sorrindo.webp" alt="" />
         <div class="menu-btns">
           <button class="btn" id="bPlay">Jogar</button>
@@ -781,6 +783,25 @@
         </div>
       </div>
 
+      <!-- Créditos: a equipe do projeto -->
+      <div class="modal" id="creditos" role="dialog" aria-modal="true" aria-labelledby="creditos-h">
+        <div class="panel creditos-painel">
+          <h2 id="creditos-h">Créditos</h2>
+          <ul class="creditos-lista">
+            <li><b>Paulo Helder de Santana Souza</b><span>Idealizador e gestor do projeto Algoritimando</span></li>
+            <li><b>Murilo do Vale Moreira Santana</b><span>Designer</span></li>
+            <li><b>Maria Eduarda Nascimento Silva</b><span>Programadora</span></li>
+            <li><b>Gustavo Santos Souza</b><span>Programador</span></li>
+          </ul>
+          <p class="creditos-orientador">
+            <span>Professor orientador</span>
+            <b>Peterson Lobato</b>
+          </p>
+          <p class="creditos-instituicao">Universidade do Estado da Bahia (UNEB)</p>
+          <button class="btn" id="bCreditosFechar" type="button">Voltar</button>
+        </div>
+      </div>
+
       <div class="modal" id="how">
         <div class="panel">
           <h2>Como jogar</h2>
@@ -799,22 +820,22 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611241859"></script>
-    <script src="js/comum.js?v=202611241859"></script>
-    <script src="js/situacoes.js?v=202611241859"></script>
-    <script src="js/em-progresso.js?v=202611241859"></script>
-    <script src="js/som.js?v=202611241859"></script>
-    <script src="js/progresso.js?v=202611241859"></script>
-    <script src="js/perfil.js?v=202611241859"></script>
-    <script src="js/arrasto.js?v=202611241859"></script>
-    <script src="js/conclusao.js?v=202611241859"></script>
-    <script src="js/montagem.js?v=202611241859"></script>
-    <script src="js/jogo.js?v=202611241859"></script>
+    <script src="js/motor.js?v=202611241913"></script>
+    <script src="js/comum.js?v=202611241913"></script>
+    <script src="js/situacoes.js?v=202611241913"></script>
+    <script src="js/em-progresso.js?v=202611241913"></script>
+    <script src="js/som.js?v=202611241913"></script>
+    <script src="js/progresso.js?v=202611241913"></script>
+    <script src="js/perfil.js?v=202611241913"></script>
+    <script src="js/arrasto.js?v=202611241913"></script>
+    <script src="js/conclusao.js?v=202611241913"></script>
+    <script src="js/montagem.js?v=202611241913"></script>
+    <script src="js/jogo.js?v=202611241913"></script>
     <!-- a cópia do certificado que vai para a impressora (final.js) -->
     <div id="impressao" aria-hidden="true"></div>
-    <script src="js/album.js?v=202611241859"></script>
-    <script src="js/final.js?v=202611241859"></script>
-    <script src="js/app.js?v=202611241859"></script>
-    <script src="js/pwa.js?v=202611241859"></script>
+    <script src="js/album.js?v=202611241913"></script>
+    <script src="js/final.js?v=202611241913"></script>
+    <script src="js/app.js?v=202611241913"></script>
+    <script src="js/pwa.js?v=202611241913"></script>
   </body>
 </html>
