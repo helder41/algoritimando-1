@@ -141,6 +141,33 @@
   });
   $('#bSonsFechar').onclick = () => $('#sons').classList.remove('on');
 
+  /* Cartas no lugar (no painel de configurações; ideia de uma
+     criança no teste): a carta que sai do tabuleiro volta para o
+     mesmo lugar da bandeja. Ligado de fábrica; desligado, a bandeja
+     se reorganiza como antes. Quem usa a opção
+     é o arrasto.js, lendo a mesma chave. */
+  const CHAVE_AJUSTES = 'algoritimando-ajustes';
+  function lerAjustes() {
+    try { return JSON.parse(localStorage.getItem(CHAVE_AJUSTES) || '{}') || {}; }
+    catch { return {}; }
+  }
+  function mostrarCartasNoLugar() {
+    const sim = lerAjustes().cartasNoLugar !== false;
+    const b = $('#bCartasNoLugar');
+    b.textContent = sim ? 'Ligado' : 'Desligado';
+    b.setAttribute('aria-pressed', String(sim));
+    b.classList.toggle('mudo', !sim);
+  }
+  $('#bCartasNoLugar').onclick = () => {
+    const ajustes = lerAjustes();
+    ajustes.cartasNoLugar = ajustes.cartasNoLugar === false;
+    try { localStorage.setItem(CHAVE_AJUSTES, JSON.stringify(ajustes)); } catch { /* sem localStorage: vale só nesta visita */ }
+    mostrarCartasNoLugar();
+    // desligar no meio do nível: os lugares vazios somem já
+    if (window.Arrasto && Arrasto.sincronizar) Arrasto.sincronizar();
+  };
+  mostrarCartasNoLugar();
+
   /* Tela cheia (no painel de configurações): usa a Fullscreen API do
      navegador. Onde ela não existe (iPhone), a linha não aparece. O
      botão acompanha o estado real: sair com Esc também atualiza. */
@@ -620,7 +647,6 @@
     const n = feitosDe(SITUACOES), total = SITUACOES.length;
     const faltam = faltamParaProxima();
     const proximo = CARGOS[cargo() + 1];
-    $('#bRestart').hidden = n < total;
     $('#progTxt').textContent = `${n} de ${total}`;
     $('#progBar').style.width = (n / total) * 100 + '%';
     $('#progMeta').textContent = proximo
@@ -693,7 +719,7 @@
     });
   })();
 
-  /* ---------------- minhas ideias (os selos) ----------------
+  /* ---------------- meus aprendizados (os selos) ----------------
      Cada selo com a frase da ideia, uma carta do próprio chamado como
      exemplo e uma pergunta para conversar. O que ainda não foi
      conquistado mostra só de qual chamado vem. */
@@ -826,10 +852,10 @@
     esquecerSegredo();
     central(`Novos chamados chegando! Boa sorte, ${P.nome}!`);
   }
-  $('#bAgain').onclick = recomecar;
-  $('#bRestart').onclick = () => $('#again').classList.add('on');
-  $('#bNo').onclick = () => $('#again').classList.remove('on');
-  $('#bYes').onclick = () => {
+  // a tela final pede confirmação antes de zerar tudo
+  $('#bAgain').onclick = () => $('#again').classList.add('on');
+  $('#bAgainNao').onclick = () => $('#again').classList.remove('on');
+  $('#bAgainSim').onclick = () => {
     $('#again').classList.remove('on');
     recomecar();
   };

@@ -3479,8 +3479,15 @@ body.arrastando * {
 
 /* ===== painel de sons: linhas que cabem em qualquer tela ===== */
 #sons .panel {
-  width: min(56cqw, 92%);
-  gap: 2cqw;
+  width: min(60cqw, 92%);
+  gap: 1.2cqw;
+  padding: 2.2cqw 3cqw;
+  /* com todas as linhas (até 5), rola em vez de sair da tela */
+  max-height: calc(100% - 2cqw);
+  overflow-y: auto;
+}
+#sons h2 {
+  margin: 0;
 }
 #sons h2 {
   font-size: max(3cqw, 20px);
@@ -3488,13 +3495,13 @@ body.arrastando * {
 #sons .som-linha {
   width: 100%;
   display: grid;
-  grid-template-columns: 9cqw 14cqw minmax(0, 1fr);
+  grid-template-columns: 12cqw 14cqw minmax(0, 1fr);
   align-items: center;
   gap: 2cqw;
   background: #fbf3e4;
   border: 0.2cqw solid #e2cfae;
   border-radius: 1.4cqw;
-  padding: 1.2cqw 1.6cqw;
+  padding: 0.9cqw 1.6cqw;
 }
 #sons .som-nome {
   font-size: max(1.8cqw, 14px);
@@ -3512,6 +3519,7 @@ body.arrastando * {
   #stage #sons .panel {
     width: 90cqw;
     gap: 4cqw;
+    padding: 5cqw;
   }
   #stage #sons h2 {
     font-size: 7cqw;
@@ -3626,7 +3634,7 @@ body.arrastando * {
      pelo Comum.criarSelo; a imagem, quando existe, cobre o desenho;
    - central: uma barra só e a frase do próximo objetivo; os lugares
      que contam para a próxima promoção brilham;
-   - "Minhas ideias", o selo na lição e a tela final com todos.
+   - "Meus aprendizados", o selo na lição e a tela final com todos.
    ============================================================ */
 .selo {
   --d: 4.4cqw;
@@ -3764,7 +3772,7 @@ body.arrastando * {
   line-height: 1.25;
 }
 
-/* janela "Minhas ideias" */
+/* janela "Meus aprendizados" */
 .modal .ideias-painel {
   width: min(74cqw, 94%);
   max-height: 96cqh;
@@ -4615,6 +4623,21 @@ body.arrastando * {
   #stage .tela-dica {
     grid-column: 1 / -1;
     font-size: 3.2cqw;
+  }
+}
+
+/* ===== cartas no lugar: o lugar vazio da carta na bandeja ===== */
+.bandeja-fila > li.lugar-vazio {
+  width: var(--carta-l);
+  min-height: var(--carta-a);
+  border: 0.25cqw dashed rgba(255, 244, 222, 0.55);
+  border-radius: 1cqw;
+  background: rgba(255, 255, 255, 0.08);
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .bandeja-fila > li.lugar-vazio {
+    border-width: 0.6cqw;
+    border-radius: 2.4cqw;
   }
 }
 
@@ -5672,13 +5695,52 @@ body.arrastando * {
     align-items: center;
     width: 30cqw;
   }
-  #stage #hub:not(.em-progresso) .prog > :not(.btn),
-  #stage #hub:not(.em-progresso) .prog > #bRestart {
+  #stage #hub:not(.em-progresso) .prog > :not(.btn) {
     grid-column: 1 / -1;
   }
   #stage #hub:not(.em-progresso) .prog .btn {
     padding-inline: 0.6cqw;
     font-size: max(1.7cqw, 11px);
     white-space: nowrap;
+  }
+}
+
+/* ===== celular em pé: a cena vira fundo borrado =====
+   Antes a cena ficava numa faixa com a altura que sobrava, e quase
+   nunca sobrava: aparecia só uma barrinha. Agora ela é o fundo da
+   tela, borrada, e o botão de tela cheia mostra a cena inteira.
+   O fundo usa position: fixed, que dentro do #stage (container-type)
+   fica preso ao palco e não rola junto com as cartas. */
+@media (max-aspect-ratio: 4/5) {
+  #stage #fase.on:not(.sem-fundo) {
+    isolation: isolate;
+    background: #f1e3cc;
+  }
+  #stage #fase.on:not(.sem-fundo)::before {
+    content: "";
+    position: fixed;
+    inset: -4cqw;
+    z-index: -1;
+    background:
+      linear-gradient(rgba(241, 227, 204, 0.25), rgba(241, 227, 204, 0.25)),
+      var(--img) 10% center / cover;
+    filter: blur(1.6cqw);
+    pointer-events: none;
+  }
+  /* sem a faixa: o quadro só segura o botão, no canto do Robô-guia */
+  #stage .fase-arte {
+    flex: none;
+    height: 0;
+    min-height: 0;
+    margin: 0 3cqw;
+    background: none;
+    z-index: 3;
+  }
+  #stage .cena-cheia-btn {
+    top: 4.4cqw;
+    right: 2cqw;
+  }
+  #stage #fase:not(.sem-fundo) .guia {
+    padding-right: 15cqw;
   }
 }
