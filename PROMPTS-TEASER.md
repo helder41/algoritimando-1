@@ -26,7 +26,7 @@ O vídeo ainda **não foi gerado**: falta combinar outros pontos com o dono. Est
 | 39–45 s | Os selos e "Meus aprendizados" | "8 chamados, 8 ideias: ordem, repetição, condição, ao mesmo tempo..." |
 | 45–49 s | A lição e a figurinha colando no álbum | "Cada nível vira uma figurinha no álbum" |
 | 49–52 s | Promoção a Agente Sênior e o certificado (agente comemorando, pose D) | "De estagiário a Agente Sênior, com certificado" |
-| 52–55 s | Cartão final | **Algoritimando**. "Grátis, no navegador: celular ou PC, até sem internet". Endereço do site e QR code |
+| 52–55 s | Cartão final | **Algoritimando**. "Grátis, no navegador: celular ou PC, até sem internet". **brinqueaprenda.com.br/jogo/algoritimando** e QR code |
 | 55–60 s | **Créditos** (ver abaixo) | A equipe, o orientador e a universidade |
 
 ## Tela de créditos do teaser
@@ -102,9 +102,18 @@ Attached images: teaser-agente-a.
 Style: cute flat cartoon illustration for an educational game (ages 8 to 10), exactly the same style as the attached image: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1376x768 px.
 ```
 
+## Material pronto (em `docs/teaser/`)
+
+- **As 4 poses da agente** (`teaser-agente-a.webp` a `teaser-agente-d.webp`), já geradas no Flow:
+  - A: segurando o tablet;
+  - B: arrastando;
+  - C: pensando;
+  - D: comemorando.
+
+  A tela verde está exatamente no mesmo lugar nas quatro, então o gameplay entra sempre no mesmo ponto.
+- **O QR code** (`qr-algoritimando.png`), que leva para **https://brinqueaprenda.com.br/jogo/algoritimando**. Ele foi conferido lendo a imagem reduzida.
+- **A tela de créditos:** é a própria tela do jogo (botão "Créditos" do menu).
+
 ## O que ainda falta para gerar o vídeo
 
-- As 4 poses da agente, em `.zip`, como as outras imagens.
-- O arquivo do QR code (ou a confirmação de que um novo pode ser gerado).
-- Uma frase de efeito própria, se houver (se não, entram as do roteiro).
-- Os outros pontos que o dono quer conversar antes.
+- Escolher a frase de efeito (de abertura e/ou de fechamento).

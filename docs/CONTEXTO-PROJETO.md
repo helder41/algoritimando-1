@@ -237,7 +237,7 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 **Para a BTX (5 a 7/12)**
 5. **Refazer o vídeo e as capturas:** foram feitos antes da revisão, então não mostram o álbum, as montagens novas, a animação final, o certificado nem as lições novas.
 6. **Ainda possível:** texto para banner, roteiro de apresentação de 1 minuto e vídeo vertical para redes.
-7. **Teaser de 1 minuto** (horizontal e vertical, só texto e música, sem pessoas reais e sem logos): roteiro e prompts das 4 poses da agente com o tablet em `PROMPTS-TEASER.md`. O vídeo ainda não foi gerado; ele espera as imagens e a conversa com o dono.
+7. **Teaser de 1 minuto** (horizontal e vertical, só texto e música, sem pessoas reais e sem logos): roteiro e prompts das 4 poses da agente com o tablet em `PROMPTS-TEASER.md`. As 4 poses e o QR code (para https://brinqueaprenda.com.br/jogo/algoritimando) estão em `docs/teaser/`. O vídeo ainda não foi gerado; falta escolher a frase de efeito.
 
 **Ideias não feitas**
 8. **Montagem para Abelhas e Atravessar a rua:** hoje elas não têm montagem.
