@@ -143,7 +143,8 @@
 
   /* Cartas no lugar (no painel de configurações; ideia de uma
      criança no teste): a carta que sai do tabuleiro volta para o
-     mesmo lugar da bandeja. Desligado de fábrica. Quem usa a opção
+     mesmo lugar da bandeja. Ligado de fábrica; desligado, a bandeja
+     se reorganiza como antes. Quem usa a opção
      é o arrasto.js, lendo a mesma chave. */
   const CHAVE_AJUSTES = 'algoritimando-ajustes';
   function lerAjustes() {
@@ -151,7 +152,7 @@
     catch { return {}; }
   }
   function mostrarCartasNoLugar() {
-    const sim = !!lerAjustes().cartasNoLugar;
+    const sim = lerAjustes().cartasNoLugar !== false;
     const b = $('#bCartasNoLugar');
     b.textContent = sim ? 'Ligado' : 'Desligado';
     b.setAttribute('aria-pressed', String(sim));
@@ -159,7 +160,7 @@
   }
   $('#bCartasNoLugar').onclick = () => {
     const ajustes = lerAjustes();
-    ajustes.cartasNoLugar = !ajustes.cartasNoLugar;
+    ajustes.cartasNoLugar = ajustes.cartasNoLugar === false;
     try { localStorage.setItem(CHAVE_AJUSTES, JSON.stringify(ajustes)); } catch { /* sem localStorage: vale só nesta visita */ }
     mostrarCartasNoLugar();
     // desligar no meio do nível: os lugares vazios somem já

@@ -96,14 +96,15 @@
     return { tipo: 'bandeja', indice: [...fila.children].indexOf(li) };
   }
 
-  /* "Cartas no lugar" (Configurações, desligado de fábrica): cada
+  /* "Cartas no lugar" (Configurações, LIGADO de fábrica): cada
      carta tem um lugar fixo na bandeja (li com data-lugar = id do
      passo). Ao sair, o lugar fica vazio; ao voltar, ela ocupa o
      mesmo lugar e as outras não se mexem. */
   const CHAVE_AJUSTES = 'algoritimando-ajustes';
   function cartasNoLugar() {
-    try { return !!JSON.parse(localStorage.getItem(CHAVE_AJUSTES) || '{}').cartasNoLugar; }
-    catch { return false; }
+    // só desliga quem escolheu desligar
+    try { return JSON.parse(localStorage.getItem(CHAVE_AJUSTES) || '{}').cartasNoLugar !== false; }
+    catch { return true; }
   }
 
   // põe a carta num lugar da bandeja. Com "cartas no lugar", volta
