@@ -38,9 +38,11 @@
                 certas cartas já foram feitas; a última que vale
                 ganha). Ver o formato no motor.js.
 
-   No PC a montagem fica abaixo da bandeja. No celular ela é
-   OPCIONAL e começa desligada: o botão "Montagem" do rodapé troca
-   a ilustração da cena por ela, sem ocupar mais espaço na tela.
+   A montagem aparece sempre, desde o começo do nível: no PC abaixo
+   da bandeja (ou ao lado, por cima da cena, quando não cabe), no
+   celular em pé no alto da tela. A cena inteira fica no botão de
+   tela cheia. Só no celular deitado ela troca de lugar com a
+   bandeja, pelo botão "Ver montagem" / "Ver cartas".
 
    Uso (pelo jogo.js):
      Montagem.preparar(situacao, fase)            ao montar a fase
@@ -59,8 +61,6 @@
     return;
   }
 
-  const CHAVE = (window.ALGORITIMANDO_PREVIA ? 'algoritimando-previa' : 'algoritimando') + '-montagem';
-
   let modo = null;     // 'pilha' | 'cena' | 'tirinha' | 'grade' | 'estado' | null
   let estado = null;   // estado: o chamado (objetos e regras)
   let passos = {};     // id → passo da fase atual
@@ -75,31 +75,24 @@
     if (!jaMostrados.has(chave)) el.classList.add('nova');
   }
 
-  /* ---------------- botão "Ver montagem" ----------------
-     No celular a montagem troca de lugar com a cena e começa
-     desligada. No PC o botão só aparece quando a montagem não cabe
-     embaixo da bandeja (7 ou 8 cartas): aí ela abre ao lado, por
-     cima da cena, e começa LIGADA — é nos níveis difíceis que ver a
-     consequência mais ajuda. */
-
-  // em pé ou deitado: nos dois a montagem troca de lugar por botão
+  /* ---------------- botão "Ver montagem" / "Ver cartas" ----------------
+     Só no celular deitado: lá não cabem bandeja e montagem juntas,
+     então a montagem troca de lugar com a bandeja. Começa nas cartas
+     (sem elas não dá para jogar). Nos outros tamanhos a montagem fica
+     sempre à vista e o botão não aparece. */
+  const deitado = window.matchMedia('(min-aspect-ratio: 4/5) and (max-height: 500px)');
+  // o celular (em pé ou deitado) não mede sobra de altura como o PC
   const celular = window.matchMedia('(max-aspect-ratio: 4/5), (max-height: 500px)');
 
-  function lerPreferencia() {
-    try {
-      const salvo = localStorage.getItem(CHAVE);
-      return salvo === null ? !celular.matches : salvo === '1';
-    } catch { return !celular.matches; }
-  }
-
-  function mostrarNoCelular(sim) {
+  function mostrarMontagem(sim) {
     tela.classList.toggle('ver-montagem', sim);
     botao.setAttribute('aria-pressed', String(sim));
-    botao.textContent = sim ? 'Ver cena' : 'Ver montagem';
-    try { localStorage.setItem(CHAVE, sim ? '1' : '0'); } catch { /* sem memória: tudo bem */ }
+    botao.textContent = sim ? 'Ver cartas' : 'Ver montagem';
   }
 
-  botao.addEventListener('click', () => mostrarNoCelular(!tela.classList.contains('ver-montagem')));
+  botao.addEventListener('click', () => mostrarMontagem(!tela.classList.contains('ver-montagem')));
+  // girou o celular: volta ao começo de cada tamanho
+  deitado.addEventListener('change', () => { if (modo) mostrarMontagem(!deitado.matches); });
 
   /* No PC a montagem fica com a sobra de altura da área de jogo.
      Com muitas cartas na bandeja pode não sobrar quase nada: aí ela
@@ -156,7 +149,7 @@
     caixa.style.setProperty('--camadas', Math.max(2, fase.passos.filter(p => p.peca).length));
     if (!modo) return;
 
-    mostrarNoCelular(lerPreferencia());
+    mostrarMontagem(!deitado.matches);
     atualizar(fase.passos.map(() => null), null, false);
   }
 
