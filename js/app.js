@@ -647,7 +647,6 @@
     const n = feitosDe(SITUACOES), total = SITUACOES.length;
     const faltam = faltamParaProxima();
     const proximo = CARGOS[cargo() + 1];
-    $('#bRestart').hidden = n < total;
     $('#progTxt').textContent = `${n} de ${total}`;
     $('#progBar').style.width = (n / total) * 100 + '%';
     $('#progMeta').textContent = proximo
@@ -720,7 +719,7 @@
     });
   })();
 
-  /* ---------------- minhas ideias (os selos) ----------------
+  /* ---------------- o que eu aprendi (os selos) ----------------
      Cada selo com a frase da ideia, uma carta do próprio chamado como
      exemplo e uma pergunta para conversar. O que ainda não foi
      conquistado mostra só de qual chamado vem. */
@@ -854,12 +853,6 @@
     central(`Novos chamados chegando! Boa sorte, ${P.nome}!`);
   }
   $('#bAgain').onclick = recomecar;
-  $('#bRestart').onclick = () => $('#again').classList.add('on');
-  $('#bNo').onclick = () => $('#again').classList.remove('on');
-  $('#bYes').onclick = () => {
-    $('#again').classList.remove('on');
-    recomecar();
-  };
 
   /* ---------------- em progresso (protótipos, com senha) ----------------
      A senha só evita que a turma entre sem querer: está no código,

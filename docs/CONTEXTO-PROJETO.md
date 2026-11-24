@@ -78,7 +78,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 | Limonada (`limonada`) | Fazer uma limonada | 3 | caminhos paralelos | menino de moletom amarelo | `estado` |
 | Casa azul (`casa-azul`) | Escovar os dentes | 4 | o que abre, fecha | menina de pijama coral (`who6`, `cliente5`) | `estado` |
 
-- Os 4 chamados novos dão um **selo** cada um (`img/selos/`): Repetição, Condição, Ao mesmo tempo e Abre e fecha. Os selos aparecem no crachá, em "Minhas ideias" e na tela final.
+- Os 4 chamados novos dão um **selo** cada um (`img/selos/`): Repetição, Condição, Ao mesmo tempo e Abre e fecha. Os selos aparecem no crachá, em "O que eu aprendi" (botão da central) e na tela final.
 - **Semáforo da rua:** de pedestre, com **duas luzes** (vermelha em cima, verde embaixo), sem bonequinho. A criança olha a "cor da luz".
 
 ## Como o jogo funciona hoje
@@ -124,7 +124,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 - **Agente secreto:**
   - **Como abrir:** 10 toques rápidos (no máximo 0,6 s entre eles) na terceira estrela do crachá.
   - **O que acontece:** libera o 7º agente (avatar `"6"`), com cena dourada e som de mistério.
-  - **Onde fica guardado:** na chave `algoritimando-segredo`. Some com "Reiniciar o jogo" ou "Jogar tudo de novo".
+  - **Onde fica guardado:** na chave `algoritimando-segredo`. Some com "Reiniciar o jogo" (menu) ou "Jogar de novo" (tela final). A central não tem botão de recomeçar, para ninguém zerar tudo sem querer.
 - **Atalho de dev:**
   - **Como usar:** no mapa da central, **15 toques na árvore do alto à esquerda** (à esquerda da Fábrica, perto de x 9%, y 38% da `story1`) e, logo depois, **15 toques na casa do canto inferior esquerdo** (perto de x 7%, y 73%).
   - **O que acontece:** conclui os 8 chamados com 3 estrelas e segue as promoções e a animação final.

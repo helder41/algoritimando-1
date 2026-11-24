@@ -3634,7 +3634,7 @@ body.arrastando * {
      pelo Comum.criarSelo; a imagem, quando existe, cobre o desenho;
    - central: uma barra só e a frase do próximo objetivo; os lugares
      que contam para a próxima promoção brilham;
-   - "Minhas ideias", o selo na lição e a tela final com todos.
+   - "O que eu aprendi", o selo na lição e a tela final com todos.
    ============================================================ */
 .selo {
   --d: 4.4cqw;
@@ -3772,7 +3772,7 @@ body.arrastando * {
   line-height: 1.25;
 }
 
-/* janela "Minhas ideias" */
+/* janela "O que eu aprendi" */
 .modal .ideias-painel {
   width: min(74cqw, 94%);
   max-height: 96cqh;
@@ -5695,8 +5695,7 @@ body.arrastando * {
     align-items: center;
     width: 30cqw;
   }
-  #stage #hub:not(.em-progresso) .prog > :not(.btn),
-  #stage #hub:not(.em-progresso) .prog > #bRestart {
+  #stage #hub:not(.em-progresso) .prog > :not(.btn) {
     grid-column: 1 / -1;
   }
   #stage #hub:not(.em-progresso) .prog .btn {
