@@ -5980,7 +5980,7 @@ body.arrastando * {
   padding: calc(0.4 * var(--t)) calc(1.4 * var(--t));
   border-radius: calc(1.4 * var(--t));
 }
-/* o idealizador: crachá dourado, um pouco maior, com uma estrela */
+/* o idealizador: crachá com contorno dourado, um pouco maior */
 .cred-lider .cracha {
   width: calc(30 * var(--t));
 }
@@ -5990,20 +5990,6 @@ body.arrastando * {
 .cred-lider .cracha-presilha {
   background: linear-gradient(90deg, #d9a640, #ffe7a0 45%, #c9952f);
 }
-.cred-lider .cracha-cartao::after {
-  content: "";
-  position: absolute;
-  right: calc(1.2 * var(--t));
-  top: calc(5.4 * var(--t));
-  width: calc(4.4 * var(--t));
-  height: calc(4.4 * var(--t));
-  background: url(img/ui/estrela.webp) center / contain no-repeat;
-  animation: creditos-gira 3s ease-in-out infinite;
-}
-@keyframes creditos-gira {
-  50% { transform: rotate(18deg) scale(1.12); }
-}
-
 /* o orientador: uma medalha dourada com fita */
 .creditos-orientador {
   display: flex;
