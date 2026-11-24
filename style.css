@@ -5428,8 +5428,11 @@ body.arrastando * {
     width: 100%;
   }
   #impressao .certificado-folha {
-    /* cabe na largura e na altura do papel, em pé ou deitado */
-    width: min(100%, 138vh);
+    /* cabe na largura e na altura do papel, em pé ou deitado. O iPhone
+       ignora o @page e põe margens e um cabeçalho (endereço e data) por
+       conta própria: a folha fica com 80% da largura, com folga para a
+       altura não passar para uma segunda página */
+    width: min(80%, 130vh);
     margin: 0 auto;
     aspect-ratio: 297 / 210;
     border-radius: 0;
