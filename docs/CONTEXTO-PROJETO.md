@@ -59,7 +59,7 @@ Cole este arquivo no começo de uma sessão nova, ou peça para a sessão ler `d
 | `editor.html`, `js/editor.js` | Área do professor: **desativada**, fora do menu |
 | `fontes/` | Fredoka e Nunito em WOFF2, com as licenças OFL |
 | `IMAGENS.md` | o que existe de imagem e onde aparece |
-| `PROMPTS-*.md` | prompts das imagens, todos já gerados, ficam como registro. Os mais recentes: `PROMPTS-REVISAO.md` (lições e semáforo), `PROMPTS-FINAL.md` (animação final) e `PROMPTS-MONTAGEM.md` (peças das bancadas) |
+| `PROMPTS-*.md` | prompts das imagens, ficam como registro (o `PROMPTS-TEASER.md` ainda não foi gerado). Os mais recentes: `PROMPTS-REVISAO.md` (lições e semáforo), `PROMPTS-FINAL.md` (animação final) e `PROMPTS-MONTAGEM.md` (peças das bancadas) |
 | `docs/revisao-chamados-novos.md` | revisão pedagógica dos chamados novos |
 | `docs/referencias/mapa-com-alfinetes.webp` | print do mapa, usado como referência para gerar imagens |
 
@@ -112,6 +112,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - **Impressão:** uma cópia da folha vai para `#impressao`, direto no `body`, e na impressão só ela aparece. A folha ocupa 80% da largura do papel e sai numa página só, em pé ou deitada. A tela mostra a dica "escolha a folha deitada".
 
 **Outras partes**
+- **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre uma tela inteira (crachás de agente que caem pendurados e balançam, faixa dourada, selo do orientador, Robô-guia) com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
 - **Configurações:** Música, Efeitos, **Cartas no lugar**, **Tela cheia** (some no iPhone) e **Instalar o jogo** (só pelo site; no iPhone mostra a explicação).
   - **Cartas no lugar** (ideia de uma criança no teste; **ligado de fábrica**): a carta tirada do tabuleiro volta para o mesmo lugar da bandeja, e as outras não se mexem. Desligado, a bandeja se reorganiza como antes. Fica em `algoritimando-ajustes` e é aplicado no `js/arrasto.js`.
 - **Modo instalável (PWA):**
@@ -236,8 +237,9 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 **Para a BTX (5 a 7/12)**
 5. **Refazer o vídeo e as capturas:** foram feitos antes da revisão, então não mostram o álbum, as montagens novas, a animação final, o certificado nem as lições novas.
 6. **Ainda possível:** texto para banner, roteiro de apresentação de 1 minuto e vídeo vertical para redes.
+7. **Teaser de 1 minuto** (horizontal e vertical, só texto e música, sem pessoas reais e sem logos): roteiro e prompts das 4 poses da agente com o tablet em `PROMPTS-TEASER.md`. O vídeo ainda não foi gerado; ele espera as imagens e a conversa com o dono.
 
 **Ideias não feitas**
-7. **Montagem para Abelhas e Atravessar a rua:** hoje elas não têm montagem.
-8. **Testes automáticos no repositório:** Playwright com GitHub Actions, rodando a cada PR.
-9. **Painel de desempenho para o professor:** precisa decidir onde guardar os dados, porque hoje tudo fica só no navegador de cada aluno.
+8. **Montagem para Abelhas e Atravessar a rua:** hoje elas não têm montagem.
+9. **Testes automáticos no repositório:** Playwright com GitHub Actions, rodando a cada PR.
+10. **Painel de desempenho para o professor:** precisa decidir onde guardar os dados, porque hoje tudo fica só no navegador de cada aluno.

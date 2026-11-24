@@ -5756,3 +5756,435 @@ body.arrastando * {
     display: none;
   }
 }
+
+/* ============================================================
+   CRÉDITOS — botão no canto do menu e uma tela inteira com a
+   equipe. Cada pessoa é um crachá de agente (o mesmo desenho do
+   crachá do jogo, classes .cracha-*), pendurado num cordão e
+   balançando ao entrar. A mesma tela fecha o teaser.
+   ============================================================ */
+.menu-creditos {
+  position: absolute;
+  top: 2cqw;
+  right: 2cqw;
+  z-index: 2;
+  font-size: max(1.4cqw, 12px);
+  padding: 0.6cqw 1.6cqw;
+  cursor: pointer;
+}
+
+.modal.creditos {
+  background: #2a1f3d;
+  overflow: hidden auto;
+  place-items: start center;
+  --ct: 0.58cqw;             /* unidade dos crachás (vira o --t deles) */
+}
+/* a cidade ao fundo, borrada, com um véu roxo e uma luz no centro */
+.creditos-fundo {
+  /* fixed: fica parado e não cria rolagem (o #stage segura o fixed) */
+  position: fixed;
+  inset: -3cqw;
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(255, 214, 120, 0.35), transparent 60%),
+    linear-gradient(rgba(50, 30, 80, 0.55), rgba(30, 18, 50, 0.8)),
+    url(img/story1.webp) center / cover;
+  filter: blur(0.5cqw);
+  overflow: hidden;
+}
+/* raios de luz girando devagar atrás do título */
+.creditos-fundo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  width: 140cqw;
+  height: 140cqw;
+  translate: -50% -50%;
+  background: repeating-conic-gradient(rgba(255, 230, 160, 0.12) 0 8deg, transparent 8deg 20deg);
+  mask: radial-gradient(circle, #000 10%, transparent 55%);
+  -webkit-mask: radial-gradient(circle, #000 10%, transparent 55%);
+  animation: creditos-raios 40s linear infinite;
+}
+@keyframes creditos-raios {
+  to { rotate: 360deg; }
+}
+.creditos-brilhos i {
+  position: absolute;
+  width: 1.2cqw;
+  height: 1.2cqw;
+  background: #ffd34d;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  animation: creditos-brilho 2.6s ease-in-out infinite;
+  opacity: 0;
+}
+.creditos-brilhos i:nth-child(1) { left: 8%;  top: 18%; }
+.creditos-brilhos i:nth-child(2) { left: 22%; top: 8%;  animation-delay: 0.4s; scale: 0.7; }
+.creditos-brilhos i:nth-child(3) { left: 78%; top: 10%; animation-delay: 0.9s; }
+.creditos-brilhos i:nth-child(4) { left: 92%; top: 24%; animation-delay: 1.4s; scale: 0.8; }
+.creditos-brilhos i:nth-child(5) { left: 5%;  top: 62%; animation-delay: 1.8s; scale: 0.6; }
+.creditos-brilhos i:nth-child(6) { left: 95%; top: 58%; animation-delay: 0.2s; scale: 0.7; }
+.creditos-brilhos i:nth-child(7) { left: 15%; top: 88%; animation-delay: 1.1s; }
+.creditos-brilhos i:nth-child(8) { left: 86%; top: 90%; animation-delay: 2.1s; scale: 0.6; }
+@keyframes creditos-brilho {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0); }
+  50% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+
+.creditos-conteudo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100%;
+  padding: 1.6cqw 3cqw 1.6cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8cqw;
+}
+/* título numa faixa dourada com as pontas dobradas */
+.creditos-faixa {
+  position: relative;
+  margin: 0;
+  padding: 0 6cqw;
+  animation: creditos-faixa 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.creditos-faixa::before,
+.creditos-faixa::after {
+  content: "";
+  position: absolute;
+  top: 1.2cqw;
+  width: 7cqw;
+  height: 100%;
+  background: #c9952f;
+  border: 0.3cqw solid var(--ink);
+  z-index: -1;
+}
+.creditos-faixa::before {
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 30% 50%);
+}
+.creditos-faixa::after {
+  right: 0;
+  clip-path: polygon(0 0, 100% 0, 70% 50%, 100% 100%, 0 100%);
+}
+.creditos-faixa span {
+  display: block;
+  padding: 0.5cqw 5cqw 0.7cqw;
+  background: linear-gradient(#ffe08a, #f2b83c);
+  border: 0.35cqw solid var(--ink);
+  border-radius: 0.8cqw;
+  box-shadow: 0 0.5cqw 0 var(--ink);
+  font: 700 4cqw Fredoka, sans-serif;
+  color: #5b3a12;
+  text-shadow: 0 0.2cqw 0 rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.04em;
+}
+@keyframes creditos-faixa {
+  from { transform: scale(0.3); opacity: 0; }
+}
+.modal .creditos-sub {
+  margin: 0.4cqw 0 0;
+  font: 700 max(1.7cqw, 13px) Nunito, sans-serif;
+  color: #fff3d6;
+  text-shadow: 0 0.2cqw 0.4cqw rgba(0, 0, 0, 0.5);
+  animation: creditos-surge 0.5s 0.3s both;
+}
+@keyframes creditos-surge {
+  from { opacity: 0; transform: translateY(1cqw); }
+}
+
+/* os crachás, lado a lado, cada um pendurado num cordão */
+.creditos-equipe {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.2cqw;
+}
+.cred {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 0;
+  animation: cred-cai 1.1s cubic-bezier(0.3, 1.3, 0.5, 1) both;
+}
+.cred:nth-child(1) { animation-delay: 0.5s; }
+.cred:nth-child(2) { animation-delay: 0.8s; }
+.cred:nth-child(3) { animation-delay: 1.1s; }
+.cred:nth-child(4) { animation-delay: 1.4s; }
+@keyframes cred-cai {
+  0% { transform: translateY(-120%) rotate(0); opacity: 0; }
+  45% { transform: translateY(0) rotate(-6deg); opacity: 1; }
+  65% { transform: rotate(4deg); }
+  82% { transform: rotate(-2deg); }
+  100% { transform: rotate(0); }
+}
+/* o cordão: uma fita na cor da pessoa que sobe até a borda */
+.cred-cordao {
+  --t: var(--ct);
+  width: calc(2.6 * var(--t));
+  height: calc(6 * var(--t));
+  margin-bottom: calc(-3 * var(--t));
+  position: relative;
+  z-index: 1;
+  background: repeating-linear-gradient(0deg, var(--c), var(--c) 6px, rgba(255, 255, 255, 0.25) 6px 8px);
+  border-inline: calc(0.3 * var(--t)) solid var(--ink);
+}
+.creditos .cracha {
+  --t: var(--ct);
+  width: calc(27 * var(--t));
+  padding-top: calc(4.2 * var(--t));
+}
+.creditos .cracha-cartao {
+  min-height: calc(31 * var(--t));
+  background:
+    linear-gradient(150deg, transparent 40%, color-mix(in srgb, var(--c) 35%, transparent) 40%,
+      color-mix(in srgb, var(--c) 35%, transparent) 58%, transparent 58%),
+    var(--cream);
+}
+.creditos .cracha-topo {
+  background: var(--c);
+}
+/* no lugar da foto: as iniciais num selo redondo */
+.cred-iniciais {
+  margin-top: calc(1 * var(--t));
+  width: calc(11 * var(--t));
+  height: calc(11 * var(--t));
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--c) 55%, #fff), var(--c) 70%);
+  border: calc(0.45 * var(--t)) solid var(--ink);
+  box-shadow: 0 0 0 calc(0.6 * var(--t)) #fff, 0 calc(0.6 * var(--t)) 0 calc(0.6 * var(--t)) rgba(43, 34, 49, 0.25);
+  font: 700 calc(4.2 * var(--t)) Fredoka, sans-serif;
+  color: #fff;
+  text-shadow: 0 calc(0.3 * var(--t)) 0 rgba(43, 34, 49, 0.45);
+  letter-spacing: 0.03em;
+}
+.creditos .cracha-nome {
+  white-space: normal;
+  overflow: visible;
+  line-height: 1.15;
+  font-size: calc(1.9 * var(--t));
+  padding: calc(0.6 * var(--t)) calc(1.2 * var(--t));
+  min-height: calc(5.6 * var(--t));
+  display: grid;
+  place-items: center;
+}
+.creditos .cracha-cargo {
+  text-align: center;
+  line-height: 1.2;
+  font-size: calc(1.3 * var(--t));
+  padding: calc(0.4 * var(--t)) calc(1.4 * var(--t));
+  border-radius: calc(1.4 * var(--t));
+}
+/* o idealizador: crachá dourado, um pouco maior, com uma estrela */
+.cred-lider .cracha {
+  width: calc(30 * var(--t));
+}
+.cred-lider .cracha-moldura {
+  background: linear-gradient(160deg, #f6cd5c, #c9952f);
+}
+.cred-lider .cracha-presilha {
+  background: linear-gradient(90deg, #d9a640, #ffe7a0 45%, #c9952f);
+}
+.cred-lider .cracha-cartao::after {
+  content: "";
+  position: absolute;
+  right: calc(1.2 * var(--t));
+  top: calc(5.4 * var(--t));
+  width: calc(4.4 * var(--t));
+  height: calc(4.4 * var(--t));
+  background: url(img/ui/estrela.webp) center / contain no-repeat;
+  animation: creditos-gira 3s ease-in-out infinite;
+}
+@keyframes creditos-gira {
+  50% { transform: rotate(18deg) scale(1.12); }
+}
+
+/* o orientador: uma medalha dourada com fita */
+.creditos-orientador {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  margin-top: 0.6cqw;
+  padding: 0.7cqw 2.4cqw 0.7cqw 0.8cqw;
+  background: var(--cream);
+  border: 0.3cqw solid var(--ink);
+  border-radius: 99px;
+  box-shadow: 0 0.45cqw 0 var(--ink);
+  animation: creditos-surge 0.6s 1.9s both;
+}
+.creditos-medalha {
+  position: relative;
+  width: 4cqw;
+  height: 4cqw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff1b8, #f2b83c 55%, #b9821f);
+  border: 0.3cqw solid var(--ink);
+}
+.creditos-medalha::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  background: url(img/ui/estrela.webp) center / contain no-repeat;
+}
+.modal .creditos-orientador p {
+  margin: 0;
+  display: grid;
+  text-align: left;
+  line-height: 1.15;
+}
+.creditos-orientador small {
+  font: 800 max(1.1cqw, 10px) Nunito, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+.creditos-orientador b {
+  font: 600 max(2.2cqw, 16px) Fredoka, sans-serif;
+  color: var(--ink);
+}
+/* a universidade, só o nome */
+.modal .creditos-uneb {
+  margin: 0.4cqw 0 0;
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  font: 700 max(1.6cqw, 13px) Nunito, sans-serif;
+  color: #fff3d6;
+  text-shadow: 0 0.2cqw 0.4cqw rgba(0, 0, 0, 0.5);
+  animation: creditos-surge 0.6s 2.2s both;
+}
+.creditos-uneb span {
+  padding: 0.2cqw 1cqw;
+  border-radius: 0.6cqw;
+  background: #fff3d6;
+  color: #2a1f3d;
+  font-family: Fredoka;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-shadow: none;
+}
+.creditos-conteudo > .btn {
+  margin-top: auto;
+}
+/* o Robô-guia comemora no canto */
+.creditos-robo {
+  position: absolute;
+  right: 2.5cqw;
+  bottom: 2cqw;
+  z-index: 1;
+  height: 13cqw;
+  animation: creditos-robo 2.4s ease-in-out infinite, creditos-surge 0.6s 2s both;
+  pointer-events: none;
+}
+@keyframes creditos-robo {
+  50% { transform: translateY(-1cqw) rotate(-4deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .creditos *, .creditos *::before, .creditos *::after,
+  .creditos-fundo::after {
+    animation: none !important;
+  }
+}
+
+/* celular em pé: os crachás em duas colunas e tudo maior */
+@media (max-aspect-ratio: 4/5) {
+  #stage .modal.creditos {
+    /* encolhe também pela altura: na tela 9:16 tudo cabe sem rolar */
+    --ct: min(1.5cqw, 0.6cqh);
+  }
+  #stage .menu-creditos {
+    top: 3cqw;
+    right: 3cqw;
+    padding: 1.6cqw 3.6cqw;
+    font-size: 3.6cqw;
+  }
+  #stage .creditos-conteudo {
+    padding: 6cqw 4cqw 6cqw;
+    gap: 3cqw;
+  }
+  #stage .creditos-faixa span {
+    font-size: 9cqw;
+    padding: 1cqw 8cqw 1.4cqw;
+    border-width: 0.7cqw;
+    box-shadow: 0 1cqw 0 var(--ink);
+  }
+  #stage .creditos-faixa::before,
+  #stage .creditos-faixa::after {
+    top: 2.4cqw;
+    width: 12cqw;
+    border-width: 0.6cqw;
+  }
+  #stage .creditos-sub {
+    font-size: 4cqw;
+  }
+  #stage .creditos-equipe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5cqw 3cqw;
+  }
+  #stage .creditos .cracha,
+  #stage .cred-lider .cracha {
+    --t: var(--ct);
+    width: calc(28 * var(--t));
+  }
+  #stage .creditos-orientador {
+    gap: 3cqw;
+    padding: 2cqw 6cqw 2cqw 2cqw;
+    border-width: 0.6cqw;
+    box-shadow: 0 1cqw 0 var(--ink);
+  }
+  #stage .creditos-medalha {
+    width: 11cqw;
+    height: 11cqw;
+    border-width: 0.6cqw;
+  }
+  #stage .creditos-orientador small {
+    font-size: 3cqw;
+  }
+  #stage .creditos-orientador b {
+    font-size: 5.6cqw;
+  }
+  #stage .creditos-uneb {
+    flex-direction: column;
+    gap: 1.6cqw;
+    font-size: 3.8cqw;
+    text-align: center;
+  }
+  #stage .creditos-uneb span {
+    padding: 0.6cqw 3cqw;
+    border-radius: 1.6cqw;
+  }
+  #stage .creditos-brilhos i {
+    width: 3cqw;
+    height: 3cqw;
+  }
+  /* o robô fica no alto, à esquerda da faixa do título */
+  #stage .creditos-robo {
+    top: 2cqw;
+    left: 1cqw;
+    right: auto;
+    bottom: auto;
+    height: 17cqw;
+  }
+  #stage .creditos-conteudo > .btn {
+    margin-top: 2cqw;
+  }
+}
+/* celular deitado: pouca altura, tudo um pouco menor */
+@media (min-aspect-ratio: 4/5) and (max-height: 500px) {
+  #stage .modal.creditos {
+    --ct: 0.5cqw;
+  }
+  #stage .creditos-conteudo {
+    padding-top: 1cqw;
+    gap: 0.6cqw;
+  }
+  #stage .creditos-faixa span {
+    font-size: 3.4cqw;
+  }
+}

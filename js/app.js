@@ -194,6 +194,8 @@
   document.addEventListener('fullscreenchange', mostrarTelaCheia);
   document.addEventListener('webkitfullscreenchange', mostrarTelaCheia);
   mostrarTelaCheia();
+  $('#bCreditos').onclick = () => $('#creditos').classList.add('on');
+  $('#bCreditosFechar').onclick = () => $('#creditos').classList.remove('on');
   $('#bHow').onclick = () => $('#how').classList.add('on');
   $('#bHowClose').onclick = () => $('#how').classList.remove('on');
   $$('[data-home]').forEach(b => { b.onclick = irParaMenu; });
