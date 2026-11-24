@@ -107,7 +107,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 - **Animação final:** 7 quadros (`fim1` a `fim6` mais o álbum completo, montado pelo jogo), com confete e música na festa e no crachá, e o nome da criança no quadro do crachá. Cada quadro passa em 5 s.
 - **Tela final ("Missão cumprida"):** botões "Ver meu álbum", "Meu certificado" e "Rever a animação". "Jogar de novo" é vermelho e pede confirmação.
 - **Certificado:**
-  - **Conteúdo:** nome, as 8 ideias com o chamado de cada uma, estrelas, código do agente e data, com linhas em branco para Professor(a) e Escola. Não tem logo.
+  - **Conteúdo:** nome, as 8 ideias com o chamado de cada uma, estrelas, código do agente e data, com linhas de assinatura para Professor(a) e Aluno(a), entre o agente e o Robô-guia. Estrelas, código e data ficam logo abaixo das ideias, longe das assinaturas. Não tem logo.
   - **Onde abrir:** na tela final e, depois de zerar, no botão **Meu certificado** da central.
   - **Impressão:** uma cópia da folha vai para `#impressao`, direto no `body`, e na impressão só ela aparece. A folha ocupa 80% da largura do papel e sai numa página só, em pé ou deitada. A tela mostra a dica "escolha a folha deitada".
 
@@ -195,7 +195,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - Escovar os dentes já foi revisado;
   - **não haverá chamados novos** (o jogo fica com os 8);
   - a Área do professor fica de fora por enquanto;
-  - o certificado não tem logo, e a escola fica numa linha em branco.
+  - o certificado não tem logo, e as assinaturas são do professor e do aluno (não há linha para a escola).
 
 ## Material de apoio (páginas privadas no claude.ai)
 

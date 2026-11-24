@@ -5373,17 +5373,20 @@ body.arrastando * {
 }
 .certificado-dados {
   display: flex;
+  justify-content: center;
   gap: 3cqi;
+  margin-top: 1.4cqi;
   font-weight: 800;
   font-size: 1.5cqi;
   color: #6a5238;
 }
+/* as linhas de assinatura ficam entre o agente e o Robô-guia, com
+   espaço livre em cima para assinar */
 .certificado-assinaturas {
-  width: 100%;
+  flex: 1;
   display: flex;
   justify-content: center;
-  gap: 10cqi;
-  margin-top: 1.4cqi;
+  gap: 6cqi;
 }
 .certificado-assinaturas span {
   width: 26cqi;
