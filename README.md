@@ -18,7 +18,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 - Depois de cada nível aparece a lição, que liga a atividade ao conceito de algoritmo.
 - Os quatro primeiros chamados levam a criança da "ordem importa" até o nome "algoritmo". Os chamados novos trazem uma ideia a mais cada um: **repetição** (Lavar as mãos), **condição** (Atravessar a rua), **caminhos paralelos** (Fazer uma limonada) e **o que abre, fecha** (Escovar os dentes). Depois do sanduíche, todos podem ser jogados em qualquer ordem.
 - **Duas promoções.** Contam **quaisquer** chamados concluídos, sem separar originais e novos: metade deles (4 de 8) leva de Estagiário a **Agente**; os 8, a **Agente Sênior**. A central mostra uma barra só ("X de 8") e a frase do próximo objetivo, e os lugares que ainda têm chamado por fazer brilham no mapa.
-- **Selos.** Cada chamado novo entrega, na lição do último nível, o selo da sua ideia. Os selos ficam no crachá e em "O que eu aprendi" (na central), com a frase da ideia, uma carta do chamado como exemplo e uma pergunta para conversar.
+- **Selos.** Cada chamado novo entrega, na lição do último nível, o selo da sua ideia. Os selos ficam no crachá e em "Meus aprendizados" (na central), com a frase da ideia, uma carta do chamado como exemplo e uma pergunta para conversar.
 - **Tela final.** "Missão cumprida" só aparece depois dos 8 chamados, com os personagens de todos, os selos e as estrelas.
 - Estrelas por nível: 3 sem erro, 2 com um erro, 1 com mais (usar dica conta como erro). Cada nível dá +1 dica na primeira vez em que é concluído (rejogar não dá dica), e a dica coloca a carta certa no lugar.
 - O arrasto usa Pointer Events (mouse, dedo e teclado).
@@ -47,7 +47,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 | `js/jogo.js` | a partida: tabuleiro, erros, estrelas e dicas |
 | `js/montagem.js` | a montagem (pilha, cena ou tirinha) ao lado do tabuleiro |
 | `js/conclusao.js` | a tela de lição |
-| `js/app.js` | menu, abertura, crachá, central, as duas promoções, os selos ("O que eu aprendi"), final e abrir o chamado do professor |
+| `js/app.js` | menu, abertura, crachá, central, as duas promoções, os selos ("Meus aprendizados"), final e abrir o chamado do professor |
 | `editor.html`, `editor.css`, `js/editor.js` | a Área do professor |
 | `js/som.js`, `audio/musica-tema.mp3` | música ("Agentes de Algoritimando", em loop) e efeitos, com o painel de configurações (liga/desliga e volume de cada um, e a tela cheia no app.js) |
 | `js/comum.js`, `js/progresso.js`, `js/perfil.js` | cartas e memória do jogo |

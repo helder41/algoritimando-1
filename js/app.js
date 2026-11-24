@@ -719,7 +719,7 @@
     });
   })();
 
-  /* ---------------- o que eu aprendi (os selos) ----------------
+  /* ---------------- meus aprendizados (os selos) ----------------
      Cada selo com a frase da ideia, uma carta do próprio chamado como
      exemplo e uma pergunta para conversar. O que ainda não foi
      conquistado mostra só de qual chamado vem. */
@@ -852,7 +852,13 @@
     esquecerSegredo();
     central(`Novos chamados chegando! Boa sorte, ${P.nome}!`);
   }
-  $('#bAgain').onclick = recomecar;
+  // a tela final pede confirmação antes de zerar tudo
+  $('#bAgain').onclick = () => $('#again').classList.add('on');
+  $('#bAgainNao').onclick = () => $('#again').classList.remove('on');
+  $('#bAgainSim').onclick = () => {
+    $('#again').classList.remove('on');
+    recomecar();
+  };
 
   /* ---------------- em progresso (protótipos, com senha) ----------------
      A senha só evita que a turma entre sem querer: está no código,

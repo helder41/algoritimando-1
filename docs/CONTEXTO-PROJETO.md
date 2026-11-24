@@ -78,7 +78,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 | Limonada (`limonada`) | Fazer uma limonada | 3 | caminhos paralelos | menino de moletom amarelo | `estado` |
 | Casa azul (`casa-azul`) | Escovar os dentes | 4 | o que abre, fecha | menina de pijama coral (`who6`, `cliente5`) | `estado` |
 
-- Os 4 chamados novos dão um **selo** cada um (`img/selos/`): Repetição, Condição, Ao mesmo tempo e Abre e fecha. Os selos aparecem no crachá, em "O que eu aprendi" (botão da central) e na tela final.
+- Os 4 chamados novos dão um **selo** cada um (`img/selos/`): Repetição, Condição, Ao mesmo tempo e Abre e fecha. Os selos aparecem no crachá, em "Meus aprendizados" (botão da central) e na tela final.
 - **Semáforo da rua:** de pedestre, com **duas luzes** (vermelha em cima, verde embaixo), sem bonequinho. A criança olha a "cor da luz".
 
 ## Como o jogo funciona hoje
@@ -96,6 +96,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - `grade` (robô, só código): o robô visto de cima anda, vira, abre e fecha a garra. Ele para e marca uma estrela quando bate na parede, empurra o cubo, fecha no vazio ou solta longe; fica cinza com "z z" se estiver desligado;
   - `estado` (limonada, dentes, mãos): uma bancada com objetos que mudam a cada carta. A primeira carta que vem antes da hora para tudo, e uma estrela marca o objeto dela. A configuração fica nos dados do chamado (`montagemObjetos`, `montagemRegras`, `montagemOnde`), e as peças estão em `img/pecas/`.
 - **Tela cheia:** o botão "Tela cheia" mostra a cena do chamado inteira.
+- **Celular em pé:** a cena do chamado é o fundo da tela, borrada e parada enquanto as cartas rolam (antes era uma faixa que virava uma barrinha). O botão de tela cheia fica no canto do Robô-guia.
 
 **Fim de nível e álbum**
 - **Lição:** imagem positiva e pergunta. O texto para o professor fica em "Ler a lição". Na primeira vez que o nível é concluído, aparece "+1 figurinha".
@@ -104,7 +105,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 
 **Final do jogo**
 - **Animação final:** 7 quadros (`fim1` a `fim6` mais o álbum completo, montado pelo jogo), com confete e música na festa e no crachá, e o nome da criança no quadro do crachá. Cada quadro passa em 5 s.
-- **Tela final ("Missão cumprida"):** botões "Ver meu álbum", "Meu certificado" e "Rever a animação".
+- **Tela final ("Missão cumprida"):** botões "Ver meu álbum", "Meu certificado" e "Rever a animação". "Jogar de novo" é vermelho e pede confirmação.
 - **Certificado:**
   - **Conteúdo:** nome, as 8 ideias com o chamado de cada uma, estrelas, código do agente e data, com linhas em branco para Professor(a) e Escola. Não tem logo.
   - **Onde abrir:** na tela final e, depois de zerar, no botão **Meu certificado** da central.
