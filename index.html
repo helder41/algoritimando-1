@@ -18,8 +18,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Algoritimando" />
     <!-- fontes guardadas no projeto: o jogo funciona sem internet -->
-    <link rel="stylesheet" href="fontes/fontes.css?v=202611240200" />
-    <link rel="stylesheet" href="style.css?v=202611240200" />
+    <link rel="stylesheet" href="fontes/fontes.css?v=202611241833" />
+    <link rel="stylesheet" href="style.css?v=202611241833" />
   </head>
   <body>
     <div id="stage">
@@ -741,6 +741,19 @@
               aria-label="Volume dos efeitos"
             />
           </div>
+          <!-- cartas no lugar: a carta tirada do tabuleiro volta para o mesmo lugar da bandeja -->
+          <div class="som-linha tela-linha" id="linhaCartasNoLugar">
+            <span class="som-nome">Cartas no lugar</span>
+            <button
+              class="btn small som-liga mudo"
+              id="bCartasNoLugar"
+              type="button"
+              aria-pressed="false"
+            >
+              Desligado
+            </button>
+            <span class="tela-dica">Cada carta volta para o mesmo lugar da bandeja, e as outras não se mexem.</span>
+          </div>
           <!-- tela cheia: some onde o navegador não deixa (ex.: iPhone) -->
           <div class="som-linha tela-linha" id="linhaTelaCheia">
             <span class="som-nome">Tela cheia</span>
@@ -782,22 +795,22 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611240200"></script>
-    <script src="js/comum.js?v=202611240200"></script>
-    <script src="js/situacoes.js?v=202611240200"></script>
-    <script src="js/em-progresso.js?v=202611240200"></script>
-    <script src="js/som.js?v=202611240200"></script>
-    <script src="js/progresso.js?v=202611240200"></script>
-    <script src="js/perfil.js?v=202611240200"></script>
-    <script src="js/arrasto.js?v=202611240200"></script>
-    <script src="js/conclusao.js?v=202611240200"></script>
-    <script src="js/montagem.js?v=202611240200"></script>
-    <script src="js/jogo.js?v=202611240200"></script>
+    <script src="js/motor.js?v=202611241833"></script>
+    <script src="js/comum.js?v=202611241833"></script>
+    <script src="js/situacoes.js?v=202611241833"></script>
+    <script src="js/em-progresso.js?v=202611241833"></script>
+    <script src="js/som.js?v=202611241833"></script>
+    <script src="js/progresso.js?v=202611241833"></script>
+    <script src="js/perfil.js?v=202611241833"></script>
+    <script src="js/arrasto.js?v=202611241833"></script>
+    <script src="js/conclusao.js?v=202611241833"></script>
+    <script src="js/montagem.js?v=202611241833"></script>
+    <script src="js/jogo.js?v=202611241833"></script>
     <!-- a cópia do certificado que vai para a impressora (final.js) -->
     <div id="impressao" aria-hidden="true"></div>
-    <script src="js/album.js?v=202611240200"></script>
-    <script src="js/final.js?v=202611240200"></script>
-    <script src="js/app.js?v=202611240200"></script>
-    <script src="js/pwa.js?v=202611240200"></script>
+    <script src="js/album.js?v=202611241833"></script>
+    <script src="js/final.js?v=202611241833"></script>
+    <script src="js/app.js?v=202611241833"></script>
+    <script src="js/pwa.js?v=202611241833"></script>
   </body>
 </html>

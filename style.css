@@ -3479,8 +3479,15 @@ body.arrastando * {
 
 /* ===== painel de sons: linhas que cabem em qualquer tela ===== */
 #sons .panel {
-  width: min(56cqw, 92%);
-  gap: 2cqw;
+  width: min(60cqw, 92%);
+  gap: 1.2cqw;
+  padding: 2.2cqw 3cqw;
+  /* com todas as linhas (até 5), rola em vez de sair da tela */
+  max-height: calc(100% - 2cqw);
+  overflow-y: auto;
+}
+#sons h2 {
+  margin: 0;
 }
 #sons h2 {
   font-size: max(3cqw, 20px);
@@ -3488,13 +3495,13 @@ body.arrastando * {
 #sons .som-linha {
   width: 100%;
   display: grid;
-  grid-template-columns: 9cqw 14cqw minmax(0, 1fr);
+  grid-template-columns: 12cqw 14cqw minmax(0, 1fr);
   align-items: center;
   gap: 2cqw;
   background: #fbf3e4;
   border: 0.2cqw solid #e2cfae;
   border-radius: 1.4cqw;
-  padding: 1.2cqw 1.6cqw;
+  padding: 0.9cqw 1.6cqw;
 }
 #sons .som-nome {
   font-size: max(1.8cqw, 14px);
@@ -3512,6 +3519,7 @@ body.arrastando * {
   #stage #sons .panel {
     width: 90cqw;
     gap: 4cqw;
+    padding: 5cqw;
   }
   #stage #sons h2 {
     font-size: 7cqw;
@@ -4615,6 +4623,21 @@ body.arrastando * {
   #stage .tela-dica {
     grid-column: 1 / -1;
     font-size: 3.2cqw;
+  }
+}
+
+/* ===== cartas no lugar: o lugar vazio da carta na bandeja ===== */
+.bandeja-fila > li.lugar-vazio {
+  width: var(--carta-l);
+  min-height: var(--carta-a);
+  border: 0.25cqw dashed rgba(255, 244, 222, 0.55);
+  border-radius: 1cqw;
+  background: rgba(255, 255, 255, 0.08);
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .bandeja-fila > li.lugar-vazio {
+    border-width: 0.6cqw;
+    border-radius: 2.4cqw;
   }
 }
 

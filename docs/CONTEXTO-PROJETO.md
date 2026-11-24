@@ -117,7 +117,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 - **Nomes:** `img/passos/<chamado>-NN.webp` e `img/licoes/<chamado>-N.webp`.
 - **Cache:** os `.js` e `.css` são carregados com `?v=AAAAMMDDHHMM`. **A cada mudança publicada, atualize esse número** no `index.html` e no `editor.html` e **rode `node ferramentas/gerar-sw.js`**, que refaz o `sw.js` com a versão e a lista de arquivos (sem isso, quem instalou o jogo continua com a versão antiga guardada). As imagens da abertura têm o próprio `?v=` em `js/app.js`, e o mapa tem o dele no `style.css`.
 - **localStorage:**
-  - `algoritimando-perfil`, `algoritimando-progresso`, `algoritimando-som`, `algoritimando-som-ajustes`, `algoritimando-montagem`, `algoritimando-segredo`, `algoritimando-album`;
+  - `algoritimando-perfil`, `algoritimando-progresso`, `algoritimando-som`, `algoritimando-som-ajustes`, `algoritimando-montagem`, `algoritimando-segredo`, `algoritimando-album`, `algoritimando-ajustes`;
   - também existem `algoritimando-em-progresso` (protótipos), `algoritimando-editor-rascunho` e as chaves `algoritimando-previa*` (prévia do editor);
   - para limpar tudo, no console: `localStorage.clear(); location.reload();`.
 - **Seleção de texto e arrasto de imagens** estão desativados no jogo.

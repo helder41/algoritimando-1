@@ -179,6 +179,7 @@
     fila.textContent = '';
     embaralhar(f.passos).forEach(p => {
       const li = document.createElement('li');
+      li.dataset.lugar = p.id;   // o lugar fixo da carta (ver arrasto.js)
       li.append(criarCarta(p));
       fila.append(li);
     });

@@ -141,6 +141,32 @@
   });
   $('#bSonsFechar').onclick = () => $('#sons').classList.remove('on');
 
+  /* Cartas no lugar (no painel de configurações; ideia de uma
+     criança no teste): a carta que sai do tabuleiro volta para o
+     mesmo lugar da bandeja. Desligado de fábrica. Quem usa a opção
+     é o arrasto.js, lendo a mesma chave. */
+  const CHAVE_AJUSTES = 'algoritimando-ajustes';
+  function lerAjustes() {
+    try { return JSON.parse(localStorage.getItem(CHAVE_AJUSTES) || '{}') || {}; }
+    catch { return {}; }
+  }
+  function mostrarCartasNoLugar() {
+    const sim = !!lerAjustes().cartasNoLugar;
+    const b = $('#bCartasNoLugar');
+    b.textContent = sim ? 'Ligado' : 'Desligado';
+    b.setAttribute('aria-pressed', String(sim));
+    b.classList.toggle('mudo', !sim);
+  }
+  $('#bCartasNoLugar').onclick = () => {
+    const ajustes = lerAjustes();
+    ajustes.cartasNoLugar = !ajustes.cartasNoLugar;
+    try { localStorage.setItem(CHAVE_AJUSTES, JSON.stringify(ajustes)); } catch { /* sem localStorage: vale só nesta visita */ }
+    mostrarCartasNoLugar();
+    // desligar no meio do nível: os lugares vazios somem já
+    if (window.Arrasto && Arrasto.sincronizar) Arrasto.sincronizar();
+  };
+  mostrarCartasNoLugar();
+
   /* Tela cheia (no painel de configurações): usa a Fullscreen API do
      navegador. Onde ela não existe (iPhone), a linha não aparece. O
      botão acompanha o estado real: sair com Esc também atualiza. */
