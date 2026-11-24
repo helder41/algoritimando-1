@@ -36,7 +36,7 @@
   const proximo = $('#bFimNext');
 
   // ?v= faz o navegador buscar a imagem nova quando ela muda
-  const V = '?v=202611190100';
+  const V = '?v=202611240100';
 
   /* Os quadros. "reserva": imagem do jogo usada enquanto a do
      quadro não existe. "festa": confete e música de vitória. */
@@ -218,7 +218,22 @@
     $('#certificado').classList.add('on');
   }
   $('#bCertFechar').onclick = () => $('#certificado').classList.remove('on');
-  $('#bCertImprimir').onclick = () => window.print();
+  /* Impressão: uma cópia da folha vai para #impressao, direto no
+     body. O jogo ocupa a tela toda e esconde o que passa dela; no
+     iPhone isso cortava o certificado no meio. Fora do jogo, a folha
+     se ajusta à largura do papel (ver @media print no style.css).
+     Também vale para quem imprime pelo menu do navegador. */
+  function prepararImpressao() {
+    const destino = $('#impressao');
+    if (!destino || !$('#certificado').classList.contains('on')) return;
+    // precisa ficar direto no body: o resto do body some na impressão
+    if (destino.parentElement !== document.body) document.body.append(destino);
+    const copia = $('#certificado .certificado-folha').cloneNode(true);
+    copia.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+    destino.replaceChildren(copia);
+  }
+  window.addEventListener('beforeprint', prepararImpressao);
+  $('#bCertImprimir').onclick = () => { prepararImpressao(); window.print(); };
 
   window.Final = { tocar, certificado };
 })();

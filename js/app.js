@@ -627,6 +627,8 @@
       ? `${plural(faltam, 'Falta 1', 'Faltam #')} para virar ${proximo}`
       : 'Você é Agente Sênior!';
     $('#bIdeias').hidden = !SITUACOES.some(s => s.selo);
+    // quem zerou o jogo pode rever (e imprimir) o certificado
+    $('#bCertificado').hidden = faltamDe(SITUACOES) > 0;
     $('#hubMsg').textContent = mensagem ||
       (!cidadeLiberada() ? 'Seu primeiro chamado é na Casa: ajude a fazer um sanduíche. Depois, a cidade toda se abre!'
         : n === 0 ? 'Toque num lugar do mapa para ver os chamados de lá. Todo chamado concluído conta para a sua promoção.'
@@ -727,6 +729,7 @@
   }
   $('#bIdeias').onclick = abrirIdeias;
   $('#bAlbum').onclick = () => Album.abrir();
+  $('#bCertificado').onclick = () => Final.certificado(P);
   $('#bIdeiasFechar').onclick = () => $('#ideias').classList.remove('on');
 
   /* ---------------- promoção e final ---------------- */
