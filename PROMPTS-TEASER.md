@@ -31,10 +31,15 @@ O vídeo ainda **não foi gerado**: falta combinar outros pontos com o dono. Est
 
 ## Tela de créditos do teaser
 
-É uma tela própria do vídeo, não a captura da janela do jogo, mas com o mesmo visual:
-- **Fundo:** a cidade (`story1`) borrada e escurecida.
-- **Cartão:** cartão creme do jogo, com o título "Créditos". Os nomes entram um de cada vez, com um pequeno deslize, e ficam parados no fim para dar tempo de ler.
-- **Vertical:** a mesma tela, com os nomes um embaixo do outro.
+É a própria tela **Créditos** do jogo, gravada sem o botão "Voltar":
+- **Fundo:** a cidade (`story1`) borrada, com um véu roxo, raios de luz girando atrás do título e brilhos dourados.
+- **Título:** "Créditos" numa faixa dourada, que entra com um salto.
+- **Equipe:** cada pessoa é um **crachá de agente**, no mesmo desenho do crachá do jogo, com as iniciais na cor dela. Os crachás caem pendurados nos cordões, um de cada vez, e balançam até parar. O do idealizador é dourado, com uma estrela.
+- **Orientador:** um selo com medalha dourada. Embaixo, a universidade, só em texto.
+- **Robô-guia:** comemora no canto.
+- **Tempo:** a entrada leva uns 2,5 s, e o resto fica parado para dar tempo de ler.
+- **Horizontal:** os 4 crachás lado a lado.
+- **Vertical:** os crachás em 2 × 2, e tudo cabe na tela 9:16 sem rolar.
 
 **Conteúdo** (o mesmo da janela "Créditos" do jogo):
 

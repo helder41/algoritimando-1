@@ -18,8 +18,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Algoritimando" />
     <!-- fontes guardadas no projeto: o jogo funciona sem internet -->
-    <link rel="stylesheet" href="fontes/fontes.css?v=202611241913" />
-    <link rel="stylesheet" href="style.css?v=202611241913" />
+    <link rel="stylesheet" href="fontes/fontes.css?v=202611241920" />
+    <link rel="stylesheet" href="style.css?v=202611241920" />
   </head>
   <body>
     <div id="stage">
@@ -783,23 +783,80 @@
         </div>
       </div>
 
-      <!-- Créditos: a equipe do projeto -->
-      <div class="modal" id="creditos" role="dialog" aria-modal="true" aria-labelledby="creditos-h">
-        <div class="panel creditos-painel">
-          <h2 id="creditos-h">Créditos</h2>
-          <ul class="creditos-lista">
-            <li><b>Paulo Helder de Santana Souza</b><span>Idealizador e gestor do projeto Algoritimando</span></li>
-            <li><b>Murilo do Vale Moreira Santana</b><span>Designer</span></li>
-            <li><b>Maria Eduarda Nascimento Silva</b><span>Programadora</span></li>
-            <li><b>Gustavo Santos Souza</b><span>Programador</span></li>
+      <!-- Créditos: tela inteira, cada pessoa num crachá de agente (style.css,
+           "créditos"). É a mesma tela que fecha o teaser. -->
+      <div class="modal creditos" id="creditos" role="dialog" aria-modal="true" aria-labelledby="creditos-h">
+        <div class="creditos-fundo" aria-hidden="true"></div>
+        <div class="creditos-brilhos" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="creditos-conteudo">
+          <h2 class="creditos-faixa" id="creditos-h"><span>Créditos</span></h2>
+          <p class="creditos-sub">A equipe por trás de Algoritimando</p>
+          <ul class="creditos-equipe">
+            <li class="cred cred-lider" style="--c: #8a63c7">
+              <span class="cred-cordao" aria-hidden="true"></span>
+              <div class="cracha">
+                <span class="cracha-presilha" aria-hidden="true"></span>
+                <div class="cracha-moldura">
+                  <div class="cracha-cartao">
+                    <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
+                    <span class="cred-iniciais" aria-hidden="true">PH</span>
+                    <b class="cracha-nome">Paulo Helder de Santana Souza</b>
+                    <span class="cracha-cargo">Idealizador e gestor do projeto</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="cred" style="--c: #e07a4f">
+              <span class="cred-cordao" aria-hidden="true"></span>
+              <div class="cracha">
+                <span class="cracha-presilha" aria-hidden="true"></span>
+                <div class="cracha-moldura">
+                  <div class="cracha-cartao">
+                    <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
+                    <span class="cred-iniciais" aria-hidden="true">MV</span>
+                    <b class="cracha-nome">Murilo do Vale Moreira Santana</b>
+                    <span class="cracha-cargo">Designer</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="cred" style="--c: #4fae6b">
+              <span class="cred-cordao" aria-hidden="true"></span>
+              <div class="cracha">
+                <span class="cracha-presilha" aria-hidden="true"></span>
+                <div class="cracha-moldura">
+                  <div class="cracha-cartao">
+                    <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
+                    <span class="cred-iniciais" aria-hidden="true">ME</span>
+                    <b class="cracha-nome">Maria Eduarda Nascimento Silva</b>
+                    <span class="cracha-cargo">Programadora</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="cred" style="--c: #3f8fc9">
+              <span class="cred-cordao" aria-hidden="true"></span>
+              <div class="cracha">
+                <span class="cracha-presilha" aria-hidden="true"></span>
+                <div class="cracha-moldura">
+                  <div class="cracha-cartao">
+                    <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
+                    <span class="cred-iniciais" aria-hidden="true">GS</span>
+                    <b class="cracha-nome">Gustavo Santos Souza</b>
+                    <span class="cracha-cargo">Programador</span>
+                  </div>
+                </div>
+              </div>
+            </li>
           </ul>
-          <p class="creditos-orientador">
-            <span>Professor orientador</span>
-            <b>Peterson Lobato</b>
-          </p>
-          <p class="creditos-instituicao">Universidade do Estado da Bahia (UNEB)</p>
+          <div class="creditos-orientador">
+            <span class="creditos-medalha" aria-hidden="true"></span>
+            <p><small>Professor orientador</small><b>Peterson Lobato</b></p>
+          </div>
+          <p class="creditos-uneb">Universidade do Estado da Bahia <span>UNEB</span></p>
           <button class="btn" id="bCreditosFechar" type="button">Voltar</button>
         </div>
+        <img class="creditos-robo" src="img/robo-feliz.webp" alt="" />
       </div>
 
       <div class="modal" id="how">
@@ -820,22 +877,22 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611241913"></script>
-    <script src="js/comum.js?v=202611241913"></script>
-    <script src="js/situacoes.js?v=202611241913"></script>
-    <script src="js/em-progresso.js?v=202611241913"></script>
-    <script src="js/som.js?v=202611241913"></script>
-    <script src="js/progresso.js?v=202611241913"></script>
-    <script src="js/perfil.js?v=202611241913"></script>
-    <script src="js/arrasto.js?v=202611241913"></script>
-    <script src="js/conclusao.js?v=202611241913"></script>
-    <script src="js/montagem.js?v=202611241913"></script>
-    <script src="js/jogo.js?v=202611241913"></script>
+    <script src="js/motor.js?v=202611241920"></script>
+    <script src="js/comum.js?v=202611241920"></script>
+    <script src="js/situacoes.js?v=202611241920"></script>
+    <script src="js/em-progresso.js?v=202611241920"></script>
+    <script src="js/som.js?v=202611241920"></script>
+    <script src="js/progresso.js?v=202611241920"></script>
+    <script src="js/perfil.js?v=202611241920"></script>
+    <script src="js/arrasto.js?v=202611241920"></script>
+    <script src="js/conclusao.js?v=202611241920"></script>
+    <script src="js/montagem.js?v=202611241920"></script>
+    <script src="js/jogo.js?v=202611241920"></script>
     <!-- a cópia do certificado que vai para a impressora (final.js) -->
     <div id="impressao" aria-hidden="true"></div>
-    <script src="js/album.js?v=202611241913"></script>
-    <script src="js/final.js?v=202611241913"></script>
-    <script src="js/app.js?v=202611241913"></script>
-    <script src="js/pwa.js?v=202611241913"></script>
+    <script src="js/album.js?v=202611241920"></script>
+    <script src="js/final.js?v=202611241920"></script>
+    <script src="js/app.js?v=202611241920"></script>
+    <script src="js/pwa.js?v=202611241920"></script>
   </body>
 </html>

@@ -112,7 +112,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - **Impressão:** uma cópia da folha vai para `#impressao`, direto no `body`, e na impressão só ela aparece. A folha ocupa 80% da largura do papel e sai numa página só, em pé ou deitada. A tela mostra a dica "escolha a folha deitada".
 
 **Outras partes**
-- **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre a janela com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
+- **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre uma tela inteira (crachás de agente que caem pendurados e balançam, faixa dourada, selo do orientador, Robô-guia) com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
 - **Configurações:** Música, Efeitos, **Cartas no lugar**, **Tela cheia** (some no iPhone) e **Instalar o jogo** (só pelo site; no iPhone mostra a explicação).
   - **Cartas no lugar** (ideia de uma criança no teste; **ligado de fábrica**): a carta tirada do tabuleiro volta para o mesmo lugar da bandeja, e as outras não se mexem. Desligado, a bandeja se reorganiza como antes. Fica em `algoritimando-ajustes` e é aplicado no `js/arrasto.js`.
 - **Modo instalável (PWA):**
