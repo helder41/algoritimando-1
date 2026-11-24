@@ -114,6 +114,8 @@
     montarFase();
     irPara('fase');
     focarPrimeiraCarta();
+    // celular em pé: a cena aparece inteira ao entrar no chamado
+    if (emPe.matches) abrirCenaCheia(true);
   }
 
   /* ---------------- a cena em tela cheia ----------------
@@ -122,18 +124,32 @@
      qualquer lugar, no botão ou com Esc. */
   const cenaCheia = document.getElementById('cena-cheia');
   const btnCenaCheia = document.getElementById('btn-cena-cheia');
-  function abrirCenaCheia() {
+  const btnCenaFechar = document.getElementById('btn-cena-fechar');
+  /* No celular em pé a cena é só um fundo borrado. Ao entrar no
+     chamado ela aparece inteira, com o pedido do morador, e sai
+     sozinha depois de TEMPO_ABERTURA (ou com um toque). */
+  const emPe = window.matchMedia('(max-aspect-ratio: 4/5)');
+  const TEMPO_ABERTURA = 4000;
+  let relogioCena = null;
+  function abrirCenaCheia(abertura = false) {
     if (!situacao || !situacao.fundo) return;
+    clearTimeout(relogioCena);
     cenaCheia.querySelector('.cena-cheia-imagem').style.backgroundImage = `url("${situacao.fundo}")`;
+    cenaCheia.classList.toggle('abertura', abertura === true);
+    btnCenaFechar.textContent = abertura === true ? 'Começar' : 'Fechar';
     cenaCheia.classList.add('on');
-    document.getElementById('btn-cena-fechar').focus({ preventScroll: true });
+    btnCenaFechar.focus({ preventScroll: true });
+    if (abertura === true) relogioCena = setTimeout(fecharCenaCheia, TEMPO_ABERTURA);
   }
   function fecharCenaCheia() {
+    clearTimeout(relogioCena);
     if (!cenaCheia.classList.contains('on')) return;
-    cenaCheia.classList.remove('on');
-    btnCenaCheia.focus({ preventScroll: true });
+    const eraAbertura = cenaCheia.classList.contains('abertura');
+    cenaCheia.classList.remove('on', 'abertura');
+    if (eraAbertura) focarPrimeiraCarta();
+    else btnCenaCheia.focus({ preventScroll: true });
   }
-  btnCenaCheia.addEventListener('click', abrirCenaCheia);
+  btnCenaCheia.addEventListener('click', () => abrirCenaCheia());
   cenaCheia.addEventListener('click', fecharCenaCheia);
   document.addEventListener('keydown', ev => { if (ev.key === 'Escape') fecharCenaCheia(); });
 

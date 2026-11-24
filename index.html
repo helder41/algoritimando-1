@@ -18,8 +18,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Algoritimando" />
     <!-- fontes guardadas no projeto: o jogo funciona sem internet -->
-    <link rel="stylesheet" href="fontes/fontes.css?v=202611241843" />
-    <link rel="stylesheet" href="style.css?v=202611241843" />
+    <link rel="stylesheet" href="fontes/fontes.css?v=202611241859" />
+    <link rel="stylesheet" href="style.css?v=202611241859" />
   </head>
   <body>
     <div id="stage">
@@ -291,7 +291,7 @@
             <span class="progresso-texto">Nível 1 de 5</span> ▾
           </button>
           <div class="rodape-direita">
-            <!-- só no celular: a montagem é opcional e troca de lugar com a cena -->
+            <!-- só no celular deitado: a montagem troca de lugar com a bandeja (montagem.js) -->
             <button
               class="chip"
               id="btn-montagem"
@@ -503,18 +503,19 @@
               <p class="certificado-nome" id="certNome"></p>
               <p class="certificado-texto" id="certTexto"></p>
               <ul class="certificado-ideias" id="certIdeias"></ul>
+              <!-- estrelas, código e data logo abaixo das ideias, longe das assinaturas -->
+              <div class="certificado-dados">
+                <span><b id="certEstrelas">0</b> estrelas</span>
+                <span>Código <b id="certCodigo"></b></span>
+                <span id="certData"></span>
+              </div>
               <div class="certificado-rodape">
                 <img class="certificado-rosto" id="certRosto" alt="" />
-                <div class="certificado-dados">
-                  <span><b id="certEstrelas">0</b> estrelas</span>
-                  <span>Código <b id="certCodigo"></b></span>
-                  <span id="certData"></span>
+                <div class="certificado-assinaturas">
+                  <span>Professor(a)</span>
+                  <span>Aluno(a)</span>
                 </div>
                 <img class="certificado-guia" src="img/robo-feliz.webp" alt="" />
-              </div>
-              <div class="certificado-assinaturas">
-                <span>Professor(a)</span>
-                <span>Escola</span>
               </div>
             </div>
           </article>
@@ -798,22 +799,22 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/motor.js?v=202611241843"></script>
-    <script src="js/comum.js?v=202611241843"></script>
-    <script src="js/situacoes.js?v=202611241843"></script>
-    <script src="js/em-progresso.js?v=202611241843"></script>
-    <script src="js/som.js?v=202611241843"></script>
-    <script src="js/progresso.js?v=202611241843"></script>
-    <script src="js/perfil.js?v=202611241843"></script>
-    <script src="js/arrasto.js?v=202611241843"></script>
-    <script src="js/conclusao.js?v=202611241843"></script>
-    <script src="js/montagem.js?v=202611241843"></script>
-    <script src="js/jogo.js?v=202611241843"></script>
+    <script src="js/motor.js?v=202611241859"></script>
+    <script src="js/comum.js?v=202611241859"></script>
+    <script src="js/situacoes.js?v=202611241859"></script>
+    <script src="js/em-progresso.js?v=202611241859"></script>
+    <script src="js/som.js?v=202611241859"></script>
+    <script src="js/progresso.js?v=202611241859"></script>
+    <script src="js/perfil.js?v=202611241859"></script>
+    <script src="js/arrasto.js?v=202611241859"></script>
+    <script src="js/conclusao.js?v=202611241859"></script>
+    <script src="js/montagem.js?v=202611241859"></script>
+    <script src="js/jogo.js?v=202611241859"></script>
     <!-- a cópia do certificado que vai para a impressora (final.js) -->
     <div id="impressao" aria-hidden="true"></div>
-    <script src="js/album.js?v=202611241843"></script>
-    <script src="js/final.js?v=202611241843"></script>
-    <script src="js/app.js?v=202611241843"></script>
-    <script src="js/pwa.js?v=202611241843"></script>
+    <script src="js/album.js?v=202611241859"></script>
+    <script src="js/final.js?v=202611241859"></script>
+    <script src="js/app.js?v=202611241859"></script>
+    <script src="js/pwa.js?v=202611241859"></script>
   </body>
 </html>
