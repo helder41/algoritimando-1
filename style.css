@@ -3687,12 +3687,14 @@ body.arrastando * {
   line-height: 1.25;
 }
 .prog #bIdeias,
-.prog #bAlbum {
+.prog #bAlbum,
+.prog #bCertificado {
   margin-top: 0.9cqw;
   font-size: max(1.2cqw, 9px);
   padding: 0.4cqw 1.4cqw;
 }
-.prog #bIdeias[hidden] {
+.prog #bIdeias[hidden],
+.prog #bCertificado[hidden] {
   display: none;
 }
 
@@ -3865,7 +3867,8 @@ body.arrastando * {
     margin-top: 1.4cqw;
   }
   #stage .prog #bIdeias,
-  #stage .prog #bAlbum {
+  #stage .prog #bAlbum,
+  #stage .prog #bCertificado {
     margin-top: 2cqw;
     font-size: max(3.6cqw, 13px);
     padding: 1cqw 3cqw;
@@ -5653,5 +5656,26 @@ body.arrastando * {
 @media (max-aspect-ratio: 4/5) {
   #stage .certificado-dica {
     font-size: 3.4cqw;
+  }
+}
+
+/* celular deitado: os botões da central em duas colunas, para o painel
+   não crescer por cima dos alfinetes do mapa (o do Jardim fica perto) */
+@media (min-aspect-ratio: 4/5) and (max-height: 500px) {
+  #stage #hub:not(.em-progresso) .prog {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.8cqw;
+    align-items: center;
+    width: 30cqw;
+  }
+  #stage #hub:not(.em-progresso) .prog > :not(.btn),
+  #stage #hub:not(.em-progresso) .prog > #bRestart {
+    grid-column: 1 / -1;
+  }
+  #stage #hub:not(.em-progresso) .prog .btn {
+    padding-inline: 0.6cqw;
+    font-size: max(1.7cqw, 11px);
+    white-space: nowrap;
   }
 }
