@@ -9,7 +9,7 @@ Cole este arquivo no começo de uma sessão nova, ou peça para a sessão ler `d
 - **A cada mudança publicada:**
   1. atualize o `?v=AAAAMMDDHHMM` no `index.html` e no `editor.html` (e o `const V` em `js/final.js`);
   2. rode `node ferramentas/gerar-sw.js`, com o branch em dia com o `main` (ele também escreve a versão do jogo, em `js/versao.js`);
-  3. rode `node js/motor.js` (os 9 testes precisam passar).
+  3. rode `npm test` (os 9 testes do motor e os das telas precisam passar; o GitHub Actions roda de novo no PR).
 - **Respostas ao dono:** em português, curtas e fáceis de ler.
 
 ## O projeto
@@ -19,8 +19,11 @@ Cole este arquivo no começo de uma sessão nova, ou peça para a sessão ler `d
 - **Site (GitHub Pages):** https://helder41.github.io/algoritimando-1/. Atualiza sozinho 1 a 2 minutos depois de cada merge no `main`. Para ver a versão nova: Ctrl+F5 ou aba anônima. Quem instalou o jogo (PWA) recebe a versão nova na visita seguinte com internet.
 - **Tecnologia:** HTML, CSS e JS puros, sem build, servidor nem framework. Abre com dois cliques no `index.html` e funciona sem internet: as fontes estão em `fontes/` e nada é buscado fora do projeto.
 - **Testes:**
-  - `node js/motor.js` roda os 9 testes do motor;
-  - as telas são conferidas com Playwright e Chromium, em scripts temporários que não ficam no repositório;
+  - **automáticos a cada PR** (GitHub Actions, `.github/workflows/testes.yml`): os 9 testes do motor e os testes das telas (`testes/telas.spec.js`, Playwright e Chromium, no PC 1366×768 e no celular 390×844). O PR fica com um X vermelho se algo falhar, e o relatório das telas fica em "Artifacts" na página da execução;
+  - para rodar na máquina: `npm install` uma vez e depois `npm test` (ou `npm run test:motor` e `npm run test:telas`);
+  - `node js/motor.js` continua rodando só os 9 testes do motor;
+  - mudou uma tela ou um fluxo? Atualize o `testes/telas.spec.js` no mesmo PR;
+  - conferências visuais extras (prints, PDF do certificado) seguem em scripts temporários que não ficam no repositório;
   - tamanhos usados: PC 1366×768 e 1920×1080, celular 390×844 e celular deitado 844×390;
   - a impressão do certificado é conferida gerando PDF com o Chromium (`page.pdf`), em pé e deitado.
 
