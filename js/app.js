@@ -286,11 +286,13 @@
   });
   $$('.avatar').forEach(b => {
     b.onclick = () => {
+      // agente diferente: o som da seleção; o mesmo de novo: só o clique
+      const outro = P.avatar !== b.dataset.a;
       $$('.avatar').forEach(x => x.classList.remove('sel'));
       b.classList.add('sel');
       P.avatar = b.dataset.a;
       atualizarCracha($('#nameIn').value.trim(), true);
-      Som.clique();
+      if (outro) Som.selecaoAgente(); else Som.clique();
     };
   });
   $('#nameIn').oninput = e => atualizarCracha(e.target.value.trim());

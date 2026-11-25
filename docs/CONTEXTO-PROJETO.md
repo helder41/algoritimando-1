@@ -105,7 +105,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 
 **Final do jogo**
 - **Animação final:** 7 quadros (`fim1` a `fim6` mais o álbum completo, montado pelo jogo), com confete e música na festa e no crachá, e o nome da criança no quadro do crachá. Cada quadro passa em 5 s.
-- **Tela final ("Missão cumprida"):** botões "Ver meu álbum", "Meu certificado" e "Rever a animação". "Jogar de novo" é vermelho e pede confirmação.
+- **Tela final ("Missão cumprida"):** botões "Ver meu álbum", "Meu certificado" e "Rever a animação". "Jogar de novo" é vermelho e pede confirmação. "Meu certificado" é dourado e reluzente: a luz em volta pulsa e um brilho passa por ele (classe `btn dourado`).
 - **Certificado:**
   - **Conteúdo:** nome, as 8 ideias com o chamado de cada uma, estrelas, código do agente e data, com linhas de assinatura para Professor(a) e Aluno(a), entre o agente e o Robô-guia. Estrelas, código e data ficam logo abaixo das ideias, longe das assinaturas. Não tem logo.
   - **Onde abrir:** na tela final e, depois de zerar, no botão **Meu certificado** da central.
@@ -114,6 +114,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 
 **Outras partes**
 - **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre uma tela inteira (crachás de agente que caem pendurados e balançam, faixa dourada, selo do orientador, Robô-guia) com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
+- **Volume da música:** a barrinha segue uma curva (5% é bem baixinho; 0% é mudo). Pelo site, a música passa pelo Web Audio, porque o iPhone ignora o volume do `<audio>`; com dois cliques no `index.html`, vale o volume do `<audio>`.
 - **Configurações:** Música, Efeitos, **Cartas no lugar**, **Tela cheia** (some no iPhone) e **Instalar o jogo** (só pelo site; no iPhone mostra a explicação).
   - **Cartas no lugar** (ideia de uma criança no teste; **ligado de fábrica**): a carta tirada do tabuleiro volta para o mesmo lugar da bandeja, e as outras não se mexem. Desligado, a bandeja se reorganiza como antes. Fica em `algoritimando-ajustes` e é aplicado no `js/arrasto.js`.
 - **Modo instalável (PWA):**
@@ -161,7 +162,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 - **Seleção de texto e arrasto de imagens** estão desativados no jogo.
 - **Efeitos sonoros** (`js/som.js`):
   - **Gerados por código** (Web Audio, sem arquivo):
-    - `clique`: troca de tela, escolha do rosto e carta no espaço;
+    - `clique`: troca de tela e carta no espaço;
     - `acerto`: Verificar certo;
     - `erro`: Verificar errado;
     - `segredo`: agente secreto.
@@ -174,7 +175,8 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
     - `dica`: pedir dica;
     - `quadro`: cada quadro novo da abertura e da animação final;
     - `carta-volta`: a carta volta para a bandeja;
-    - `certificado`: o certificado abrindo, com a animação no ritmo dele.
+    - `certificado`: o certificado abrindo, com a animação no ritmo dele;
+    - `selecao-agente`: escolher um agente diferente no crachá (o mesmo agente de novo só dá o clique).
   - **Como os arquivos tocam:**
     - foram tratados para tocar rápido: silêncio cortado, mono, 96 kbps e pico igualado;
     - pelo site, são lidos uma vez e tocam pelo Web Audio. Com dois cliques no `index.html`, tocam num `<audio>` comum;
@@ -236,7 +238,7 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 
 **Esperando o dono ou o professor**
 1. **Resposta do professor sobre as imagens novas:** os códigos estão na página de revisão. Ajustar o que ele pedir.
-2. **Sons:** os 9 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Falta pôr os efeitos também no teaser.
+2. **Sons:** os 10 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Falta pôr os efeitos também no teaser.
 3. **Conferir no iPhone de verdade:**
    - a impressão do certificado na folha deitada, que precisa sair numa página só (se ainda cortar, reduzir a largura de 80% no `style.css`, bloco "na impressão, só o certificado");
    - a instalação pelo botão "Instalar o jogo".

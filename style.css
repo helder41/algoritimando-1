@@ -6323,3 +6323,48 @@ body.arrastando * {
   }
   .cert-efeitos { display: none; }
 }
+
+/* ===== botão dourado: "Meu certificado" na tela final =====
+   dourado reluzente, com um brilho que passa e uma luz que pulsa */
+.btn.dourado {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #5b3a12;
+  background: linear-gradient(135deg, #fff1b0, #f6c94a 35%, #e0a326 62%, #ffe07a);
+  text-shadow: 0 0.12cqw 0 rgba(255, 255, 255, 0.65);
+  animation: dourado-pulsa 2.2s ease-in-out infinite;
+}
+.btn.dourado::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  transform: skewX(-20deg);
+  animation: dourado-brilho 2.6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+@keyframes dourado-pulsa {
+  0%, 100% {
+    box-shadow: 0 0.5cqw 0 var(--ink), 0 0 0 0 rgba(255, 211, 77, 0);
+    scale: 1;
+  }
+  50% {
+    box-shadow: 0 0.5cqw 0 var(--ink), 0 0 1.6cqw 0.5cqw rgba(255, 211, 77, 0.85);
+    scale: 1.05;
+  }
+}
+@keyframes dourado-brilho {
+  0%, 35% { left: -60%; }
+  75%, 100% { left: 130%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn.dourado,
+  .btn.dourado::after {
+    animation: none;
+  }
+}

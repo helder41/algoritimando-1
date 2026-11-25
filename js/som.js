@@ -27,13 +27,16 @@
      quadro      cada quadro novo da abertura e da animação final
      cartaVolta  a carta sai do tabuleiro e volta para a bandeja
      certificado o certificado abrindo (a animação segue o ápice, 1,6 s)
+     selecaoAgente  escolher um agente diferente no crachá
 
    O painel de CONFIGURAÇÕES liga e desliga a música e os efeitos separados, e
    tem um volume para cada um. Desligar é de verdade (sala com
    trinta crianças, professor explicando): música desligada não é
    nem carregada, efeito desligado não cria oscilador. A escolha
-   fica guardada no navegador. No iPhone o navegador não deixa
-   mudar o volume de uma música: lá vale o volume do aparelho.
+   fica guardada no navegador. O volume da música passa pelo Web
+   Audio (pelo site), porque o iPhone ignora o volume de um <audio>;
+   e a barrinha segue uma curva, para abaixar de verdade perto do
+   mínimo (ver tocarMusica).
 
    O contexto de áudio só nasce no primeiro som — ou seja, depois
    de a criança já ter tocado na tela. É o que os navegadores
@@ -126,6 +129,7 @@
     quadro:     { arq: 'quadro.mp3',      volume: 0.22, reserva: clique },
     cartaVolta: { arq: 'carta-volta.mp3', volume: 0.22, reserva: () => tocar([[392, 0.07], [330, 0.10]], 0.06) },
     certificado: { arq: 'certificado.mp3', volume: 0.32, reserva: vitoriaSintetizada },
+    selecaoAgente: { arq: 'selecao-agente.mp3', volume: 0.2, reserva: clique },
   };
   const PASTA_EFEITOS = 'audio/efeitos/';
   const sons = {};            // nome → AudioBuffer já lido
@@ -184,6 +188,7 @@
   const quadro     = () => tocarEfeito('quadro');
   const cartaVolta = () => tocarEfeito('cartaVolta');
   const certificado = () => tocarEfeito('certificado');
+  const selecaoAgente = () => tocarEfeito('selecaoAgente');
 
   /* O som do agente secreto: um zumbido grave de mistério, uma escada
      de tons inteiros subindo (soa "estranho", como um enigma) e, no
@@ -240,6 +245,38 @@
   /* ---------------- música ---------------- */
 
   let musica = null;      // <audio>, criado só quando a música for tocar
+  let ganhoMusica = null; // volume da música pelo Web Audio (pelo site)
+
+  /* O volume da barrinha segue uma curva (o ouvido percebe volume
+     assim): perto do mínimo a música fica bem baixinha e no zero some.
+     Pelo site, a música passa pelo Web Audio: é o único jeito de o
+     iPhone respeitar o volume escolhido (ele ignora o volume do
+     <audio>). Aberto com dois cliques (file://) o navegador não deixa
+     ligar a música ao Web Audio; aí vale o volume do <audio>. */
+  const curvaVolume = v => v * v;
+
+  function ligarMusicaAoWebAudio() {
+    if (ganhoMusica || location.protocol === 'file:') return;
+    const Contexto = window.AudioContext || window.webkitAudioContext;
+    if (!Contexto) return;
+    try {
+      contexto = contexto || new Contexto();
+      const fonte = contexto.createMediaElementSource(musica);
+      ganhoMusica = contexto.createGain();
+      fonte.connect(ganhoMusica).connect(contexto.destination);
+    } catch { ganhoMusica = null; }
+  }
+
+  function aplicarVolumeMusica() {
+    if (!musica) return;
+    const v = curvaVolume(ajustes.volumeMusica);
+    if (ganhoMusica) {
+      musica.volume = 1;
+      ganhoMusica.gain.value = v;
+    } else {
+      musica.volume = v;
+    }
+  }
 
   function tocarMusica() {
     if (!ajustes.musica || document.hidden) return;
@@ -247,8 +284,10 @@
       musica = new Audio(ARQUIVO_MUSICA);
       musica.loop = true;
       musica.preload = 'auto';
+      ligarMusicaAoWebAudio();
     }
-    musica.volume = ajustes.volumeMusica;
+    if (contexto && contexto.state === 'suspended') contexto.resume();
+    aplicarVolumeMusica();
     // play() recusado (antes do primeiro toque): tenta de novo no próximo
     const tentativa = musica.play();
     if (tentativa) tentativa.catch(() => {});
@@ -309,7 +348,7 @@
     });
     volMusica.addEventListener('input', () => {
       ajustes.volumeMusica = volMusica.value / 100;
-      if (musica) musica.volume = ajustes.volumeMusica;
+      aplicarVolumeMusica();
       gravarPreferencia();
     });
     volEfeitos.addEventListener('change', () => acerto());   // ouvir o volume escolhido
@@ -374,7 +413,7 @@
 
   window.Som = {
     acerto, erro, vitoria, clique, segredo,
-    promocao, festa, selo, figurinha, dica, quadro, cartaVolta, certificado,
+    promocao, festa, selo, figurinha, dica, quadro, cartaVolta, certificado, selecaoAgente,
     ligarBotao, abrirMenuBotao,
   };
 
