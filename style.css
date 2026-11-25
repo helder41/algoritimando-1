@@ -5938,7 +5938,7 @@ body.arrastando * {
   padding-top: calc(4.2 * var(--t));
 }
 .creditos .cracha-cartao {
-  min-height: calc(31 * var(--t));
+  min-height: calc(33.5 * var(--t));
   background:
     linear-gradient(150deg, transparent 40%, color-mix(in srgb, var(--c) 35%, transparent) 40%,
       color-mix(in srgb, var(--c) 35%, transparent) 58%, transparent 58%),
@@ -5979,16 +5979,6 @@ body.arrastando * {
   font-size: calc(1.3 * var(--t));
   padding: calc(0.4 * var(--t)) calc(1.4 * var(--t));
   border-radius: calc(1.4 * var(--t));
-}
-/* o idealizador: crachá com contorno dourado, um pouco maior */
-.cred-lider .cracha {
-  width: calc(30 * var(--t));
-}
-.cred-lider .cracha-moldura {
-  background: linear-gradient(160deg, #f6cd5c, #c9952f);
-}
-.cred-lider .cracha-presilha {
-  background: linear-gradient(90deg, #d9a640, #ffe7a0 45%, #c9952f);
 }
 /* o orientador: uma medalha dourada com fita */
 .creditos-orientador {
@@ -6113,8 +6103,7 @@ body.arrastando * {
     grid-template-columns: 1fr 1fr;
     gap: 5cqw 3cqw;
   }
-  #stage .creditos .cracha,
-  #stage .cred-lider .cracha {
+  #stage .creditos .cracha {
     --t: var(--ct);
     width: calc(28 * var(--t));
   }
