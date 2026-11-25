@@ -36,7 +36,7 @@
   const proximo = $('#bFimNext');
 
   // ?v= faz o navegador buscar a imagem nova quando ela muda
-  const V = '?v=202611242037';
+  const V = '?v=202611242233';
 
   /* Os quadros. "reserva": imagem do jogo usada enquanto a do
      quadro não existe. "festa": confete e música de vitória. */
@@ -137,7 +137,9 @@
     confete.textContent = '';
     if (q.festa) {
       soltarConfete();
-      Som.vitoria();
+      Som.festa();
+    } else if (i > 0) {
+      Som.quadro();
     }
     dots.innerHTML = QUADROS.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
     proximo.textContent = i === QUADROS.length - 1 ? 'Concluir' : 'Avançar ›';
@@ -215,7 +217,46 @@
     const rosto = $('#certRosto');
     rosto.onerror = () => { rosto.onerror = null; rosto.src = `img/av${perfil.avatar}.webp`; };
     rosto.src = `img/agente-${CORPO[+perfil.avatar] || 'menina'}.webp`;
-    $('#certificado').classList.add('on');
+    abrirComFesta();
+  }
+
+  /* A entrada do certificado acompanha o som (audio/efeitos/
+     certificado.mp3): a folha nasce pequena e cresce junto com a
+     música até o ápice (1,6 s); no ápice vêm o clarão, os raios, o
+     confete e um pulinho da folha. Os tempos ficam no style.css
+     ("certificado: a entrada com festa"). */
+  function abrirComFesta() {
+    const modal = $('#certificado');
+    modal.classList.remove('festa');
+    modal.classList.add('on');
+    // os efeitos saem do meio da folha (medido antes de ela encolher)
+    const folha = modal.querySelector('.certificado-folha').getBoundingClientRect();
+    const palco = (document.getElementById('stage') || document.body).getBoundingClientRect();
+    const efeitos = modal.querySelector('.cert-efeitos');
+    efeitos.style.setProperty('--cx', `${folha.left + folha.width / 2 - palco.left}px`);
+    efeitos.style.setProperty('--cy', `${folha.top + folha.height / 2 - palco.top}px`);
+    efeitos.style.setProperty('--lado', `${Math.max(folha.width, folha.height)}px`);
+    soltarConfeteDoCertificado(modal.querySelector('.cert-confete'), folha.width);
+    void modal.offsetWidth;          // recomeça as animações a cada abertura
+    modal.classList.add('festa');
+    Som.certificado();
+  }
+
+  function soltarConfeteDoCertificado(caixa, largura) {
+    caixa.textContent = '';
+    const cores = ['#ffd34d', '#8a63c7', '#4fae6b', '#e07a4f', '#3f8fc9', '#ffffff'];
+    for (let k = 0; k < 42; k++) {
+      const c = document.createElement('i');
+      const angulo = (k / 42) * Math.PI * 2 + Math.random() * 0.3;
+      const forca = largura * (0.45 + Math.random() * 0.45);
+      c.style.setProperty('--dx', `${Math.cos(angulo) * forca}px`);
+      c.style.setProperty('--dy', `${Math.sin(angulo) * forca * 0.75}px`);
+      c.style.setProperty('--giro', `${(Math.random() * 2 - 1) * 720}deg`);
+      c.style.setProperty('--dur', `${1.3 + Math.random() * 1.1}s`);
+      c.style.background = cores[k % cores.length];
+      if (k % 4 === 0) c.className = 'estrela';
+      caixa.append(c);
+    }
   }
   $('#bCertFechar').onclick = () => $('#certificado').classList.remove('on');
   /* Impressão: uma cópia da folha vai para #impressao, direto no

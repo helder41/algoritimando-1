@@ -219,6 +219,8 @@
     $('#dots').innerHTML = ABERTURA.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
     const ultimo = i === ABERTURA.length - 1;
     $('#bNext').textContent = ultimo ? (revendo ? 'Voltar ao menu' : 'Começar!') : 'Avançar ›';
+    // o primeiro quadro já tem o clique da troca de tela
+    if (i > 0) Som.quadro();
     // o ponto do quadro atual vira uma barrinha que enche no tempo do quadro
     $('#dots').classList.toggle('auto', !ultimo);
     if (!ultimo) {
@@ -785,7 +787,7 @@
     $('#promoPara').textContent = CARGOS[p.para];
     $('#promoFrase').textContent = `Agora você é ${CARGOS[p.para]}!`;
     irPara('promo');
-    Som.vitoria();
+    Som.promocao();
   }
 
   /* Depois da promoção: se a outra já está esperando (perfil antigo

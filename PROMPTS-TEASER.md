@@ -26,7 +26,7 @@ O vídeo ainda **não foi gerado**: falta combinar outros pontos com o dono. Est
 | 39–45 s | Os selos e "Meus aprendizados" | "8 chamados, 8 ideias: ordem, repetição, condição, ao mesmo tempo..." |
 | 45–49 s | A lição e a figurinha colando no álbum | "Cada nível vira uma figurinha no álbum" |
 | 49–52 s | Promoção a Agente Sênior e o certificado (agente comemorando, pose D) | "De estagiário a Agente Sênior, com certificado" |
-| 52–55 s | Cartão final | **Algoritimando**. "Grátis, no navegador: celular ou PC, até sem internet". Endereço do site e QR code |
+| 52–55 s | Cartão final | **Algoritimando**. "Grátis, no navegador: celular ou PC, até sem internet". **brinqueaprenda.com.br/jogo/algoritimando** e QR code |
 | 55–60 s | **Créditos** (ver abaixo) | A equipe, o orientador e a universidade |
 
 ## Tela de créditos do teaser
@@ -34,7 +34,7 @@ O vídeo ainda **não foi gerado**: falta combinar outros pontos com o dono. Est
 É a própria tela **Créditos** do jogo, gravada sem o botão "Voltar":
 - **Fundo:** a cidade (`story1`) borrada, com um véu roxo, raios de luz girando atrás do título e brilhos dourados.
 - **Título:** "Créditos" numa faixa dourada, que entra com um salto.
-- **Equipe:** cada pessoa é um **crachá de agente**, no mesmo desenho do crachá do jogo, com as iniciais na cor dela. Os crachás caem pendurados nos cordões, um de cada vez, e balançam até parar. O do idealizador tem o contorno dourado.
+- **Equipe:** cada pessoa é um **crachá de agente**, no mesmo desenho do crachá do jogo, com as iniciais na cor dela. Os crachás caem pendurados nos cordões, um de cada vez, e balançam até parar. Todos os crachás são iguais, só muda a cor.
 - **Orientador:** um selo com medalha dourada. Embaixo, a universidade, só em texto.
 - **Robô-guia:** comemora no canto.
 - **Tempo:** a entrada leva uns 2,5 s, e o resto fica parado para dar tempo de ler.
@@ -102,9 +102,62 @@ Attached images: teaser-agente-a.
 Style: cute flat cartoon illustration for an educational game (ages 8 to 10), exactly the same style as the attached image: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes, expressive faces. Never include: text, letters, numbers, speech bubbles with words, logos, watermarks, photorealism, 3D render. Aspect ratio 16:9, landscape, 1376x768 px.
 ```
 
-## O que ainda falta para gerar o vídeo
+## Material pronto (em `docs/teaser/`)
 
-- As 4 poses da agente, em `.zip`, como as outras imagens.
-- O arquivo do QR code (ou a confirmação de que um novo pode ser gerado).
-- Uma frase de efeito própria, se houver (se não, entram as do roteiro).
-- Os outros pontos que o dono quer conversar antes.
+- **As 4 poses da agente** (`teaser-agente-a.webp` a `teaser-agente-d.webp`), já geradas no Flow:
+  - A: segurando o tablet;
+  - B: arrastando;
+  - C: pensando;
+  - D: comemorando.
+
+  A tela verde está exatamente no mesmo lugar nas quatro, então o gameplay entra sempre no mesmo ponto.
+- **O QR code** (`qr-algoritimando.png`), que leva para **https://brinqueaprenda.com.br/jogo/algoritimando**. Ele foi conferido lendo a imagem reduzida.
+- **A tela de créditos:** é a própria tela do jogo (botão "Créditos" do menu).
+
+## O vídeo (gerado em 25/11/2026)
+
+- **Frases:**
+  - abertura: "As máquinas dependem dos detalhes. Até para fazer um sanduíche.";
+  - fechamento: "Aprender a pensar, um passo de cada vez."
+- **Arquivos** (entregues ao dono, fora do repositório, ~22 MB cada):
+  - `algoritimando-teaser-horizontal.mp4`: 1920×1080, 30 qps, 60 s;
+  - `algoritimando-teaser-vertical.mp4`: 1080×1920, 30 qps, 60 s.
+- **Cenas, na ordem:**
+  1. abertura;
+  2. título;
+  3. mapa;
+  4. agente com o tablet (mochila);
+  5. sanduíche;
+  6. robô;
+  7. limonada;
+  8. agente pensando;
+  9. erro e dica;
+  10. lição e álbum;
+  11. Meus aprendizados;
+  12. agente comemorando;
+  13. promoção a Agente Sênior;
+  14. certificado;
+  15. cartão final (frase, site e QR);
+  16. créditos.
+- **Som:** só a música do jogo. Os efeitos são sintetizados pelo jogo na hora e não entram na gravação.
+- **Na vertical:** as cartas entram por toque (carta e depois espaço, rolando a tela), como no celular.
+
+### Como refazer
+
+Os scripts ficam em `ferramentas/teaser/` e precisam de Playwright com Chromium, ffmpeg e Python com Pillow.
+
+```
+cd ferramentas/teaser
+node grava.js h          # grava as cenas em 1920x1080 (cenas-h/)
+node grava.js v          # grava as cenas em 1080x1920 (cenas-v/)
+python3 monta.py h       # monta saida-h/algoritimando-teaser-horizontal.mp4
+python3 monta.py v       # monta saida-v/algoritimando-teaser-vertical.mp4
+```
+
+- **O que fica em cada arquivo:**
+  - as cenas e as ações, em `grava.js`;
+  - as durações, as legendas e os recortes, em `monta.py` (função `roteiro`);
+  - a abertura, o título e o cartão final, em `cartoes.html`.
+- **Refazer só algumas cenas:** dá para passar os nomes depois da orientação (ex.: `node grava.js h sanduiche` e `python3 monta.py h sanduiche`).
+- **A vertical** usa a gravação horizontal da mochila dentro do tablet, então `cenas-h/` precisa existir.
+- **O que não vai para o repositório** (no `.gitignore`): as pastas `cenas-*` e `saida-*`.

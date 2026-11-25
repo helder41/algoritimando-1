@@ -243,6 +243,7 @@
       desenharExtras(vistas);
       gravarVistas(vistas);
       desenharAbas(vistas);
+      somDeFigurinhaNova();
       return;
     }
     const s = SITUACOES[atual];
@@ -260,6 +261,14 @@
     // as desta página já foram vistas: a animação não repete
     gravarVistas(vistas);
     desenharAbas(vistas);
+    somDeFigurinhaNova();
+  }
+
+  // figurinha nova colando: o som vem junto com a animação
+  function somDeFigurinhaNova() {
+    if (espacos.querySelector('.figurinha.nova') && window.Som && Som.figurinha) {
+      setTimeout(() => Som.figurinha(), 250);
+    }
   }
 
   function irPara(i) {

@@ -109,6 +109,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 - **Certificado:**
   - **Conteúdo:** nome, as 8 ideias com o chamado de cada uma, estrelas, código do agente e data, com linhas de assinatura para Professor(a) e Aluno(a), entre o agente e o Robô-guia. Estrelas, código e data ficam logo abaixo das ideias, longe das assinaturas. Não tem logo.
   - **Onde abrir:** na tela final e, depois de zerar, no botão **Meu certificado** da central.
+  - **Entrada com festa:** a entrada segue o som `certificado.mp3` (4 s, ápice em 1,6 s). A folha nasce pequena e cresce com a música; no ápice vêm o clarão, os raios girando, o confete com estrelas, o pulinho da folha e o brilho que passa por ela. Os botões aparecem depois. Com "reduzir movimento" ligado no aparelho, não há animação. O código fica em `abrirComFesta` (`js/final.js`) e no bloco "CERTIFICADO: A ENTRADA COM FESTA" (`style.css`).
   - **Impressão:** uma cópia da folha vai para `#impressao`, direto no `body`, e na impressão só ela aparece. A folha ocupa 80% da largura do papel e sai numa página só, em pé ou deitada. A tela mostra a dica "escolha a folha deitada".
 
 **Outras partes**
@@ -158,12 +159,27 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - também existem `algoritimando-em-progresso`, `algoritimando-editor-rascunho` e as chaves `algoritimando-previa*`;
   - para limpar tudo, no console: `localStorage.clear(); location.reload();`.
 - **Seleção de texto e arrasto de imagens** estão desativados no jogo.
-- **Efeitos sonoros:** são gerados por código em `js/som.js` (Web Audio), sem arquivos:
-  - `clique`: troca de tela, escolha do rosto e carta no espaço;
-  - `acerto`: Verificar certo;
-  - `erro`: Verificar errado;
-  - `vitoria`: nível concluído, promoções e festa da animação final;
-  - `segredo`: agente secreto.
+- **Efeitos sonoros** (`js/som.js`):
+  - **Gerados por código** (Web Audio, sem arquivo):
+    - `clique`: troca de tela, escolha do rosto e carta no espaço;
+    - `acerto`: Verificar certo;
+    - `erro`: Verificar errado;
+    - `segredo`: agente secreto.
+  - **Em arquivo** (`audio/efeitos/`, escolhidos pelo dono em 25/11):
+    - `vitoria`: nível concluído;
+    - `promocao`: promoções;
+    - `festafinal`: a festa da animação final;
+    - `selo`: a lição que entrega um selo, 1,3 s depois da vitória;
+    - `figurinha`: figurinha nova colando no álbum;
+    - `dica`: pedir dica;
+    - `quadro`: cada quadro novo da abertura e da animação final;
+    - `carta-volta`: a carta volta para a bandeja;
+    - `certificado`: o certificado abrindo, com a animação no ritmo dele.
+  - **Como os arquivos tocam:**
+    - foram tratados para tocar rápido: silêncio cortado, mono, 96 kbps e pico igualado;
+    - pelo site, são lidos uma vez e tocam pelo Web Audio. Com dois cliques no `index.html`, tocam num `<audio>` comum;
+    - se o arquivo falhar, toca um som sintetizado de reserva.
+  - **Volume:** o de cada arquivo fica em `EFEITOS`, no `som.js`, e é multiplicado pelo volume dos efeitos das Configurações. O botão de ligar e desligar vale para todos.
 
 ## Fluxo de trabalho
 
@@ -220,15 +236,7 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 
 **Esperando o dono ou o professor**
 1. **Resposta do professor sobre as imagens novas:** os códigos estão na página de revisão. Ajustar o que ele pedir.
-2. **Sons:** o dono quer refazer alguns. Quando os arquivos chegarem (MP3 ou OGG, curtos, com os nomes da página de sons), trocar o `js/som.js` para tocar o arquivo, mantendo o som atual como reserva se o arquivo falhar.
-   - **Os 6 que ainda não existem:**
-     - carta volta para a bandeja (`carta-volta.mp3`);
-     - pedir dica (`dica.mp3`);
-     - figurinha nova (`figurinha.mp3`);
-     - selo conquistado (`selo.mp3`);
-     - quadro passando (`quadro.mp3`);
-     - certificado (`certificado.mp3`).
-   - **Configurações:** o volume e o botão de ligar e desligar valem para todos.
+2. **Sons:** os 9 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Falta pôr os efeitos também no teaser.
 3. **Conferir no iPhone de verdade:**
    - a impressão do certificado na folha deitada, que precisa sair numa página só (se ainda cortar, reduzir a largura de 80% no `style.css`, bloco "na impressão, só o certificado");
    - a instalação pelo botão "Instalar o jogo".
@@ -237,7 +245,7 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 **Para a BTX (5 a 7/12)**
 5. **Refazer o vídeo e as capturas:** foram feitos antes da revisão, então não mostram o álbum, as montagens novas, a animação final, o certificado nem as lições novas.
 6. **Ainda possível:** texto para banner, roteiro de apresentação de 1 minuto e vídeo vertical para redes.
-7. **Teaser de 1 minuto** (horizontal e vertical, só texto e música, sem pessoas reais e sem logos): roteiro e prompts das 4 poses da agente com o tablet em `PROMPTS-TEASER.md`. O vídeo ainda não foi gerado; ele espera as imagens e a conversa com o dono.
+7. **Teaser de 1 minuto** (horizontal e vertical, só texto e música, sem pessoas reais e sem logos): roteiro e prompts das 4 poses da agente com o tablet em `PROMPTS-TEASER.md`. As 4 poses e o QR code (para https://brinqueaprenda.com.br/jogo/algoritimando) estão em `docs/teaser/`. **Os dois vídeos foram gerados e entregues** (25/11). Os scripts para refazer ficam em `ferramentas/teaser/`, e o passo a passo está no `PROMPTS-TEASER.md`. Os vídeos não ficam no repositório.
 
 **Ideias não feitas**
 8. **Montagem para Abelhas e Atravessar a rua:** hoje elas não têm montagem.
