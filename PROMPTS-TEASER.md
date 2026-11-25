@@ -136,10 +136,14 @@ Style: cute flat cartoon illustration for an educational game (ages 8 to 10), ex
   11. Meus aprendizados;
   12. agente comemorando;
   13. promoção a Agente Sênior;
-  14. certificado;
+  14. certificado, abrindo com a festa;
   15. cartão final (frase, site e QR);
   16. créditos.
-- **Som:** só a música do jogo. Os efeitos são sintetizados pelo jogo na hora e não entram na gravação.
+- **Som:** a música do jogo (a 50%) e os efeitos sonoros do próprio jogo, nos instantes em que o jogo os toca: a carta entrando, o erro, a dica, o acerto, a vitória, a figurinha, a promoção e o certificado.
+  - O `grava.js` anota o nome e o instante de cada som (`sons.json` em cada cena), e o `monta.py` mistura os arquivos de `audio/efeitos/` nesses instantes.
+  - O clique da troca de tela fica de fora.
+  - Os volumes seguem a proporção do jogo e ficam no topo da seção "efeitos sonoros" do `monta.py`.
+- **Versão atual:** refeito em 25/11/2026 com os sons novos, os crachás iguais nos créditos e o certificado animado.
 - **Na vertical:** as cartas entram por toque (carta e depois espaço, rolando a tela), como no celular.
 
 ### Como refazer

@@ -203,8 +203,8 @@ def roteiro():
     R = [
         dict(nome='intro', tipo='cartao', src='intro', dur=4.8),
         dict(nome='titulo', tipo='cartao', src='titulo', dur=3.6),
-        dict(nome='mapa', tipo='jogo', src='mapa', parado=True, recorte=None, dur=4.0,
-             legendas=[('Os moradores da cidade precisam da sua ajuda', 0.3, 3.8)]),
+        dict(nome='mapa', tipo='jogo', src='mapa', parado=True, recorte=None, dur=3.8,
+             legendas=[('Os moradores da cidade precisam da sua ajuda', 0.3, 3.6)]),
         dict(nome='tablet', tipo='pose', src='mochila', poses=[('a', 0, 1.3), ('b', 1.3, 99)], dur=5.2,
              legendas=[('Cada chamado é uma tarefa do dia a dia', 0.3, 5.0)]),
         dict(nome='sanduiche', tipo='jogo', src='sanduiche', vel=1.17 if ORI == 'h' else 1.6, dur=7.0,
@@ -220,14 +220,14 @@ def roteiro():
              legendas=[('O Robô-guia explica o porquê, sem dar a resposta', 0.2, 5.6)]),
         dict(nome='album', tipo='jogo', src='album', vel=1.1, recorte=None, dur=4.5,
              legendas=[('Cada nível concluído vira uma figurinha no álbum', 0.2, 4.3)]),
-        dict(nome='ideias', tipo='jogo', src='ideias', parado=True, recorte=None, dur=3.4,
-             legendas=[('Cada chamado ensina uma ideia', 0.2, 3.2)]),
-        dict(nome='comemora', tipo='pose', src='sanduiche', parado=True, poses=[('d', 0, 99)], dur=2.0,
-             legendas=[('De estagiário a Agente Sênior', 0.2, 1.9)]),
-        dict(nome='promo', tipo='jogo', src='promo', recorte=None, dur=2.6,
+        dict(nome='ideias', tipo='jogo', src='ideias', parado=True, recorte=None, dur=3.0,
+             legendas=[('Cada chamado ensina uma ideia', 0.2, 2.8)]),
+        dict(nome='comemora', tipo='pose', src='sanduiche', parado=True, poses=[('d', 0, 99)], dur=1.8,
+             legendas=[('De estagiário a Agente Sênior', 0.2, 1.7)]),
+        dict(nome='promo', tipo='jogo', src='promo', recorte=None, ini=0.06, dur=2.6,
              legendas=[('De estagiário a Agente Sênior', 0.0, 2.5)]),
-        dict(nome='certificado', tipo='jogo', src='certificado', parado=True, recorte=RECORTE_CERT, destaque=(20, 405, 1040, 745), dur=2.4,
-             legendas=[('E um certificado no final', 0.2, 2.3)]),
+        dict(nome='certificado', tipo='jogo', src='certificado', recorte=None, dur=3.2,
+             legendas=[('E um certificado no final', 1.6, 3.1)]),
         dict(nome='fim', tipo='cartao', src='fim', dur=5.3),
         dict(nome='creditos', tipo='cartao', src='creditos', ini=0.15, dur=0),
     ]
@@ -249,6 +249,78 @@ def legendas(R):
     subprocess.run(['node', os.path.join(AQUI, 'legendas.js'), ORI, f'{OUT}/legendas.json'], check=True)
 
 
+# ---------------- efeitos sonoros ----------------
+# Os volumes seguem os do jogo (js/som.js): volume de cada efeito x 0,8
+# (o padrão dos efeitos), comparado com a música (0,35² = 0,12 no jogo).
+# No vídeo a música toca a VOL_MUSICA; os efeitos, na mesma proporção.
+VOL_MUSICA = 0.5
+MUSICA_NO_JOGO = 0.35 ** 2
+ARQUIVOS = {
+    'vitoria': ('vitoria.mp3', 0.30), 'promocao': ('promocao.mp3', 0.30), 'festa': ('festafinal.mp3', 0.30),
+    'selo': ('selo.mp3', 0.30), 'figurinha': ('figurinha.mp3', 0.28), 'dica': ('dica.mp3', 0.28),
+    'quadro': ('quadro.mp3', 0.22), 'cartaVolta': ('carta-volta.mp3', 0.22), 'cartaVai': ('carta-vai.mp3', 0.22),
+    'certificado': ('certificado.mp3', 0.32), 'selecaoAgente': ('selecao-agente.mp3', 0.2),
+}
+# os sintetizados do som.js: notas [frequência, duração] e volume
+SINTETIZADOS = {
+    'acerto': ([[523, 0.10], [659, 0.16]], 0.10),
+    'erro': ([[233, 0.14], [196, 0.20]], 0.07),
+}
+# o clique da troca de tela fica de fora do vídeo
+FORA = {'clique'}
+
+
+def sintetizar(nome):
+    import numpy as np, wave
+    notas, vol = SINTETIZADOS[nome]
+    sr = 44100
+    fim = sum(d * 0.85 for _, d in notas) + notas[-1][1]
+    out = np.zeros(int(sr * fim) + 10)
+    t0 = 0.0
+    for f, d in notas:
+        x = np.arange(int(sr * d)) / sr
+        nota = np.sin(2 * np.pi * f * x) * np.exp(np.log(0.0001) * x / d)
+        i = int(t0 * sr)
+        out[i:i + len(nota)] += nota
+        t0 += d * 0.85
+    arq = f'{OUT}/sint-{nome}.wav'
+    with wave.open(arq, 'wb') as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
+        w.writeframes((np.clip(out, -1, 1) * 32767).astype(np.int16).tobytes())
+    return arq, vol * 0.8
+
+
+def efeitos_do_video(R):
+    eventos, inicio = [], 0.0
+    for k, s in enumerate(R):
+        if k:
+            inicio -= XF
+        pasta = CENAS_H if s['tipo'] == 'pose' else CENAS
+        arq_sons = os.path.join(pasta, s['src'], 'sons.json')
+        if not s.get('parado') and s['tipo'] != 'cartao' and os.path.exists(arq_sons):
+            for ev in json.load(open(arq_sons)):
+                if ev['n'] in FORA:
+                    continue
+                ts = ev['t'] / s.get('vel', 1) - s.get('ini', 0)
+                # um som que cai um pouquinho antes do corte entra no começo
+                if -0.3 <= ts < 0:
+                    ts = 0.0
+                if not 0 <= ts < s['dur'] - 0.15:
+                    continue
+                if ev['n'] in ARQUIVOS:
+                    a, v = ARQUIVOS[ev['n']]
+                    arq, amp = f'{REPO}/audio/efeitos/{a}', v * 0.8
+                elif ev['n'] in SINTETIZADOS:
+                    arq, amp = sintetizar(ev['n'])
+                else:
+                    continue
+                eventos.append((round(inicio + ts, 3), arq, min(1.5, amp / MUSICA_NO_JOGO * VOL_MUSICA)))
+        inicio += s['dur']
+    for e in eventos:
+        print(f'  {e[0]:6.2f}s  {os.path.basename(e[1])}')
+    return eventos
+
+
 def juntar(R):
     ins, fil = [], []
     for s in R:
@@ -261,7 +333,17 @@ def juntar(R):
         t = off + R[k]['dur']
     ai = len(R)
     ins += ['-i', f'{REPO}/audio/musica-tema.mp3']
-    fil.append(f'[{ai}:a]atrim=duration={TOTAL},afade=t=in:d=0.6,afade=t=out:st={TOTAL - 3}:d=3[a]')
+    fil.append(f'[{ai}:a]atrim=duration={TOTAL},afade=t=in:d=0.6,afade=t=out:st={TOTAL - 3}:d=3,volume={VOL_MUSICA}[mus]')
+    # os efeitos, cada um no instante em que o jogo o tocou
+    eventos = efeitos_do_video(R)
+    rotulos = ['[mus]']
+    for k, (inicio, arq, ganho) in enumerate(eventos):
+        ins += ['-i', arq]
+        ms = int(inicio * 1000)
+        fil.append(f'[{ai + 1 + k}:a]aformat=sample_rates=44100:channel_layouts=stereo,volume={ganho:.3f},adelay={ms}:all=1[e{k}]')
+        rotulos.append(f'[e{k}]')
+    fil.append(f"{''.join(rotulos)}amix=inputs={len(rotulos)}:duration=first:normalize=0,alimiter=limit=0.89[a]")
+    print('efeitos no vídeo:', len(eventos))
     nome = 'algoritimando-teaser-horizontal.mp4' if ORI == 'h' else 'algoritimando-teaser-vertical.mp4'
     ff(*ins, '-filter_complex', ';'.join(fil), '-map', f'[{atual}]', '-map', '[a]', '-t', TOTAL,
        '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-r', FPS,
