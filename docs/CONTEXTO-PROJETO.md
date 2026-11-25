@@ -109,6 +109,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 - **Certificado:**
   - **Conteúdo:** nome, as 8 ideias com o chamado de cada uma, estrelas, código do agente e data, com linhas de assinatura para Professor(a) e Aluno(a), entre o agente e o Robô-guia. Estrelas, código e data ficam logo abaixo das ideias, longe das assinaturas. Não tem logo.
   - **Onde abrir:** na tela final e, depois de zerar, no botão **Meu certificado** da central.
+  - **Entrada com festa:** a entrada segue o som `certificado.mp3` (4 s, ápice em 1,6 s). A folha nasce pequena e cresce com a música; no ápice vêm o clarão, os raios girando, o confete com estrelas, o pulinho da folha e o brilho que passa por ela. Os botões aparecem depois. Com "reduzir movimento" ligado no aparelho, não há animação. O código fica em `abrirComFesta` (`js/final.js`) e no bloco "CERTIFICADO: A ENTRADA COM FESTA" (`style.css`).
   - **Impressão:** uma cópia da folha vai para `#impressao`, direto no `body`, e na impressão só ela aparece. A folha ocupa 80% da largura do papel e sai numa página só, em pé ou deitada. A tela mostra a dica "escolha a folha deitada".
 
 **Outras partes**
@@ -172,7 +173,8 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
     - `figurinha`: figurinha nova colando no álbum;
     - `dica`: pedir dica;
     - `quadro`: cada quadro novo da abertura e da animação final;
-    - `carta-volta`: a carta volta para a bandeja.
+    - `carta-volta`: a carta volta para a bandeja;
+    - `certificado`: o certificado abrindo, com a animação no ritmo dele.
   - **Como os arquivos tocam:**
     - foram tratados para tocar rápido: silêncio cortado, mono, 96 kbps e pico igualado;
     - pelo site, são lidos uma vez e tocam pelo Web Audio. Com dois cliques no `index.html`, tocam num `<audio>` comum;
@@ -234,7 +236,7 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 
 **Esperando o dono ou o professor**
 1. **Resposta do professor sobre as imagens novas:** os códigos estão na página de revisão. Ajustar o que ele pedir.
-2. **Sons:** os 8 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Ainda não há som para o certificado (`certificado.mp3`). Falta pôr os efeitos também no teaser.
+2. **Sons:** os 9 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Falta pôr os efeitos também no teaser.
 3. **Conferir no iPhone de verdade:**
    - a impressão do certificado na folha deitada, que precisa sair numa página só (se ainda cortar, reduzir a largura de 80% no `style.css`, bloco "na impressão, só o certificado");
    - a instalação pelo botão "Instalar o jogo".

@@ -26,6 +26,7 @@
      dica        pedir uma dica
      quadro      cada quadro novo da abertura e da animação final
      cartaVolta  a carta sai do tabuleiro e volta para a bandeja
+     certificado o certificado abrindo (a animação segue o ápice, 1,6 s)
 
    O painel de CONFIGURAÇÕES liga e desliga a música e os efeitos separados, e
    tem um volume para cada um. Desligar é de verdade (sala com
@@ -124,6 +125,7 @@
     dica:       { arq: 'dica.mp3',        volume: 0.28, reserva: () => tocar([[659, 0.09], [880, 0.14]], 0.08) },
     quadro:     { arq: 'quadro.mp3',      volume: 0.22, reserva: clique },
     cartaVolta: { arq: 'carta-volta.mp3', volume: 0.22, reserva: () => tocar([[392, 0.07], [330, 0.10]], 0.06) },
+    certificado: { arq: 'certificado.mp3', volume: 0.32, reserva: vitoriaSintetizada },
   };
   const PASTA_EFEITOS = 'audio/efeitos/';
   const sons = {};            // nome → AudioBuffer já lido
@@ -181,6 +183,7 @@
   const dica       = () => tocarEfeito('dica');
   const quadro     = () => tocarEfeito('quadro');
   const cartaVolta = () => tocarEfeito('cartaVolta');
+  const certificado = () => tocarEfeito('certificado');
 
   /* O som do agente secreto: um zumbido grave de mistério, uma escada
      de tons inteiros subindo (soa "estranho", como um enigma) e, no
@@ -371,7 +374,7 @@
 
   window.Som = {
     acerto, erro, vitoria, clique, segredo,
-    promocao, festa, selo, figurinha, dica, quadro, cartaVolta,
+    promocao, festa, selo, figurinha, dica, quadro, cartaVolta, certificado,
     ligarBotao, abrirMenuBotao,
   };
 

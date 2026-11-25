@@ -6163,3 +6163,163 @@ body.arrastando * {
     font-size: 3.4cqw;
   }
 }
+
+/* ============================================================
+   CERTIFICADO: A ENTRADA COM FESTA (final.js, abrirComFesta)
+   Segue o som audio/efeitos/certificado.mp3 (4 s, ápice em 1,6 s):
+   - 0 a 1,6 s: a folha nasce pequena e girada e cresce cada vez
+     mais rápido, junto com a música; uma luz dourada cresce atrás;
+   - 1,6 s (ápice): clarão, raios girando, confete e estrelas, um
+     pulinho da folha e um brilho que passa por ela;
+   - depois: os raios ficam girando devagar e os botões aparecem.
+   ============================================================ */
+#certificado { --apice: 1.6s; }
+.cert-efeitos {
+  /* fixed: preso ao palco (#stage), não cria rolagem no certificado */
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+#certificado .certificado-caixa {
+  position: relative;
+  z-index: 1;
+}
+.cert-luz,
+.cert-raios,
+.cert-clarao {
+  position: absolute;
+  left: var(--cx, 50%);
+  top: var(--cy, 50%);
+  translate: -50% -50%;
+  border-radius: 50%;
+  opacity: 0;
+}
+.cert-luz {
+  width: calc(var(--lado, 60cqw) * 1.5);
+  height: calc(var(--lado, 60cqw) * 1.5);
+  background: radial-gradient(circle, rgba(255, 216, 110, 0.75), rgba(255, 190, 60, 0.25) 45%, transparent 68%);
+}
+.cert-raios {
+  width: calc(var(--lado, 60cqw) * 2.4);
+  height: calc(var(--lado, 60cqw) * 2.4);
+  background: repeating-conic-gradient(rgba(255, 226, 140, 0.55) 0 7deg, transparent 7deg 18deg);
+  mask: radial-gradient(circle, #000 18%, transparent 62%);
+  -webkit-mask: radial-gradient(circle, #000 18%, transparent 62%);
+}
+.cert-clarao {
+  width: calc(var(--lado, 60cqw) * 2);
+  height: calc(var(--lado, 60cqw) * 2);
+  background: radial-gradient(circle, #fff 0, rgba(255, 246, 210, 0.9) 30%, transparent 70%);
+}
+.cert-confete i {
+  position: absolute;
+  left: var(--cx, 50%);
+  top: var(--cy, 50%);
+  width: 1.1cqw;
+  height: 1.6cqw;
+  margin: -0.8cqw 0 0 -0.55cqw;
+  border-radius: 0.2cqw;
+  opacity: 0;
+}
+.cert-confete i.estrela {
+  width: 2.2cqw;
+  height: 2.2cqw;
+  margin: -1.1cqw 0 0 -1.1cqw;
+  background: #ffd34d !important;
+  clip-path: polygon(50% 0, 62% 36%, 100% 38%, 70% 60%, 80% 100%, 50% 76%, 20% 100%, 30% 60%, 0 38%, 38% 36%);
+}
+
+/* a sequência só roda com a classe "festa" (cada abertura) */
+#certificado.festa .certificado-folha {
+  position: relative;
+  overflow: hidden;
+  animation:
+    cert-cresce var(--apice) cubic-bezier(0.55, 0, 0.8, 0.45) both,
+    cert-pulo 0.6s var(--apice) cubic-bezier(0.2, 1.7, 0.4, 1) forwards;
+}
+#certificado.festa .certificado-folha::after {
+  content: "";
+  position: absolute;
+  inset: -10% auto -10% -60%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  transform: skewX(-18deg);
+  animation: cert-brilho 0.9s calc(var(--apice) + 0.1s) ease-out both;
+  pointer-events: none;
+}
+#certificado.festa .cert-luz {
+  animation:
+    cert-luz-cresce var(--apice) ease-in both,
+    cert-luz-pulsa 2.4s var(--apice) ease-in-out infinite;
+}
+#certificado.festa .cert-raios {
+  animation:
+    cert-raios-entra 0.7s var(--apice) ease-out both,
+    cert-raios-gira 22s var(--apice) linear infinite;
+}
+#certificado.festa .cert-clarao {
+  animation: cert-clarao 0.7s var(--apice) ease-out both;
+}
+#certificado.festa .cert-confete i {
+  animation: cert-confete var(--dur, 1.8s) var(--apice) cubic-bezier(0.15, 0.7, 0.4, 1) both;
+}
+#certificado.festa .certificado-dica,
+#certificado.festa .certificado-botoes {
+  animation: cert-surge 0.5s calc(var(--apice) + 0.5s) ease-out both;
+}
+
+@keyframes cert-cresce {
+  0% { transform: scale(0.1) rotate(-12deg); opacity: 0; filter: brightness(1.8); }
+  12% { opacity: 1; }
+  55% { transform: scale(0.42) rotate(5deg); }
+  100% { transform: scale(0.97) rotate(0); filter: brightness(1.1); }
+}
+@keyframes cert-pulo {
+  0% { transform: scale(0.97); filter: brightness(1.4); }
+  35% { transform: scale(1.08); }
+  100% { transform: scale(1); filter: none; }
+}
+@keyframes cert-brilho {
+  from { left: -60%; }
+  to { left: 130%; }
+}
+@keyframes cert-luz-cresce {
+  from { opacity: 0; scale: 0.2; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes cert-luz-pulsa {
+  0%, 100% { opacity: 0.85; scale: 1; }
+  50% { opacity: 0.55; scale: 0.92; }
+}
+@keyframes cert-raios-entra {
+  from { opacity: 0; scale: 0.3; }
+  to { opacity: 0.9; scale: 1; }
+}
+@keyframes cert-raios-gira {
+  to { rotate: 360deg; }
+}
+@keyframes cert-clarao {
+  0% { opacity: 0; scale: 0.3; }
+  25% { opacity: 0.95; }
+  100% { opacity: 0; scale: 1.3; }
+}
+@keyframes cert-confete {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0) scale(0.4); }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), calc(var(--dy) + 8cqw)) rotate(var(--giro)) scale(1); }
+}
+@keyframes cert-surge {
+  from { opacity: 0; transform: translateY(1cqw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #certificado.festa .certificado-folha,
+  #certificado.festa .certificado-folha::after,
+  #certificado.festa .cert-efeitos *,
+  #certificado.festa .certificado-dica,
+  #certificado.festa .certificado-botoes {
+    animation: none !important;
+  }
+  .cert-efeitos { display: none; }
+}
