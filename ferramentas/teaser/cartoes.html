@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Cartões do teaser</title>
+<link rel="stylesheet" href="../../fontes/fontes.css" />
+<style>
+  :root {
+    --p: #8a63c7; --ink: #2b2231; --cream: #fcf2e2; --ouro: #f2b83c;
+    --u: 1vw;                       /* unidade: largura no horizontal */
+  }
+  @media (max-aspect-ratio: 1/1) { :root { --u: 1.75vw; } }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #241a36; }
+  body { font-family: Nunito, sans-serif; color: #fff; }
+  .cena { position: absolute; inset: 0; display: none; }
+  .cena.on { display: block; }
+  .fundo {
+    position: absolute; inset: -4%;
+    background: url(../../img/story1.webp) center / cover;
+    filter: blur(calc(0.5 * var(--u)));
+  }
+  .veu { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(60, 36, 96, 0.55), rgba(24, 14, 40, 0.92) 75%); }
+  .centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 6%; }
+
+  /* ---------- abertura: a frase e o sanduíche montando ---------- */
+  .frase {
+    font: 600 calc(4.4 * var(--u)) / 1.15 Fredoka, sans-serif;
+    text-shadow: 0 calc(0.3 * var(--u)) calc(0.6 * var(--u)) rgba(0, 0, 0, 0.5);
+    margin: 0;
+  }
+  .frase.l1 { animation: sobe 0.9s 0.3s both; }
+  .frase.l2 { color: #ffd76a; margin-top: calc(1.4 * var(--u)); animation: sobe 0.9s 2.1s both; }
+  .pilha { position: relative; width: calc(30 * var(--u)); height: calc(18 * var(--u)); margin-top: calc(1.6 * var(--u)); }
+  .pilha img { position: absolute; left: 0; width: 100%; filter: drop-shadow(0 calc(0.4 * var(--u)) 0 rgba(0,0,0,.3)); animation: cai 0.55s both cubic-bezier(.3, 1.4, .5, 1); }
+  .pilha img:nth-child(1) { bottom: 0; animation-delay: 2.6s; }
+  .pilha img:nth-child(2) { bottom: 9%; animation-delay: 3.0s; }
+  .pilha img:nth-child(3) { bottom: 18%; animation-delay: 3.4s; }
+  .pilha img:nth-child(4) { bottom: 27%; animation-delay: 3.8s; }
+  @keyframes sobe { from { opacity: 0; transform: translateY(calc(2 * var(--u))); } }
+  @keyframes cai { from { opacity: 0; transform: translateY(calc(-14 * var(--u))); } }
+
+  /* ---------- título: a cidade com o nome do jogo ---------- */
+  .cidade { position: absolute; inset: 0; background: url(../../img/story1.webp) center / cover; animation: zoom 6s ease-out both; }
+  @keyframes zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+  .logo {
+    font: 700 calc(10 * var(--u)) Fredoka, sans-serif;
+    color: var(--p);
+    -webkit-text-stroke: calc(0.7 * var(--u)) var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 0 calc(0.8 * var(--u)) 0 var(--ink);
+    margin: 0;
+    animation: estoura 0.8s 0.2s both cubic-bezier(.2, 1.5, .4, 1);
+  }
+  @keyframes estoura { from { opacity: 0; transform: scale(0.4); } }
+  .pilula {
+    margin-top: calc(2 * var(--u));
+    padding: calc(0.9 * var(--u)) calc(2.6 * var(--u));
+    background: var(--cream); color: var(--ink);
+    border: calc(0.3 * var(--u)) solid var(--ink); border-radius: 99px;
+    box-shadow: 0 calc(0.45 * var(--u)) 0 var(--ink);
+    font: 700 calc(2.1 * var(--u)) Nunito, sans-serif;
+    animation: sobe 0.7s 0.9s both;
+  }
+  .robo { position: absolute; height: calc(18 * var(--u)); right: 4%; bottom: 4%; animation: sobe 0.7s 1.2s both, flutua 2.4s 1.9s ease-in-out infinite; }
+  @keyframes flutua { 50% { transform: translateY(calc(-1 * var(--u))) rotate(-4deg); } }
+  .titulo .centro { justify-content: flex-start; padding-top: 12%; }
+  .titulo .veu { background: linear-gradient(rgba(30, 18, 50, 0.15), rgba(30, 18, 50, 0) 60%); }
+
+  /* ---------- fim: a frase de fechamento, o site e o QR ---------- */
+  .fim .frase { animation: sobe 0.9s 0.2s both; font-size: calc(4 * var(--u)); }
+  .cartao {
+    margin-top: calc(3 * var(--u));
+    display: flex; align-items: center; gap: calc(3 * var(--u));
+    padding: calc(2 * var(--u)) calc(3 * var(--u));
+    background: var(--cream); color: var(--ink);
+    border: calc(0.35 * var(--u)) solid var(--ink); border-radius: calc(2.4 * var(--u));
+    box-shadow: 0 calc(0.6 * var(--u)) 0 var(--ink);
+    animation: estoura 0.8s 1.3s both cubic-bezier(.2, 1.4, .4, 1);
+    text-align: left;
+  }
+  .cartao .logo { font-size: calc(5 * var(--u)); -webkit-text-stroke-width: calc(0.45 * var(--u)); text-shadow: 0 calc(0.5 * var(--u)) 0 var(--ink); animation: none; }
+  .cartao p { margin: calc(0.8 * var(--u)) 0 0; font: 800 calc(1.8 * var(--u)) / 1.3 Nunito, sans-serif; }
+  .cartao .site { margin-top: calc(1.2 * var(--u)); display: inline-block; padding: calc(0.4 * var(--u)) calc(1.4 * var(--u)); border-radius: calc(1 * var(--u)); background: var(--p); color: #fff; font: 600 calc(1.9 * var(--u)) Fredoka, sans-serif; }
+  .qr { width: calc(15 * var(--u)); height: calc(15 * var(--u)); border: calc(0.3 * var(--u)) solid var(--ink); border-radius: calc(1.2 * var(--u)); background: #fffaf0; padding: calc(0.5 * var(--u)); }
+  .qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .fim .robo { animation: sobe 0.7s 2s both, flutua 2.4s 2.7s ease-in-out infinite; }
+
+  /* vertical: o cartão do fim empilha */
+  @media (max-aspect-ratio: 1/1) {
+    .cartao { flex-direction: column; text-align: center; gap: calc(2 * var(--u)); padding: calc(3 * var(--u)); }
+    .titulo .centro { padding-top: 24%; }
+    .logo { font-size: calc(7.4 * var(--u)); }
+    .pilula { font-size: calc(2.6 * var(--u)); text-align: center; border-radius: calc(3 * var(--u)); }
+    .robo { height: calc(24 * var(--u)); right: 6%; bottom: 6%; }
+    .cidade { background-position: 38% center; }
+    .fim .robo { display: none; }
+  }
+</style>
+</head>
+<body>
+  <section class="cena intro">
+    <div class="fundo"></div><div class="veu"></div>
+    <div class="centro">
+      <p class="frase l1">As máquinas dependem dos detalhes.</p>
+      <p class="frase l2">Até para fazer um sanduíche.</p>
+      <div class="pilha">
+        <img src="../../img/pecas/sanduiche-pao.webp" alt="" />
+        <img src="../../img/pecas/sanduiche-queijo.webp" alt="" />
+        <img src="../../img/pecas/sanduiche-presunto.webp" alt="" />
+        <img src="../../img/pecas/sanduiche-pao-cima.webp" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <section class="cena titulo">
+    <div class="cidade"></div><div class="veu"></div>
+    <div class="centro">
+      <h1 class="logo">Algoritimando</h1>
+      <p class="pilula">Um jogo para aprender algoritmos com tarefas do dia a dia</p>
+    </div>
+    <img class="robo" src="../../img/robo-feliz.webp" alt="" />
+  </section>
+
+  <section class="cena fim">
+    <div class="fundo"></div><div class="veu"></div>
+    <div class="centro">
+      <p class="frase">Aprender a pensar, um passo de cada vez.</p>
+      <div class="cartao">
+        <div>
+          <h2 class="logo">Algoritimando</h2>
+          <p>Grátis, no navegador: celular ou PC,<br />até sem internet.</p>
+          <span class="site">brinqueaprenda.com.br/jogo/algoritimando</span>
+        </div>
+        <div class="qr"><img src="../../docs/teaser/qr-algoritimando.png" alt="" /></div>
+      </div>
+    </div>
+    <img class="robo" src="../../img/robo-feliz.webp" alt="" />
+  </section>
+
+  <script>
+    const c = new URLSearchParams(location.search).get('c') || 'intro';
+    document.querySelector('.cena.' + c).classList.add('on');
+  </script>
+</body>
+</html>

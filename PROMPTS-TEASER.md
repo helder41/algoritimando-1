@@ -114,6 +114,50 @@ Style: cute flat cartoon illustration for an educational game (ages 8 to 10), ex
 - **O QR code** (`qr-algoritimando.png`), que leva para **https://brinqueaprenda.com.br/jogo/algoritimando**. Ele foi conferido lendo a imagem reduzida.
 - **A tela de créditos:** é a própria tela do jogo (botão "Créditos" do menu).
 
-## O que ainda falta para gerar o vídeo
+## O vídeo (gerado em 25/11/2026)
 
-- Escolher a frase de efeito (de abertura e/ou de fechamento).
+- **Frases:**
+  - abertura: "As máquinas dependem dos detalhes. Até para fazer um sanduíche.";
+  - fechamento: "Aprender a pensar, um passo de cada vez."
+- **Arquivos** (entregues ao dono, fora do repositório, ~22 MB cada):
+  - `algoritimando-teaser-horizontal.mp4`: 1920×1080, 30 qps, 60 s;
+  - `algoritimando-teaser-vertical.mp4`: 1080×1920, 30 qps, 60 s.
+- **Cenas, na ordem:**
+  1. abertura;
+  2. título;
+  3. mapa;
+  4. agente com o tablet (mochila);
+  5. sanduíche;
+  6. robô;
+  7. limonada;
+  8. agente pensando;
+  9. erro e dica;
+  10. lição e álbum;
+  11. Meus aprendizados;
+  12. agente comemorando;
+  13. promoção a Agente Sênior;
+  14. certificado;
+  15. cartão final (frase, site e QR);
+  16. créditos.
+- **Som:** só a música do jogo. Os efeitos são sintetizados pelo jogo na hora e não entram na gravação.
+- **Na vertical:** as cartas entram por toque (carta e depois espaço, rolando a tela), como no celular.
+
+### Como refazer
+
+Os scripts ficam em `ferramentas/teaser/` e precisam de Playwright com Chromium, ffmpeg e Python com Pillow.
+
+```
+cd ferramentas/teaser
+node grava.js h          # grava as cenas em 1920x1080 (cenas-h/)
+node grava.js v          # grava as cenas em 1080x1920 (cenas-v/)
+python3 monta.py h       # monta saida-h/algoritimando-teaser-horizontal.mp4
+python3 monta.py v       # monta saida-v/algoritimando-teaser-vertical.mp4
+```
+
+- **O que fica em cada arquivo:**
+  - as cenas e as ações, em `grava.js`;
+  - as durações, as legendas e os recortes, em `monta.py` (função `roteiro`);
+  - a abertura, o título e o cartão final, em `cartoes.html`.
+- **Refazer só algumas cenas:** dá para passar os nomes depois da orientação (ex.: `node grava.js h sanduiche` e `python3 monta.py h sanduiche`).
+- **A vertical** usa a gravação horizontal da mochila dentro do tablet, então `cenas-h/` precisa existir.
+- **O que não vai para o repositório** (no `.gitignore`): as pastas `cenas-*` e `saida-*`.
