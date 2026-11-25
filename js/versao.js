@@ -1,0 +1,2 @@
+/* js/versao.js — gerado por ferramentas/gerar-sw.js. Não edite à mão. */
+window.ALGORITIMANDO_VERSAO = { numero: '1.50', data: '24/11/2026' };

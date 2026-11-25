@@ -194,6 +194,12 @@
   document.addEventListener('fullscreenchange', mostrarTelaCheia);
   document.addEventListener('webkitfullscreenchange', mostrarTelaCheia);
   mostrarTelaCheia();
+  // a versão do jogo no canto do menu (js/versao.js)
+  const V = window.ALGORITIMANDO_VERSAO;
+  if (V) {
+    $('#versaoJogo').textContent = `v${V.numero} · ${V.data}`;
+    $('#versaoJogo').title = `Versão ${V.numero}, de ${V.data}`;
+  }
   $('#bCreditos').onclick = () => $('#creditos').classList.add('on');
   $('#bCreditosFechar').onclick = () => $('#creditos').classList.remove('on');
   $('#bHow').onclick = () => $('#how').classList.add('on');

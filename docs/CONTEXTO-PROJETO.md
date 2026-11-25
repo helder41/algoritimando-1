@@ -8,7 +8,7 @@ Cole este arquivo no começo de uma sessão nova, ou peça para a sessão ler `d
 - **Regra de ouro do fluxo:** cada mudança vai num PR para o `main`. O dono mergeia rápido, então **confira se o PR já foi mergeado antes de enviar mais commits**. Se já foi, abra um PR novo.
 - **A cada mudança publicada:**
   1. atualize o `?v=AAAAMMDDHHMM` no `index.html` e no `editor.html` (e o `const V` em `js/final.js`);
-  2. rode `node ferramentas/gerar-sw.js`;
+  2. rode `node ferramentas/gerar-sw.js`, com o branch em dia com o `main` (ele também escreve a versão do jogo, em `js/versao.js`);
   3. rode `node js/motor.js` (os 9 testes precisam passar).
 - **Respostas ao dono:** em português, curtas e fáceis de ler.
 
@@ -115,6 +115,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 **Outras partes**
 - **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre uma tela inteira (crachás de agente que caem pendurados e balançam, faixa dourada, selo do orientador, Robô-guia) com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
 - **Volume da música:** a barrinha segue uma curva (5% é bem baixinho; 0% é mudo). Pelo site, a música passa pelo Web Audio, porque o iPhone ignora o volume do `<audio>`; com dois cliques no `index.html`, vale o volume do `<audio>`.
+- **Versão do jogo:** aparece no canto de baixo, à direita, do menu (ex.: "v1.50 · 24/11/2026"). É MAIOR.N: N = PRs mergeados no `main` + 1, ou seja, cada PR mergeado sobe 1. O `ferramentas/gerar-sw.js` conta os PRs e escreve o `js/versao.js`. Para um marco (2.0), troque `MAIOR` e `PRS_ANTES` no topo do `gerar-sw.js`. O PR #44 foi fechado sem merge, por isso o número fica um abaixo do número do último PR.
 - **Configurações:** Música, Efeitos, **Cartas no lugar**, **Tela cheia** (some no iPhone) e **Instalar o jogo** (só pelo site; no iPhone mostra a explicação).
   - **Cartas no lugar** (ideia de uma criança no teste; **ligado de fábrica**): a carta tirada do tabuleiro volta para o mesmo lugar da bandeja, e as outras não se mexem. Desligado, a bandeja se reorganiza como antes. Fica em `algoritimando-ajustes` e é aplicado no `js/arrasto.js`.
 - **Modo instalável (PWA):**

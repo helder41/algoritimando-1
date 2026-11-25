@@ -12,6 +12,9 @@
      - CSS e JS entram com o ?v= exato com que o index.html os
        carrega, para o aparelho nunca misturar versões.
 
+   Também escreve o js/versao.js: o número da versão que aparece no
+   canto do menu (ver "VERSÃO DO JOGO" abaixo).
+
    Rode depois de atualizar o ?v= no index.html (a cada mudança
    publicada):  node ferramentas/gerar-sw.js
    ============================================================ */
@@ -30,6 +33,27 @@ if (!versao) {
   console.error('Não achei o ?v=AAAAMMDDHHMM no index.html.');
   process.exit(1);
 }
+
+/* ---------------- VERSÃO DO JOGO (js/versao.js) ----------------
+   A versão é MAIOR.N, e N sobe 1 a cada pull request mergeado no main:
+   N = PRs mergeados até agora + 1 (o PR que está sendo preparado).
+   Assim, depois do merge, o main mostra exatamente a versão do seu
+   último PR. Rode este script com o branch em dia com o main.
+
+   Para um marco (ex.: 2.0): troque MAIOR para 2 e ponha em PRS_ANTES
+   o número de PRs mergeados até agora + 1; o PR do marco vira 2.0 e
+   os seguintes, 2.1, 2.2... */
+const MAIOR = 1;
+const PRS_ANTES = 0;
+
+const mergeados = execSync('git log --format=%s HEAD', { cwd: raiz, encoding: 'utf8' })
+  .split('\n').filter(l => /^Merge pull request #\d+/.test(l)).length;
+const numero = `${MAIOR}.${mergeados + 1 - PRS_ANTES}`;
+const data = `${versao.slice(6, 8)}/${versao.slice(4, 6)}/${versao.slice(0, 4)}`;
+fs.writeFileSync(path.join(raiz, 'js', 'versao.js'),
+  `/* js/versao.js — gerado por ferramentas/gerar-sw.js. Não edite à mão. */
+window.ALGORITIMANDO_VERSAO = { numero: '${numero}', data: '${data}' };
+`);
 
 // os arquivos que o index.html carrega com ?v= (CSS e JS)
 const comVersao = new Map();
@@ -126,4 +150,5 @@ self.addEventListener('fetch', ev => {
 `;
 
 fs.writeFileSync(path.join(raiz, 'sw.js'), sw);
+console.log(`versão do jogo: v${numero} (${data})`);
 console.log(`sw.js: versão ${versao}, ${lista.length} arquivos.`);

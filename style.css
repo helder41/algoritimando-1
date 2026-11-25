@@ -6368,3 +6368,29 @@ body.arrastando * {
     animation: none;
   }
 }
+
+/* ===== versão do jogo, discreta no canto do menu ===== */
+.menu-versao {
+  position: absolute;
+  right: 1.4cqw;
+  bottom: 1cqw;
+  z-index: 2;
+  padding: 0.25cqw 0.9cqw;
+  border-radius: 99px;
+  background: rgba(43, 34, 49, 0.55);
+  color: #fff;
+  font: 700 max(0.95cqw, 10px) Nunito, sans-serif;
+  letter-spacing: 0.04em;
+  pointer-events: auto;
+}
+.menu-versao:empty {
+  display: none;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .menu-versao {
+    right: 3cqw;
+    bottom: 2cqw;
+    padding: 0.6cqw 2.2cqw;
+    font-size: 2.8cqw;
+  }
+}
