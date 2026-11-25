@@ -76,6 +76,13 @@
                              cima anda numa grade fazendo o que as
                              cartas mandam (usa os ids dos passos
                              desse chamado);
+                 "jardim"  — (abelhas) e "rua" (atravessar a rua):
+                             cenas desenhadas pelo jogo, com o cliente
+                             andando por elas. Param na primeira carta
+                             que vem antes de uma dependência, com uma
+                             estrela. Nada a configurar além dos ids
+                             dos passos (sair, procurar, voar-flor…;
+                             faixa, ver-luz, esperar, olhar…).
                  "estado"  — uma bancada (montagemBase) com objetos
                              que mudam de figura a cada carta. Usa:
                    montagemObjetos  [{ id, x, y, w (em % da base:

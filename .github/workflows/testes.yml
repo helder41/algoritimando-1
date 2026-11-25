@@ -1,0 +1,52 @@
+# Testes automáticos: rodam a cada PR para o main (e a cada push no main).
+# 1. os 9 testes do motor (node testes/motor.js)
+# 2. as telas do jogo no Chromium, no PC e no celular (Playwright)
+# Se algo falhar, o PR fica com um X vermelho e o relatório das telas
+# fica para baixar em "Artifacts", na página da execução.
+name: Testes
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testes-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar as dependências dos testes
+        run: npm ci
+
+      - name: Testes do motor
+        run: npm run test:motor
+
+      - name: Instalar o Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Testes das telas
+        run: npm run test:telas
+
+      - name: Guardar o relatório das telas
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-das-telas
+          path: testes/relatorio/
+          retention-days: 14

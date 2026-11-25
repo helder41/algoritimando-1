@@ -61,7 +61,7 @@ async function concluirNivel(p, id, n) {
   await sleep(2600);
 }
 
-// Os 18 quadros. Cada um recebe a página já aberta no tamanho certo.
+// Os 20 quadros. Cada um recebe a página já aberta no tamanho certo.
 const CAPTURAS = [
   ['01-menu', PC, async p => { await estado(p, []); await sleep(800); }],
   ['02-mapa', PC, async p => {
@@ -151,6 +151,19 @@ const CAPTURAS = [
     await estado(p, TODOS, { promovido: true, senior: true });
     await p.click('#bPlay'); await sleep(1400);
     await p.evaluate(() => Album.abrir()); await sleep(3200);
+  }],
+  // as montagens do jardim e da rua
+  ['19-abelhas-jardim', PC, async p => {
+    await estado(p, ['sanduiche']);
+    await abrirNivel(p, 'abelhas', 1);
+    await montar(p, ['sair', 'voar-flor', 'nectar']);
+    await sleep(2500);
+  }],
+  ['20-rua-faixa', PC, async p => {
+    await estado(p, ['sanduiche']);
+    await abrirNivel(p, 'rua', 1);
+    await montar(p, ['faixa', 'ver-luz', 'esperar']);
+    await sleep(2500);
   }],
 ];
 

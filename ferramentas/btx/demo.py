@@ -4,7 +4,7 @@
 #
 # Antes, grave as cenas:
 #   cd ferramentas/teaser
-#   node grava.js h titulo mapa sanduiche robo dica album promo fimanim certfesta fim
+#   node grava.js h titulo mapa sanduiche robo rua dica album promo fimanim certificado fim
 # Depois:
 #   python3 -I ferramentas/btx/demo.py
 # Saída: ferramentas/btx/saida/algoritimando-demo-btx.mp4
@@ -17,7 +17,7 @@ import monta as M  # noqa: E402
 
 M.OUT = os.path.join(AQUI, 'saida')
 os.makedirs(M.OUT, exist_ok=True)
-M.TOTAL = 30.0
+M.TOTAL = 33.0
 NOME = 'algoritimando-demo-btx.mp4'
 
 
@@ -31,14 +31,16 @@ def roteiro():
                        ('A montagem mostra o que a ordem escolhida faz', 2.6, 5.1)]),
         dict(nome='robo', tipo='jogo', src='robo', vel=1.8, dur=3.4,
              legendas=[('O robô faz exatamente o que as cartas mandam', 0.2, 3.3)]),
+        dict(nome='rua', tipo='jogo', src='rua', vel=2.0, ini=1.2, dur=3.0,
+             legendas=[('Cada chamado tem a sua montagem', 0.2, 2.9)]),
         dict(nome='dica', tipo='jogo', src='dica', vel=1.45, ini=0.6, recorte=None, dur=4.2,
              legendas=[('O Robô-guia explica o erro, sem dar a resposta', 0.2, 4.1)]),
         dict(nome='album', tipo='jogo', src='album', vel=1.25, recorte=None, dur=4.0,
              legendas=[('Cada nível vira uma lição e uma figurinha no álbum', 0.2, 3.9)]),
         dict(nome='fimanim', tipo='jogo', src='fimanim', vel=1.15, recorte=None, dur=3.6,
              legendas=[('No final, o álbum completo e a festa na cidade', 0.2, 3.5)]),
-        dict(nome='certfesta', tipo='jogo', src='certfesta', vel=1.2, recorte=None, dur=3.2,
-             legendas=[('E o certificado de Agente Sênior', 0.3, 3.1)]),
+        dict(nome='certificado', tipo='jogo', src='certificado', recorte=None, dur=3.2,
+             legendas=[('E o certificado de Agente Sênior', 1.0, 3.1)]),
         dict(nome='fim', tipo='cartao', src='fim', dur=0),
     ]
     soma = sum(s['dur'] for s in R)

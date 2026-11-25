@@ -1,0 +1,13 @@
+{
+  "name": "algoritimando",
+  "private": true,
+  "description": "Só para os testes: o jogo não precisa de instalação nem de build.",
+  "scripts": {
+    "test": "npm run test:motor && npm run test:telas",
+    "test:motor": "node testes/motor.js",
+    "test:telas": "playwright test -c testes"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}
