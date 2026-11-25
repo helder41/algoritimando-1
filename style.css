@@ -5566,6 +5566,76 @@ body.arrastando * {
   .grade-quadro.nova .g-robo { animation: none; }
 }
 
+/* ===== montagens "jardim" e "rua": cenas desenhadas (montagem.js) ===== */
+.desenho-svg image { image-rendering: auto; }
+/* a peça que chega não "cai" aqui: o personagem só aparece no lugar novo */
+.montagem .desenho-quadro .nova { animation: desenho-chega 0.4s ease-out; }
+.montagem .desenho-quadro.nova { animation: none; }
+@keyframes desenho-chega { from { opacity: 0.25; } }
+.c-personagem { filter: drop-shadow(0 6px 4px rgba(60, 40, 20, 0.25)); }
+.c-dentro { opacity: 0.85; }
+.c-trilha { stroke-width: 5; }
+.c-opa { stroke-width: 4; }
+.c-destaque { fill: rgba(255, 236, 140, 0.55); stroke: #7a52bd; stroke-width: 5; stroke-dasharray: 3 12; stroke-linecap: round; }
+.c-olhar { fill: none; stroke: #7a52bd; stroke-width: 4; stroke-dasharray: 2 11; stroke-linecap: round; }
+/* jardim */
+.c-ceu { fill: #cfe9f6; }
+.c-nuvem { fill: #fff; stroke: #c3dcea; stroke-width: 3; }
+.c-cerca { fill: #f6ead5; stroke: #c9ae8a; stroke-width: 3; }
+.c-grama { fill: #a6d37b; }
+.c-borda { stroke: #6f9e4c; stroke-width: 5; }
+.c-galho { fill: none; stroke: #8a5a3b; stroke-width: 18; stroke-linecap: round; }
+.c-fio { stroke: #8a5a3b; stroke-width: 6; }
+.c-colmeia { fill: #f2c14e; stroke: #3b2a2a; stroke-width: 4; }
+.c-porta { fill: #5a3a28; }
+.c-janela { fill: #fff6df; stroke: #3b2a2a; stroke-width: 4; }
+.c-celula { stroke: #c98a1c; stroke-width: 3; }
+.c-celula.vazia { fill: #fff1c9; }
+.c-celula.cheia { fill: #f0a92b; }
+.c-celula.tampada { fill: #f7d779; }
+.c-caule { fill: none; stroke: #4f8a3a; stroke-width: 7; stroke-linecap: round; }
+.c-folha, .c-sepala { fill: #79b956; stroke: #3b2a2a; stroke-width: 3; }
+.c-botao { fill: #e9a4c3; stroke: #3b2a2a; stroke-width: 3.5; }
+.c-petala { fill: #f58fb4; stroke: #3b2a2a; stroke-width: 3.5; }
+.c-miolo { fill: #ffd34d; stroke: #3b2a2a; stroke-width: 3.5; }
+.c-polen { fill: #f2a516; }
+.c-polen.grande { stroke: #3b2a2a; stroke-width: 2.5; fill: #ffc93a; }
+.c-nectar { fill: #f0a92b; stroke: #3b2a2a; stroke-width: 3; }
+/* rua */
+.c-predio { stroke: #3b2a2a; stroke-width: 3; }
+.c-predio.a { fill: #f3c9a5; }
+.c-predio.b { fill: #b9d4e8; }
+.c-predio.c { fill: #f1dfa6; }
+.c-janelinha { fill: #fffaf0; stroke: #3b2a2a; stroke-width: 2; }
+.c-copa { fill: #8cc66b; stroke: #3b2a2a; stroke-width: 3; }
+.c-calcada { fill: #ead9bd; }
+.c-meiofio { fill: #c9b393; }
+.c-asfalto { fill: #6e6a75; }
+.c-linha { fill: #f2d16b; }
+.c-zebra { fill: #fbfaf6; }
+.c-poste { fill: #4d4954; stroke: #3b2a2a; stroke-width: 2; }
+.c-caixa { fill: #3d3a44; stroke: #3b2a2a; stroke-width: 4; }
+.c-luz { stroke: #222; stroke-width: 3; }
+.c-luz.vermelha { fill: #6a3534; }
+.c-luz.verde { fill: #2f5a3a; }
+.c-luz.vermelha.acesa { fill: #ff5a4e; filter: drop-shadow(0 0 8px #ff7a6e); }
+.c-luz.verde.acesa { fill: #4fe07a; filter: drop-shadow(0 0 8px #8ff0b0); }
+.c-carro { fill: #5b8fd6; stroke: #3b2a2a; stroke-width: 4; stroke-linejoin: round; }
+.c-vidro { fill: #dff1fb; stroke: #3b2a2a; stroke-width: 3; }
+.c-roda { fill: #3b2a2a; stroke: #8f8a96; stroke-width: 5; }
+.c-vento { stroke: #fbfaf6; stroke-width: 5; stroke-linecap: round; opacity: 0.8; }
+.c-calca { fill: #4a5d8a; stroke: #3b2a2a; stroke-width: 3; }
+.c-sapato { fill: #3b2a2a; }
+.c-blusa { fill: #3fa39a; stroke: #3b2a2a; stroke-width: 3.5; }
+.c-braco { fill: none; stroke: #3fa39a; stroke-width: 15; stroke-linecap: round; }
+.c-pele { fill: #c98e64; stroke: #3b2a2a; stroke-width: 3; }
+.c-cabelo { fill: #3b2a2a; }
+.c-olho { fill: #3b2a2a; }
+.c-boca { fill: none; stroke: #3b2a2a; stroke-width: 3; stroke-linecap: round; }
+@media (prefers-reduced-motion: reduce) {
+  .montagem .desenho-quadro .nova { animation: none; }
+}
+
 /* abertura e animação final: o quadro atual mostra quanto falta para
    passar sozinho (a barrinha enche no tempo do quadro; app.js e final.js) */
 :is(#story, #fim) .dots {

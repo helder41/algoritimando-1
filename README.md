@@ -40,6 +40,7 @@ Para jogar, basta abrir o `index.html` no navegador (sem servidor, sem instalaç
 | Arquivo | O que faz |
 |---|---|
 | `js/motor.js` | formato dos dados e validação pelas dependências (`node js/motor.js` roda os testes) |
+| `testes/`, `package.json`, `.github/workflows/testes.yml` | testes automáticos, rodados pelo GitHub a cada PR: os do motor e os das telas (Playwright). Na máquina: `npm install` e `npm test` |
 | `js/situacoes.js` | os 7 chamados (4 originais e 3 novos), no mesmo formato do `.json` do professor |
 | `js/em-progresso.js` | os 2 protótipos que ainda não foram aprovados, Escovar os dentes e Plantar uma semente (seção "Em progresso", senha 6234; o botão está escondido no `index.html` por enquanto) |
 | `fontes/` | as duas fontes do jogo (WOFF2) e as licenças delas (SIL Open Font License) |

@@ -729,7 +729,9 @@ const SITUACAO_ABELHAS = {
   cena: 'img/pic4.webp',
   fundo: 'img/level4.webp',
   fundoConclusao: 'img/win4.webp',
-  // sem montagem ao lado: a tirinha só repetia as cartas (revisão do professor)
+  // o jardim: a abelha sai, procura a flor, coleta, volta e guarda o
+  // néctar no favo, seguindo as cartas (montagem.js, modo "jardim")
+  montagem: 'jardim',
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
@@ -1169,7 +1171,9 @@ const SITUACAO_RUA = {
   cena: 'img/pic6.webp',
   fundo: 'img/level6.webp',
   fundoConclusao: 'img/win6.webp',
-  // sem montagem ao lado: a tirinha só repetia as cartas (revisão do professor)
+  // a rua: o menino vai até a faixa, olha a luz, espera o verde, olha
+  // para os dois lados e atravessa (montagem.js, modo "rua")
+  montagem: 'rua',
   // o selo da ideia: entregue na lição do último nível (ver motor.js)
   selo: {
     nome: 'Condição',
