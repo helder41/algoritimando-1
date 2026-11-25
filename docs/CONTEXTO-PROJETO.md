@@ -47,7 +47,7 @@ Cole este arquivo no começo de uma sessão nova, ou peça para a sessão ler `d
 | `js/situacoes.js` | os 8 chamados do jogo, com a configuração da montagem de cada um |
 | `js/jogo.js` | a partida: tabuleiro, Verificar, dica, estrelas e a cena em tela cheia do nível |
 | `js/app.js` | menu, abertura, crachá, mapa (`LUGARES`), progresso e promoções, sanduíche obrigatório, agente secreto, atalho de dev, configurações, tela final |
-| `js/montagem.js` | a imagem ao lado do tabuleiro: `pilha`, `cena`, `grade`, `estado` (e `tirinha`, sem uso) |
+| `js/montagem.js` | a imagem ao lado do tabuleiro: `pilha`, `cena`, `grade`, `estado`, `jardim`, `rua` (e `tirinha`, sem uso) |
 | `js/conclusao.js` | tela de lição (sem imagem, abre direto no texto; mostra "+1 figurinha") |
 | `js/album.js` | "Meu álbum": uma figurinha por nível concluído e a página de figurinhas extras |
 | `js/final.js` | animação final (7 quadros) e certificado (tela e impressão) |
@@ -73,8 +73,8 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 | Casa (`casa`) | Lavar as mãos | 4 | repetição | menino de avental | `estado` |
 | Fábrica (`fabrica`) | O robô e o cubo | 5 | passos escondidos | robô laranja (`who2`, `cliente1`) | `grade` |
 | Escola (`escola`) | Arrumar a mochila | 4 | instrução | menina de uniforme (`who3`, `cliente2`) | `cena` |
-| Jardim (`jardim`) | Ajudar as abelhas | 4 | começo, meio e fim | abelha (`who4`, `cliente3`) | nenhuma |
-| Faixa (`faixa`) | Atravessar a rua | 3 | condição | menino de moletom amarelo (`who5`, `cliente4`) | nenhuma |
+| Jardim (`jardim`) | Ajudar as abelhas | 4 | começo, meio e fim | abelha (`who4`, `cliente3`) | `jardim` |
+| Faixa (`faixa`) | Atravessar a rua | 3 | condição | menino de moletom amarelo (`who5`, `cliente4`) | `rua` |
 | Limonada (`limonada`) | Fazer uma limonada | 3 | caminhos paralelos | menino de moletom amarelo | `estado` |
 | Casa azul (`casa-azul`) | Escovar os dentes | 4 | o que abre, fecha | menina de pijama coral (`who6`, `cliente5`) | `estado` |
 
@@ -94,6 +94,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - `pilha` (sanduíche): as fatias se empilham na ordem dos espaços;
   - `cena` (mochila): as peças entram na cena; fora de ordem, o lápis fica de fora;
   - `grade` (robô, só código): o robô visto de cima anda, vira, abre e fecha a garra. Ele para e marca uma estrela quando bate na parede, empurra o cubo, fecha no vazio ou solta longe; fica cinza com "z z" se estiver desligado;
+  - `jardim` (abelhas) e `rua` (atravessar a rua): cenas desenhadas por código, sem imagens novas, com o corpo do cliente (`cliente3`, `cliente4`) andando por elas. No jardim, a abelha sai da colmeia, procura a flor aberta (as outras são botões), coleta o néctar e o pólen (somem da flor e vão com ela), volta e enche e fecha a célula do favo (o balão embaixo da colmeia). Na rua, o menino vai até a faixa, olha a luz (linha até o semáforo), espera o verde (o carro para antes da faixa), olha para os dois lados e atravessa; com a carta da mão, um adulto vai junto. As duas param na primeira carta que vem antes da hora, com uma estrela, como o `estado`;
   - `estado` (limonada, dentes, mãos): uma bancada com objetos que mudam a cada carta. A primeira carta que vem antes da hora para tudo, e uma estrela marca o objeto dela. A configuração fica nos dados do chamado (`montagemObjetos`, `montagemRegras`, `montagemOnde`), e as peças estão em `img/pecas/`.
 - **Tela cheia:** o botão "Tela cheia" mostra a cena do chamado inteira.
 - **Celular em pé:** a cena do chamado é o fundo da tela, borrada e parada enquanto as cartas rolam (antes era uma faixa que virava uma barrinha). O botão de tela cheia fica no canto do Robô-guia.
@@ -252,6 +253,5 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 7. **Teaser de 1 minuto** (horizontal e vertical, só texto e música, sem pessoas reais e sem logos): roteiro e prompts das 4 poses da agente com o tablet em `PROMPTS-TEASER.md`. As 4 poses e o QR code (para https://brinqueaprenda.com.br/jogo/algoritimando) estão em `docs/teaser/`. **Os dois vídeos foram gerados e entregues** (25/11). Os scripts para refazer ficam em `ferramentas/teaser/`, e o passo a passo está no `PROMPTS-TEASER.md`. Os vídeos não ficam no repositório.
 
 **Ideias não feitas**
-8. **Montagem para Abelhas e Atravessar a rua:** hoje elas não têm montagem.
-9. **Testes automáticos no repositório:** Playwright com GitHub Actions, rodando a cada PR.
-10. **Painel de desempenho para o professor:** precisa decidir onde guardar os dados, porque hoje tudo fica só no navegador de cada aluno.
+8. **Testes automáticos no repositório:** Playwright com GitHub Actions, rodando a cada PR.
+9. **Painel de desempenho para o professor:** precisa decidir onde guardar os dados, porque hoje tudo fica só no navegador de cada aluno.
