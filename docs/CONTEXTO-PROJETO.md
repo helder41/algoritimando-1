@@ -158,12 +158,26 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - também existem `algoritimando-em-progresso`, `algoritimando-editor-rascunho` e as chaves `algoritimando-previa*`;
   - para limpar tudo, no console: `localStorage.clear(); location.reload();`.
 - **Seleção de texto e arrasto de imagens** estão desativados no jogo.
-- **Efeitos sonoros:** são gerados por código em `js/som.js` (Web Audio), sem arquivos:
-  - `clique`: troca de tela, escolha do rosto e carta no espaço;
-  - `acerto`: Verificar certo;
-  - `erro`: Verificar errado;
-  - `vitoria`: nível concluído, promoções e festa da animação final;
-  - `segredo`: agente secreto.
+- **Efeitos sonoros** (`js/som.js`):
+  - **Gerados por código** (Web Audio, sem arquivo):
+    - `clique`: troca de tela, escolha do rosto e carta no espaço;
+    - `acerto`: Verificar certo;
+    - `erro`: Verificar errado;
+    - `segredo`: agente secreto.
+  - **Em arquivo** (`audio/efeitos/`, escolhidos pelo dono em 25/11):
+    - `vitoria`: nível concluído;
+    - `promocao`: promoções;
+    - `festafinal`: a festa da animação final;
+    - `selo`: a lição que entrega um selo, 1,3 s depois da vitória;
+    - `figurinha`: figurinha nova colando no álbum;
+    - `dica`: pedir dica;
+    - `quadro`: cada quadro novo da abertura e da animação final;
+    - `carta-volta`: a carta volta para a bandeja.
+  - **Como os arquivos tocam:**
+    - foram tratados para tocar rápido: silêncio cortado, mono, 96 kbps e pico igualado;
+    - pelo site, são lidos uma vez e tocam pelo Web Audio. Com dois cliques no `index.html`, tocam num `<audio>` comum;
+    - se o arquivo falhar, toca um som sintetizado de reserva.
+  - **Volume:** o de cada arquivo fica em `EFEITOS`, no `som.js`, e é multiplicado pelo volume dos efeitos das Configurações. O botão de ligar e desligar vale para todos.
 
 ## Fluxo de trabalho
 
@@ -220,15 +234,7 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 
 **Esperando o dono ou o professor**
 1. **Resposta do professor sobre as imagens novas:** os códigos estão na página de revisão. Ajustar o que ele pedir.
-2. **Sons:** o dono quer refazer alguns. Quando os arquivos chegarem (MP3 ou OGG, curtos, com os nomes da página de sons), trocar o `js/som.js` para tocar o arquivo, mantendo o som atual como reserva se o arquivo falhar.
-   - **Os 6 que ainda não existem:**
-     - carta volta para a bandeja (`carta-volta.mp3`);
-     - pedir dica (`dica.mp3`);
-     - figurinha nova (`figurinha.mp3`);
-     - selo conquistado (`selo.mp3`);
-     - quadro passando (`quadro.mp3`);
-     - certificado (`certificado.mp3`).
-   - **Configurações:** o volume e o botão de ligar e desligar valem para todos.
+2. **Sons:** os 8 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Ainda não há som para o certificado (`certificado.mp3`). Falta pôr os efeitos também no teaser.
 3. **Conferir no iPhone de verdade:**
    - a impressão do certificado na folha deitada, que precisa sair numa página só (se ainda cortar, reduzir a largura de 80% no `style.css`, bloco "na impressão, só o certificado");
    - a instalação pelo botão "Instalar o jogo".

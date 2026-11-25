@@ -36,7 +36,7 @@
   const proximo = $('#bFimNext');
 
   // ?v= faz o navegador buscar a imagem nova quando ela muda
-  const V = '?v=202611242158';
+  const V = '?v=202611242230';
 
   /* Os quadros. "reserva": imagem do jogo usada enquanto a do
      quadro não existe. "festa": confete e música de vitória. */
@@ -137,7 +137,9 @@
     confete.textContent = '';
     if (q.festa) {
       soltarConfete();
-      Som.vitoria();
+      Som.festa();
+    } else if (i > 0) {
+      Som.quadro();
     }
     dots.innerHTML = QUADROS.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('');
     proximo.textContent = i === QUADROS.length - 1 ? 'Concluir' : 'Avançar ›';

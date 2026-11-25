@@ -175,6 +175,7 @@
       if (origem.tipo !== 'bandeja') {
         criarLugarNaBandeja(carta);
         aviso = `"${legendaDe(carta)}" voltou para a bandeja.`;
+        if (window.Som && Som.cartaVolta) Som.cartaVolta();
       }
     }
 

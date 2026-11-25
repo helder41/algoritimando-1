@@ -352,6 +352,7 @@
   });
 
   function gastarDica() {
+    Som.dica();
     Perfil.dados.dicas -= 1;
     Perfil.gravar();
     atualizarBotaoDica();

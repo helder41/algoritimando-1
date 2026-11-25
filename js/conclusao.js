@@ -139,6 +139,8 @@
       caixaSelo.querySelector('.licao-selo-disco').replaceChildren(Comum.criarSelo(selo));
       caixaSelo.querySelector('.licao-selo-nome').textContent = selo.nome;
       caixaSelo.querySelector('.licao-selo-frase').textContent = selo.frase || '';
+      // o som do selo vem depois do da vitória, que toca junto com a lição
+      setTimeout(() => { if (window.Som && Som.selo) Som.selo(); }, 1300);
     }
     arte.style.backgroundImage = situacao.fundoConclusao ? `url("${situacao.fundoConclusao}")` : '';
     raiz.classList.toggle('sem-arte', !situacao.fundoConclusao);
