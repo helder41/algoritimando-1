@@ -105,7 +105,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 
 **Final do jogo**
 - **Animação final:** 7 quadros (`fim1` a `fim6` mais o álbum completo, montado pelo jogo), com confete e música na festa e no crachá, e o nome da criança no quadro do crachá. Cada quadro passa em 5 s.
-- **Tela final ("Missão cumprida"):** botões "Ver meu álbum", "Meu certificado" e "Rever a animação". "Jogar de novo" é vermelho e pede confirmação.
+- **Tela final ("Missão cumprida"):** botões "Ver meu álbum", "Meu certificado" e "Rever a animação". "Jogar de novo" é vermelho e pede confirmação. "Meu certificado" é dourado e reluzente: a luz em volta pulsa e um brilho passa por ele (classe `btn dourado`).
 - **Certificado:**
   - **Conteúdo:** nome, as 8 ideias com o chamado de cada uma, estrelas, código do agente e data, com linhas de assinatura para Professor(a) e Aluno(a), entre o agente e o Robô-guia. Estrelas, código e data ficam logo abaixo das ideias, longe das assinaturas. Não tem logo.
   - **Onde abrir:** na tela final e, depois de zerar, no botão **Meu certificado** da central.
