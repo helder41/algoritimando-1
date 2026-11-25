@@ -163,7 +163,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 - **Seleção de texto e arrasto de imagens** estão desativados no jogo.
 - **Efeitos sonoros** (`js/som.js`):
   - **Gerados por código** (Web Audio, sem arquivo):
-    - `clique`: troca de tela e carta no espaço;
+    - `clique`: troca de tela;
     - `acerto`: Verificar certo;
     - `erro`: Verificar errado;
     - `segredo`: agente secreto.
@@ -178,6 +178,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
     - `carta-volta`: a carta volta para a bandeja;
     - `certificado`: o certificado abrindo, com a animação no ritmo dele;
     - `selecao-agente`: escolher um agente diferente no crachá (o mesmo agente de novo só dá o clique).
+    - `carta-vai`: a carta entra num espaço do tabuleiro (é o `carta-volta` mais agudo, para os dois combinarem).
   - **Como os arquivos tocam:**
     - foram tratados para tocar rápido: silêncio cortado, mono, 96 kbps e pico igualado;
     - pelo site, são lidos uma vez e tocam pelo Web Audio. Com dois cliques no `index.html`, tocam num `<audio>` comum;
@@ -239,7 +240,7 @@ O dono recebeu estas páginas. Elas só abrem para quem ele compartilhar:
 
 **Esperando o dono ou o professor**
 1. **Resposta do professor sobre as imagens novas:** os códigos estão na página de revisão. Ajustar o que ele pedir.
-2. **Sons:** os 10 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Falta pôr os efeitos também no teaser.
+2. **Sons:** os 11 efeitos em arquivo estão no jogo (ver "Efeitos sonoros"). Falta pôr os efeitos também no teaser.
 3. **Conferir no iPhone de verdade:**
    - a impressão do certificado na folha deitada, que precisa sair numa página só (se ainda cortar, reduzir a largura de 80% no `style.css`, bloco "na impressão, só o certificado");
    - a instalação pelo botão "Instalar o jogo".

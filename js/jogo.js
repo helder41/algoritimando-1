@@ -495,7 +495,7 @@
     const { carta, alvo, mudou } = ev.detail;
     if (mudou && alvo.tipo === 'espaco') {
       assentar(carta);
-      Som.clique();
+      Som.cartaVai();
     }
     atualizarVerificar();
   }
