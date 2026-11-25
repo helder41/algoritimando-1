@@ -114,6 +114,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 
 **Outras partes**
 - **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre uma tela inteira (crachás de agente que caem pendurados e balançam, faixa dourada, selo do orientador, Robô-guia) com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
+- **Volume da música:** a barrinha segue uma curva (5% é bem baixinho; 0% é mudo). Pelo site, a música passa pelo Web Audio, porque o iPhone ignora o volume do `<audio>`; com dois cliques no `index.html`, vale o volume do `<audio>`.
 - **Configurações:** Música, Efeitos, **Cartas no lugar**, **Tela cheia** (some no iPhone) e **Instalar o jogo** (só pelo site; no iPhone mostra a explicação).
   - **Cartas no lugar** (ideia de uma criança no teste; **ligado de fábrica**): a carta tirada do tabuleiro volta para o mesmo lugar da bandeja, e as outras não se mexem. Desligado, a bandeja se reorganiza como antes. Fica em `algoritimando-ajustes` e é aplicado no `js/arrasto.js`.
 - **Modo instalável (PWA):**

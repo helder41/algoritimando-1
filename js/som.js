@@ -32,8 +32,10 @@
    tem um volume para cada um. Desligar é de verdade (sala com
    trinta crianças, professor explicando): música desligada não é
    nem carregada, efeito desligado não cria oscilador. A escolha
-   fica guardada no navegador. No iPhone o navegador não deixa
-   mudar o volume de uma música: lá vale o volume do aparelho.
+   fica guardada no navegador. O volume da música passa pelo Web
+   Audio (pelo site), porque o iPhone ignora o volume de um <audio>;
+   e a barrinha segue uma curva, para abaixar de verdade perto do
+   mínimo (ver tocarMusica).
 
    O contexto de áudio só nasce no primeiro som — ou seja, depois
    de a criança já ter tocado na tela. É o que os navegadores
@@ -240,6 +242,38 @@
   /* ---------------- música ---------------- */
 
   let musica = null;      // <audio>, criado só quando a música for tocar
+  let ganhoMusica = null; // volume da música pelo Web Audio (pelo site)
+
+  /* O volume da barrinha segue uma curva (o ouvido percebe volume
+     assim): perto do mínimo a música fica bem baixinha e no zero some.
+     Pelo site, a música passa pelo Web Audio: é o único jeito de o
+     iPhone respeitar o volume escolhido (ele ignora o volume do
+     <audio>). Aberto com dois cliques (file://) o navegador não deixa
+     ligar a música ao Web Audio; aí vale o volume do <audio>. */
+  const curvaVolume = v => v * v;
+
+  function ligarMusicaAoWebAudio() {
+    if (ganhoMusica || location.protocol === 'file:') return;
+    const Contexto = window.AudioContext || window.webkitAudioContext;
+    if (!Contexto) return;
+    try {
+      contexto = contexto || new Contexto();
+      const fonte = contexto.createMediaElementSource(musica);
+      ganhoMusica = contexto.createGain();
+      fonte.connect(ganhoMusica).connect(contexto.destination);
+    } catch { ganhoMusica = null; }
+  }
+
+  function aplicarVolumeMusica() {
+    if (!musica) return;
+    const v = curvaVolume(ajustes.volumeMusica);
+    if (ganhoMusica) {
+      musica.volume = 1;
+      ganhoMusica.gain.value = v;
+    } else {
+      musica.volume = v;
+    }
+  }
 
   function tocarMusica() {
     if (!ajustes.musica || document.hidden) return;
@@ -247,8 +281,10 @@
       musica = new Audio(ARQUIVO_MUSICA);
       musica.loop = true;
       musica.preload = 'auto';
+      ligarMusicaAoWebAudio();
     }
-    musica.volume = ajustes.volumeMusica;
+    if (contexto && contexto.state === 'suspended') contexto.resume();
+    aplicarVolumeMusica();
     // play() recusado (antes do primeiro toque): tenta de novo no próximo
     const tentativa = musica.play();
     if (tentativa) tentativa.catch(() => {});
@@ -309,7 +345,7 @@
     });
     volMusica.addEventListener('input', () => {
       ajustes.volumeMusica = volMusica.value / 100;
-      if (musica) musica.volume = ajustes.volumeMusica;
+      aplicarVolumeMusica();
       gravarPreferencia();
     });
     volEfeitos.addEventListener('change', () => acerto());   // ouvir o volume escolhido
