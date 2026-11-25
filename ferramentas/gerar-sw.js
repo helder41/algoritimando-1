@@ -59,7 +59,7 @@ window.ALGORITIMANDO_VERSAO = { numero: '${numero}', data: '${data}' };
 const comVersao = new Map();
 for (const m of index.matchAll(/(?:href|src)="([^"?]+)\?v=(\d+)"/g)) comVersao.set(m[1], `${m[1]}?v=${m[2]}`);
 
-const fora = [/^docs\//, /^ferramentas\//, /\.md$/, /^\./, /^editor\./, /^js\/editor\.js$/, /^LICENSE$/, /^sw\.js$/];
+const fora = [/^docs\//, /^ferramentas\//, /^testes\//, /\.md$/, /^\./, /^editor\./, /^js\/editor\.js$/, /^LICENSE$/, /^sw\.js$/];
 const arquivos = execSync('git ls-files', { cwd: raiz, encoding: 'utf8' })
   .split('\n').filter(Boolean)
   .filter(f => !fora.some(r => r.test(f)))
