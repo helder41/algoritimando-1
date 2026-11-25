@@ -28,6 +28,7 @@
      cartaVolta  a carta sai do tabuleiro e volta para a bandeja
      certificado o certificado abrindo (a animação segue o ápice, 1,6 s)
      selecaoAgente  escolher um agente diferente no crachá
+     cartaVai    a carta entra num espaço do tabuleiro (o carta-volta, mais agudo)
 
    O painel de CONFIGURAÇÕES liga e desliga a música e os efeitos separados, e
    tem um volume para cada um. Desligar é de verdade (sala com
@@ -130,6 +131,7 @@
     cartaVolta: { arq: 'carta-volta.mp3', volume: 0.22, reserva: () => tocar([[392, 0.07], [330, 0.10]], 0.06) },
     certificado: { arq: 'certificado.mp3', volume: 0.32, reserva: vitoriaSintetizada },
     selecaoAgente: { arq: 'selecao-agente.mp3', volume: 0.2, reserva: clique },
+    cartaVai:   { arq: 'carta-vai.mp3',   volume: 0.22, reserva: clique },
   };
   const PASTA_EFEITOS = 'audio/efeitos/';
   const sons = {};            // nome → AudioBuffer já lido
@@ -189,6 +191,7 @@
   const cartaVolta = () => tocarEfeito('cartaVolta');
   const certificado = () => tocarEfeito('certificado');
   const selecaoAgente = () => tocarEfeito('selecaoAgente');
+  const cartaVai = () => tocarEfeito('cartaVai');
 
   /* O som do agente secreto: um zumbido grave de mistério, uma escada
      de tons inteiros subindo (soa "estranho", como um enigma) e, no
@@ -413,7 +416,7 @@
 
   window.Som = {
     acerto, erro, vitoria, clique, segredo,
-    promocao, festa, selo, figurinha, dica, quadro, cartaVolta, certificado, selecaoAgente,
+    promocao, festa, selo, figurinha, dica, quadro, cartaVolta, certificado, selecaoAgente, cartaVai,
     ligarBotao, abrirMenuBotao,
   };
 

@@ -36,7 +36,7 @@
   const proximo = $('#bFimNext');
 
   // ?v= faz o navegador buscar a imagem nova quando ela muda
-  const V = '?v=202611242255';
+  const V = '?v=202611242345';
 
   /* Os quadros. "reserva": imagem do jogo usada enquanto a do
      quadro não existe. "festa": confete e música de vitória. */
@@ -229,12 +229,14 @@
     const modal = $('#certificado');
     modal.classList.remove('festa');
     modal.classList.add('on');
-    // os efeitos saem do meio da folha (medido antes de ela encolher)
+    // os efeitos saem do meio da folha (medido antes de ela encolher),
+    // em relação à própria camada de efeitos: vale em qualquer tela,
+    // com ou sem barra de rolagem
     const folha = modal.querySelector('.certificado-folha').getBoundingClientRect();
-    const palco = (document.getElementById('stage') || document.body).getBoundingClientRect();
     const efeitos = modal.querySelector('.cert-efeitos');
-    efeitos.style.setProperty('--cx', `${folha.left + folha.width / 2 - palco.left}px`);
-    efeitos.style.setProperty('--cy', `${folha.top + folha.height / 2 - palco.top}px`);
+    const base = efeitos.getBoundingClientRect();
+    efeitos.style.setProperty('--cx', `${folha.left + folha.width / 2 - base.left}px`);
+    efeitos.style.setProperty('--cy', `${folha.top + folha.height / 2 - base.top}px`);
     efeitos.style.setProperty('--lado', `${Math.max(folha.width, folha.height)}px`);
     soltarConfeteDoCertificado(modal.querySelector('.cert-confete'), folha.width);
     void modal.offsetWidth;          // recomeça as animações a cada abertura
