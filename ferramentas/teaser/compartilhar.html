@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Algoritimando: cartão para compartilhar</title>
+<link rel="stylesheet" href="../../fontes/fontes.css" />
+<style>
+  /* O cartão do fim do teaser, parado, para compartilhar
+     (gerado como imagem por compartilhar.js). */
+  :root { --p: #8a63c7; --ink: #2b2231; --cream: #fcf2e2; --u: 1vmin; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #241a36; }
+  body { font-family: Nunito, sans-serif; color: #fff; }
+  .fundo {
+    position: absolute; inset: -4%;
+    background: url(../../img/story1.webp) center / cover;
+    filter: blur(calc(0.7 * var(--u)));
+  }
+  .veu { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(60, 36, 96, 0.5), rgba(24, 14, 40, 0.9) 78%); }
+  .raios {
+    position: absolute; left: 50%; top: 46%; width: 180vmax; height: 180vmax; translate: -50% -50%;
+    background: repeating-conic-gradient(rgba(255, 226, 150, 0.09) 0 7deg, transparent 7deg 18deg);
+    mask: radial-gradient(circle, #000 8%, transparent 50%);
+    -webkit-mask: radial-gradient(circle, #000 8%, transparent 50%);
+  }
+  .brilho { position: absolute; width: calc(2.4 * var(--u)); height: calc(2.4 * var(--u)); background: #ffd34d;
+    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); opacity: 0.85; }
+  .centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6%; gap: calc(4 * var(--u)); }
+  .frase {
+    margin: 0;
+    font: 600 calc(5.6 * var(--u)) / 1.15 Fredoka, sans-serif;
+    text-shadow: 0 calc(0.4 * var(--u)) calc(0.8 * var(--u)) rgba(0, 0, 0, 0.5);
+    text-wrap: balance;
+  }
+  .cartao {
+    display: flex; align-items: center; gap: calc(4 * var(--u));
+    padding: calc(3.6 * var(--u)) calc(4.4 * var(--u));
+    background: var(--cream); color: var(--ink);
+    border: calc(0.6 * var(--u)) solid var(--ink); border-radius: calc(4 * var(--u));
+    box-shadow: 0 calc(1 * var(--u)) 0 var(--ink), 0 calc(3 * var(--u)) calc(6 * var(--u)) rgba(0, 0, 0, 0.35);
+    text-align: left;
+  }
+  .logo {
+    margin: 0;
+    font: 700 calc(8.4 * var(--u)) Fredoka, sans-serif;
+    color: var(--p);
+    -webkit-text-stroke: calc(0.75 * var(--u)) var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 0 calc(0.8 * var(--u)) 0 var(--ink);
+    line-height: 1.05;
+  }
+  .cartao p { margin: calc(1.6 * var(--u)) 0 0; font: 800 calc(3 * var(--u)) / 1.3 Nunito, sans-serif; }
+  .site {
+    display: inline-block; margin-top: calc(2 * var(--u));
+    padding: calc(0.8 * var(--u)) calc(2.2 * var(--u)); border-radius: calc(1.6 * var(--u));
+    background: var(--p); color: #fff; font: 600 calc(2.9 * var(--u)) Fredoka, sans-serif;
+  }
+  .qr { flex: none; display: grid; justify-items: center; gap: calc(1 * var(--u)); }
+  .qr-caixa { width: calc(26 * var(--u)); height: calc(26 * var(--u)); padding: calc(1 * var(--u));
+    border: calc(0.5 * var(--u)) solid var(--ink); border-radius: calc(2 * var(--u)); background: #fffaf0; }
+  .qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .qr small { font: 800 calc(2.2 * var(--u)) Nunito, sans-serif; color: #6a5238; }
+  .robo { position: absolute; height: calc(24 * var(--u)); right: 4%; bottom: 3%; }
+  body:not(.empe):not(.quadrado) { --u: 1.3vmin; }
+  body:not(.empe):not(.quadrado) .robo { height: calc(17 * var(--u)); right: 1.6%; bottom: 2%; }
+
+  /* em pé (stories) e quadrado (feed): o cartão empilha */
+  body.empe .cartao, body.quadrado .cartao { flex-direction: column; text-align: center; }
+  body.empe .frase { font-size: calc(7.4 * var(--u)); }
+  body.empe .logo { font-size: calc(11 * var(--u)); }
+  body.empe .cartao p { font-size: calc(4 * var(--u)); }
+  body.empe .site { font-size: calc(3.7 * var(--u)); }
+  body.empe .qr-caixa { width: calc(44 * var(--u)); height: calc(44 * var(--u)); }
+  body.empe .qr small { font-size: calc(3.4 * var(--u)); }
+  body.empe { --u: 1.02vmin; }
+  body.empe .robo { height: calc(30 * var(--u)); right: 50%; translate: 50% 0; bottom: 2.5%; }
+  body.empe .centro { justify-content: center; padding-bottom: 27%; gap: calc(5 * var(--u)); }
+  body.quadrado .frase { font-size: calc(5 * var(--u)); }
+  body.quadrado .logo { font-size: calc(7.6 * var(--u)); }
+  body.quadrado .cartao { gap: calc(2.4 * var(--u)); padding: calc(3 * var(--u)) calc(5 * var(--u)); }
+  body.quadrado .cartao p { margin-top: calc(1 * var(--u)); font-size: calc(2.7 * var(--u)); }
+  body.quadrado .site { margin-top: calc(1.4 * var(--u)); font-size: calc(2.7 * var(--u)); }
+  body.quadrado .qr-caixa { width: calc(28 * var(--u)); height: calc(28 * var(--u)); }
+  body.quadrado .robo { display: none; }
+  body.quadrado .centro { gap: calc(3 * var(--u)); }
+</style>
+</head>
+<body>
+  <div class="fundo"></div><div class="veu"></div><div class="raios"></div>
+  <i class="brilho" style="left:8%;top:12%"></i>
+  <i class="brilho" style="left:88%;top:9%;scale:.7"></i>
+  <i class="brilho" style="left:93%;top:44%;scale:.8"></i>
+  <i class="brilho" style="left:5%;top:58%;scale:.6"></i>
+  <i class="brilho" style="left:14%;top:88%;scale:.8"></i>
+  <div class="centro">
+    <p class="frase">Aprender a pensar, um passo de cada vez.</p>
+    <div class="cartao">
+      <div>
+        <h1 class="logo">Algoritimando</h1>
+        <p>Um jogo para aprender algoritmos<br />com tarefas do dia a dia.</p>
+        <p>Grátis, no navegador: celular ou PC,<br />até sem internet.</p>
+        <span class="site">brinqueaprenda.com.br/jogo/algoritimando</span>
+      </div>
+      <div class="qr">
+        <div class="qr-caixa"><img src="../../docs/teaser/qr-algoritimando.png" alt="QR code do jogo" /></div>
+        <small>Aponte a câmera e jogue</small>
+      </div>
+    </div>
+  </div>
+  <img class="robo" src="../../img/robo-feliz.webp" alt="" />
+  <script>
+    const f = new URLSearchParams(location.search).get('f');
+    if (f) document.body.classList.add(f);
+  </script>
+</body>
+</html>

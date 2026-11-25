@@ -70,6 +70,18 @@ async function gravar(p, nome, acao, ritmo = ORI === 'v' ? 0.2 : 0.5) {
   const cdp = await p.context().newCDPSession(p);
   await cdp.send('Animation.enable');
   await cdp.send('Animation.setPlaybackRate', { playbackRate: RITMO });
+  // anota cada efeito sonoro que o jogo toca (nome e instante), para a
+  // montagem pôr o som no mesmo ponto do vídeo
+  await p.evaluate(() => {
+    window.__sonsTeaser = [];
+    if (!window.Som || window.__somEspiado) return;
+    window.__somEspiado = true;
+    ['acerto', 'erro', 'clique', 'vitoria', 'promocao', 'festa', 'selo', 'figurinha', 'dica',
+      'quadro', 'cartaVolta', 'cartaVai', 'certificado', 'selecaoAgente'].forEach(n => {
+      const f = Som[n];
+      if (typeof f === 'function') Som[n] = (...a) => { window.__sonsTeaser.push({ n, t: Date.now() }); return f(...a); };
+    });
+  });
   const quadros = [];
   let fim = false;
   const laco = (async () => {
@@ -84,6 +96,7 @@ async function gravar(p, nome, acao, ritmo = ORI === 'v' ? 0.2 : 0.5) {
   await acao();
   fim = true;
   await laco;
+  const sons = await p.evaluate(() => window.__sonsTeaser || []);
   await cdp.send('Animation.setPlaybackRate', { playbackRate: 1 });
   const R = RITMO; RITMO = 0.5;
   let lista = '';
@@ -95,8 +108,11 @@ async function gravar(p, nome, acao, ritmo = ORI === 'v' ? 0.2 : 0.5) {
   });
   lista += `file '${String(quadros.length - 1).padStart(5, '0')}.jpg'\n`;
   fs.writeFileSync(path.join(pasta, 'lista.txt'), lista);
+  // instantes dos sons em tempo de vídeo (segundos desde o 1º quadro)
+  fs.writeFileSync(path.join(pasta, 'sons.json'), JSON.stringify(
+    sons.map(s => ({ n: s.n, t: +((s.t - quadros[0].t) * R / 1000).toFixed(3) })).filter(s => s.t >= 0)));
   const dur = (quadros[quadros.length - 1].t - quadros[0].t) * R / 1000;
-  console.log(`${nome}: ${quadros.length} quadros, ${dur.toFixed(2)} s de vídeo`);
+  console.log(`${nome}: ${quadros.length} quadros, ${dur.toFixed(2)} s de vídeo, sons: ${sons.map(s => s.n).join(' ') || '-'}`);
   return dur;
 }
 
@@ -321,20 +337,25 @@ const CENAS = {
       const esp = [...document.querySelectorAll('.espaco')];
       SITUACOES.find(s => s.id === 'dentes').fases[3].passos.forEach((ps, i) => Arrasto.mover(document.querySelector(`.carta[data-passo="${ps.id}"]`), { tipo: 'espaco', espaco: esp[i] }));
     });
-    await p.click('#btn-verificar'); await sleep(1600);
+    // espera a lição e o som do selo passarem; a gravação começa já no
+    // "Continuar", para pegar o som da promoção
+    await p.click('#btn-verificar'); await sleep(2800);
     await esconderDedo(p);
-    await p.evaluate(() => document.dispatchEvent(new CustomEvent('conclusao-continuar')));
-    await sleep(200);
-    await gravar(p, 'promo', () => w(2600));
+    await gravar(p, 'promo', async () => {
+      await p.evaluate(() => document.dispatchEvent(new CustomEvent('conclusao-continuar')));
+      await w(2700);
+    });
     console.log('tela da promoção:', await p.evaluate(() => document.querySelector('.screen.on').id));
   },
 
   // o certificado (Agente Sênior)
   async certificado(p) {
     await estado(p, TODOS, { promovido: true, senior: true });
-    await p.evaluate(() => Final.certificado(Perfil.dados));
-    await sleep(900);
-    await gravar(p, 'certificado', () => w(300));
+    await gravar(p, 'certificado', async () => {
+      await w(150);
+      await p.evaluate(() => Final.certificado(Perfil.dados));
+      await w(3300);
+    }, 0.15);
   },
 
   // cartões próprios do teaser (cartoes.html)
