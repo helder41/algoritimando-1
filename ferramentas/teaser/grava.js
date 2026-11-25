@@ -337,6 +337,35 @@ const CENAS = {
     await gravar(p, 'certificado', () => w(300));
   },
 
+  // animação final: o álbum completo montando e a festa de Agente Sênior
+  // (usada no vídeo de demonstração da BTX, ferramentas/btx/demo.py)
+  async fimanim(p) {
+    await CENAS.promo(p);
+    await p.click('#bPromoNext'); await sleep(300);
+    // vai direto ao quadro do álbum (o 3º), antes de começar a gravar
+    await p.evaluate(() => { const b = document.getElementById('bFimNext'); b.click(); b.click(); });
+    await gravar(p, 'fimanim', async () => {
+      await w(2600);
+      // até o quadro da festa de Agente Sênior (o 6º), seja qual for o quadro atual
+      await p.evaluate(() => {
+        const em = () => [...document.querySelectorAll('#fimDots i')].findIndex(i => i.classList.contains('on'));
+        while (em() < 5) document.getElementById('bFimNext').click();
+      });
+      await w(2200);
+    });
+  },
+
+  // o certificado abrindo com a festa (folha que cresce, clarão, confete)
+  async certfesta(p) {
+    await estado(p, TODOS, { promovido: true, senior: true });
+    await p.click('#bPlay'); await sleep(1400);
+    await gravar(p, 'certfesta', async () => {
+      await w(150);
+      await p.evaluate(() => Final.certificado(Perfil.dados));
+      await w(3600);
+    });
+  },
+
   // cartões próprios do teaser (cartoes.html)
   async intro(p) { await cartao(p, 'intro', 5000); },
   async titulo(p) { await cartao(p, 'titulo', 4000); },
