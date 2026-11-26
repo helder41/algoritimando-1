@@ -6731,14 +6731,14 @@ body.arrastando * {
    ============================================================ */
 @media (min-aspect-ratio: 4/5) and (max-height: 500px) {
   #stage .logo {
-    font-size: max(8cqw, 30px);
-    padding-top: 3cqw;
+    font-size: max(7.4cqw, 28px);
+    padding-top: 0.8cqw;
   }
   #stage .menu-btns {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 1.6cqw 1.8cqw;
-    bottom: 4cqw;
+    gap: 1.2cqw 1.8cqw;
+    bottom: 2.6cqw;
     justify-items: stretch;
   }
   #stage .menu-btns > .btn {
@@ -6756,4 +6756,59 @@ body.arrastando * {
     height: 24cqw;
     left: 6cqw;
   }
+  /* Créditos menor: só um rótulo no canto */
+  #stage .chip.menu-creditos {
+    top: 1.4cqw;
+    right: 1.6cqw;
+    min-height: 30px;
+    font-size: 12px;
+    padding: 0 12px;
+  }
+}
+
+/* celular em pé: Créditos menor, sem ocupar o canto todo */
+@media (max-aspect-ratio: 4/5) {
+  #stage .chip.menu-creditos {
+    top: 2.4cqw;
+    right: 2.4cqw;
+    min-height: 34px;
+    font-size: max(3cqw, 12px);
+    padding: 0 3cqw;
+  }
+}
+
+/* ============================================================
+   SOMBRA DO TÍTULO
+   O título é texto (fonte Fredoka) com contorno (-webkit-text-stroke)
+   e uma "sombra" escura embaixo, que dá o volume. Antes a sombra era
+   um text-shadow; o Safari do iPhone desenha o text-shadow só com o
+   miolo da letra, sem o contorno, e o céu aparecia numa fresta entre
+   a letra e a sombra. Agora a sombra é uma cópia do texto (::after),
+   com o mesmo contorno, deslocada para baixo atrás do título: fica
+   igual em todos os navegadores.
+   ============================================================ */
+#stage .logo {
+  --logo-traco: 0.5cqw;
+  --logo-sombra: 0.7cqw;
+  position: relative;
+  isolation: isolate;
+  text-shadow: none;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .logo {
+    --logo-traco: 1.3cqw;
+    --logo-sombra: 1.6cqw;
+  }
+}
+#stage .logo::after {
+  content: attr(data-texto);
+  content: attr(data-texto) / "";
+  position: absolute;
+  inset: 0;
+  padding: inherit;
+  z-index: -1;
+  color: var(--ink);
+  -webkit-text-stroke: var(--logo-traco) var(--ink);
+  transform: translateY(var(--logo-sombra));
+  pointer-events: none;
 }
