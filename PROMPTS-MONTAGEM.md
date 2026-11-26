@@ -39,7 +39,11 @@ Nestes três chamados novos, a montagem vai ser uma **bancada com objetos que mu
 ```
 Batch: Montagem da limonada. Generate these images, in this order:
 
-### limonada-base.webp
+### limonada-bancada.webp (substitui limonada-base.webp em 26/11/2026)
+Gerada no Flow (Nano Banana 2.1, 4:3) com a limonada-base antiga como referência de estilo; depois recortada (sem o chão) para 1200x900. A base antiga tinha cozinha inteira (armários, geladeira, fogão) e os objetos sumiam no meio dos detalhes.
+Prompt: Same cartoon style, same colors and thick brown outlines as the reference image. A simple, calm, close-up view of an EMPTY wooden kitchen counter, seen from the front, filling the whole width of the image. The countertop surface is a wide light beige band across the lower-middle of the image (from about 55% to 72% of the height), with plain wooden cabinet doors below it. Above the counter: a plain soft pale blue wall with only one small window far in the upper corner, very few details, no cabinets, no fridge, no oven, no utensils, no objects on the counter. Low detail, soft flat colors, low contrast background so objects placed on the counter later stand out. No people, no text. 4:3 image.
+
+### limonada-base.webp (antiga, hoje em antigos/img/pecas/)
 Scene: An empty kitchen counter seen from the front, slightly from above, matching the kitchen of the attached level7 image: a light wooden countertop across the lower half of the image, a soft tiled wall behind with a small window, warm light. On the left part of the counter, a small round wooden cutting board, empty. The rest of the counter is completely EMPTY and clear (objects will be placed on it later). No people, no lemons, no jug, no glass.
 Style: cute flat cartoon illustration for an educational game for young students, matching the attached references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes. Never include: text, letters, numbers, logos, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
 
@@ -114,7 +118,11 @@ Style: cute flat cartoon sticker illustration for an educational game, matching 
 ```
 Batch: Montagem dos dentes. Generate these images, in this order:
 
-### dentes-base.webp
+### dentes-bancada.webp (substitui dentes-base.webp em 26/11/2026)
+Gerada no Flow (Nano Banana 2.1, 4:3) com a maos-base como referência de estilo, redimensionada para 1200x900. A base antiga tinha azulejos azuis com rejunte forte e o espelho, que competiam com a escova, a pasta e o copo.
+Prompt: Same cartoon style, same soft cream colors and thick brown outlines as the reference image. A simple, calm, close-up view of an EMPTY bathroom vanity counter seen straight from the front, filling the whole width of the image. The countertop is a wide light cream band across the lower-middle of the image (from about 55% to 72% of the height) with a small white sink basin in the center and one simple grey faucet; plain light wooden cabinet doors below. Above the counter: plain pale cream wall tiles with very thin, low-contrast grout lines, no mirror, no shelves, no window. NOTHING on the counter: no cup, no toothbrush, no toothpaste, no soap. Low detail, soft flat colors, low contrast background so objects placed on the counter later stand out. No people, no text. 4:3 image.
+
+### dentes-base.webp (antiga, hoje em antigos/img/pecas/)
 Scene: An empty bathroom counter seen from the front, slightly from above, matching the bathroom of the attached level8 image: a light counter with a white sink in the middle and a closed tap, soft blue tiles behind, a small mirror edge at the top. The counter on the left and right of the sink is completely EMPTY and clear (objects will be placed on it later). No people, no toothbrush, no toothpaste, no cups.
 Style: cute flat cartoon illustration for an educational game for young students, matching the attached references exactly: thick, smooth dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with small white highlights, rounded friendly shapes. Never include: text, letters, numbers, logos, photorealism, 3D render. Aspect ratio 4:3, landscape, 1600x1200 px.
 
