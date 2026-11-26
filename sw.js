@@ -287,8 +287,6 @@ const ARQUIVOS = [
   "img/win7.webp",
   "img/win8.webp",
   "index.html",
-  "index.html",
-  "index.html",
   "js/album.js?v=202611261940",
   "js/app.js?v=202611261940",
   "js/arrasto.js?v=202611261940",
