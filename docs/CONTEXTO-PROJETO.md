@@ -81,7 +81,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 | Limonada (`limonada`) | Fazer uma limonada | 3 | caminhos paralelos | menino de moletom amarelo | `estado` |
 | Casa azul (`casa-azul`) | Escovar os dentes | 4 | o que abre, fecha | menina de pijama coral (`who6`, `cliente5`) | `estado` |
 
-- Os 4 chamados novos dão um **selo** cada um (`img/selos/`): Repetição, Condição, Ao mesmo tempo e Abre e fecha. Os selos aparecem no crachá, em "Meus aprendizados" (botão da central) e na tela final.
+- Os 8 chamados dão um **selo** cada um (`img/selos/`): Ordem (sanduíche), Instrução (robô), Passos escondidos (mochila), Algoritmo (abelhas), Repetição, Condição, Ao mesmo tempo e Abre e fecha. Os selos aparecem no crachá, em "Meus aprendizados" (botão da central) e na tela final.
 - **Semáforo da rua:** de pedestre, com **duas luzes** (vermelha em cima, verde embaixo), sem bonequinho. A criança olha a "cor da luz".
 
 ## Como o jogo funciona hoje

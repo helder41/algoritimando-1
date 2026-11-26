@@ -102,7 +102,8 @@
                  lição da última fase e guardado no crachá:
                  { nome, frase, exemplo (a legenda de uma carta do
                    chamado), pergunta (para conversar), icone
-                   ("repetir", "decidir", "juntar" ou "par": o
+                   ("repetir", "decidir", "juntar", "par", "ordem",
+                   "instrucao", "escondido" ou "caminho": o
                    desenho usado enquanto não há imagem) e imagem }
      montagemBase  (só na "cena") imagem que fica no fundo antes de
                  qualquer peça. A fase pode ter a sua própria, que
