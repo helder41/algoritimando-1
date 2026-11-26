@@ -204,7 +204,7 @@ const SITUACAO_SANDUICHE = {
           explicacao: 'Tirar fatias de um saco fechado? O computador trava: não dá!',
         },
         {
-          id: 'por-queijo', texto: 'Coloque o queijo na fatia.', imagem: 'img/passos/sanduiche-02.webp', peca: 'img/pecas/sanduiche-queijo.webp', dependeDe: ['tirar-fatias', 'pegar-queijo'],
+          id: 'por-queijo', texto: 'Coloque a fatia de queijo no pão.', imagem: 'img/passos/sanduiche-02.webp', peca: 'img/pecas/sanduiche-queijo.webp', dependeDe: ['tirar-fatias', 'pegar-queijo'],
           explicacao: {
             'tirar-fatias': 'As fatias ainda estão dentro do saco! O queijo cairia em cima da mesa.',
             'pegar-queijo': 'Colocar qual queijo? Ele ainda está guardado! O computador precisa pegar a fatia antes.',

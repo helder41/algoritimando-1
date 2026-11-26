@@ -3914,11 +3914,12 @@ body.arrastando * {
   #stage .modal .ideia p {
     font-size: max(3.4cqw, 12px);
   }
+  /* os 8 selos numa linha só, sem cortar nas pontas */
   #stage .final-selos {
-    gap: 3cqw;
+    gap: 1.5cqw;
   }
   #stage .final-selos .selo {
-    --d: 12cqw;
+    --d: 9.5cqw;
   }
   #stage .cast.cheio {
     gap: 0;
