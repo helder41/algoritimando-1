@@ -1376,12 +1376,12 @@ const SITUACAO_LIMONADA = {
   // um quadrinho por passo (uma "cena" da jarra pediria peças que
   // a bancada: cada carta muda um objeto (montagem.js, modo "estado")
   montagem: 'estado',
-  montagemBase: 'img/pecas/limonada-base.webp',
+  montagemBase: 'img/pecas/limonada-bancada.webp',
   montagemObjetos: [
-    { id: 'limao',  x: 21, y: 68, w: 17, inicio: 'img/pecas/limonada-limao.webp', passos: ['lavar', 'cortar', 'espremer'] },
-    { id: 'jarra',  x: 45, y: 69, w: 17, inicio: 'img/pecas/limonada-jarra.webp', passos: ['espremer', 'agua', 'misturar'] },
-    { id: 'acucar', x: 65, y: 68, w: 11, inicio: 'img/pecas/limonada-acucar.webp', passos: ['acucar'] },
-    { id: 'copo',   x: 80, y: 68, w: 9,  inicio: 'img/pecas/limonada-copo.webp', passos: ['servir'] },
+    { id: 'limao',  x: 21, y: 71, w: 20, inicio: 'img/pecas/limonada-limao.webp', passos: ['lavar', 'cortar', 'espremer'] },
+    { id: 'jarra',  x: 45, y: 71, w: 20, inicio: 'img/pecas/limonada-jarra.webp', passos: ['espremer', 'agua', 'misturar'] },
+    { id: 'acucar', x: 65, y: 71, w: 13, inicio: 'img/pecas/limonada-acucar.webp', passos: ['acucar'] },
+    { id: 'copo',   x: 80, y: 71, w: 10.5, inicio: 'img/pecas/limonada-copo.webp', passos: ['servir'] },
   ],
   montagemRegras: [
     { quando: ['lavar'], limao: 'img/pecas/limonada-limao-lavado.webp' },
@@ -1551,12 +1551,12 @@ const SITUACAO_DENTES = {
   fundoConclusao: 'img/win8.webp',
   // a bancada da pia: cada carta muda um objeto (montagem.js, modo "estado")
   montagem: 'estado',
-  montagemBase: 'img/pecas/dentes-base.webp',
+  montagemBase: 'img/pecas/dentes-bancada.webp',
   montagemObjetos: [
-    { id: 'porta',  x: 14, y: 73, w: 12, inicio: 'img/pecas/dentes-porta-escova.webp', sempre: true },
-    { id: 'copo',   x: 27, y: 73, w: 9,  inicio: 'img/pecas/dentes-copo-agua.webp', passos: ['enxaguar'] },
-    { id: 'escova', x: 76, y: 74, w: 19, inicio: null, sempre: true },
-    { id: 'pasta',  x: 91, y: 73, w: 8,  inicio: 'img/pecas/dentes-pasta.webp', sempre: true },
+    { id: 'porta',  x: 14, y: 60, w: 14, inicio: 'img/pecas/dentes-porta-escova.webp', sempre: true },
+    { id: 'copo',   x: 27, y: 60, w: 10.5, inicio: 'img/pecas/dentes-copo-agua.webp', passos: ['enxaguar'] },
+    { id: 'escova', x: 75, y: 61, w: 22, inicio: null, sempre: true },
+    { id: 'pasta',  x: 91, y: 60, w: 9,  inicio: 'img/pecas/dentes-pasta.webp', sempre: true },
   ],
   montagemRegras: [
     { quando: ['pegar-escova'], porta: 'img/pecas/dentes-porta-vazio.webp', escova: 'img/pecas/dentes-escova.webp' },
