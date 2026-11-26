@@ -6720,3 +6720,40 @@ body.arrastando * {
     0 0 0 calc(1 * var(--t)) var(--c),
     0 calc(0.8 * var(--t)) 0 calc(1 * var(--t)) rgba(43, 34, 49, 0.25);
 }
+
+/* ============================================================
+   MENU NO CELULAR DEITADO
+   O palco fica baixo (cerca de 280 px) e os botões têm altura
+   mínima em px, então a coluna de 4 botões subia até cobrir o
+   título. Aqui o título fica um pouco menor e mais alto, e os
+   botões viram duas colunas (Jogar/Continuar sozinho em cima),
+   ocupando 3 linhas no lugar de 4, sobre a fachada da Central.
+   ============================================================ */
+@media (min-aspect-ratio: 4/5) and (max-height: 500px) {
+  #stage .logo {
+    font-size: max(8cqw, 30px);
+    padding-top: 3cqw;
+  }
+  #stage .menu-btns {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1.6cqw 1.8cqw;
+    bottom: 4cqw;
+    justify-items: stretch;
+  }
+  #stage .menu-btns > .btn {
+    min-width: 0;
+  }
+  #stage .menu-btns > #bPlay,
+  #stage .menu-btns > .menu-linha {
+    grid-column: 1 / -1;
+  }
+  #stage .menu-btns > #bPlay {
+    justify-self: center;
+    min-width: 50%;
+  }
+  #stage .menu-robo {
+    height: 24cqw;
+    left: 6cqw;
+  }
+}
