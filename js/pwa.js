@@ -32,6 +32,22 @@
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js').catch(() => { /* sem modo offline: o jogo segue */ });
     });
+
+    /* Versão nova publicada: a página abre com o sw.js antigo, que ainda
+       entrega as imagens guardadas da versão anterior (as imagens não têm
+       ?v=). Quando o sw.js novo assume, recarrega uma vez para mostrar as
+       imagens novas, mas nunca no meio de um chamado, lição ou cena. */
+    if (navigator.serviceWorker.controller) {
+      let recarregou = false;
+      const ocupado = () => !!document.querySelector('#story.on, #fase.on, #licao.on, #promo.on, #fim.on, #final.on');
+      const recarregar = () => {
+        if (recarregou) return;
+        if (ocupado()) { setTimeout(recarregar, 2000); return; }
+        recarregou = true;
+        location.reload();
+      };
+      navigator.serviceWorker.addEventListener('controllerchange', recarregar);
+    }
   }
 
   if (!linha) return;
