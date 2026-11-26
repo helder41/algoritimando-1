@@ -6732,7 +6732,7 @@ body.arrastando * {
 @media (min-aspect-ratio: 4/5) and (max-height: 500px) {
   #stage .logo {
     font-size: max(7.4cqw, 28px);
-    padding-top: 0.8cqw;
+    padding-top: 7.5cqw;
   }
   #stage .menu-btns {
     display: grid;
