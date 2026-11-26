@@ -49,7 +49,7 @@ Cole este arquivo no começo de uma sessão nova, ou peça para a sessão ler `d
 | `js/motor.js` | formato dos dados (documentado no topo, inclusive os modos de montagem) e validação pelo grafo de dependências |
 | `js/situacoes.js` | os 8 chamados do jogo, com a configuração da montagem de cada um |
 | `js/jogo.js` | a partida: tabuleiro, Verificar, dica, estrelas e a cena em tela cheia do nível |
-| `js/app.js` | menu, abertura, crachá, mapa (`LUGARES`), progresso e promoções, sanduíche obrigatório, agente secreto, atalho de dev, configurações, tela final |
+| `js/app.js` | menu, abertura, crachá, mapa (`LUGARES`), progresso e promoções, sanduíche obrigatório, agentes secretos da equipe, atalho de dev, configurações, tela final |
 | `js/montagem.js` | a imagem ao lado do tabuleiro: `pilha`, `cena`, `grade`, `estado`, `jardim`, `rua` (e `tirinha`, sem uso) |
 | `js/conclusao.js` | tela de lição (sem imagem, abre direto no texto; mostra "+1 figurinha") |
 | `js/album.js` | "Meu álbum": uma figurinha por nível concluído e a página de figurinhas extras |
@@ -117,7 +117,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
   - **Impressão:** uma cópia da folha vai para `#impressao`, direto no `body`, e na impressão só ela aparece. A folha ocupa 80% da largura do papel e sai numa página só, em pé ou deitada. A tela mostra a dica "escolha a folha deitada".
 
 **Outras partes**
-- **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre uma tela inteira (crachás de agente que caem pendurados e balançam, faixa dourada, selo do orientador, Robô-guia) com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
+- **Créditos:** botão "Créditos" no canto de cima, à direita, do menu. Abre uma tela inteira (crachás de agente com a foto do agente de cada pessoa, que caem pendurados e balançam, faixa dourada, selo do orientador, Robô-guia) com a equipe: Paulo Helder de Santana Souza (idealizador e gestor), Murilo do Vale Moreira Santana (designer), Maria Eduarda Nascimento Silva e Gustavo Santos Souza (programadores), o orientador Peterson Lobato e a UNEB (só o nome, sem logo). O teaser termina com uma tela de créditos igual.
 - **Volume da música:** a barrinha segue uma curva (5% é bem baixinho; 0% é mudo). Pelo site, a música passa pelo Web Audio, porque o iPhone ignora o volume do `<audio>`; com dois cliques no `index.html`, vale o volume do `<audio>`.
 - **Versão do jogo:** aparece no canto de baixo, à direita, do menu (ex.: "v1.50 · 24/11/2026"). É MAIOR.N: N = PRs mergeados no `main` + 1, ou seja, cada PR mergeado sobe 1. O `ferramentas/gerar-sw.js` conta os PRs e escreve o `js/versao.js`. Para um marco (2.0), troque `MAIOR` e `PRS_ANTES` no topo do `gerar-sw.js`. O PR #44 foi fechado sem merge, por isso o número fica um abaixo do número do último PR.
 - **Configurações:** Música, Efeitos, **Cartas no lugar**, **Tela cheia** (some no iPhone) e **Instalar o jogo** (só pelo site; no iPhone mostra a explicação).
@@ -132,7 +132,7 @@ Todos têm **todas as imagens**: cartas, lições, ilustração do cartão (`pic
 
 - **Agente secreto:**
   - **Como abrir:** 10 toques rápidos (no máximo 0,6 s entre eles) na terceira estrela do crachá.
-  - **O que acontece:** libera o 7º agente (avatar `"6"`), com cena dourada e som de mistério.
+  - **O que acontece:** cena dourada com som de mistério, e aparece na grade um botão dourado (`img/av-equipe.webp`, agente de costas). Ele abre o menu `#equipe` com os 4 agentes da equipe lado a lado: avatar `"6"` Paulo (o antigo agente secreto), `"7"` Murilo, `"8"` Duda e `"9"` Gustavo. Cada um tem `avN`, `promoN` e o corpo inteiro (`CORPO` em `app.js` e `final.js`). O crachá fica com moldura dourada para os quatro.
   - **Onde fica guardado:** na chave `algoritimando-segredo`. Some com "Reiniciar o jogo" (menu) ou "Jogar de novo" (tela final). A central não tem botão de recomeçar, para ninguém zerar tudo sem querer.
 - **Atalho de dev:**
   - **Como usar:** no mapa da central, **15 toques na árvore do alto à esquerda** (à esquerda da Fábrica, perto de x 9%, y 38% da `story1`) e, logo depois, **15 toques na casa do canto inferior esquerdo** (perto de x 7%, y 73%).

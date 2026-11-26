@@ -6465,3 +6465,249 @@ body.arrastando * {
     font-size: 2.8cqw;
   }
 }
+
+/* ===== agentes da equipe: o menu aberto pelo botão dourado ===== */
+.modal.equipe {
+  background: radial-gradient(circle at 50% 45%, rgba(70, 45, 10, 0.92), rgba(15, 10, 25, 0.96) 70%);
+  overflow: hidden;
+  z-index: 41;
+  animation: equipe-fundo 0.3s ease-out both;
+}
+.modal.equipe.saindo {
+  animation: equipe-sai 0.26s ease-in both;
+}
+@keyframes equipe-fundo {
+  from { opacity: 0; }
+}
+@keyframes equipe-sai {
+  to { opacity: 0; transform: scale(1.04); }
+}
+.equipe-conteudo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2cqw;
+  text-align: center;
+}
+.modal.equipe h2 {
+  margin: 0 0 0.6cqw;
+  font-size: max(3.2cqw, 20px);
+  color: #fff;
+  text-shadow: 0 0.3cqw 0 #8a5a0a, 0 0 2cqw rgba(255, 196, 64, 0.8);
+  animation: segredo-entra 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.modal.equipe .segredo-chamada {
+  margin: 0;
+  animation: creditos-surge 0.5s both;
+}
+.equipe-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2.2cqw;
+  perspective: 120cqw;
+}
+.equipe-card {
+  position: relative;
+  width: 17cqw;
+  padding: 0.9cqw 0.9cqw 1.1cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5cqw;
+  border: 0.4cqw solid var(--ink);
+  border-radius: 2cqw;
+  background: linear-gradient(180deg, #fffaf0, #f6dc93);
+  box-shadow: 0 0.6cqw 0 var(--ink), 0 0 2cqw rgba(255, 196, 64, 0.35);
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink);
+  transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1), box-shadow 0.25s;
+  animation: equipe-card-entra 0.8s cubic-bezier(0.25, 1.4, 0.45, 1) both;
+}
+.equipe-card:nth-child(1) { animation-delay: 0.15s; }
+.equipe-card:nth-child(2) { animation-delay: 0.3s; }
+.equipe-card:nth-child(3) { animation-delay: 0.45s; }
+.equipe-card:nth-child(4) { animation-delay: 0.6s; }
+@keyframes equipe-card-entra {
+  0% { opacity: 0; transform: translateY(6cqw) rotateY(80deg) scale(0.7); }
+  60% { opacity: 1; transform: translateY(-0.8cqw) rotateY(-8deg) scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+.equipe-card:hover,
+.equipe-card:focus-visible {
+  transform: translateY(-1cqw) rotate(-1.5deg);
+  box-shadow: 0 1.4cqw 0 var(--ink), 0 0 3cqw rgba(255, 196, 64, 0.7);
+  outline: none;
+}
+.equipe-card:nth-child(even):hover,
+.equipe-card:nth-child(even):focus-visible {
+  transform: translateY(-1cqw) rotate(1.5deg);
+}
+/* o palco: o agente de corpo inteiro sobre a cor da pessoa */
+.equipe-palco {
+  position: relative;
+  width: 100%;
+  height: 21cqw;
+  border: 0.3cqw solid var(--ink);
+  border-radius: 1.4cqw;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 8% at 50% 94%, rgba(43, 34, 49, 0.3), transparent 70%),
+    radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--c) 30%, #fff), var(--c) 85%);
+}
+.equipe-palco img {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  height: 92%;
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
+  animation: equipe-respira 3s ease-in-out infinite;
+}
+.equipe-card:nth-child(2) .equipe-palco img { animation-delay: -0.8s; }
+.equipe-card:nth-child(3) .equipe-palco img { animation-delay: -1.6s; }
+.equipe-card:nth-child(4) .equipe-palco img { animation-delay: -2.4s; }
+@keyframes equipe-respira {
+  50% { transform: translateX(-50%) translateY(-2%) scale(1.02); }
+}
+/* um brilho que atravessa o palco ao passar o dedo ou o mouse */
+.equipe-palco::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% -60%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  opacity: 0;
+}
+.equipe-card:hover .equipe-palco::after,
+.equipe-card:focus-visible .equipe-palco::after,
+.equipe-card.festeja .equipe-palco::after {
+  animation: equipe-brilho 0.7s ease-out;
+}
+@keyframes equipe-brilho {
+  0% { left: -60%; opacity: 1; }
+  100% { left: 120%; opacity: 1; }
+}
+.equipe-card b {
+  font: 700 max(2.3cqw, 15px) Fredoka, sans-serif;
+  line-height: 1;
+  margin-top: 0.3cqw;
+}
+.equipe-card small {
+  padding: 0.25cqw 1.2cqw;
+  border-radius: 99px;
+  background: var(--c);
+  color: #fff;
+  font: 800 max(1.2cqw, 10px) Nunito, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+/* o escolhido: anel dourado e o selo de confirmado */
+.equipe-card.sel {
+  border-color: #c98a12;
+  box-shadow:
+    0 0.6cqw 0 var(--ink),
+    0 0 0 0.4cqw #ffe08a,
+    0 0 0 0.8cqw #c98a12,
+    0 0 3cqw 0.8cqw rgba(255, 196, 64, 0.8);
+}
+.equipe-card.sel::before {
+  content: "✓";
+  position: absolute;
+  z-index: 2;
+  top: -1.4cqw;
+  right: -1.4cqw;
+  width: 3.6cqw;
+  height: 3.6cqw;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffd96a, #e2a523);
+  border: 0.3cqw solid var(--ink);
+  font: 700 2cqw Fredoka, sans-serif;
+  color: var(--ink);
+  animation: revela 0.5s ease-out both;
+}
+.equipe-card.festeja {
+  animation: equipe-festeja 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@keyframes equipe-festeja {
+  0% { transform: scale(1); }
+  35% { transform: translateY(-2cqw) scale(1.1) rotate(-3deg); }
+  65% { transform: translateY(0) scale(0.97) rotate(2deg); }
+  100% { transform: none; }
+}
+.equipe-voltar {
+  margin-top: 1.4cqw;
+  animation: creditos-surge 0.5s 0.9s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal.equipe,
+  .modal.equipe.saindo,
+  .modal.equipe h2,
+  .equipe-card,
+  .equipe-card.festeja,
+  .equipe-palco img,
+  .equipe-voltar {
+    animation: none;
+  }
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .equipe-conteudo {
+    gap: 2.4cqw;
+    padding: 0 5cqw;
+  }
+  #stage .modal.equipe h2 {
+    font-size: 6.4cqw;
+  }
+  #stage .modal.equipe .segredo-chamada {
+    font-size: 3.6cqw;
+  }
+  #stage .equipe-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 38cqw);
+    gap: 5cqw 5cqw;
+  }
+  #stage .equipe-card {
+    width: 38cqw;
+    padding: 2cqw 2cqw 2.4cqw;
+    gap: 1.2cqw;
+    border-width: 0.8cqw;
+    border-radius: 4cqw;
+  }
+  #stage .equipe-palco {
+    height: 40cqw;
+    border-width: 0.6cqw;
+    border-radius: 3cqw;
+  }
+  #stage .equipe-card b {
+    font-size: 5cqw;
+  }
+  #stage .equipe-card small {
+    font-size: 2.6cqw;
+    padding: 0.5cqw 2.4cqw;
+  }
+  #stage .equipe-card.sel::before {
+    width: 8cqw;
+    height: 8cqw;
+    top: -3cqw;
+    right: -3cqw;
+    font-size: 4.4cqw;
+  }
+}
+
+/* créditos: a foto do agente de cada pessoa, emoldurada na cor dela */
+.creditos .cred-foto {
+  margin-top: calc(1 * var(--t));
+  width: calc(12 * var(--t));
+  height: calc(12 * var(--t));
+  border-radius: calc(1.8 * var(--t));
+  border: calc(0.45 * var(--t)) solid var(--ink);
+  background: var(--c);
+  box-shadow:
+    0 0 0 calc(0.5 * var(--t)) #fff,
+    0 0 0 calc(1 * var(--t)) var(--c),
+    0 calc(0.8 * var(--t)) 0 calc(1 * var(--t)) rgba(43, 34, 49, 0.25);
+}

@@ -37,8 +37,12 @@
 
   /* Os agentes: o número é o P.avatar. Cada um tem o retrato
      (img/avN.webp), a cena de promoção (img/promoN.webp) e o corpo
-     inteiro recortado para a tela final. O 6 é o agente secreto. */
-  const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino', 'secreto'];
+     inteiro recortado para a tela final. Do 6 ao 9 são os agentes da
+     equipe, liberados pelo segredo: o 6 é o idealizador (o antigo
+     agente secreto) e os outros três, a equipe dos créditos. */
+  const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino', 'secreto',
+    'murilo', 'duda', 'gustavo'];
+  const daEquipe = a => Number(a) >= 6;
 
   const avatarSrc = () => `img/av${P.avatar}.webp`;
 
@@ -262,7 +266,7 @@
     $('#badgeName').textContent = nome;
     $('#badgeFace').src = avatarSrc();
     $('#badgeCargo').textContent = CARGOS[cargo()];
-    $('#cracha').classList.toggle('secreto', P.avatar === '6');
+    $('#cracha').classList.toggle('secreto', daEquipe(P.avatar));
     $$('#badgeEstrelas img').forEach((e, k) => e.classList.toggle('on', k <= cargo()));
     // os selos das ideias: os conquistados acesos, os outros apagados
     const selos = $('#badgeSelos');
@@ -285,22 +289,68 @@
   $$('.chip.who').forEach(b => {
     b.onclick = () => {
       $('#nameIn').value = P.nome;
-      $$('.avatar').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
+      marcarAvatar();
       atualizarCracha(P.nome);
       irParaCracha();
     };
   });
-  $$('.avatar').forEach(b => {
-    b.onclick = () => {
-      // agente diferente: o som da seleção; o mesmo de novo: só o clique
-      const outro = P.avatar !== b.dataset.a;
-      $$('.avatar').forEach(x => x.classList.remove('sel'));
-      b.classList.add('sel');
-      P.avatar = b.dataset.a;
-      atualizarCracha($('#nameIn').value.trim(), true);
-      if (outro) Som.selecaoAgente(); else Som.clique();
+  /* Marca o agente escolhido na grade. Os agentes da equipe não têm
+     botão próprio: quem fica marcado é o botão dourado que abre o menu. */
+  function marcarAvatar() {
+    $$('.avatars .avatar').forEach(x => x.classList.toggle('sel',
+      x.classList.contains('avatar-secreto') ? daEquipe(P.avatar) : x.dataset.a === P.avatar));
+    $$('.equipe-card').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
+  }
+  function escolherAvatar(a) {
+    // agente diferente: o som da seleção; o mesmo de novo: só o clique
+    const outro = P.avatar !== a;
+    P.avatar = a;
+    marcarAvatar();
+    atualizarCracha($('#nameIn').value.trim(), true);
+    if (outro) Som.selecaoAgente(); else Som.clique();
+  }
+  $$('.avatars .avatar:not(.avatar-secreto)').forEach(b => {
+    b.onclick = () => escolherAvatar(b.dataset.a);
+  });
+
+  /* O menu dos agentes da equipe: abre pelo botão dourado da grade.
+     Escolher um card marca o agente e fecha o menu logo depois, para
+     dar tempo de ver o card comemorar. */
+  let fechaEquipe = 0;
+  function abrirEquipe() {
+    clearTimeout(fechaEquipe);
+    marcarAvatar();
+    const m = $('#equipe');
+    m.classList.toggle('saindo', false);
+    m.classList.add('on');
+    Som.clique();
+    const sel = $('.equipe-card.sel') || $('.equipe-card');
+    sel.focus({ preventScroll: true });
+  }
+  function fecharEquipe() {
+    const m = $('#equipe');
+    if (!m.classList.contains('on')) return;
+    m.classList.add('saindo');
+    clearTimeout(fechaEquipe);
+    fechaEquipe = setTimeout(() => {
+      m.classList.toggle('on', false);
+      m.classList.toggle('saindo', false);
+    }, 260);
+  }
+  $('.avatar-secreto').onclick = abrirEquipe;
+  $$('.equipe-card').forEach(c => {
+    c.onclick = () => {
+      escolherAvatar(c.dataset.a);
+      c.classList.toggle('festeja', false);
+      void c.offsetWidth;   // reinicia a animação
+      c.classList.add('festeja');
+      clearTimeout(fechaEquipe);
+      fechaEquipe = setTimeout(fecharEquipe, 650);
     };
   });
+  $('#bEquipeVoltar').onclick = fecharEquipe;
+  $('#equipe').addEventListener('click', e => { if (e.target.id === 'equipe') fecharEquipe(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharEquipe(); });
   $('#nameIn').oninput = e => atualizarCracha(e.target.value.trim());
 
   /* Agente secreto (só para quem sabe): 10 toques SEGUIDOS na
@@ -326,18 +376,18 @@
       b.addEventListener('animationend', () => b.classList.remove('revela'), { once: true });
     }
   }
-  if (segredoAberto() || P.avatar === '6') mostrarSecreto(false);
+  if (segredoAberto() || daEquipe(P.avatar)) mostrarSecreto(false);
 
-  /* Recomeçar o jogo também fecha o segredo: o agente secreto some da
-     escolha e, se era o escolhido, volta o primeiro agente. */
+  /* Recomeçar o jogo também fecha o segredo: o botão da equipe some da
+     escolha e, se um agente da equipe era o escolhido, volta o primeiro. */
   function esquecerSegredo() {
     try { localStorage.removeItem(CHAVE_SEGREDO); } catch { /* nada a apagar */ }
     $('.avatar-secreto').hidden = true;
     $('.avatars').classList.remove('com-secreto');
-    if (P.avatar === '6') {
+    if (daEquipe(P.avatar)) {
       P.avatar = '0';
       Perfil.gravar();
-      $$('.avatar').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
+      marcarAvatar();
       atualizarCracha(P.nome);
       atualizarTopo();
     }
@@ -359,7 +409,7 @@
   $('#bSegredoOk').onclick = () => {
     $('#segredo').classList.remove('on');
     mostrarSecreto(true);
-    $('.avatar-secreto').click();
+    abrirEquipe();
   };
   $('#bConfirm').onclick = () => {
     P.comecou = true;
@@ -959,7 +1009,7 @@
   /* ---------------- partida ---------------- */
 
   $('#nameIn').value = P.comecou ? P.nome : '';
-  $$('.avatar').forEach(x => x.classList.toggle('sel', x.dataset.a === P.avatar));
+  marcarAvatar();
   atualizarCracha(P.comecou ? P.nome : '');
   atualizarTopo();
   $('#bPlay').textContent = P.comecou ? 'Continuar' : 'Jogar';
