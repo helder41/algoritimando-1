@@ -16,6 +16,9 @@ W, H = (1920, 1080) if ORI == 'h' else (1080, 1920)
 FPS = 30
 XF = 0.4                               # duração das transições
 TOTAL = 60.0
+# ALTA=1 no ambiente: qualidade alta (quase sem perda), para editar ou projetar
+ALTA = os.environ.get('ALTA') == '1'
+CRF_CENA, CRF_FINAL, AUDIO = ('8', '10', '320k') if ALTA else ('17', '18', '192k')
 # a moldura do jogo: a tela do jogo um pouco menor, com a legenda embaixo
 if ORI == 'h':
     GW, GH, GX, GY, RAIO, BORDA = 1600, 900, 160, 22, 26, 6
@@ -192,7 +195,7 @@ def cena(sc):
     fil.append(f'[{atual}]format=yuv420p[out]')
 
     ff(*ins, '-filter_complex', ';'.join(fil), '-map', '[out]', '-t', dur, '-r', FPS,
-       '-c:v', 'libx264', '-preset', 'medium', '-crf', '17', '-pix_fmt', 'yuv420p', f'{OUT}/cena-{nome}.mp4')
+       '-c:v', 'libx264', '-preset', 'medium', '-crf', CRF_CENA, '-pix_fmt', 'yuv420p', f'{OUT}/cena-{nome}.mp4')
     print('cena pronta:', nome, dur)
 
 
@@ -346,8 +349,8 @@ def juntar(R):
     print('efeitos no vídeo:', len(eventos))
     nome = 'algoritimando-teaser-horizontal.mp4' if ORI == 'h' else 'algoritimando-teaser-vertical.mp4'
     ff(*ins, '-filter_complex', ';'.join(fil), '-map', f'[{atual}]', '-map', '[a]', '-t', TOTAL,
-       '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-r', FPS,
-       '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', f'{OUT}/{nome}')
+       '-c:v', 'libx264', '-preset', 'slow', '-crf', CRF_FINAL, '-pix_fmt', 'yuv420p', '-r', FPS,
+       '-c:a', 'aac', '-b:a', AUDIO, '-movflags', '+faststart', f'{OUT}/{nome}')
     print('vídeo pronto:', nome, 'duração', round(t, 2))
 
 

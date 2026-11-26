@@ -4,3 +4,4 @@ saida-h/
 saida-v/
 *.log
 saida-compartilhar/
+__pycache__/
