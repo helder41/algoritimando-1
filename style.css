@@ -6114,6 +6114,10 @@ body.arrastando * {
   letter-spacing: 0.08em;
   text-shadow: none;
 }
+/* o campus, ao lado da sigla */
+.creditos-uneb .creditos-campus {
+  font: inherit;
+}
 .creditos-conteudo > .btn {
   margin-top: auto;
 }
@@ -6203,6 +6207,9 @@ body.arrastando * {
   #stage .creditos-uneb span {
     padding: 0.6cqw 3cqw;
     border-radius: 1.6cqw;
+  }
+  #stage .creditos-uneb .creditos-campus {
+    font-size: 3.4cqw;
   }
   #stage .creditos-brilhos i {
     width: 3cqw;
