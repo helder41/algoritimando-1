@@ -301,3 +301,42 @@ test.describe('promoções e fim do jogo', () => {
     await expect(page.locator('#certificado')).toContainText('Teste');
   });
 });
+
+/* ---------------- agentes da equipe (segredo) ---------------- */
+
+test.describe('agentes da equipe', () => {
+  test('o segredo libera o botão dourado, que abre o menu dos 4 agentes', async ({ page }) => {
+    await page.goto('index.html');
+    await page.click('#bPlay');
+    await page.click('#bSkip');
+    await expect(tela(page, 'char')).toHaveClass(/\bon\b/);
+    await expect(page.locator('.avatar-secreto')).toBeHidden();
+    const estrela = page.locator('#badgeEstrelas img').nth(2);
+    for (let i = 0; i < 10; i++) await estrela.click({ force: true });
+    await expect(page.locator('#segredo')).toHaveClass(/\bon\b/);
+    await page.click('#bSegredoOk');
+    await expect(page.locator('#equipe')).toHaveClass(/\bon\b/);
+    await expect(page.locator('.equipe-card')).toHaveCount(4);
+    await page.locator('.equipe-card[data-a="9"]').click();
+    await expect(page.locator('#equipe')).not.toHaveClass(/\bon\b/);
+    await expect(page.locator('#badgeFace')).toHaveAttribute('src', 'img/av9.webp');
+    await expect(page.locator('#cracha')).toHaveClass(/\bsecreto\b/);
+    await expect(page.locator('.avatar-secreto')).toHaveClass(/\bsel\b/);
+    // o botão dourado reabre o menu, e Esc fecha
+    await page.click('.avatar-secreto');
+    await expect(page.locator('#equipe')).toHaveClass(/\bon\b/);
+    await expect(page.locator('.equipe-card[data-a="9"]')).toHaveClass(/\bsel\b/);
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#equipe')).not.toHaveClass(/\bon\b/);
+  });
+
+  test('os créditos mostram a foto do agente de cada pessoa', async ({ page }) => {
+    await page.goto('index.html');
+    await page.click('#bCreditos');
+    const fotos = page.locator('#creditos .cred-foto img');
+    await expect(fotos).toHaveCount(4);
+    for (let i = 0; i < 4; i++) {
+      expect(await fotos.nth(i).evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    }
+  });
+});

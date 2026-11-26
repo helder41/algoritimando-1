@@ -18,8 +18,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Algoritimando" />
     <!-- fontes guardadas no projeto: o jogo funciona sem internet -->
-    <link rel="stylesheet" href="fontes/fontes.css?v=202611251330" />
-    <link rel="stylesheet" href="style.css?v=202611251330" />
+    <link rel="stylesheet" href="fontes/fontes.css?v=202611260100" />
+    <link rel="stylesheet" href="style.css?v=202611260100" />
   </head>
   <body>
     <div id="stage">
@@ -128,15 +128,16 @@
               <button class="avatar" data-a="5" aria-label="Agente 6">
                 <img src="img/av5.webp" alt="" />
               </button>
-              <!-- agente secreto: aparece depois de 10 toques na terceira
-                   estrela do crachá (app.js) -->
+              <!-- agentes da equipe: o botão dourado aparece depois de 10
+                   toques na terceira estrela do crachá e abre o menu
+                   #equipe (app.js) -->
               <button
                 class="avatar avatar-secreto"
-                data-a="6"
-                aria-label="Agente secreto"
+                aria-label="Agentes secretos da equipe"
+                aria-haspopup="dialog"
                 hidden
               >
-                <img src="img/av6.webp" alt="" />
+                <img src="img/av-equipe.webp" alt="" />
               </button>
             </div>
             <!-- os selos das ideias já conquistadas (app.js) -->
@@ -706,10 +707,39 @@
         <div class="segredo-conteudo">
           <p class="segredo-chamada">Você descobriu um segredo!</p>
           <div class="segredo-retrato moldura-dourada">
-            <img src="img/av6.webp" alt="" />
+            <img src="img/av-equipe.webp" alt="" />
           </div>
-          <h2 id="segredoTitulo">Agente secreto desbloqueado</h2>
-          <button class="btn segredo-ok" id="bSegredoOk" type="button">Usar este agente</button>
+          <h2 id="segredoTitulo">Agentes secretos desbloqueados</h2>
+          <button class="btn segredo-ok" id="bSegredoOk" type="button">Conhecer os agentes</button>
+        </div>
+      </div>
+
+      <!-- o menu dos agentes da equipe: abre pelo botão dourado da
+           escolha de agente (app.js, style.css "agentes da equipe") -->
+      <div class="modal equipe" id="equipe" role="dialog" aria-modal="true" aria-labelledby="equipeTitulo">
+        <div class="segredo-raios" aria-hidden="true"></div>
+        <div class="equipe-conteudo">
+          <p class="segredo-chamada">Agentes secretos</p>
+          <h2 id="equipeTitulo">A equipe de Algoritimando</h2>
+          <div class="equipe-cards">
+            <button class="equipe-card" data-a="6" type="button" style="--c: #8a63c7">
+              <span class="equipe-palco"><img src="img/agente-secreto.webp" alt="" /></span>
+              <b>Paulo</b><small>Idealizador</small>
+            </button>
+            <button class="equipe-card" data-a="7" type="button" style="--c: #e07a4f">
+              <span class="equipe-palco"><img src="img/agente-murilo.webp" alt="" /></span>
+              <b>Murilo</b><small>Designer</small>
+            </button>
+            <button class="equipe-card" data-a="8" type="button" style="--c: #4fae6b">
+              <span class="equipe-palco"><img src="img/agente-duda.webp" alt="" /></span>
+              <b>Duda</b><small>Programadora</small>
+            </button>
+            <button class="equipe-card" data-a="9" type="button" style="--c: #3f8fc9">
+              <span class="equipe-palco"><img src="img/agente-gustavo.webp" alt="" /></span>
+              <b>Gustavo</b><small>Programador</small>
+            </button>
+          </div>
+          <button class="btn equipe-voltar" id="bEquipeVoltar" type="button">Voltar</button>
         </div>
       </div>
 
@@ -808,7 +838,7 @@
                 <div class="cracha-moldura">
                   <div class="cracha-cartao">
                     <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
-                    <span class="cred-iniciais" aria-hidden="true">PH</span>
+                    <span class="cracha-foto cred-foto" aria-hidden="true"><img src="img/av6.webp" alt="" /></span>
                     <b class="cracha-nome">Paulo Helder de Santana Souza</b>
                     <span class="cracha-cargo">Idealizador e gestor do projeto</span>
                   </div>
@@ -822,7 +852,7 @@
                 <div class="cracha-moldura">
                   <div class="cracha-cartao">
                     <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
-                    <span class="cred-iniciais" aria-hidden="true">MV</span>
+                    <span class="cracha-foto cred-foto" aria-hidden="true"><img src="img/av7.webp" alt="" /></span>
                     <b class="cracha-nome">Murilo do Vale Moreira Santana</b>
                     <span class="cracha-cargo">Designer</span>
                   </div>
@@ -836,7 +866,7 @@
                 <div class="cracha-moldura">
                   <div class="cracha-cartao">
                     <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
-                    <span class="cred-iniciais" aria-hidden="true">ME</span>
+                    <span class="cracha-foto cred-foto" aria-hidden="true"><img src="img/av8.webp" alt="" /></span>
                     <b class="cracha-nome">Maria Eduarda Nascimento Silva</b>
                     <span class="cracha-cargo">Programadora</span>
                   </div>
@@ -850,7 +880,7 @@
                 <div class="cracha-moldura">
                   <div class="cracha-cartao">
                     <p class="cracha-topo"><b>Algoritimando</b><small>Equipe</small></p>
-                    <span class="cred-iniciais" aria-hidden="true">GS</span>
+                    <span class="cracha-foto cred-foto" aria-hidden="true"><img src="img/av9.webp" alt="" /></span>
                     <b class="cracha-nome">Gustavo Santos Souza</b>
                     <span class="cracha-cargo">Programador</span>
                   </div>
@@ -886,23 +916,23 @@
          das cartas numa região, explicações de erro em outra -->
     <div class="sr leitor-avisos" aria-live="polite"></div>
     <div class="sr leitor-explicacao" aria-live="polite"></div>
-    <script src="js/versao.js?v=202611251330"></script>
-    <script src="js/motor.js?v=202611251330"></script>
-    <script src="js/comum.js?v=202611251330"></script>
-    <script src="js/situacoes.js?v=202611251330"></script>
-    <script src="js/em-progresso.js?v=202611251330"></script>
-    <script src="js/som.js?v=202611251330"></script>
-    <script src="js/progresso.js?v=202611251330"></script>
-    <script src="js/perfil.js?v=202611251330"></script>
-    <script src="js/arrasto.js?v=202611251330"></script>
-    <script src="js/conclusao.js?v=202611251330"></script>
-    <script src="js/montagem.js?v=202611251330"></script>
-    <script src="js/jogo.js?v=202611251330"></script>
+    <script src="js/versao.js?v=202611260100"></script>
+    <script src="js/motor.js?v=202611260100"></script>
+    <script src="js/comum.js?v=202611260100"></script>
+    <script src="js/situacoes.js?v=202611260100"></script>
+    <script src="js/em-progresso.js?v=202611260100"></script>
+    <script src="js/som.js?v=202611260100"></script>
+    <script src="js/progresso.js?v=202611260100"></script>
+    <script src="js/perfil.js?v=202611260100"></script>
+    <script src="js/arrasto.js?v=202611260100"></script>
+    <script src="js/conclusao.js?v=202611260100"></script>
+    <script src="js/montagem.js?v=202611260100"></script>
+    <script src="js/jogo.js?v=202611260100"></script>
     <!-- a cópia do certificado que vai para a impressora (final.js) -->
     <div id="impressao" aria-hidden="true"></div>
-    <script src="js/album.js?v=202611251330"></script>
-    <script src="js/final.js?v=202611251330"></script>
-    <script src="js/app.js?v=202611251330"></script>
-    <script src="js/pwa.js?v=202611251330"></script>
+    <script src="js/album.js?v=202611260100"></script>
+    <script src="js/final.js?v=202611260100"></script>
+    <script src="js/app.js?v=202611260100"></script>
+    <script src="js/pwa.js?v=202611260100"></script>
   </body>
 </html>

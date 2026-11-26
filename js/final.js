@@ -185,7 +185,8 @@
     limonada: 'Ao mesmo tempo',
     dentes: 'O que abre, fecha',
   };
-  const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino', 'secreto'];
+  const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino', 'secreto',
+    'murilo', 'duda', 'gustavo'];
 
   function codigoDo(perfil) {
     // o mesmo código do crachá (app.js)
