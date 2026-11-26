@@ -36,7 +36,7 @@
   const proximo = $('#bFimNext');
 
   // ?v= faz o navegador buscar a imagem nova quando ela muda
-  const V = '?v=202611260130';
+  const V = '?v=202611260300';
 
   /* Os quadros. "reserva": imagem do jogo usada enquanto a do
      quadro não existe. "festa": confete e música de vitória. */
@@ -48,7 +48,7 @@
     { album: true,
       texto: n => `Seu álbum está completo: ${n} figurinhas, uma para cada nível!` },
     { img: 'img/fim3.webp', reserva: 'img/story1.webp',
-      texto: () => 'Cada chamado ensinou uma ideia: ordem, passos escondidos, repetição, condição, ao mesmo tempo, abre e fecha.' },
+      texto: () => 'Cada chamado ensinou uma ideia: ordem, instrução, passos escondidos, algoritmo, repetição, condição, ao mesmo tempo, abre e fecha.' },
     { img: 'img/fim4.webp', reserva: 'img/story2.webp',
       texto: () => 'Agora você sabe montar um passo a passo para cada tarefa. O Robô-guia ficou orgulhoso!' },
     { img: 'img/fim5.webp', reserva: 'img/story3.webp', festa: true,
