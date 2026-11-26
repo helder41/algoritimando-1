@@ -176,6 +176,21 @@ test.describe('central de chamados', () => {
     await page.keyboard.press('Escape');
     await expect(page.locator('#ideias')).not.toHaveClass(/\bon\b/);
   });
+
+  test('"Meus aprendizados" tem um selo para cada chamado', async ({ page }) => {
+    await comMemoria(page,
+      { nome: 'Teste', avatar: '0', comecou: true, dicas: 5, concluidos: { sanduiche: true, abelhas: true } },
+      { sanduiche: { fase: 5, niveis: [3, 3, 3, 3, 3] }, abelhas: { fase: 4, niveis: [3, 3, 3, 3] } });
+    await page.goto('index.html');
+    await page.click('#bPlay');
+    await expect(tela(page, 'hub')).toHaveClass(/\bon\b/);
+    const total = await page.evaluate(() => SITUACOES.length);
+    await expect(page.locator('#badgeSelos .selo')).toHaveCount(total);
+    await page.click('#bIdeias');
+    await expect(page.locator('#ideias .ideia')).toHaveCount(total);
+    await expect(page.locator('#ideias .ideia:not(.apagada)')).toHaveCount(2);
+    await expect(page.locator('#ideias .ideia:not(.apagada) b')).toHaveText(['Ordem', 'Algoritmo']);
+  });
 });
 
 /* ---------------- nível (tabuleiro) ---------------- */

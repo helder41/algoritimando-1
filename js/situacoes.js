@@ -13,6 +13,11 @@
    Os chamados novos (repetição, condição e caminhos paralelos)
    ficam depois deles, com a sua própria explicação.
 
+   Cada chamado entrega, na lição do último nível, o SELO da ideia
+   que ele mais trabalha (campo "selo"): sanduíche → Ordem,
+   robô → Instrução, mochila → Passos escondidos, abelhas →
+   Algoritmo.
+
    O que vem abaixo vale para os quatro originais:
 
    Os campos visuais (local, cor, cliente, cena, fundo,
@@ -59,6 +64,15 @@ const SITUACAO_SANDUICHE = {
   fundoConclusao: 'img/win1.webp',
   // a imagem que se monta ao lado do tabuleiro (ver motor.js)
   montagem: 'pilha',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Ordem',
+    icone: 'ordem',
+    imagem: 'img/selos/ordem.webp',
+    frase: 'Cada passo tem a sua vez. Se a ordem muda, o resultado muda também.',
+    exemplo: 'Coloque o queijo no pão.',
+    pergunta: 'O que você faz todo dia que só dá certo em uma ordem?',
+  },
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
@@ -289,6 +303,15 @@ const SITUACAO_ROBO = {
   fundoConclusao: 'img/win2.webp',
   // o robô anda numa grade vista de cima, seguindo as cartas (montagem.js)
   montagem: 'grade',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Instrução',
+    icone: 'instrucao',
+    imagem: 'img/selos/instrucao.webp',
+    frase: 'A máquina não adivinha: faz só o que a gente diz, do jeitinho que a gente diz.',
+    exemplo: 'Vire o robô para o cubo.',
+    pergunta: 'Que instruções você daria a um robô para ele abrir uma porta?',
+  },
   fases: [
 
     /* ---------- FASE 1 · a máquina precisa de ordem (3 passos) ---------- */
@@ -528,6 +551,15 @@ const SITUACAO_MOCHILA = {
   // a cena começa com o estojo aberto e a mochila fechada; nos níveis
   // sem a carta "Abra o zíper", a mochila já começa aberta
   montagemBase: 'img/pecas/mochila-cena-fechada.webp',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Passos escondidos',
+    icone: 'escondido',
+    imagem: 'img/selos/passos-escondidos.webp',
+    frase: 'Os passos que a gente faz sem pensar também precisam entrar na lista.',
+    exemplo: 'Abra o zíper da mochila.',
+    pergunta: 'Que passo você faz sem perceber quando se arruma para a escola?',
+  },
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
@@ -732,6 +764,15 @@ const SITUACAO_ABELHAS = {
   // o jardim: a abelha sai, procura a flor, coleta, volta e guarda o
   // néctar no favo, seguindo as cartas (montagem.js, modo "jardim")
   montagem: 'jardim',
+  // o selo da ideia: entregue na lição do último nível (ver motor.js)
+  selo: {
+    nome: 'Algoritmo',
+    icone: 'caminho',
+    imagem: 'img/selos/algoritmo.webp',
+    frase: 'Uma lista de passos completa, na ordem certa, do começo ao fim, se chama algoritmo.',
+    exemplo: 'Feche o favo com cera.',
+    pergunta: 'Qual outro algoritmo você vê na natureza?',
+  },
   fases: [
 
     /* ---------- FASE 1 · a ordem importa (3 passos) ---------- */
@@ -931,8 +972,8 @@ const SITUACAO_ABELHAS = {
    Eles aparecem no mapa depois do sanduíche, como os outros. As
    promoções contam quaisquer chamados: metade leva a Agente, todos
    a Agente Sênior (ver app.js).
-   Cada chamado novo entrega o SELO da sua ideia (campo "selo") na
-   lição do último nível. Como podem ser jogados antes
+   Cada chamado novo também entrega o SELO da sua ideia (campo
+   "selo") na lição do último nível. Como podem ser jogados antes
    dos originais, as lições falam em "passo a passo" e só a última
    fase de cada um usa a palavra "algoritmo", já explicando o que
    ela quer dizer.

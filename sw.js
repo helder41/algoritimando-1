@@ -2,7 +2,7 @@
    rode "node ferramentas/gerar-sw.js" depois de mudar o ?v= do index.html. */
 'use strict';
 
-const VERSAO = '202611260100';
+const VERSAO = '202611260200';
 const CACHE = 'algoritimando-' + VERSAO;
 const ARQUIVOS = [
   "./",
@@ -18,7 +18,7 @@ const ARQUIVOS = [
   "audio/efeitos/selo.mp3",
   "audio/efeitos/vitoria.mp3",
   "audio/musica-tema.mp3",
-  "fontes/fontes.css?v=202611260100",
+  "fontes/fontes.css?v=202611260200",
   "fontes/fredoka.woff2",
   "fontes/nunito.woff2",
   "img/agente-afro-menina.webp",
@@ -254,8 +254,12 @@ const ARQUIVOS = [
   "img/robo-preocupado.webp",
   "img/robo-sorrindo.webp",
   "img/selos/abre-e-fecha.webp",
+  "img/selos/algoritmo.webp",
   "img/selos/ao-mesmo-tempo.webp",
   "img/selos/condicao.webp",
+  "img/selos/instrucao.webp",
+  "img/selos/ordem.webp",
+  "img/selos/passos-escondidos.webp",
   "img/selos/repeticao.webp",
   "img/story1.webp",
   "img/story2.webp",
@@ -281,24 +285,24 @@ const ARQUIVOS = [
   "img/win7.webp",
   "img/win8.webp",
   "index.html",
-  "js/album.js?v=202611260100",
-  "js/app.js?v=202611260100",
-  "js/arrasto.js?v=202611260100",
-  "js/comum.js?v=202611260100",
-  "js/conclusao.js?v=202611260100",
-  "js/em-progresso.js?v=202611260100",
-  "js/final.js?v=202611260100",
-  "js/jogo.js?v=202611260100",
-  "js/montagem.js?v=202611260100",
-  "js/motor.js?v=202611260100",
-  "js/perfil.js?v=202611260100",
-  "js/progresso.js?v=202611260100",
-  "js/pwa.js?v=202611260100",
-  "js/situacoes.js?v=202611260100",
-  "js/som.js?v=202611260100",
-  "js/versao.js?v=202611260100",
+  "js/album.js?v=202611260200",
+  "js/app.js?v=202611260200",
+  "js/arrasto.js?v=202611260200",
+  "js/comum.js?v=202611260200",
+  "js/conclusao.js?v=202611260200",
+  "js/em-progresso.js?v=202611260200",
+  "js/final.js?v=202611260200",
+  "js/jogo.js?v=202611260200",
+  "js/montagem.js?v=202611260200",
+  "js/motor.js?v=202611260200",
+  "js/perfil.js?v=202611260200",
+  "js/progresso.js?v=202611260200",
+  "js/pwa.js?v=202611260200",
+  "js/situacoes.js?v=202611260200",
+  "js/som.js?v=202611260200",
+  "js/versao.js?v=202611260200",
   "manifest.webmanifest",
-  "style.css?v=202611260100"
+  "style.css?v=202611260200"
 ];
 
 // instala: baixa tudo de novo (sem usar o cache do navegador)

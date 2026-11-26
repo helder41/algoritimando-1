@@ -171,6 +171,14 @@
     juntar: `<path ${TRACO} d="M6 3.5v4.5c0 3.5 6 3.5 6 7M18 3.5v4.5c0 3.5-6 3.5-6 7v5.5"/><path ${TRACO} d="M9 18l3 3 3-3"/>`,
     // um par que abre e fecha
     par: `<path ${TRACO} d="M9 4.5H5.5v15H9M15 4.5h3.5v15H15"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/>`,
+    // uma seta descendo ao lado de três camadas: ordem
+    ordem: `<path ${TRACO} d="M5.5 4v15M3 16.5l2.5 2.5L8 16.5"/><path ${TRACO} d="M11 6.5h9.5M11 12h9.5M11 17.5h9.5"/>`,
+    // a cabeça do robô com a seta de "vá" na tela: instrução
+    instrucao: `<path ${TRACO} d="M12 5V3"/><rect ${TRACO} x="4.5" y="5" width="15" height="13" rx="3"/><path ${TRACO} d="M8.5 11.5h6M12.5 9l2.5 2.5-2.5 2.5"/>`,
+    // a lupa que acha um passo: passos escondidos
+    escondido: `<circle ${TRACO} cx="10.5" cy="10.5" r="6.5"/><path ${TRACO} d="M15.5 15.5 20.5 20.5M8 9.5h5M8 12h3"/>`,
+    // um caminho do começo (bolinha) até o fim (bandeira): algoritmo
+    caminho: `<circle cx="5" cy="19" r="2" fill="currentColor"/><path ${TRACO} d="M5 19c3 0 4-3 7-3s3-5 6-6M18 10V3.5h3.5l-1 1.5 1 1.5H18"/>`,
   };
 
   function criarSelo(selo, ganho = true) {
