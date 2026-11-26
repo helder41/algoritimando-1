@@ -9,6 +9,7 @@ Não entram aqui as partes desativadas **por enquanto** (Área do professor/edit
 | `img/guide.webp`, `img/guide-feliz.webp`, `img/guide-triste.webp` | rosto do Robô-guia no diálogo (o "feliz" era um ovo bege) | versões feitas a partir de `robo-normal`, `robo-feliz` e `robo-preocupado` | 26/11/2026 |
 | `img/av0.webp`, `img/agente-menina.webp` | agente 0 (menina) no desenho antigo, com cinto e estrela | redesenho no estilo C (traço original refinado) | 26/11/2026 |
 | `img/av1.webp`, `img/agente-menino.webp` | agente 1 (menino) no desenho antigo, com acabamento azul | redesenho no estilo C (traço original refinado) | 26/11/2026 |
+| `img/av2.webp` a `img/av5.webp`, `img/agente-afro-menina.webp`, `img/agente-afro-menino.webp`, `img/agente-latina.webp`, `img/agente-latino.webp` | agentes 2 a 5 no desenho antigo (olhos grandes, cerca de 2,5 cabeças) | redesenho no estilo C (traço original refinado) | 26/11/2026 |
 | `img/agente-costas.webp` | agente de costas, corpo inteiro | não é usado em nenhuma tela (o botão secreto usa `av-equipe.webp`) | 04/11/2026 |
 | `img/promo0.webp` a `img/promo5.webp` | cenas de promoção dos agentes 0 a 5 com o robô ovo e o casaco antigo | nova cena no estilo C, com o Robô-guia branco e o uniforme sem cinto | 26/11/2026 |
 | `img/cliente2.webp`, `img/who3.webp` | menina da Escola (mochila) no traço de anime | redesenho no estilo C (traço original refinado) | 26/11/2026 |
