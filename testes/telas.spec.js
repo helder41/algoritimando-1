@@ -137,6 +137,18 @@ test.describe('abertura e crachá', () => {
     await expect(tela(page, 'hub')).toHaveClass(/\bon\b/);
     await expect(page.locator('#hub .chip.who')).toContainText('Lia');
   });
+
+  test('a agente 10 (cabelo cacheado) continua escolhida depois de recarregar', async ({ page }) => {
+    await page.goto('index.html');
+    await page.click('#bPlay');
+    await page.click('#bSkip');
+    await page.click('.avatar[data-a="10"]');
+    await page.fill('#nameIn', 'Bia');
+    await page.click('#bConfirm');
+    await expect(tela(page, 'hub')).toHaveClass(/\bon\b/);
+    await page.reload();
+    await expect(page.locator('#hub .chip.who img, .chip.who img').first()).toHaveAttribute('src', /av10\.webp/);
+  });
 });
 
 /* ---------------- central (mapa) ---------------- */

@@ -39,10 +39,11 @@
      (img/avN.webp), a cena de promoção (img/promoN.webp) e o corpo
      inteiro recortado para a tela final. Do 6 ao 9 são os agentes da
      equipe, liberados pelo segredo: o 6 é o idealizador (o antigo
-     agente secreto) e os outros três, a equipe dos créditos. */
+     agente secreto) e os outros três, a equipe dos créditos. O 10 é a
+     agente de cabelo cacheado, que entrou depois na grade normal. */
   const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino', 'secreto',
-    'murilo', 'duda', 'gustavo'];
-  const daEquipe = a => Number(a) >= 6;
+    'murilo', 'duda', 'gustavo', 'cacheada'];
+  const daEquipe = a => Number(a) >= 6 && Number(a) <= 9;
 
   const avatarSrc = () => `img/av${P.avatar}.webp`;
 

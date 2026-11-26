@@ -36,7 +36,7 @@
   const proximo = $('#bFimNext');
 
   // ?v= faz o navegador buscar a imagem nova quando ela muda
-  const V = '?v=202611260500';
+  const V = '?v=202611260530';
 
   /* Os quadros. "reserva": imagem do jogo usada enquanto a do
      quadro não existe. "festa": confete e música de vitória. */
@@ -186,7 +186,7 @@
     dentes: 'O que abre, fecha',
   };
   const CORPO = ['menina', 'menino', 'afro-menina', 'afro-menino', 'latina', 'latino', 'secreto',
-    'murilo', 'duda', 'gustavo'];
+    'murilo', 'duda', 'gustavo', 'cacheada'];
 
   function codigoDo(perfil) {
     // o mesmo código do crachá (app.js)

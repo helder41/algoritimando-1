@@ -10,6 +10,8 @@ Não entram aqui as partes desativadas **por enquanto** (Área do professor/edit
 | `img/av0.webp`, `img/agente-menina.webp` | agente 0 (menina) no desenho antigo, com cinto e estrela | redesenho no estilo C (traço original refinado) | 26/11/2026 |
 | `img/av1.webp`, `img/agente-menino.webp` | agente 1 (menino) no desenho antigo, com acabamento azul | redesenho no estilo C (traço original refinado) | 26/11/2026 |
 | `img/av2.webp` a `img/av5.webp`, `img/agente-afro-menina.webp`, `img/agente-afro-menino.webp`, `img/agente-latina.webp`, `img/agente-latino.webp` | agentes 2 a 5 no desenho antigo (olhos grandes, cerca de 2,5 cabeças) | redesenho no estilo C (traço original refinado) | 26/11/2026 |
+| `img/licoes/mochila-1.webp`, `mochila-3.webp`, `mochila-4.webp` e `img/licoes/comparativas/mochila-1.webp` | lições da mochila com a menina antiga (uniforme cinza) | mesmas lições com a menina da Escola no estilo C | 26/11/2026 |
+| `img/fim2.webp`, `img/fim4.webp`, `img/fim5.webp` | cenas finais com a menina da Escola de uniforme cinza | mesmas cenas, com o uniforme dela pintado de lilás como no estilo C | 26/11/2026 |
 | `img/agente-costas.webp` | agente de costas, corpo inteiro | não é usado em nenhuma tela (o botão secreto usa `av-equipe.webp`) | 04/11/2026 |
 | `img/promo0.webp` a `img/promo5.webp` | cenas de promoção dos agentes 0 a 5 com o robô ovo e o casaco antigo | nova cena no estilo C, com o Robô-guia branco e o uniforme sem cinto | 26/11/2026 |
 | `img/cliente2.webp`, `img/who3.webp` | menina da Escola (mochila) no traço de anime | redesenho no estilo C (traço original refinado) | 26/11/2026 |

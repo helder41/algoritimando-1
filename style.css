@@ -437,7 +437,8 @@ h2 {
 }
 .avatars {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  /* 7 agentes (8 com o secreto): 4 colunas */
+  grid-template-columns: repeat(4, auto);
   gap: 1.4cqw 2cqw;
 }
 .avatar {
@@ -4647,10 +4648,10 @@ body.arrastando * {
   .avatar-secreto.revela { animation: none; }
 }
 @media (max-aspect-ratio: 4/5) {
-  #stage .avatars.com-secreto {
+  #stage .avatars {
     gap: 3cqw;
   }
-  #stage .avatars.com-secreto .avatar {
+  #stage .avatars .avatar {
     width: 17cqw;
     height: 17cqw;
   }
