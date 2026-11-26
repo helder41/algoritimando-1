@@ -56,6 +56,8 @@ O **vertical** usa as mesmas cenas, na mesma ordem, com as gravações no tamanh
 
 **Arquivos:** `teaser-agente-a.webp` a `teaser-agente-d.webp` (não entram no jogo, só no vídeo).
 
+> **26/11/2026:** as quatro poses foram refeitas no estilo C (traço original refinado). No Flow, a pose antiga `a` (projeto "Algoritimando", busca "tablet") foi redesenhada junto com a folha "Character lineup" do estilo C, e as poses `b`, `c` e `d` saíram por edição da nova `a`, mudando só o gesto e a expressão. O tablet ficou no mesmo lugar, então os cantos da tela verde em `monta.py` continuam valendo. As antigas estão em `antigos/teaser/`.
+
 **Como gerar** (para as 4 poses ficarem iguais):
 
 1. Gere a **A** primeiro.
