@@ -19,3 +19,4 @@ Não entram aqui as partes desativadas **por enquanto** (Área do professor/edit
 | `img/pic3.webp`, `img/level3.webp`, `img/win3.webp` | cenas da Escola com a menina antiga | mesmas cenas com a menina no estilo C | 26/11/2026 |
 | `img/who2.webp` | alfinete da Fábrica com um operário de capacete | retrato do robô laranja (`cliente1`), que é o cliente desse chamado | 26/11/2026 |
 | `img/pecas/limonada-base.webp`, `img/pecas/dentes-base.webp` | bancadas antigas da limonada e dos dentes (muito detalhe atrás dos objetos) | `img/pecas/limonada-bancada.webp` e `dentes-bancada.webp` | 26/11/2026 |
+| `teaser/teaser-agente-a.webp` a `teaser-agente-d.webp` | poses da agente com o tablet no teaser, no desenho antigo (olhos grandes) | as mesmas poses no estilo C, em `docs/teaser/` | 26/11/2026 |

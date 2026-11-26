@@ -358,6 +358,35 @@ const CENAS = {
     }, 0.15);
   },
 
+  // animação final: o álbum completo montando e a festa de Agente Sênior
+  // (usada no vídeo de demonstração da BTX, ferramentas/btx/demo.py)
+  async fimanim(p) {
+    await CENAS.promo(p);
+    await p.click('#bPromoNext'); await sleep(300);
+    // vai direto ao quadro do álbum (o 3º), antes de começar a gravar
+    await p.evaluate(() => { const b = document.getElementById('bFimNext'); b.click(); b.click(); });
+    await gravar(p, 'fimanim', async () => {
+      await w(2600);
+      // até o quadro da festa de Agente Sênior (o 6º), seja qual for o quadro atual
+      await p.evaluate(() => {
+        const em = () => [...document.querySelectorAll('#fimDots i')].findIndex(i => i.classList.contains('on'));
+        while (em() < 5) document.getElementById('bFimNext').click();
+      });
+      await w(2200);
+    });
+  },
+
+  // atravessar a rua nível 2: o menino olha a luz, espera o verde e atravessa
+  async rua(p) {
+    await estado(p, ['sanduiche']);
+    await abrirNivel(p, 'rua', 1);
+    await gravar(p, 'rua', async () => {
+      await w(300);
+      for (const [i, id] of ['faixa', 'ver-luz', 'esperar', 'olhar', 'atravessar'].entries()) await colocar(p, id, i, 450);
+      await w(1400);
+    });
+  },
+
   // cartões próprios do teaser (cartoes.html)
   async intro(p) { await cartao(p, 'intro', 5000); },
   async titulo(p) { await cartao(p, 'titulo', 4000); },

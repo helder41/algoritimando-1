@@ -19,7 +19,7 @@ Os prompts prontos para gerar cada uma estão em [PROMPTS-CARTAS.md](PROMPTS-CAR
 | Arquivo | O que desenhar | Legenda da carta | Níveis |
 |---|---|---|---|
 | `sanduiche-01.webp` (já existe) | duas fatias de pão na mesa | Pegue duas fatias de pão. | 1, 2 |
-| `sanduiche-02.webp` (já existe) | queijo já em cima da fatia | Coloque o queijo no pão. / Coloque o queijo na fatia. | 1, 2, 4 |
+| `sanduiche-02.webp` (já existe) | queijo já em cima da fatia | Coloque o queijo no pão. / Coloque a fatia de queijo no pão. | 1, 2, 4 |
 | `sanduiche-03.webp` (já existe) | presunto | Coloque o presunto no pão. | 2 |
 | `sanduiche-04.webp` (já existe) | sanduíche fechado | Feche o sanduíche. / Feche com a outra fatia. / Junte as duas fatias. | 1, 2, 3, 4, 5 |
 | `sanduiche-05.webp` (já existe) | saco de pão fechado | Pegue o saco de pão. | 3, 4, 5 |

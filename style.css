@@ -3914,11 +3914,12 @@ body.arrastando * {
   #stage .modal .ideia p {
     font-size: max(3.4cqw, 12px);
   }
+  /* os 8 selos numa linha só, sem cortar nas pontas */
   #stage .final-selos {
-    gap: 3cqw;
+    gap: 1.5cqw;
   }
   #stage .final-selos .selo {
-    --d: 12cqw;
+    --d: 9.5cqw;
   }
   #stage .cast.cheio {
     gap: 0;
@@ -6719,4 +6720,96 @@ body.arrastando * {
     0 0 0 calc(0.5 * var(--t)) #fff,
     0 0 0 calc(1 * var(--t)) var(--c),
     0 calc(0.8 * var(--t)) 0 calc(1 * var(--t)) rgba(43, 34, 49, 0.25);
+}
+
+/* ============================================================
+   MENU NO CELULAR DEITADO
+   O palco fica baixo (cerca de 280 px) e os botões têm altura
+   mínima em px, então a coluna de 4 botões subia até cobrir o
+   título. Aqui o título fica um pouco menor e mais alto, e os
+   botões viram duas colunas (Jogar/Continuar sozinho em cima),
+   ocupando 3 linhas no lugar de 4, sobre a fachada da Central.
+   ============================================================ */
+@media (min-aspect-ratio: 4/5) and (max-height: 500px) {
+  #stage .logo {
+    font-size: max(7.4cqw, 28px);
+    padding-top: 7.5cqw;
+  }
+  #stage .menu-btns {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1.2cqw 1.8cqw;
+    bottom: 2.6cqw;
+    justify-items: stretch;
+  }
+  #stage .menu-btns > .btn {
+    min-width: 0;
+  }
+  #stage .menu-btns > #bPlay,
+  #stage .menu-btns > .menu-linha {
+    grid-column: 1 / -1;
+  }
+  #stage .menu-btns > #bPlay {
+    justify-self: center;
+    min-width: 50%;
+  }
+  #stage .menu-robo {
+    height: 24cqw;
+    left: 6cqw;
+  }
+  /* Créditos menor: só um rótulo no canto */
+  #stage .chip.menu-creditos {
+    top: 1.4cqw;
+    right: 1.6cqw;
+    min-height: 30px;
+    font-size: 12px;
+    padding: 0 12px;
+  }
+}
+
+/* celular em pé: Créditos menor, sem ocupar o canto todo */
+@media (max-aspect-ratio: 4/5) {
+  #stage .chip.menu-creditos {
+    top: 2.4cqw;
+    right: 2.4cqw;
+    min-height: 34px;
+    font-size: max(3cqw, 12px);
+    padding: 0 3cqw;
+  }
+}
+
+/* ============================================================
+   SOMBRA DO TÍTULO
+   O título é texto (fonte Fredoka) com contorno (-webkit-text-stroke)
+   e uma "sombra" escura embaixo, que dá o volume. Antes a sombra era
+   um text-shadow; o Safari do iPhone desenha o text-shadow só com o
+   miolo da letra, sem o contorno, e o céu aparecia numa fresta entre
+   a letra e a sombra. Agora a sombra é uma cópia do texto (::after),
+   com o mesmo contorno, deslocada para baixo atrás do título: fica
+   igual em todos os navegadores.
+   ============================================================ */
+#stage .logo {
+  --logo-traco: 0.5cqw;
+  --logo-sombra: 0.7cqw;
+  position: relative;
+  isolation: isolate;
+  text-shadow: none;
+}
+@media (max-aspect-ratio: 4/5) {
+  #stage .logo {
+    --logo-traco: 1.3cqw;
+    --logo-sombra: 1.6cqw;
+  }
+}
+#stage .logo::after {
+  content: attr(data-texto);
+  content: attr(data-texto) / "";
+  position: absolute;
+  inset: 0;
+  padding: inherit;
+  z-index: -1;
+  color: var(--ink);
+  -webkit-text-stroke: var(--logo-traco) var(--ink);
+  transform: translateY(var(--logo-sombra));
+  pointer-events: none;
 }

@@ -40,7 +40,7 @@ Attached images: style reference.
 Style: cute flat cartoon sticker illustration for a children's educational game (ages 8 to 10), matching the attached style reference exactly: thick dark brown outlines (#3B2A2A), soft warm pastel colors, simple flat shading with one small white highlight, rounded friendly shapes, a small soft grey oval shadow under the subject. Composition: one single subject, centered, filling about 70% of the frame, with clear empty margin on all sides so nothing touches the edges. Background: plain pure white (#FFFFFF), no scenery, no floor, no frame, no border, no card shape. Never include: text, letters, numbers, logos, watermarks, photorealism, 3D render, heavy gradients. Must stay readable when shown very small (about 100 px wide): bold simple silhouette, few details. Aspect ratio 4:3, 1200x900 px.
 ```
 
-### `sanduiche-02.webp` — Coloque o queijo no pão. / Coloque o queijo na fatia.
+### `sanduiche-02.webp` — Coloque o queijo no pão. / Coloque a fatia de queijo no pão.
 
 ```
 Subject: One slice of white sandwich bread lying flat, with one square slice of yellow cheese placed on top, cheese corners drooping slightly over the edges. Open-faced: no top slice. Objects have no faces.
