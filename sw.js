@@ -2,7 +2,7 @@
    rode "node ferramentas/gerar-sw.js" depois de mudar o ?v= do index.html. */
 'use strict';
 
-const VERSAO = '202611260530';
+const VERSAO = '202611260545';
 const CACHE = 'algoritimando-' + VERSAO;
 const ARQUIVOS = [
   "./",
@@ -18,7 +18,7 @@ const ARQUIVOS = [
   "audio/efeitos/selo.mp3",
   "audio/efeitos/vitoria.mp3",
   "audio/musica-tema.mp3",
-  "fontes/fontes.css?v=202611260530",
+  "fontes/fontes.css?v=202611260545",
   "fontes/fredoka.woff2",
   "fontes/nunito.woff2",
   "img/agente-afro-menina.webp",
@@ -287,24 +287,24 @@ const ARQUIVOS = [
   "img/win7.webp",
   "img/win8.webp",
   "index.html",
-  "js/album.js?v=202611260530",
-  "js/app.js?v=202611260530",
-  "js/arrasto.js?v=202611260530",
-  "js/comum.js?v=202611260530",
-  "js/conclusao.js?v=202611260530",
-  "js/em-progresso.js?v=202611260530",
-  "js/final.js?v=202611260530",
-  "js/jogo.js?v=202611260530",
-  "js/montagem.js?v=202611260530",
-  "js/motor.js?v=202611260530",
-  "js/perfil.js?v=202611260530",
-  "js/progresso.js?v=202611260530",
-  "js/pwa.js?v=202611260530",
-  "js/situacoes.js?v=202611260530",
-  "js/som.js?v=202611260530",
-  "js/versao.js?v=202611260530",
+  "js/album.js?v=202611260545",
+  "js/app.js?v=202611260545",
+  "js/arrasto.js?v=202611260545",
+  "js/comum.js?v=202611260545",
+  "js/conclusao.js?v=202611260545",
+  "js/em-progresso.js?v=202611260545",
+  "js/final.js?v=202611260545",
+  "js/jogo.js?v=202611260545",
+  "js/montagem.js?v=202611260545",
+  "js/motor.js?v=202611260545",
+  "js/perfil.js?v=202611260545",
+  "js/progresso.js?v=202611260545",
+  "js/pwa.js?v=202611260545",
+  "js/situacoes.js?v=202611260545",
+  "js/som.js?v=202611260545",
+  "js/versao.js?v=202611260545",
   "manifest.webmanifest",
-  "style.css?v=202611260530"
+  "style.css?v=202611260545"
 ];
 
 // instala: baixa tudo de novo (sem usar o cache do navegador)
